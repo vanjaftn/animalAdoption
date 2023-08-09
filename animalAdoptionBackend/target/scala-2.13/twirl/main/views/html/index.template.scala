@@ -8,7 +8,6 @@ import _root_.play.twirl.api.JavaScript
 import _root_.play.twirl.api.Txt
 import _root_.play.twirl.api.Xml
 import models._
-import controllers._
 import play.api.i18n._
 import views.html._
 import play.api.templates.PlayMagic._

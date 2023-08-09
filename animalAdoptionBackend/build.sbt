@@ -1,4 +1,4 @@
-name := """vanja"""
+name := """animalAdoption"""
 organization := "com.example"
 
 version := "1.0-SNAPSHOT"

@@ -30,6 +30,46 @@ package controllers.javascript {
   }
 
   // @LINE:9
+  class ReverseUserController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:9
+    def loginUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.loginUser",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
+        }
+      """
+    )
+  
+    // @LINE:11
+    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.create",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "user"})
+        }
+      """
+    )
+  
+    // @LINE:12
+    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.readAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allUsers"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:14
   class ReverseDogController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -37,7 +77,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:11
+    // @LINE:16
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DogController.readAll",
       """
@@ -47,7 +87,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:15
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DogController.read",
       """
@@ -57,7 +97,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:14
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DogController.create",
       """
@@ -67,7 +107,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:13
+    // @LINE:18
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DogController.delete",
       """
@@ -77,7 +117,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
+    // @LINE:17
     def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DogController.update",
       """
@@ -89,7 +129,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:16
+  // @LINE:23
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -97,7 +137,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:16
+    // @LINE:23
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

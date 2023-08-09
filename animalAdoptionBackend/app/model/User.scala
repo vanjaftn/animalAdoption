@@ -17,4 +17,7 @@ case class User(
                )
 object User {
   implicit val format: Format[User] = Json.format[User]
+
+  implicit def hashPassword(password: String) = BCrypt.hashpw(password, "")
+
 }
