@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class UnadoptedAnimalsPageComponent {
 
+  ngOnInit(): void {
+    console.log(localStorage.getItem('token'))
+  }
 }
