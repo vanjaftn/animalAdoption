@@ -18,7 +18,6 @@ export class AppComponent {
     localStorage.removeItem('token');
     window.location.href = '/login'
 
-    console.log(localStorage.getItem('token'));
     location.reload()
   }
 }

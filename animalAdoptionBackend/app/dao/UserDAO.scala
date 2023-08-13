@@ -42,7 +42,7 @@ class UserDAO @Inject()(
   def create(user: User): Future[User] = {
     val newUserId = Option(Random.alphanumeric.take(16).mkString)
     val newUser = user.copy(userId = newUserId)
-    db.run(Users += user.copy(userId = Option(Random.alphanumeric.take(16).mkString)).copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
+    db.run(Users += user.copy(userId = newUserId).copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
 
   }
 

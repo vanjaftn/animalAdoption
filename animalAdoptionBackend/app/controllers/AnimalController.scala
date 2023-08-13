@@ -1,25 +1,25 @@
 package controllers
 
-import model.Dog
+import model.{Animal}
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
-import service.DogService
+import service.AnimalService
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class DogController @Inject() (
-                                dogService: DogService,
+class AnimalController @Inject() (
+                                animalService: AnimalService,
                                 controllerComponents: ControllerComponents,
                               )(
                                 implicit executionContext: ExecutionContext
                               ) extends AbstractController(controllerComponents) {
 
   def create = Action.async(parse.json) { implicit request =>
-    val newDog = request.body.validate[Dog]
+    val newDog = request.body.validate[Animal]
     newDog match {
       case JsSuccess(dogObj, _) =>
-        dogService.create(dogObj).map(res =>
+        animalService.create(dogObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -27,11 +27,11 @@ class DogController @Inject() (
   }
 
   def update = Action.async(parse.json)  { implicit request =>
-    val newDog = request.body.validate[Dog]
+    val newDog = request.body.validate[Animal]
 
     newDog match {
       case JsSuccess(postObj, _) =>
-        dogService.update(postObj).map(res =>
+        animalService.update(postObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -39,19 +39,19 @@ class DogController @Inject() (
   }
 
   def readAll = Action.async { implicit request =>
-    dogService.readAll.map(res =>
+    animalService.readAll.map(res =>
       Ok(Json.toJson(res))
     )
   }
 
   def delete(id: String) = Action.async(parse.json) { implicit request =>
-    dogService.delete(id).map(res =>
+    animalService.delete(id).map(res =>
       Ok(Json.toJson(res))
     )
   }
 
   def read(id: String) = Action.async(parse.json) { implicit request =>
-    dogService.read(id).map(res =>
+    animalService.read(id).map(res =>
       Ok(Json.toJson(res))
     )
   }

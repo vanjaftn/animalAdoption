@@ -11,11 +11,11 @@ POST    /login  controllers.UserController.loginUser
 POST    /user  controllers.UserController.create
 GET     /allUsers            controllers.UserController.readAll
 
-POST    /dog                controllers.DogController.create
-GET     /user/:id           controllers.DogController.read(id : String)
-GET     /allDogs            controllers.DogController.readAll
-POST    /updateDog          controllers.DogController.update
-POST    /deleteDog/:id      controllers.DogController.delete(id: String)
+POST    /animal               controllers.AnimalController.create
+GET     /user/:id           controllers.AnimalController.read(id : String)
+GET     /allAnimals            controllers.AnimalController.readAll
+POST    /updateAnimal          controllers.AnimalController.update
+POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
 
 
 

@@ -29,17 +29,18 @@ class AdoptionDAO @Inject()(
     )
 
 
-  class AdoptionsTable(tag: Tag) extends Table[Adoption](tag, "subscriptions") {
+  class AdoptionsTable(tag: Tag) extends Table[Adoption](tag, "adoptions") {
 
     def adoptionId = column[Option[String]]("ADOPTIONID", O.PrimaryKey, O.AutoInc)
 
-    def dogId = column[String]("DOGID")
+    def animalId = column[String]("ANIMALID")
 
     def userId = column[String]("USERID")
 
     def adoptionDate = column[Date]("ADOPTIONDATE")
+    def adoptionStatus = column[String]("ADOPTIONSTATUS")
 
-    def * = (adoptionId, dogId, userId, adoptionDate) <> ((Adoption.apply _).tupled, Adoption.unapply)
+    def * = (adoptionId, animalId, userId, adoptionDate, adoptionStatus) <> ((Adoption.apply _).tupled, Adoption.unapply)
 
   }
 

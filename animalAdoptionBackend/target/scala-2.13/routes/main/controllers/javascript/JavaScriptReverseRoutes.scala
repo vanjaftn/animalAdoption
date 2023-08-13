@@ -70,7 +70,7 @@ package controllers.javascript {
   }
 
   // @LINE:14
-  class ReverseDogController(_prefix: => String) {
+  class ReverseAnimalController(_prefix: => String) {
 
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -79,17 +79,17 @@ package controllers.javascript {
   
     // @LINE:16
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DogController.readAll",
+      "controllers.AnimalController.readAll",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allDogs"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allAnimals"})
         }
       """
     )
   
     // @LINE:15
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DogController.read",
+      "controllers.AnimalController.read",
       """
         function(id0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
@@ -99,30 +99,30 @@ package controllers.javascript {
   
     // @LINE:14
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DogController.create",
+      "controllers.AnimalController.create",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "dog"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "animal"})
         }
       """
     )
   
     // @LINE:18
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DogController.delete",
+      "controllers.AnimalController.delete",
       """
         function(id0) {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteDog/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteAnimal/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
         }
       """
     )
   
     // @LINE:17
     def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.DogController.update",
+      "controllers.AnimalController.update",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "updateDog"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "updateAnimal"})
         }
       """
     )

@@ -1,0 +1,75 @@
+package dao
+
+import model.{Animal}
+
+import scala.concurrent.{ExecutionContext, Future}
+import javax.inject.Inject
+import play.api.db.slick.DatabaseConfigProvider
+import play.api.db.slick.HasDatabaseConfigProvider
+import slick.jdbc.JdbcProfile
+
+import java.sql.Timestamp
+import java.util.Date
+import scala.util.Random
+
+
+class AnimalDAO @Inject()(
+                         protected val dbConfigProvider: DatabaseConfigProvider
+                       )(
+                         implicit executionContext: ExecutionContext
+                       ) extends HasDatabaseConfigProvider[JdbcProfile] {
+  import profile.api._
+
+  val Animals = TableQuery[AnimalsTable]
+
+  implicit val dateMapper =
+    MappedColumnType.base[Date, Timestamp](
+      d => new Timestamp(d.getTime),
+      d => new Date(d.getTime)
+  )
+
+  def create(animal: Animal): Future[Animal] = {
+    val newAnimalId =  Option(Random.alphanumeric.take(16).mkString)
+    val newAnimal = animal.copy(animalId = newAnimalId)
+    db.run(Animals += animal.copy(animalId =  Option(Random.alphanumeric.take(16).mkString))).map(_ => newAnimal)
+
+  }
+
+  def delete(id: String): Future[Int] = {
+    db.run(Animals.filter(_.animalId === id).delete)
+  }
+
+  def read(id: String): Future[Animal] = {
+    db.run(Animals.filter(_.animalId === id).result.head)
+  }
+
+  def readAll: Future[Seq[Animal]] = {
+    db.run(Animals.result)
+  }
+
+  def update(animal: Animal): Future[Animal] = {
+    db.run(Animals.filter(_.animalId === animal.animalId).map(_.description).update(animal.description))
+      .map(res => animal)
+  }
+
+  class AnimalsTable(tag: Tag) extends Table[Animal](tag, "animals") {
+    def animalId = column[Option[String]]("ANIMALID", O.PrimaryKey, O.AutoInc)
+
+    def name = column[String]("NAME")
+
+    def dateOfBirth = column[Date]("DATEOFBIRTH")
+
+    def location = column[String]("LOCATION")
+
+    def photoURLs = column[String]("PHOTOURLS")
+
+    def description = column[String]("DESCRIPTION")
+    def chipNumber = column[Int]("CHIPNUMBER")
+    def size = column[String]("SIZE")
+    def animalTypeId = column[String]("ANIMALTYPEID")
+    def sterilized = column[Boolean]("STERILIZED")
+
+
+    def * = (animalId, name, dateOfBirth, location, photoURLs, description, chipNumber, size, animalTypeId, sterilized) <> ((Animal.apply _).tupled, Animal.unapply)
+  }
+}

@@ -33,11 +33,11 @@ class SubscriptionDAO @Inject()(
 
     def subscriptionId = column[Option[String]]("SUBSCRIPTIONID", O.PrimaryKey, O.AutoInc)
 
-    def dogId = column[String]("DOGID")
+    def animalId = column[String]("ANIMALID")
 
     def userId = column[String]("USERID")
 
-    def * = (subscriptionId, dogId, userId) <> ((Subscription.apply _).tupled, Subscription.unapply)
+    def * = (subscriptionId, animalId, userId) <> ((Subscription.apply _).tupled, Subscription.unapply)
 
   }
 

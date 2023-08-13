@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { LoginUser } from '../model/login-user.model';
 import { Observable } from 'rxjs';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,8 @@ export class UserService {
     return this.http.post(this.apiServerUrl + '/login', loginUser, {headers: this.headers, responseType: 'text'});
   }
 
+  register(user: User): Observable<any> {
+    console.log(user);
+    return this.http.post(this.apiServerUrl + '/user', user, {headers: this.headers, responseType: 'text'});
+  }
 }

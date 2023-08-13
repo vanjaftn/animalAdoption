@@ -7,9 +7,10 @@ import java.util.Date
 case class Adoption(
 
                         adoptionId : Option[String],
-                         dogId : String,
-                         userId : String,
-                        adoptionDate : Date
+                        animalId : String,
+                        userId : String,
+                        adoptionDate : Date,
+                        adoptionStatus: String
 
                        )
 object Adoption {

@@ -5,7 +5,7 @@ import play.api.libs.json.{Format, Json}
 case class Subscription(
 
                  subscriptionId : Option[String],
-                 dogId : String,
+                 animalId : String,
                  userId : String
 
                )

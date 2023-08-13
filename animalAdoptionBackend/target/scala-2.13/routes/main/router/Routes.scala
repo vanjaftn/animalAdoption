@@ -17,7 +17,7 @@ class Routes(
   // @LINE:9
   UserController_1: controllers.UserController,
   // @LINE:14
-  DogController_2: controllers.DogController,
+  AnimalController_2: controllers.AnimalController,
   // @LINE:23
   Assets_3: controllers.Assets,
   val prefix: String
@@ -30,15 +30,15 @@ class Routes(
     // @LINE:9
     UserController_1: controllers.UserController,
     // @LINE:14
-    DogController_2: controllers.DogController,
+    AnimalController_2: controllers.AnimalController,
     // @LINE:23
     Assets_3: controllers.Assets
-  ) = this(errorHandler, HomeController_0, UserController_1, DogController_2, Assets_3, "/")
+  ) = this(errorHandler, HomeController_0, UserController_1, AnimalController_2, Assets_3, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_0, UserController_1, DogController_2, Assets_3, prefix)
+    new Routes(errorHandler, HomeController_0, UserController_1, AnimalController_2, Assets_3, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -50,11 +50,11 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.UserController.loginUser"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user""", """controllers.UserController.create"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """allUsers""", """controllers.UserController.readAll"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """dog""", """controllers.DogController.create"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user/""" + "$" + """id<[^/]+>""", """controllers.DogController.read(id:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """allDogs""", """controllers.DogController.readAll"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """updateDog""", """controllers.DogController.update"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteDog/""" + "$" + """id<[^/]+>""", """controllers.DogController.delete(id:String)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """animal""", """controllers.AnimalController.create"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """user/""" + "$" + """id<[^/]+>""", """controllers.AnimalController.read(id:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """allAnimals""", """controllers.AnimalController.readAll"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """updateAnimal""", """controllers.AnimalController.update"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """deleteAnimal/""" + "$" + """id<[^/]+>""", """controllers.AnimalController.delete(id:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -136,32 +136,32 @@ class Routes(
   )
 
   // @LINE:14
-  private[this] lazy val controllers_DogController_create4_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("dog")))
+  private[this] lazy val controllers_AnimalController_create4_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("animal")))
   )
-  private[this] lazy val controllers_DogController_create4_invoker = createInvoker(
-    DogController_2.create,
+  private[this] lazy val controllers_AnimalController_create4_invoker = createInvoker(
+    AnimalController_2.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.DogController",
+      "controllers.AnimalController",
       "create",
       Nil,
       "POST",
-      this.prefix + """dog""",
+      this.prefix + """animal""",
       """""",
       Seq()
     )
   )
 
   // @LINE:15
-  private[this] lazy val controllers_DogController_read5_route = Route("GET",
+  private[this] lazy val controllers_AnimalController_read5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("user/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_DogController_read5_invoker = createInvoker(
-    DogController_2.read(fakeValue[String]),
+  private[this] lazy val controllers_AnimalController_read5_invoker = createInvoker(
+    AnimalController_2.read(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.DogController",
+      "controllers.AnimalController",
       "read",
       Seq(classOf[String]),
       "GET",
@@ -172,54 +172,54 @@ class Routes(
   )
 
   // @LINE:16
-  private[this] lazy val controllers_DogController_readAll6_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allDogs")))
+  private[this] lazy val controllers_AnimalController_readAll6_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAnimals")))
   )
-  private[this] lazy val controllers_DogController_readAll6_invoker = createInvoker(
-    DogController_2.readAll,
+  private[this] lazy val controllers_AnimalController_readAll6_invoker = createInvoker(
+    AnimalController_2.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.DogController",
+      "controllers.AnimalController",
       "readAll",
       Nil,
       "GET",
-      this.prefix + """allDogs""",
+      this.prefix + """allAnimals""",
       """""",
       Seq()
     )
   )
 
   // @LINE:17
-  private[this] lazy val controllers_DogController_update7_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("updateDog")))
+  private[this] lazy val controllers_AnimalController_update7_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("updateAnimal")))
   )
-  private[this] lazy val controllers_DogController_update7_invoker = createInvoker(
-    DogController_2.update,
+  private[this] lazy val controllers_AnimalController_update7_invoker = createInvoker(
+    AnimalController_2.update,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.DogController",
+      "controllers.AnimalController",
       "update",
       Nil,
       "POST",
-      this.prefix + """updateDog""",
+      this.prefix + """updateAnimal""",
       """""",
       Seq()
     )
   )
 
   // @LINE:18
-  private[this] lazy val controllers_DogController_delete8_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteDog/"), DynamicPart("id", """[^/]+""",true)))
+  private[this] lazy val controllers_AnimalController_delete8_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteAnimal/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_DogController_delete8_invoker = createInvoker(
-    DogController_2.delete(fakeValue[String]),
+  private[this] lazy val controllers_AnimalController_delete8_invoker = createInvoker(
+    AnimalController_2.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.DogController",
+      "controllers.AnimalController",
       "delete",
       Seq(classOf[String]),
       "POST",
-      this.prefix + """deleteDog/""" + "$" + """id<[^/]+>""",
+      this.prefix + """deleteAnimal/""" + "$" + """id<[^/]+>""",
       """""",
       Seq()
     )
@@ -271,33 +271,33 @@ class Routes(
       }
   
     // @LINE:14
-    case controllers_DogController_create4_route(params@_) =>
+    case controllers_AnimalController_create4_route(params@_) =>
       call { 
-        controllers_DogController_create4_invoker.call(DogController_2.create)
+        controllers_AnimalController_create4_invoker.call(AnimalController_2.create)
       }
   
     // @LINE:15
-    case controllers_DogController_read5_route(params@_) =>
+    case controllers_AnimalController_read5_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_DogController_read5_invoker.call(DogController_2.read(id))
+        controllers_AnimalController_read5_invoker.call(AnimalController_2.read(id))
       }
   
     // @LINE:16
-    case controllers_DogController_readAll6_route(params@_) =>
+    case controllers_AnimalController_readAll6_route(params@_) =>
       call { 
-        controllers_DogController_readAll6_invoker.call(DogController_2.readAll)
+        controllers_AnimalController_readAll6_invoker.call(AnimalController_2.readAll)
       }
   
     // @LINE:17
-    case controllers_DogController_update7_route(params@_) =>
+    case controllers_AnimalController_update7_route(params@_) =>
       call { 
-        controllers_DogController_update7_invoker.call(DogController_2.update)
+        controllers_AnimalController_update7_invoker.call(AnimalController_2.update)
       }
   
     // @LINE:18
-    case controllers_DogController_delete8_route(params@_) =>
+    case controllers_AnimalController_delete8_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_DogController_delete8_invoker.call(DogController_2.delete(id))
+        controllers_AnimalController_delete8_invoker.call(AnimalController_2.delete(id))
       }
   
     // @LINE:23

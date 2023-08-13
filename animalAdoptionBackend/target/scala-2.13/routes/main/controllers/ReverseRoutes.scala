@@ -52,7 +52,7 @@ package controllers {
   }
 
   // @LINE:14
-  class ReverseDogController(_prefix: => String) {
+  class ReverseAnimalController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
@@ -61,7 +61,7 @@ package controllers {
     // @LINE:16
     def readAll: Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "allDogs")
+      Call("GET", _prefix + { _defaultPrefix } + "allAnimals")
     }
   
     // @LINE:15
@@ -73,19 +73,19 @@ package controllers {
     // @LINE:14
     def create: Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "dog")
+      Call("POST", _prefix + { _defaultPrefix } + "animal")
     }
   
     // @LINE:18
     def delete(id:String): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "deleteDog/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("POST", _prefix + { _defaultPrefix } + "deleteAnimal/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
     // @LINE:17
     def update: Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "updateDog")
+      Call("POST", _prefix + { _defaultPrefix } + "updateAnimal")
     }
   
   }
