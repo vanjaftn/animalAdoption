@@ -30,11 +30,11 @@ export class LoginUserComponent {
 
       alert('Successfully logged in');
 
-      // this.loggedUserId = decodedJWT.id.authority;
-      // localStorage.setItem('loggedUserId', this.loggedUserId);
-      console.log(decodedJWT);
+      this.loggedUserId = decodedJWT.sub;
+      localStorage.setItem('loggedUserEmail', this.loggedUserId);
+      console.log(decodedJWT.sub);
 
-      window.location.href = '/unadopted-animals'
+      // window.location.href = '/unadopted-animals'
     },
     (error) => {
       alert("Invalid email/password");

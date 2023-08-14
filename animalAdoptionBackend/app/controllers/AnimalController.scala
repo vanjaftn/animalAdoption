@@ -16,10 +16,10 @@ class AnimalController @Inject() (
                               ) extends AbstractController(controllerComponents) {
 
   def create = Action.async(parse.json) { implicit request =>
-    val newDog = request.body.validate[Animal]
-    newDog match {
-      case JsSuccess(dogObj, _) =>
-        animalService.create(dogObj).map(res =>
+    val newAnimal = request.body.validate[Animal]
+    newAnimal match {
+      case JsSuccess(animalObj, _) =>
+        animalService.create(animalObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -27,11 +27,11 @@ class AnimalController @Inject() (
   }
 
   def update = Action.async(parse.json)  { implicit request =>
-    val newDog = request.body.validate[Animal]
+    val newAnimal = request.body.validate[Animal]
 
-    newDog match {
-      case JsSuccess(postObj, _) =>
-        animalService.update(postObj).map(res =>
+    newAnimal match {
+      case JsSuccess(animalObj, _) =>
+        animalService.update(animalObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -52,6 +52,12 @@ class AnimalController @Inject() (
 
   def read(id: String) = Action.async(parse.json) { implicit request =>
     animalService.read(id).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def readAllAdopted = Action.async { implicit request =>
+    animalService.readAllAdoptedAnimals.map(res =>
       Ok(Json.toJson(res))
     )
   }

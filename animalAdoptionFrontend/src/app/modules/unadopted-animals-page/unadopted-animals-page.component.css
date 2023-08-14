@@ -7,6 +7,8 @@
   background-size: cover;
   background-position: center;
   background-color: #fbf5ca;
+  text-align: center;
+  margin-top: 20px;
 }
 
 h2 {
@@ -19,9 +21,11 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
+} 
 
 .profile-card {
+  border: 1px solid #ccc;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   padding: 20px;
@@ -48,6 +52,20 @@ h2 {
   color: #555;
 }
 
+.subscription-button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscription-button:hover {
+  background-color: #ff4f4f;
+}
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
   .profile-card {

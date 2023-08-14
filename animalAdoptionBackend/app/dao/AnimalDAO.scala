@@ -14,6 +14,7 @@ import scala.util.Random
 
 
 class AnimalDAO @Inject()(
+                         adoptionDAO: AdoptionDAO,
                          protected val dbConfigProvider: DatabaseConfigProvider
                        )(
                          implicit executionContext: ExecutionContext
@@ -40,7 +41,7 @@ class AnimalDAO @Inject()(
   }
 
   def read(id: String): Future[Animal] = {
-    db.run(Animals.filter(_.animalId === id).result.head)
+    db.run(Animals.filter(animal => animal.animalId === id).result.head)
   }
 
   def readAll: Future[Seq[Animal]] = {

@@ -1,12 +1,13 @@
 package service
 
-import dao.AnimalDAO
+import dao.{AdoptionDAO, AnimalDAO}
 import model.Animal
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class AnimalService @Inject()(animalDAO: AnimalDAO
+class AnimalService @Inject()(animalDAO: AnimalDAO,
+                              adoptionDAO: AdoptionDAO,
                           )(implicit ec : ExecutionContext){
 
   def create(animal: Animal): Future[Animal] = {
@@ -28,4 +29,9 @@ class AnimalService @Inject()(animalDAO: AnimalDAO
   def delete(animalId: String): Future[Int] = {
     animalDAO.delete(animalId)
   }
+
+  def readAllAdoptedAnimals : Future[Seq[Animal]] = {
+      adoptionDAO.readAllApprovedAdoptions.map(_.map(adoption => read(adoption.animalId))).flatMap(animals => Future.sequence(animals))
+  }
+
 }

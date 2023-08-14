@@ -16,6 +16,17 @@ GET     /user/:id           controllers.AnimalController.read(id : String)
 GET     /allAnimals            controllers.AnimalController.readAll
 POST    /updateAnimal          controllers.AnimalController.update
 POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
+GET     /allAdoptedAnimals            controllers.AnimalController.readAllAdopted
+
+POST    /adoption  controllers.AdoptionController.create
+GET     /allAdoptions            controllers.AdoptionController.readAll
+POST    /deleteAdoption/:id      controllers.AdoptionController.delete(id: String)
+
++ nocsrf
+POST    /subscription  controllers.SubscriptionController.create
+GET     /allSubscriptions            controllers.SubscriptionController.readAll
++ nocsrf
+POST    /deleteSubscription/:id      controllers.SubscriptionController.delete(id: String)
 
 
 

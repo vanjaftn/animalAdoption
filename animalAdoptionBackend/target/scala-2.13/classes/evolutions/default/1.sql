@@ -25,14 +25,14 @@ PRIMARY KEY (`animalId`)
 );
 
 CREATE TABLE `subscriptions` (
-`subscriptionId` varchar(255) NOT NULL,
+`subscriptionId` varchar(255) NOT NULL DEFAULT (UUID()),
 `animalId` varchar(255) NOT NULL,
 `userId` varchar(255) NOT NULL,
 PRIMARY KEY (`subscriptionId`)
 );
 
 CREATE TABLE `adoptions` (
-`adoptionId` varchar(255) NOT NULL,
+`adoptionId` varchar(255) NOT NULL DEFAULT (UUID()),
 `animalId` varchar(255) NOT NULL,
 `userId` varchar(255) NOT NULL,
 `adoptionDate` timestamp NOT NULL,
@@ -41,7 +41,7 @@ PRIMARY KEY (`adoptionId`)
 );
 
 CREATE TABLE `lostAndFounds` (
-`lostAndFoundId` varchar(255) NOT NULL,
+`lostAndFoundId` varchar(255) NOT NULL DEFAULT (UUID()),
 `animalId` varchar(255) NOT NULL,
 `userId` varchar(255) NOT NULL,
 `lostAndFoundDate` timestamp NOT NULL,
@@ -50,7 +50,7 @@ PRIMARY KEY (`lostAndFoundId`)
 );
 
 CREATE TABLE `vaccines` (
-`vaccineId` varchar(255) NOT NULL,
+`vaccineId` varchar(255) NOT NULL DEFAULT (UUID()),
 `vaccineType` varchar(255) NOT NULL,
 `animalId` varchar(255) NOT NULL,
 `vetId` varchar(255) NOT NULL,
@@ -59,7 +59,7 @@ PRIMARY KEY (`vaccineId`)
 );
 
 CREATE TABLE `admins` (
-`adminId` varchar(255) NOT NULL,
+`adminId` varchar(255) NOT NULL DEFAULT (UUID()),
 `userId` varchar(255) NOT NULL,
 PRIMARY KEY (`adminId`)
 );
