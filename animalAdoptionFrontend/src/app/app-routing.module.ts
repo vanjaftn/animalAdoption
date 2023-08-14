@@ -4,12 +4,14 @@ import { LoginUserComponent } from './modules/login-user/login-user.component';
 import { RegisterUserComponent } from './modules/register-user/register-user.component';
 import { UnadoptedAnimalsPageComponent } from './modules/unadopted-animals-page/unadopted-animals-page.component';
 import { AdoptedAnimalsPageComponent } from './modules/adopted-animals-page/adopted-animals-page.component';
+import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
   { path: 'register-user', component: RegisterUserComponent},
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
+  { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},
 
 ];
 

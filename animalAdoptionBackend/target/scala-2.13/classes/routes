@@ -17,6 +17,7 @@ GET     /allAnimals            controllers.AnimalController.readAll
 POST    /updateAnimal          controllers.AnimalController.update
 POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
 GET     /allAdoptedAnimals            controllers.AnimalController.readAllAdopted
+GET     /allUsersSubscribedAnimals            controllers.AnimalController.readAllUsersSubscribedAnimals
 
 POST    /adoption  controllers.AdoptionController.create
 GET     /allAdoptions            controllers.AdoptionController.readAll

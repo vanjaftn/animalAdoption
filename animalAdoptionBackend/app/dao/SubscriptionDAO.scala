@@ -46,6 +46,10 @@ class SubscriptionDAO @Inject()(
   def readAll: Future[Seq[Subscription]] = {
     db.run(Subscriptions.result)
   }
+
+  def readAllUsersSubscriptions(userId : String) : Future[Seq[Subscription]] = {
+    db.run(Subscriptions.filter(_.userId === userId).result)
+  }
   class SubscriptionsTable(tag: Tag) extends Table[Subscription](tag, "subscriptions") {
 
     def subscriptionId = column[Option[String]]("SUBSCRIPTIONID", O.PrimaryKey, O.AutoInc)

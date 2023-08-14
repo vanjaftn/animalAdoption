@@ -1,55 +1,44 @@
-.profiles-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  /*background-image: url('background-image.jpg'); Replace with your image path */
-  background-size: cover;
-  background-position: center;
-  background-color: #fbf5ca;
-  text-align: center;
-  margin-top: 20px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #52523c;
+.profiles-container {
+  display: flex;
+  justify-content: center;
+  background-color: #fbf5ca;
+  padding: 20px;
 }
 
 .profile-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-} 
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+}
 
 .profile-card {
   border: 1px solid #ccc;
-  position: relative;
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   padding: 20px;
-  margin: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  width: 280px;
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
   text-align: center;
-}
-
-.profile-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 .profile-card h3 {
   font-size: 20px;
-  margin-bottom: 6px;
+  margin: 10px 0;
 }
 
 .profile-card p {
   font-size: 14px;
   color: #555;
+  margin: 5px 0;
 }
 
 .subscription-button {
@@ -65,10 +54,4 @@ h2 {
 
 .subscription-button:hover {
   background-color: #ff4f4f;
-}
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-  .profile-card {
-    width: 100%;
-  }
 }

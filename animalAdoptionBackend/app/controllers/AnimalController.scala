@@ -1,6 +1,7 @@
 package controllers
 
-import model.{Animal}
+import auth.AuthAction
+import model.Animal
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
 import service.AnimalService
@@ -11,6 +12,8 @@ import scala.concurrent.{ExecutionContext, Future}
 class AnimalController @Inject() (
                                 animalService: AnimalService,
                                 controllerComponents: ControllerComponents,
+                                authAction: AuthAction
+
                               )(
                                 implicit executionContext: ExecutionContext
                               ) extends AbstractController(controllerComponents) {
@@ -58,6 +61,14 @@ class AnimalController @Inject() (
 
   def readAllAdopted = Action.async { implicit request =>
     animalService.readAllAdoptedAnimals.map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def readAllUsersSubscribedAnimals = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    animalService.readAllUsersSubscribedAnimals(loggedInUser.userId.head).map(res =>
       Ok(Json.toJson(res))
     )
   }

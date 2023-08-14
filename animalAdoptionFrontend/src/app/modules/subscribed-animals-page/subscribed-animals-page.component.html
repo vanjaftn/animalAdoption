@@ -1,0 +1,27 @@
+<body>
+<div class="profiles-container">
+  <div class="profile-list">
+      <div class="profile-card" *ngFor="let animal of subscribedAnimals">
+        <h3>{{animal.name}}</h3>
+        <p>Age : {{animal.dateOfBirth}}</p>
+          <div>
+            {{animal.location}}
+          </div>
+          <div>
+            {{animal.size}}
+          </div>
+          <div>
+            <label>Is sterilized?</label>
+            {{animal.sterilized}}
+          </div>
+          <div>
+            <label>Chip number</label>
+            {{animal.chipNumber}}
+          </div>
+          <button class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
+      </div>
+
+    <!-- Repeat more profile-card elements as needed -->
+  </div>
+</div>
+</body>

@@ -9,6 +9,7 @@ import { RegisterUserComponent } from './modules/register-user/register-user.com
 import { UnadoptedAnimalsPageComponent } from './modules/unadopted-animals-page/unadopted-animals-page.component';
 import { AdoptedAnimalsPageComponent } from './modules/adopted-animals-page/adopted-animals-page.component';
 import { FormsModule } from '@angular/forms';
+import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     LoginUserComponent,
     RegisterUserComponent,
     UnadoptedAnimalsPageComponent,
-    AdoptedAnimalsPageComponent
+    AdoptedAnimalsPageComponent,
+    SubscribedAnimalsPageComponent
   ],
   imports: [
     BrowserModule,

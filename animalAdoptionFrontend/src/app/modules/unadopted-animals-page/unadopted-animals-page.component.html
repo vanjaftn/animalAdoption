@@ -1,27 +1,27 @@
-<div class="profiles-container">
+<body>
+  <div class="profiles-container">
     <div class="profile-list">
-      <div class="profile-card">
-        <!-- <img src="profile-image1.jpg" alt="Profile 1"> -->
-        <div *ngFor="let animal of adoptedAnimals">
-          <h3>{{animal.name}}aaaaaaaaaaaaaaaaa</h3>
-          <p>{{animal.dateOfBirth}}</p>
-          <div>
-            {{animal.location}}
-          </div>
-          <div>
-            {{animal.size}}
-          </div>
-          <div>
-            <label>Is sterilized?</label>
-            {{animal.sterilized}}
-          </div>
-          <div>
-            <label>Chip number</label>
-            {{animal.chipNumber}}
-          </div>
-          <button class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
+        <div class="profile-card" *ngFor="let animal of adoptedAnimals">
+          <h3>{{animal.name}}</h3>
+          <p>Age : {{animal.dateOfBirth}}</p>
+            <div>
+              {{animal.location}}
+            </div>
+            <div>
+              {{animal.size}}
+            </div>
+            <div>
+              <label>Is sterilized?</label>
+              {{animal.sterilized}}
+            </div>
+            <div>
+              <label>Chip number</label>
+              {{animal.chipNumber}}
+            </div>
+            <button class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
         </div>
-      </div>      
+  
+      <!-- Repeat more profile-card elements as needed -->
     </div>
   </div>
-  
+  </body>
