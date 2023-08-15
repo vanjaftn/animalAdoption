@@ -31,19 +31,49 @@ class SubscriptionController @Inject() (
     }
   }
 
+  def subscriptionExists = authAction.async(parse.json) { implicit request =>
+    val animalId = request.body.validate[String]
+    val loggedInUser = request.user
+
+    animalId match {
+      case JsSuccess(animalObj, _) =>
+        subscriptionService.subscriptionExists(animalObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+  def readSubscriptionByAnimalAndUserId = authAction.async(parse.json) { implicit request =>
+    val animalId = request.body.validate[String]
+    val loggedInUser = request.user
+
+    animalId match {
+      case JsSuccess(animalObj, _) =>
+        subscriptionService.readSubscriptionByAnimalAndUserId(animalObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
   def readAll = Action.async { implicit request =>
     subscriptionService.readAll.map(res =>
       Ok(Json.toJson(res))
     )
   }
 
-  def delete(id: String) = Action.async(parse.json) { implicit request =>
+  def delete(id: String) = Action.async { implicit request =>
+//    val loggedInUser = request.user
+
     subscriptionService.delete(id).map(res =>
       Ok(Json.toJson(res))
     )
   }
 
-  def read(id: String) = Action.async(parse.json) { implicit request =>
+  def read(id: String) = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
     subscriptionService.read(id).map(res =>
       Ok(Json.toJson(res))
     )

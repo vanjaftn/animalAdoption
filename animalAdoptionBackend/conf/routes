@@ -10,9 +10,9 @@ POST    /login  controllers.UserController.loginUser
 
 POST    /user  controllers.UserController.create
 GET     /allUsers            controllers.UserController.readAll
+GET     /user/:id           controllers.AnimalController.read(id : String)
 
 POST    /animal               controllers.AnimalController.create
-GET     /user/:id           controllers.AnimalController.read(id : String)
 GET     /allAnimals            controllers.AnimalController.readAll
 POST    /updateAnimal          controllers.AnimalController.update
 POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
@@ -25,10 +25,14 @@ POST    /deleteAdoption/:id      controllers.AdoptionController.delete(id: Strin
 
 + nocsrf
 POST    /subscription  controllers.SubscriptionController.create
+GET     /subscription/:id           controllers.SubscriptionController.read(id : String)
 GET     /allSubscriptions            controllers.SubscriptionController.readAll
 + nocsrf
 POST    /deleteSubscription/:id      controllers.SubscriptionController.delete(id: String)
-
++ nocsrf
+POST     /subscriptionExists            controllers.SubscriptionController.subscriptionExists
++ nocsrf
+POST     /subscriptionByAnimalId           controllers.SubscriptionController.readSubscriptionByAnimalAndUserId
 
 
 # Map static resources from the /public folder to the /assets URL path

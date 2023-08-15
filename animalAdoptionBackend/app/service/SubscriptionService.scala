@@ -11,9 +11,19 @@ class SubscriptionService @Inject()(subscriptionDAO: SubscriptionDAO,
 
   def create(subscription: Subscription, loggedInUserId: String): Future[Subscription] = {
 
-    subscriptionDAO.create(subscription, loggedInUserId)
+    subscriptionDAO.subscriptionExists(subscription.animalId, loggedInUserId).flatMap {
+      case false => subscriptionDAO.create(subscription, loggedInUserId)
+      case true => throw new Exception("Subscription already exists")
+    }
   }
 
+  def subscriptionExists(animalId: String, userId: String): Future[Boolean] = {
+    subscriptionDAO.subscriptionExists(animalId, userId)
+  }
+
+  def readSubscriptionByAnimalAndUserId(animalId: String, userId: String): Future[Subscription] = {
+    subscriptionDAO.readSubscriptionByAnimalAndUserId(animalId, userId)
+  }
   def readAll(): Future[Seq[Subscription]] = {
     subscriptionDAO.readAll
   }
@@ -25,5 +35,7 @@ class SubscriptionService @Inject()(subscriptionDAO: SubscriptionDAO,
   def delete(subscriptionId: String): Future[Int] = {
     subscriptionDAO.delete(subscriptionId)
   }
+
+
 
 }

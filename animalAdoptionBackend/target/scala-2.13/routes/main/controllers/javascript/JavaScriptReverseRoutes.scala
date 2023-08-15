@@ -9,7 +9,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:35
+  // @LINE:39
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -17,7 +17,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:35
+    // @LINE:39
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -29,7 +29,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:14
+  // @LINE:13
   class ReverseAnimalController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -57,7 +57,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:15
+    // @LINE:13
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.read",
       """
@@ -67,7 +67,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:14
+    // @LINE:15
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.create",
       """
@@ -117,6 +117,36 @@ package controllers.javascript {
     }
 
   
+    // @LINE:29
+    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SubscriptionController.readAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allSubscriptions"})
+        }
+      """
+    )
+  
+    // @LINE:33
+    def subscriptionExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SubscriptionController.subscriptionExists",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "subscriptionExists"})
+        }
+      """
+    )
+  
+    // @LINE:28
+    def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SubscriptionController.read",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "subscription/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
     // @LINE:27
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.create",
@@ -127,22 +157,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:28
-    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.SubscriptionController.readAll",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allSubscriptions"})
-        }
-      """
-    )
-  
-    // @LINE:30
+    // @LINE:31
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.delete",
       """
         function(id0) {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteSubscription/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:35
+    def readSubscriptionByAnimalAndUserId: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.SubscriptionController.readSubscriptionByAnimalAndUserId",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "subscriptionByAnimalId"})
         }
       """
     )

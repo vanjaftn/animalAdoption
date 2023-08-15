@@ -1,7 +1,7 @@
 <body>
 <div class="profiles-container">
   <div class="profile-list">
-      <div class="profile-card" *ngFor="let animal of subscribedAnimals">
+      <div class="profile-card" *ngFor="let animal of subscribedAnimalsWithSubscription">
         <h3>{{animal.name}}</h3>
         <p>Age : {{animal.dateOfBirth}}</p>
           <div>
@@ -18,8 +18,9 @@
             <label>Chip number</label>
             {{animal.chipNumber}}
           </div>
-          <button class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
-      </div>
+          <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
+          <button *ngIf="animal.subscription == true" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
+    </div>
 
     <!-- Repeat more profile-card elements as needed -->
   </div>

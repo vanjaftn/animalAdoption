@@ -15,6 +15,10 @@ export class AnimalService {
 
   constructor(private http: HttpClient) { }
   
+  allAnimals(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allAnimals', {headers: this.headers, responseType: 'text'});
+  }
+
   allAdoptedAnimals(): Observable<any> {
     return this.http.get(this.apiServerUrl + '/allAdoptedAnimals', {headers: this.headers, responseType: 'text'});
   }

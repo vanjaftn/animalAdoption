@@ -50,6 +50,15 @@ class SubscriptionDAO @Inject()(
   def readAllUsersSubscriptions(userId : String) : Future[Seq[Subscription]] = {
     db.run(Subscriptions.filter(_.userId === userId).result)
   }
+
+  def subscriptionExists(animalId: String, userId: String) : Future[Boolean] = {
+    db.run(Subscriptions.filter(subscription => (subscription.userId === userId) && (subscription.animalId === animalId)).exists.result)
+  }
+
+  def readSubscriptionByAnimalAndUserId(animalId: String, userId: String) : Future[Subscription] = {
+    db.run(Subscriptions.filter(subscription => (subscription.userId === userId) && (subscription.animalId === animalId)).result.head)
+
+  }
   class SubscriptionsTable(tag: Tag) extends Table[Subscription](tag, "subscriptions") {
 
     def subscriptionId = column[Option[String]]("SUBSCRIPTIONID", O.PrimaryKey, O.AutoInc)

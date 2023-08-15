@@ -9,14 +9,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers {
 
-  // @LINE:35
+  // @LINE:39
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:35
+    // @LINE:39
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -24,7 +24,7 @@ package controllers {
   
   }
 
-  // @LINE:14
+  // @LINE:13
   class ReverseAnimalController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -43,13 +43,13 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "allUsersSubscribedAnimals")
     }
   
-    // @LINE:15
+    // @LINE:13
     def read(id:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:14
+    // @LINE:15
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "animal")
@@ -82,22 +82,40 @@ package controllers {
     }
 
   
+    // @LINE:29
+    def readAll: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allSubscriptions")
+    }
+  
+    // @LINE:33
+    def subscriptionExists: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "subscriptionExists")
+    }
+  
+    // @LINE:28
+    def read(id:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "subscription/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
     // @LINE:27
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "subscription")
     }
   
-    // @LINE:28
-    def readAll: Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "allSubscriptions")
-    }
-  
-    // @LINE:30
+    // @LINE:31
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteSubscription/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:35
+    def readSubscriptionByAnimalAndUserId: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "subscriptionByAnimalId")
     }
   
   }
