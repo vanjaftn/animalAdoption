@@ -19,7 +19,7 @@
               {{animal.chipNumber}}
             </div>
             <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
-            <button *ngIf="animal.subscription == true" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
+            <button *ngIf="animal.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
             <div>
               <br>
               <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>

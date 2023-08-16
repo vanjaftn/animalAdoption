@@ -78,7 +78,7 @@ export class AnimalProfileComponent {
 
       // alert('Successfully registered');
 
-        window.location.href = '/adopted-animals'
+        // window.location.href = '/adopted-animals'
     }
     );
   }
@@ -94,7 +94,7 @@ export class AnimalProfileComponent {
   
         // alert('Successfully registered');
   
-        window.location.href = '/adopted-animals'
+        // window.location.href = '/adopted-animals'
       }
       );
     });
