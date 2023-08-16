@@ -18,7 +18,7 @@ class AnimalController @Inject() (
                                 implicit executionContext: ExecutionContext
                               ) extends AbstractController(controllerComponents) {
 
-  def create = Action.async(parse.json) { implicit request =>
+  def create = authAction.async(parse.json) { implicit request =>
     val newAnimal = request.body.validate[Animal]
     newAnimal match {
       case JsSuccess(animalObj, _) =>
@@ -47,7 +47,7 @@ class AnimalController @Inject() (
     )
   }
 
-  def delete(id: String) = Action.async(parse.json) { implicit request =>
+  def delete(id: String) = Action.async { implicit request =>
     animalService.delete(id).map(res =>
       Ok(Json.toJson(res))
     )

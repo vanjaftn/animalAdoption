@@ -7,10 +7,12 @@ import { AdoptedAnimalsPageComponent } from './modules/adopted-animals-page/adop
 import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
 import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
   { path: 'register-user', component: RegisterUserComponent},
+  { path: 'register-animal', component: RegisterAnimalComponent},
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
   { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},

@@ -9,6 +9,9 @@
          <a class="nav-link" routerLink="/register-user">Sign up</a>
       </li>
       <li class="nav-item active">
+         <a *ngIf="userIsAdmin === 'true'" class="nav-link" routerLink="/register-animal">New animal</a>
+      </li>
+      <li class="nav-item active">
          <a class="nav-link" routerLink="/unadopted-animals">For adoption</a>
       </li>
       <li class="nav-item active">

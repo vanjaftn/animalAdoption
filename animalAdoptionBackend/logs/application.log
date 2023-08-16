@@ -1,11 +1,8 @@
-2023-08-16 17:28:26 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2023-08-16 19:45:36 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     play.filters.csrf.CSRFFilter
 
-2023-08-16 17:28:26 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
-2023-08-16 17:28:27 [31mWARN [0;39m [36mplay.filters.CSRF[0;39m [35m[0;39m [CSRF] Check failed because application/json for request /login
-2023-08-16 17:29:18 [31mWARN [0;39m [36mplay.filters.CSRF[0;39m [35m[0;39m [CSRF] Check failed because application/json for request /login
-2023-08-16 17:30:01 [31mWARN [0;39m [36mplay.filters.CSRF[0;39m [35m[0;39m [CSRF] Check failed because application/json for request /login
+2023-08-16 19:45:36 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)

@@ -1,0 +1,49 @@
+<div class="registration-container">
+    <div class="registration-form">
+      <h2>New animal</h2>
+      <form (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter animal's name" [(ngModel)]="animal.name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="chipNumber">Chip number</label>
+          <input type="text" id="chipNumber" name="chipNumber" placeholder="Enter animal's Chip number"  [(ngModel)]="animal.chipNumber" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" placeholder="Enter animal's location"  [(ngModel)]="animal.location" required>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" placeholder="Enter animal's description"  [(ngModel)]="animal.description" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dateOfBirth" class="form-label">Date of birth</label>
+          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="animal.dateOfBirth" max="{{getDate()}}">
+      </div>
+
+      <div class="form-group">
+        <label for="size">Size</label>
+        <input type="text" id="size" name="size" placeholder="Enter your size"  [(ngModel)]="animal.size" required>
+      </div>
+
+      <div class="form-group">
+        <label for="animalTypeId">Animal type</label>
+        <input type="text" id="animalTypeId" name="animalTypeId" placeholder="Enter animal's type"  [(ngModel)]="animal.animalTypeId" required>
+      </div>
+
+      <label>
+        Is sterelized:
+        <input type="checkbox" [(ngModel)]="animal.sterilized" id="sterilized" name="sterilized" />
+      </label>
+        
+        <button type="submit" class="btn-register">Register</button>
+      </form>
+    </div>
+  </div>
+  

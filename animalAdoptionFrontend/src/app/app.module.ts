@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
 import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserProfileComponent } from './modules/user-profile/user-profile.compon
     AdoptedAnimalsPageComponent,
     SubscribedAnimalsPageComponent,
     AnimalProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    RegisterAnimalComponent
   ],
   imports: [
     BrowserModule,

@@ -9,8 +9,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(onFailure loadFailed, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(loadp, None, None)[0m
 [0m[[0m[0minfo[0m] [0m[0mwelcome to sbt 1.7.2 (Oracle Corporation Java 11.0.17)[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: plugins took 79.248ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: defsScala took 0.2465ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: plugins took 2754.9306ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: defsScala took 0.2592ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory C:\Users\vanja\.sbt\1.0\plugins[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found non-root projects [0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\vanja\.sbt\1.0\plugins, returning: ()[0m
@@ -27,27 +27,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 20.1922 ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.resolveProject(global-plugins) took 46.7875ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\vanja\.sbt\1.0\plugins, plugins: List(<none>))) took 102.012ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 16.5057 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.resolveProject(global-plugins) took 68.0514ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\vanja\.sbt\1.0\plugins, plugins: List(<none>))) took 111.3288ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\vanja\.sbt\1.0\plugins, returning: (global-plugins)[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: loadedProjectsRaw took 120.2762ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: cleanEvalClasses took 0.2229ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit(file:/C:/Users/vanja/.sbt/1.0/plugins/, ...) took 207.4824ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: load took 368.57ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: resolveProjects took 5.1868ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: finalTransforms took 45.1011ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: config.delegates took 5.4816ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: Def.make(settings)... took 305.2026ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: structureIndex took 73.9006ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: mkStreams took 1.3558ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: loadedProjectsRaw took 132.5301ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: cleanEvalClasses took 0.2722ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit(file:/C:/Users/vanja/.sbt/1.0/plugins/, ...) took 2896.365ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: load took 3117.5048ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: resolveProjects took 7.9935ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: finalTransforms took 62.6382ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: config.delegates took 7.0388ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: Def.make(settings)... took 323.8124ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: structureIndex took 79.3278ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.apply: mkStreams took 1.3302ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading global plugins from C:\Users\vanja\.sbt\1.0\plugins[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 1902.5796ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 19.1879ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.0106ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 4658.3943ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 20.8338ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.0033ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 8.9092ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 8.1897ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found non-root projects [0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project, returning: ()[0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
@@ -63,27 +63,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 1.1095 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 1.5196 ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading settings for project animaladoptionbackend-build from plugins.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(animaladoptionbackend-build) took 3.8038ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id animaladoptionbackend-build, base: C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project, plugins: List(<none>))) took 5.3004ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(animaladoptionbackend-build) took 4.2056ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id animaladoptionbackend-build, base: C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project, plugins: List(<none>))) took 6.3498ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project, returning: (animaladoptionbackend-build)[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 126.038ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 3.7125ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/project/, ...) took 149.9545ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 151.2459ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 0.0854ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 7.0366ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 0.4002ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 62.1236ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 23.6324ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 141.697ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 3.8494ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/project/, ...) took 167.5375ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 169.2098ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 0.1413ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 8.9813ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 0.3466ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 68.4008ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 23.9937ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m      Load.apply: mkStreams took 0.0022ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading project definition from C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\project[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 1027.0795ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.0032ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 986.4833ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.003ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.3123ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.509ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found root project root w/ remaining [0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(play.sbt.PlayScala), Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))[0m
@@ -171,21 +171,21 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.web.SbtWeb),Set(Atom(com.typesafe.sbt.jse.SbtJsEngine)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.jse.SbtJsEngine),Set(Atom(com.typesafe.sbt.jse.SbtJsTask))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,play.sbt.PlayScala,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,play.sbt.PlayWeb,play.twirl.sbt.SbtTwirl,sbt.plugins.JvmPlugin,play.sbt.PlayService,play.sbt.PlayFilters,play.sbt.PlayLayoutPlugin,play.sbt.routes.RoutesCompiler,com.typesafe.sbt.jse.SbtJsTask,com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging,sbt.plugins.SemanticdbPlugin,sbt.plugins.JUnitXmlReportPlugin,play.sbt.PlayLogback,giter8.ScaffoldPlugin,sbt.plugins.MiniDependencyTreePlugin,com.typesafe.sbt.jse.SbtJsEngine,play.sbt.PlayAkkaHttpServer,com.typesafe.sbt.web.SbtWeb,com.typesafe.sbt.packager.archetypes.JavaAppPackaging,com.typesafe.sbt.packager.rpm.RpmPlugin,com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin,com.typesafe.sbt.packager.windows.WindowsPlugin,com.typesafe.sbt.packager.archetypes.scripts.BatStartScriptPlugin,com.typesafe.sbt.packager.docker.DockerPlugin,com.typesafe.sbt.packager.debian.DebianPlugin,com.typesafe.sbt.packager.universal.UniversalPlugin,com.typesafe.sbt.packager.linux.LinuxPlugin,com.typesafe.sbt.SbtNativePackager)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 8.6379 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 8.6813 ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading settings for project root from build.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 110.9379ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend, plugins: List(play.sbt.PlayScala))) took 121.4815ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 103.0766ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend, plugins: List(play.sbt.PlayScala))) took 114.2821ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend, returning: (root)[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 250.2951ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 3.712ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/, ...) took 1281.6778ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 1283.6044ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.1185ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 18.8579ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 0.7655ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 101.9751ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 36.4154ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.0026ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 224.3153ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 3.5013ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/, ...) took 1214.871ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 1216.6164ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.1103ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 11.1058ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 0.7068ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 77.934ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 29.2368ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.0033ms[0m
 [0m[[0m[0minfo[0m] [0m[0m  __              __[0m
 [0m[[0m[0minfo[0m] [0m[0m  \ \     ____   / /____ _ __  __[0m
 [0m[[0m[0minfo[0m] [0m[0m   \ \   / __ \ / // __ `// / / /[0m
@@ -206,10 +206,7 @@
 [0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 6 Scala sources to C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\target\scala-2.13\classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source and 1 Java source to C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\target\scala-2.13\classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\target\scala-2.13\classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mForcing garbage collection...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\target\scala-2.13\classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
 [0m[[0m[0mdebug[0m] [0m[0mExporting web-assets:animaladoption[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
