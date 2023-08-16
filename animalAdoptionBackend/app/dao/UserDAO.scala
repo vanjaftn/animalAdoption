@@ -54,6 +54,10 @@ class UserDAO @Inject()(
     db.run(Users.result)
   }
 
+  def read(id: String): Future[User] = {
+    db.run(Users.filter(_.userId === id).result.head)
+  }
+
   class UsersTable(tag: Tag) extends Table[User](tag, "users") {
     def userId = column[Option[String]]("USERID", O.PrimaryKey, O.AutoInc)
 

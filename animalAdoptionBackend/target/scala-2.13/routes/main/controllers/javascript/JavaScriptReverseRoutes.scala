@@ -29,7 +29,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:13
+  // @LINE:15
   class ReverseAnimalController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -57,16 +57,12 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:13
+    // @LINE:19
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.read",
       """
         function(id0) {
-        
-          if (true) {
-            return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
-          }
-        
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "animal/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
         }
       """
     )
@@ -191,6 +187,16 @@ package controllers.javascript {
     }
 
   
+    // @LINE:11
+    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.readAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allUsers"})
+        }
+      """
+    )
+  
     // @LINE:9
     def loginUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.loginUser",
@@ -201,7 +207,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:11
+    // @LINE:12
+    def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.read",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "user/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:10
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.create",
       """
@@ -211,12 +227,12 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
-    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.UserController.readAll",
+    // @LINE:13
+    def readLoggedInUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.readLoggedInUser",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allUsers"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "loggedInUser"})
         }
       """
     )

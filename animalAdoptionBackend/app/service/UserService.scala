@@ -33,6 +33,10 @@ class UserService @Inject()(userDAO: UserDAO
     userDAO.emailExists(email)
   }
 
+  def read(id: String): Future[User] = {
+    userDAO.read(id)
+  }
+
   def readAll: Future[Seq[User]] = {
     userDAO.readAll
   }

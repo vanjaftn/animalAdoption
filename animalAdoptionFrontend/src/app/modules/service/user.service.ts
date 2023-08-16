@@ -26,4 +26,8 @@ export class UserService {
     console.log(user);
     return this.http.post(this.apiServerUrl + '/user', user, {headers: this.headers, responseType: 'text'});
   }
+
+  readLoggedInUser(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/loggedInUser', {headers: this.headers2, responseType: 'text'});
+  }
 }

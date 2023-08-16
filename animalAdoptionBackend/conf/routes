@@ -7,10 +7,10 @@
 GET     /                           controllers.HomeController.index()
 
 POST    /login  controllers.UserController.loginUser
-
 POST    /user  controllers.UserController.create
 GET     /allUsers            controllers.UserController.readAll
-GET     /user/:id           controllers.AnimalController.read(id : String)
+GET     /user/:id           controllers.UserController.read(id : String)
+GET     /loggedInUser          controllers.UserController.readLoggedInUser
 
 POST    /animal               controllers.AnimalController.create
 GET     /allAnimals            controllers.AnimalController.readAll

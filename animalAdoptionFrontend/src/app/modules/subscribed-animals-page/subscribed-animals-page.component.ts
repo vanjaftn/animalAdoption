@@ -91,7 +91,7 @@ console.log(response)
 
       // alert('Successfully registered');
 
-        window.location.href = '/adopted-animals'
+        window.location.href = '/subscribed-animals'
     }
     );
   }
@@ -107,7 +107,7 @@ console.log(response)
   
         // alert('Successfully registered');
   
-        window.location.href = '/adopted-animals'
+        window.location.href = '/subscribed-animals'
       }
       );
     });
@@ -128,7 +128,7 @@ console.log(response)
       const animalURL = `animal-profile/${animalId}`;
       window.location.href = animalURL;
 
-      // window.location.href = '/unadopted-animals'
+      // window.location.href = '/subscribed-animals'
     });
   }
 }

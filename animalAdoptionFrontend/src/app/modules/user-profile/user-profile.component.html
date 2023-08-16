@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<body>
+    <div class="profile-container">
+      <div class="profile-header">
+        <h1>User Profile</h1>
+      </div>
+      <div class="profile-content">
+        <!-- <img class="profile-picture" src="profile-picture.jpg" alt="Profile Picture"> -->
+        <div class="profile-details">
+          <h2>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h2>
+          <p>Email: {{loggedInUser.email}}</p>
+          <p>Password: {{loggedInUser.password}}</p>
+          <p>Date of birth: {{loggedInUser.dateOfBirth}}</p>
+        </div>
+      </div>
+    </div>
+  </body>

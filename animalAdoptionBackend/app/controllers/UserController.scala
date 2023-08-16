@@ -42,6 +42,20 @@ class UserController @Inject() (
     }
   }
 
+  def read(id: String) = authAction.async { implicit request =>
+    userService.read(id).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def readLoggedInUser = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    userService.read(loggedInUser.userId.head).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
   def readAll = authAction.async { implicit request =>
 //    val loggedInUser = request.user
     userService.readAll.map(res =>

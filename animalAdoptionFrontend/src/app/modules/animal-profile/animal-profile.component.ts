@@ -18,8 +18,6 @@ export class AnimalProfileComponent {
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'))
-    console.log(this.selectedAnimalProfileId)
 
     this.read()
   }

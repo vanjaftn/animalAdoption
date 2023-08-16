@@ -24,7 +24,7 @@ package controllers {
   
   }
 
-  // @LINE:13
+  // @LINE:15
   class ReverseAnimalController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -43,18 +43,10 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "allUsersSubscribedAnimals")
     }
   
-    // @LINE:13
+    // @LINE:19
     def read(id:String): Call = {
-    
-      (id: @unchecked) match {
       
-        // @LINE:13
-        case (id)  =>
-          
-          Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
-      
-      }
-    
+      Call("GET", _prefix + { _defaultPrefix } + "animal/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
     // @LINE:15
@@ -135,22 +127,34 @@ package controllers {
     }
 
   
+    // @LINE:11
+    def readAll: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allUsers")
+    }
+  
     // @LINE:9
     def loginUser: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "login")
     }
   
-    // @LINE:11
+    // @LINE:12
+    def read(id:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:10
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "user")
     }
   
-    // @LINE:12
-    def readAll: Call = {
+    // @LINE:13
+    def readLoggedInUser: Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "allUsers")
+      Call("GET", _prefix + { _defaultPrefix } + "loggedInUser")
     }
   
   }
