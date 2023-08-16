@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fbf5ca;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 0px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  align-items: center; /* Center align children horizontally */
+}
+
+.profile-header {
+  background-color: #FF9800;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.profile-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.profile-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  gap: 20px; /* Add some space between profile-details and profile-pictures */
+}
+
+.profile-pictures {
+  display: flex;
+  flex-wrap: wrap; /* Wrap images to the next line if there are more than 4 */
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-details {
+  text-align: center;
+  flex: 1;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  word-break: break-word; /* Break words to prevent overflow */
+  overflow-wrap: break-word; /* Allow word wrapping within words */
+}
+
+button {
+  background-color: #ff4f4f;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+}
+
+button:hover {
+  background-color: #ff4f4f;
+}

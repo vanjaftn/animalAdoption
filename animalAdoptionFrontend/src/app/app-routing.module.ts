@@ -5,6 +5,7 @@ import { RegisterUserComponent } from './modules/register-user/register-user.com
 import { UnadoptedAnimalsPageComponent } from './modules/unadopted-animals-page/unadopted-animals-page.component';
 import { AdoptedAnimalsPageComponent } from './modules/adopted-animals-page/adopted-animals-page.component';
 import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
+import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
   { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},
+  { path: 'animal-profile/:id', component: AnimalProfileComponent},
 
 ];
 

@@ -27,4 +27,9 @@ export class AnimalService {
     return this.http.get(this.apiServerUrl + '/allUsersSubscribedAnimals', {headers: this.headers2, responseType: 'text'});
   }
 
+  read(id : string) : Observable<any> {
+    console.log((this.apiServerUrl + '/animal/' + id , {headers: this.headers2, responseType: 'text'}))
+    return this.http.get(this.apiServerUrl + '/animal/' + id , {headers: this.headers2, responseType: 'text'});
+  }
+
 }

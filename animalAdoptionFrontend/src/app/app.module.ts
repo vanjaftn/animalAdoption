@@ -10,6 +10,8 @@ import { UnadoptedAnimalsPageComponent } from './modules/unadopted-animals-page/
 import { AdoptedAnimalsPageComponent } from './modules/adopted-animals-page/adopted-animals-page.component';
 import { FormsModule } from '@angular/forms';
 import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-page/subscribed-animals-page.component';
+import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.component';
+import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-pag
     RegisterUserComponent,
     UnadoptedAnimalsPageComponent,
     AdoptedAnimalsPageComponent,
-    SubscribedAnimalsPageComponent
+    SubscribedAnimalsPageComponent,
+    AnimalProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

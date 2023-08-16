@@ -115,18 +115,22 @@ console.log(response)
     });
   }
 
-  get(){
+  read(animalId : string){
 
-    let subscription = new NewSubscription
-
-    // subscription.userId = localStorage.getItem('loggedUserEmail')
-    this.subscriptionService.read('f4d2b847-3af1-11ee-8fc9-2cea7f077dd9').subscribe((response: any) => {
-      console.log(response)
+    this.animalService.read(animalId).subscribe((response: any) => {
+      let animalId = JSON.parse(response).animalId
+      let animalIdString = JSON.stringify(animalId)
+      
+      localStorage.setItem('selectedAnimalProfileId', animalId)
+      console.log(localStorage.getItem('selectedAnimalProfileId'))
+      console.log(animalIdString)
 
       // alert('Successfully registered');
 
-      // window.location.href = '/login-user'
-    }
-    );
+      const animalURL = `animal-profile/${animalId}`;
+      window.location.href = animalURL;
+
+      // window.location.href = '/unadopted-animals'
+    });
   }
 }

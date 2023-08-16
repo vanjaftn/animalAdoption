@@ -1,0 +1,31 @@
+<body>
+  <div class="profile-container">
+    <button *ngIf="selectedAnimalProfile.subscription == false" class="subscription-button" (click)="subscribe(selectedAnimalProfile.animalId)">Subscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == true" class="subscription-button" (click)="unsubscribe(selectedAnimalProfile.animalId)">Unscubscribe</button>
+        <div class="profile-header">
+      <h1>{{selectedAnimalProfile.name}}</h1>
+    </div>
+    <div class="profile-content">
+      <div class="profile-details">
+        <!-- <h2 id="name">{{selectedAnimalProfile.name}}</h2> -->
+        <p>Date of Birth: {{selectedAnimalProfile.dateOfBirth}}</p>
+        <p>Location: {{selectedAnimalProfile.location}}</p>
+        <p>Size: {{selectedAnimalProfile.size}}</p>
+        <p>Is sterilized?: {{selectedAnimalProfile.sterilized}}</p>
+        <p>Description: {{selectedAnimalProfile.description}}</p>
+      </div>
+      <div class="profile-pictures">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <!-- Repeat the <img> tags for your images -->
+      </div>
+    </div>
+  </div>
+</body>

@@ -115,4 +115,23 @@ console.log(response)
       );
     });
   }
+
+  read(animalId : string){
+
+    this.animalService.read(animalId).subscribe((response: any) => {
+      let animalId = JSON.parse(response).animalId
+      let animalIdString = JSON.stringify(animalId)
+      
+      localStorage.setItem('selectedAnimalProfileId', animalId)
+      console.log(localStorage.getItem('selectedAnimalProfileId'))
+      console.log(animalIdString)
+
+      // alert('Successfully registered');
+
+      const animalURL = `animal-profile/${animalId}`;
+      window.location.href = animalURL;
+
+      // window.location.href = '/unadopted-animals'
+    });
+  }
 }

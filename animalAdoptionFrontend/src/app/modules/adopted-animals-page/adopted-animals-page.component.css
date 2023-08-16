@@ -55,3 +55,18 @@ body {
 .subscription-button:hover {
   background-color: #ff4f4f;
 }
+
+.view-profile-button {
+  background-color: #FF9800;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-profile-button:hover {
+  background-color: #FF9800;
+}

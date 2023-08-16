@@ -34,7 +34,7 @@ export class LoginUserComponent {
       localStorage.setItem('loggedUserEmail', this.loggedUserId);
       console.log(decodedJWT.sub);
 
-      // window.location.href = '/unadopted-animals'
+      window.location.href = '/unadopted-animals'
     },
     (error) => {
       alert("Invalid email/password");

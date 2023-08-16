@@ -20,6 +20,10 @@
             </div>
             <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
             <button *ngIf="animal.subscription == true" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
+            <div>
+              <br>
+              <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>
+            </div>
         </div>
   
       <!-- Repeat more profile-card elements as needed -->
