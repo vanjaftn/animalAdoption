@@ -36,6 +36,10 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     adoptionDAO.animalAdopted(animalId)
   }
 
+  def readByUserAndAnimalId(animalId: String, userId: String): Future[Adoption] = {
+    adoptionDAO.readByUserAndAnimalId(animalId, userId)
+  }
+
   def animalNotAdopted(animalId: String) = {
     readAll().map(_.map(adoption => adoption.animalId != animalId))
   }

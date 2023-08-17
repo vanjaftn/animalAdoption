@@ -13,6 +13,7 @@ import { SubscribedAnimalsPageComponent } from './modules/subscribed-animals-pag
 import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
+import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/adoption-requests-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterAnimalComponent } from './modules/register-animal/register-anim
     SubscribedAnimalsPageComponent,
     AnimalProfileComponent,
     UserProfileComponent,
-    RegisterAnimalComponent
+    RegisterAnimalComponent,
+    AdoptionRequestsPageComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Adoption } from '../model/adoption.model';
+import { ApproveAdoptionDTO } from '../model/approveAdoptionDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,15 @@ export class AdoptionService {
     return this.http.post(this.apiServerUrl + '/adoption', adoption, {headers: this.headers2, responseType: 'text'});
   }
 
-  adminApprove(adoptionId: String): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/adminApprove', adoptionId, {headers: this.headers2, responseType: 'text'});
+  adminApprove(adoptionId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/adminApprove', JSON.stringify(adoptionId), {headers: this.headers2, responseType: 'text'});
   }
 
-  animalAdopted(animalId: String): Observable<any> {
-    console.log(animalId)
-    console.log(JSON.stringify(animalId))
+  readByUserAndAnimalId(approveAdoptionDTO: ApproveAdoptionDTO): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/readByUserAndAnimalId', approveAdoptionDTO, {headers: this.headers2, responseType: 'text'});
+  }
+
+  animalAdopted(animalId: string): Observable<any> {
     return this.http.post(this.apiServerUrl + '/animalAdopted', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }
 }

@@ -18,6 +18,7 @@ export class AnimalProfileComponent {
   public userIsAdmin = localStorage.getItem('userIsAdmin')
   public adoption : Adoption = new Adoption
   public animalAdopted !: String
+  
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
@@ -67,11 +68,11 @@ export class AnimalProfileComponent {
       })    
   }
 
-  subscribe(animalId : string){
+  subscribe(){
 
     let subscription = new NewSubscription
 
-    subscription.animalId = animalId
+    subscription.animalId = this.selectedAnimalProfile.animalId
     // subscription.userId = localStorage.getItem('loggedUserEmail')
     this.subscriptionService.subscribe(subscription).subscribe((response: any) => {
       console.log(response)
@@ -83,9 +84,9 @@ export class AnimalProfileComponent {
     );
   }
 
-  unsubscribe(animalId : string){
+  unsubscribe(){
 
-    this.subscriptionService.readByAnimalId(animalId).subscribe((response: any) => {
+    this.subscriptionService.readByAnimalId(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       let subscriptionId = JSON.parse(response).subscriptionId
       console.log(subscriptionId)
 
@@ -116,12 +117,12 @@ export class AnimalProfileComponent {
     });
   }
 
-  adopt(animalId : string){
-    console.log(animalId)
+  adopt(){
+    console.log(this.selectedAnimalProfile.animalId)
 
     this.adoption.adoptionDate = new Date
     this.adoption.adoptionStatus = ""
-    this.adoption.animalId = animalId
+    this.adoption.animalId = this.selectedAnimalProfile.animalId
     this.adoption.userId = ""
 
     this.adoptionService.create(this.adoption).subscribe((response: any) => {
@@ -137,5 +138,10 @@ export class AnimalProfileComponent {
     }
    );
   }
+
+  adoptionRequestPage(){
+    const animalId = this.selectedAnimalProfileId
+    const adoptionRequsestURL = `adoption-request-page/${animalId}`;
+    window.location.href = adoptionRequsestURL;  }
   
 }

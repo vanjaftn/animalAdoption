@@ -1,6 +1,6 @@
 package service
 
-import dao.UserDAO
+import dao.{AdoptionDAO, UserDAO}
 import dto.LoginUserDTO
 import model.User
 import org.mindrot.jbcrypt.BCrypt
@@ -8,7 +8,8 @@ import org.mindrot.jbcrypt.BCrypt
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class UserService @Inject()(userDAO: UserDAO
+class UserService @Inject()(userDAO: UserDAO,
+                            adoptionDAO: AdoptionDAO
                            )(implicit ec : ExecutionContext) {
 
   def loginUser(loggedUser: LoginUserDTO): Future[String] = {
@@ -39,5 +40,15 @@ class UserService @Inject()(userDAO: UserDAO
 
   def readAll: Future[Seq[User]] = {
     userDAO.readAll
+  }
+
+  def readAllAnimalPendingAdoptions(animalId: String): Future[Seq[User]] = {
+    for {
+      pendingAdoptions <- adoptionDAO.readAllAnimalPendingAdoptions(animalId)
+      users <- Future.sequence(pendingAdoptions.map(pendingAdoption => read(pendingAdoption.userId)))
+    } yield {
+      val res = users
+      res
+    }
   }
 }

@@ -1,6 +1,7 @@
 package controllers
 
 import auth.AuthAction
+import dto.{ApproveAdoptionDTO}
 import model.Adoption
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
@@ -36,13 +37,13 @@ class AdoptionController @Inject() (
     )
   }
 
-  def delete(id: String) = Action.async(parse.json) { implicit request =>
+  def delete(id: String) = Action.async { implicit request =>
     adoptionService.delete(id).map(res =>
       Ok(Json.toJson(res))
     )
   }
 
-  def read(id: String) = Action.async(parse.json) { implicit request =>
+  def read(id: String) = Action.async { implicit request =>
     adoptionService.read(id).map(res =>
       Ok(Json.toJson(res))
     )
@@ -68,6 +69,19 @@ class AdoptionController @Inject() (
     animalId match {
       case JsSuccess(animalIdObj, _) =>
         adoptionService.animalAdopted(animalIdObj).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+  def readByUserAndAnimalId = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val animalId = request.body.validate[ApproveAdoptionDTO]
+    animalId match {
+      case JsSuccess(animalIdObj, _) =>
+        adoptionService.readByUserAndAnimalId(animalIdObj.animalId, animalIdObj.userId).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

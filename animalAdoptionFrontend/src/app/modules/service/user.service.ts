@@ -30,4 +30,8 @@ export class UserService {
   readLoggedInUser(): Observable<any> {
     return this.http.get(this.apiServerUrl + '/loggedInUser', {headers: this.headers2, responseType: 'text'});
   }
+
+  readAllAnimalPendingAdopters(animalId: String): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/readAllAnimalPendingAdoptions',JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
+  }
 }

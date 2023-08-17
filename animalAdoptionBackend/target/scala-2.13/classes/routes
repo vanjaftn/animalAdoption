@@ -12,6 +12,8 @@ POST    /user  controllers.UserController.create
 GET     /allUsers            controllers.UserController.readAll
 GET     /user/:id           controllers.UserController.read(id : String)
 GET     /loggedInUser          controllers.UserController.readLoggedInUser
++ nocsrf
+POST   /readAllAnimalPendingAdoptions          controllers.UserController.readAllAnimalPendingAdoptions
 
 + nocsrf
 POST    /animal               controllers.AnimalController.create
@@ -30,6 +32,10 @@ POST    /adminApprove  controllers.AdoptionController.adminApprove
 GET     /allAdoptions            controllers.AdoptionController.readAll
 + nocsrf
 POST    /deleteAdoption/:id      controllers.AdoptionController.delete(id: String)
++ nocsrf
+GET    /adoption/:id      controllers.AdoptionController.read(id: String)
++ nocsrf
+POST    /readByUserAndAnimalId      controllers.AdoptionController.readByUserAndAnimalId
 + nocsrf
 POST    /animalAdopted  controllers.AdoptionController.animalAdopted
 

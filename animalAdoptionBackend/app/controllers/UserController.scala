@@ -63,4 +63,14 @@ class UserController @Inject() (
     )
   }
 
+  def readAllAnimalPendingAdoptions = authAction.async(parse.json) { implicit request =>
+    val animalId = request.body.validate[String]
+    animalId match {
+      case JsSuccess(animalIdObj, _) =>
+        userService.readAllAnimalPendingAdoptions(animalIdObj).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
 }
