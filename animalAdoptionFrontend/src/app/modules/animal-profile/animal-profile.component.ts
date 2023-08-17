@@ -3,7 +3,8 @@ import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
 import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
 import { NewSubscription } from '../model/newSubscription.model';
-import { Animal } from '../model/animal.model';
+import { AdoptionService } from '../service/adoption.service';
+import { Adoption } from '../model/adoption.model';
 
 @Component({
   selector: 'app-animal-profile',
@@ -14,8 +15,10 @@ export class AnimalProfileComponent {
 
   public selectedAnimalProfileId = localStorage.getItem('selectedAnimalProfileId')
   public selectedAnimalProfile : AnimalWithSubscription = new AnimalWithSubscription
-  
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
+  public userIsAdmin = localStorage.getItem('userIsAdmin')
+  public adoption : Adoption = new Adoption
+  public animalAdopted !: String
+  constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
 
@@ -28,6 +31,7 @@ export class AnimalProfileComponent {
       this.selectedAnimalProfile = JSON.parse(response)
 
       this.addSubscriptionStatus()
+      this.setAdoptionStatus()
     }
    );
   }
@@ -51,9 +55,7 @@ export class AnimalProfileComponent {
         animalWithSubscription.photoURLs = this.selectedAnimalProfile.photoURLs
         animalWithSubscription.size = this.selectedAnimalProfile.size
         animalWithSubscription.sterilized = this.selectedAnimalProfile.sterilized
-        // console.log(animalWithSubscription)
-        // console.log(adoptedAnimalsList)
-        console.log(response)
+
         if(response == "false"){
           animalWithSubscription.subscription = false
         }
@@ -96,6 +98,44 @@ export class AnimalProfileComponent {
       }
       );
     });
+  }
+  
+  delete(animalId : string){
+
+    this.animalService.delete(animalId).subscribe((response: any) => {
+      console.log(response)
+      
+      window.location.href = '/adopted-animals'
+    });
+  }
+
+  setAdoptionStatus(){
+    this.adoptionService.animalAdopted(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
+      this.animalAdopted = response
+      console.log(this.animalAdopted)
+    });
+  }
+
+  adopt(animalId : string){
+    console.log(animalId)
+
+    this.adoption.adoptionDate = new Date
+    this.adoption.adoptionStatus = ""
+    this.adoption.animalId = animalId
+    this.adoption.userId = ""
+
+    this.adoptionService.create(this.adoption).subscribe((response: any) => {
+      console.log(response)
+
+      alert('You will be contacted by our admin as soon as possible via email');
+
+      // window.location.href = '/login-user'
+    },
+    (error) => {
+      alert("Your request filed");
+      console.log(error);
+    }
+   );
   }
   
 }

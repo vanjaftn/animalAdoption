@@ -23,9 +23,15 @@ GET     /animal/:id      controllers.AnimalController.read(id: String)
 GET     /allAdoptedAnimals            controllers.AnimalController.readAllAdopted
 GET     /allUsersSubscribedAnimals            controllers.AnimalController.readAllUsersSubscribedAnimals
 
++ nocsrf
 POST    /adoption  controllers.AdoptionController.create
++ nocsrf
+POST    /adminApprove  controllers.AdoptionController.adminApprove
 GET     /allAdoptions            controllers.AdoptionController.readAll
++ nocsrf
 POST    /deleteAdoption/:id      controllers.AdoptionController.delete(id: String)
++ nocsrf
+POST    /animalAdopted  controllers.AdoptionController.animalAdopted
 
 + nocsrf
 POST    /subscription  controllers.SubscriptionController.create

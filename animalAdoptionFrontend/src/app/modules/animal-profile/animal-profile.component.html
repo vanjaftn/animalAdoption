@@ -1,7 +1,9 @@
 <body>
   <div class="profile-container">
-    <button *ngIf="selectedAnimalProfile.subscription == false" class="subscription-button" (click)="subscribe(selectedAnimalProfile.animalId)">Subscribe</button>
-    <button *ngIf="selectedAnimalProfile.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(selectedAnimalProfile.animalId)">Unscubscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == false" (click)="subscribe(selectedAnimalProfile.animalId)">Subscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == true" style="background-color: #FF9800;" (click)="unsubscribe(selectedAnimalProfile.animalId)">Unscubscribe</button>
+    <button *ngIf="animalAdopted == 'false'" (click)="adopt(selectedAnimalProfile.animalId)">I want to adopt this animal</button>
+     
         <div class="profile-header">
       <h1>{{selectedAnimalProfile.name}}</h1>
     </div>
@@ -27,5 +29,7 @@
         <!-- Repeat the <img> tags for your images -->
       </div>
     </div>
+    <button *ngIf="userIsAdmin == 'true'" style="background-color: #FF9800;" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
   </div>
+
 </body>

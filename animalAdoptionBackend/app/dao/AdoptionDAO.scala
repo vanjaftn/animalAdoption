@@ -29,11 +29,14 @@ class AdoptionDAO @Inject()(
       d => new Date(d.getTime)
     )
 
-  def create(adoption: Adoption): Future[Adoption] = {
-    val newAdoptionId = Option(Random.alphanumeric.take(16).mkString)
-    val newAdoption = adoption.copy(adoptionId = newAdoptionId)
-    db.run(Adoptions += adoption.copy(adoptionId = Option(Random.alphanumeric.take(16).mkString))).map(_ => newAdoption)
+  def create(adoption: Adoption, loggedUserId: String): Future[Adoption] = {
+    val newAdoption = adoption.copy(adoptionId = Option(Random.alphanumeric.take(16).mkString), adoptionStatus = "PENDING", userId = loggedUserId)
+    db.run(Adoptions += newAdoption).map(_ => newAdoption)
+  }
 
+  def adminApprove(adoption: Adoption): Future[Adoption] = {
+    db.run(Adoptions.filter(_.adoptionId === adoption.adoptionId).map(_.adoptionStatus).update("APPROVED"))
+      .map(res => adoption)
   }
 
   def delete(id: String): Future[Int] = {
@@ -48,8 +51,8 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.result)
   }
 
-  def animalAdopted(animalId: String): Future[Option[Adoption]] = {
-    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "APPROVED").result.headOption)
+  def animalAdopted(animalId: String): Future[Boolean] = {
+    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "APPROVED").exists.result)
   }
 
 //  def animalNotAdopted(animalId: Option[String]): Future[Option[Adoption]] = {
