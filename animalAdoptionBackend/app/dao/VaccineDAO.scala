@@ -1,16 +1,16 @@
 package dao
 
 
-import model.{Vaccine}
+import model.Vaccine
 
-import scala.concurrent.{ExecutionContext}
+import scala.concurrent.{ExecutionContext, Future}
 import javax.inject.Inject
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
-import java.util.Date
+import java.util.{Date, UUID}
 
 
 class VaccineDAO @Inject()(
@@ -28,7 +28,25 @@ class VaccineDAO @Inject()(
       d => new Date(d.getTime)
     )
 
+  def create(vaccine: Vaccine, loggedInUser: String): Future[Vaccine] = {
+    val newVaccineId = UUID.randomUUID().toString
+    val newVaccine = vaccine.copy(vaccineId = Some(newVaccineId), vetId = loggedInUser)
+    db.run(Vaccines += newVaccine).map(_ => newVaccine)
 
+  }
+
+  def readAll: Future[Seq[Vaccine]] = {
+    db.run(Vaccines.result)
+  }
+
+  def delete(id: String): Future[Int] = {
+    db.run(Vaccines.filter(_.vaccineId === id).delete)
+  }
+
+  def readAllAnimalVaccines(animalId: String): Future[Seq[Vaccine]] = {
+    db.run(Vaccines.filter(_.animalId === animalId).result)
+  }
+  
   class VaccinesTable(tag: Tag) extends Table[Vaccine](tag, "vaccines") {
 
     def vaccineId = column[Option[String]]("VACCINEID", O.PrimaryKey)

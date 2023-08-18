@@ -9,7 +9,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:82
+  // @LINE:90
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -17,7 +17,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:82
+    // @LINE:90
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -513,6 +513,56 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "readByUserAndAnimalId"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:82
+  class ReverseVaccineController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:82
+    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VaccineController.create",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "vaccine"})
+        }
+      """
+    )
+  
+    // @LINE:83
+    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VaccineController.readAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allVaccines"})
+        }
+      """
+    )
+  
+    // @LINE:85
+    def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VaccineController.delete",
+      """
+        function(id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteVaccine/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:87
+    def readAllAnimalVaccines: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VaccineController.readAllAnimalVaccines",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "readAllAnimalVaccines"})
         }
       """
     )

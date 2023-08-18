@@ -42,10 +42,12 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
 
   def animalIsSterilized(animal: Animal, loggedInUser: String): Future[Animal] = {
     vetDAO.vetExists(loggedInUser).flatMap {
-      case true => animalDAO.animalIsSterilized(animal)
+      case true => animalDAO.animalSterilized(animal.animalId.head).flatMap {
+        case true => throw new Exception("Animal is already sterilized")
+        case false => animalDAO.animalIsSterilized(animal)
+      }
       case false => throw new Exception("User is not vet")
     }
-
   }
 
   def animalSterilized(animalId: String): Future[Boolean] = {

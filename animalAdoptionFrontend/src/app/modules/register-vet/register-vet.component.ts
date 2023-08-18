@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from '../service/user.service';
-import { User } from '../model/user.model';
 import { AdminService } from '../service/admin.service';
 import { CreateVet } from '../model/create-vet.model';
 
@@ -12,7 +11,7 @@ import { CreateVet } from '../model/create-vet.model';
 export class RegisterVetComponent {
   public vet : CreateVet = new CreateVet();
 
-  constructor(private userService: UserService, private adminService: AdminService) { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));

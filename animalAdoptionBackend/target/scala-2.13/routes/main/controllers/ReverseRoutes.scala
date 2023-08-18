@@ -9,14 +9,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers {
 
-  // @LINE:82
+  // @LINE:90
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:82
+    // @LINE:90
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -338,6 +338,39 @@ package controllers {
     def readByUserAndAnimalId: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "readByUserAndAnimalId")
+    }
+  
+  }
+
+  // @LINE:82
+  class ReverseVaccineController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:82
+    def create: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "vaccine")
+    }
+  
+    // @LINE:83
+    def readAll: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allVaccines")
+    }
+  
+    // @LINE:85
+    def delete(id:String): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "deleteVaccine/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:87
+    def readAllAnimalVaccines: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "readAllAnimalVaccines")
     }
   
   }

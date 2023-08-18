@@ -10,6 +10,8 @@ import { UserProfileComponent } from './modules/user-profile/user-profile.compon
 import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
 import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/adoption-requests-page.component';
 import { RegisterVetComponent } from './modules/register-vet/register-vet.component';
+import { AnimalVaccinesComponent } from './modules/animal-vaccines/animal-vaccines.component';
+import { CreateVaccineComponent } from './modules/create-vaccine/create-vaccine.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -22,6 +24,9 @@ const routes: Routes = [
   { path: 'animal-profile/:id', component: AnimalProfileComponent},
   { path: 'user-profile', component: UserProfileComponent},
   { path: 'adoption-request-page/:id', component: AdoptionRequestsPageComponent},
+  { path: 'animal-vaccines-page/:id', component: AnimalVaccinesComponent},
+  { path: 'create-vaccine-page', component: CreateVaccineComponent},
+
 
 ];
 

@@ -129,7 +129,7 @@ export class AnimalProfileComponent {
       console.log(this.animalSterilized)
     });
   }
-  
+
   adopt(){
     console.log(this.selectedAnimalProfile.animalId)
 
@@ -155,6 +155,12 @@ export class AnimalProfileComponent {
   adoptionRequestPage(){
     const animalId = this.selectedAnimalProfileId
     const adoptionRequsestURL = `adoption-request-page/${animalId}`;
+    window.location.href = adoptionRequsestURL;  
+  }
+
+  animalVaccinesPage(){
+    const animalId = this.selectedAnimalProfileId
+    const adoptionRequsestURL = `animal-vaccines-page/${animalId}`;
     window.location.href = adoptionRequsestURL;  
   }
 

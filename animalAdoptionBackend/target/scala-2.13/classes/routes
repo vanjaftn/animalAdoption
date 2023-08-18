@@ -78,5 +78,13 @@ POST    /deleteAdopter/:id      controllers.AdopterController.delete(id: String)
 + nocsrf
 GET     /vetExists            controllers.VetController.vetExists
 
++ nocsrf
+POST    /vaccine               controllers.VaccineController.create
+GET     /allVaccines          controllers.VaccineController.readAll
++ nocsrf
+POST    /deleteVaccine/:id      controllers.VaccineController.delete(id: String)
++ nocsrf
+POST    /readAllAnimalVaccines               controllers.VaccineController.readAllAnimalVaccines
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

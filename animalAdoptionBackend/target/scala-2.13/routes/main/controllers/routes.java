@@ -16,6 +16,7 @@ public class routes {
   public static final controllers.ReverseAdopterController AdopterController = new controllers.ReverseAdopterController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseVetController VetController = new controllers.ReverseVetController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseAdoptionController AdoptionController = new controllers.ReverseAdoptionController(RoutesPrefix.byNamePrefix());
+  public static final controllers.ReverseVaccineController VaccineController = new controllers.ReverseVaccineController(RoutesPrefix.byNamePrefix());
 
   public static class javascript {
     
@@ -28,6 +29,7 @@ public class routes {
     public static final controllers.javascript.ReverseAdopterController AdopterController = new controllers.javascript.ReverseAdopterController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseVetController VetController = new controllers.javascript.ReverseVetController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseAdoptionController AdoptionController = new controllers.javascript.ReverseAdoptionController(RoutesPrefix.byNamePrefix());
+    public static final controllers.javascript.ReverseVaccineController VaccineController = new controllers.javascript.ReverseVaccineController(RoutesPrefix.byNamePrefix());
   }
 
 }

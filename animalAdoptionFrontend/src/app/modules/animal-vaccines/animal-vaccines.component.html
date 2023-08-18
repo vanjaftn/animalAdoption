@@ -1,0 +1,15 @@
+<body>
+    <div class="profiles-container">
+      <div class="profile-list">
+        <div class="profile-card" *ngFor="let vaccine of animalVaccines">
+          <h3>{{vaccine.vaccineType}}</h3>
+          <p>Date: {{vaccine.vaccineDate}}</p>
+          <div>
+            Vet: {{vaccine.vetId}}
+          </div>              
+        </div>
+        
+      </div>
+      <button (click)="createVaccinePage()">Add new vaccine</button>
+    </div>
+</body>
