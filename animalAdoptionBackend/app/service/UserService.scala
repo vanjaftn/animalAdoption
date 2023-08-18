@@ -46,10 +46,20 @@ class UserService @Inject()(userDAO: UserDAO,
     userDAO.readAll
   }
 
-  def readAllAnimalPendingAdoptions(animalId: String): Future[Seq[User]] = {
+  def readAllAnimalPendingAdopters(animalId: String): Future[Seq[User]] = {
     for {
       pendingAdoptions <- adoptionDAO.readAllAnimalPendingAdoptions(animalId)
       users <- Future.sequence(pendingAdoptions.map(pendingAdoption => read(pendingAdoption.userId)))
+    } yield {
+      val res = users
+      res
+    }
+  }
+
+  def readAllAnimalAdminApprovedAdopters(animalId: String): Future[Seq[User]] = {
+    for {
+      approvedAdoptions <- adoptionDAO.readAllAnimalAdminApprovedAdoptions(animalId)
+      users <- Future.sequence(approvedAdoptions.map(approvedAdoption => read(approvedAdoption.userId)))
     } yield {
       val res = users
       res

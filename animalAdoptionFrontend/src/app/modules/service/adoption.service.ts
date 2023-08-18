@@ -25,6 +25,10 @@ export class AdoptionService {
     return this.http.post(this.apiServerUrl + '/adminApprove', JSON.stringify(adoptionId), {headers: this.headers2, responseType: 'text'});
   }
 
+  vetApprove(adoptionId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/vetApprove', JSON.stringify(adoptionId), {headers: this.headers2, responseType: 'text'});
+  }
+
   readByUserAndAnimalId(approveAdoptionDTO: ApproveAdoptionDTO): Observable<any> {
     return this.http.post(this.apiServerUrl + '/readByUserAndAnimalId', approveAdoptionDTO, {headers: this.headers2, responseType: 'text'});
   }

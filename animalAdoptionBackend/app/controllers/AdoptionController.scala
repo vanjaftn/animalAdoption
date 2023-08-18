@@ -62,6 +62,19 @@ class AdoptionController @Inject() (
     }
   }
 
+  def vetApprove = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val newAdoptionId = request.body.validate[String]
+    newAdoptionId match {
+      case JsSuccess(adoptionIdObj, _) =>
+        adoptionService.vetApprove(adoptionIdObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
   def animalAdopted = authAction.async(parse.json) { implicit request =>
     val loggedInUser = request.user
 
@@ -69,6 +82,19 @@ class AdoptionController @Inject() (
     animalId match {
       case JsSuccess(animalIdObj, _) =>
         adoptionService.animalAdopted(animalIdObj).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+  def animalAdminApproved = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val animalId = request.body.validate[String]
+    animalId match {
+      case JsSuccess(animalIdObj, _) =>
+        adoptionService.animalAdminApproved(animalIdObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

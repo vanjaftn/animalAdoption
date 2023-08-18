@@ -35,8 +35,20 @@ class AdoptionDAO @Inject()(
   }
 
   def adminApprove(adoption: Adoption): Future[Adoption] = {
+    db.run(Adoptions.filter(_.adoptionId === adoption.adoptionId).map(_.adoptionStatus).update("ADMINAPPROVED"))
+      .map(res => adoption)
+  }
+
+  def vetApprove(adoption: Adoption): Future[Adoption] = {
     db.run(Adoptions.filter(_.adoptionId === adoption.adoptionId).map(_.adoptionStatus).update("APPROVED"))
       .map(res => adoption)
+  }
+  def animalAdopted(animalId: String): Future[Boolean] = {
+    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "APPROVED").exists.result)
+  }
+
+  def animalAdminApproved(animalId: String): Future[Boolean] = {
+    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "ADMINAPPROVED").exists.result)
   }
 
   def delete(id: String): Future[Int] = {
@@ -55,9 +67,7 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(adoption => adoption.userId === userId && adoption.animalId=== animalId).result.head)
   }
 
-  def animalAdopted(animalId: String): Future[Boolean] = {
-    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "ADMINAPPROVED").exists.result)
-  }
+
 
 //  def animalNotAdopted(animalId: Option[String]): Future[Option[Adoption]] = {
 //    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) || (adoption.animalId === animalId && adoption.adoptionStatus === "PENDING")).result.headOption)
@@ -68,6 +78,10 @@ class AdoptionDAO @Inject()(
 
   def readAllAnimalPendingAdoptions(animalId: String): Future[Seq[Adoption]] = {
     db.run(Adoptions.filter(adoption => adoption.adoptionStatus === "PENDING" && adoption.animalId === animalId).result)
+  }
+
+  def readAllAnimalAdminApprovedAdoptions(animalId: String): Future[Seq[Adoption]] = {
+    db.run(Adoptions.filter(adoption => adoption.adoptionStatus === "ADMINAPPROVED" && adoption.animalId === animalId).result)
   }
 
   class AdoptionsTable(tag: Tag) extends Table[Adoption](tag, "adoptions") {

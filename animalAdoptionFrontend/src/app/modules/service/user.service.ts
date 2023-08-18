@@ -40,6 +40,10 @@ export class UserService {
   }
 
   readAllAnimalPendingAdopters(animalId: String): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/readAllAnimalPendingAdoptions',JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
+    return this.http.post(this.apiServerUrl + '/readAllAnimalPendingAdopters',JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
+  }
+
+  readAllAnimalAdminApprovedAdopters(animalId: String): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/readAllAnimalAdminApprovedAdopters', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }
 }

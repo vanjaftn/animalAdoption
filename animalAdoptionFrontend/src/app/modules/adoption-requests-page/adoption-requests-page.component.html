@@ -1,9 +1,9 @@
 <body>
     <div class="profiles-container">
-      <div class="profile-list">
+      <div *ngIf="userIsAdmin == 'true'" class="profile-list">
           <div class="profile-card" *ngFor="let user of adoptionRequests">
             <div>
-              <button style="background-color: #ff4f4f;" (click)="adminApprove(user.userId)">Approve this adopter</button>
+              <button style="background-color: #ff4f4f;" (click)="adminApprove(user.userId)">Approve this adopter as admin</button>
             </div>
             <h3>{{user.firstName}} {{user.lastName}}</h3>
             <p>Age: {{user.dateOfBirth}}</p>
@@ -17,5 +17,22 @@
           </div>
     
       </div>
+      <div *ngIf="userIsVet == 'true'" class="profile-list">
+        <div class="profile-card" *ngFor="let user of adoptionRequestsApprovedByAdmin">
+          <div>
+            <button style="background-color: #ff4f4f;" (click)="vetApprove(user.userId)">Confirm adoption</button>
+          </div>
+          <h3>{{user.firstName}} {{user.lastName}}</h3>
+          <p>Age: {{user.dateOfBirth}}</p>
+            <div>
+              Email: {{user.email}}
+            </div>
+            <div>
+              <button>Send email!!</button>
+            </div>
+            
+        </div>
+  
+    </div>
     </div>
 </body>

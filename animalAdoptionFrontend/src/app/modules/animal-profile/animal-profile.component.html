@@ -32,7 +32,7 @@
     <button *ngIf="userIsAdmin == 'true'" style="background-color: #FF9800;" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
     <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" style="background-color: #FF9800;" (click)="animalIsSterilized()">Animal is sterilized</button>
     <button *ngIf="userIsVet == 'true'" style="background-color: #FF9800;" (click)="animalVaccinesPage()">Show vaccine history</button>
-    <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'true'" style="background-color: #FF9800;" (click)="adoptionRequestPage()">See adoption requests</button>
+    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true')" style="background-color: #FF9800;" (click)="adoptionRequestPage()">See adoption requests</button>
 
   </div>
 
