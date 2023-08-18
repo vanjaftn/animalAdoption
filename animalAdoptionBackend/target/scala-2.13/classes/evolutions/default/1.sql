@@ -64,6 +64,12 @@ CREATE TABLE `admins` (
 PRIMARY KEY (`adminId`)
 );
 
+CREATE TABLE `vets` (
+`vetId` varchar(255) NOT NULL DEFAULT (UUID()),
+`userId` varchar(255) NOT NULL,
+PRIMARY KEY (`vetId`)
+);
+
 # --- !Downs
 
 DROP TABLE users;
@@ -73,3 +79,4 @@ DROP TABLE adoptions;
 DROP TABLE lostAndFounds;
 DROP TABLE vaccines;
 DROP TABLE admins;
+DROP TABLE vets;

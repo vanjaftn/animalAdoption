@@ -54,7 +54,5 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
       }
       case false => throw new Exception("User is not admin")
     }
-
-
   }
 }

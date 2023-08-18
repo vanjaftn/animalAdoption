@@ -8,9 +8,12 @@ GET     /                           controllers.HomeController.index()
 
 + nocsrf
 POST    /login  controllers.UserController.loginUser
++ nocsrf
 POST    /user  controllers.UserController.create
 GET     /allUsers            controllers.UserController.readAll
 GET     /user/:id           controllers.UserController.read(id : String)
++ nocsrf
+POST     /deleteUser/:id           controllers.UserController.delete(id : String)
 GET     /loggedInUser          controllers.UserController.readLoggedInUser
 + nocsrf
 POST   /readAllAnimalPendingAdoptions          controllers.UserController.readAllAnimalPendingAdoptions
@@ -52,10 +55,22 @@ POST     /subscriptionByAnimalId           controllers.SubscriptionController.re
 
 + nocsrf
 POST    /admin               controllers.AdminController.create
-GET     /allAdmin            controllers.AdminController.readAll
+GET     /allAdmins            controllers.AdminController.readAll
 GET     /adminExists            controllers.AdminController.adminExists
 + nocsrf
 POST    /deleteAdmin/:id      controllers.AdminController.delete(id: String)
+
++ nocsrf
+POST    /vet               controllers.VetController.create
+GET     /allVets            controllers.VetController.readAll
++ nocsrf
+POST    /deleteVet/:id      controllers.VetController.delete(id: String)
+
++ nocsrf
+POST    /adopter               controllers.AdopterController.create
+GET     /allAdopters            controllers.AdopterController.readAll
++ nocsrf
+POST    /deleteAdopter/:id      controllers.AdopterController.delete(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

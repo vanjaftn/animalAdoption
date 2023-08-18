@@ -48,6 +48,12 @@ class UserController @Inject() (
     )
   }
 
+  def delete(id: String) = authAction.async { implicit request =>
+    userService.delete(id).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
   def readLoggedInUser = authAction.async { implicit request =>
     val loggedInUser = request.user
 

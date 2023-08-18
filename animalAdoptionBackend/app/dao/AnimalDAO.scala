@@ -54,7 +54,7 @@ class AnimalDAO @Inject()(
   }
 
   class AnimalsTable(tag: Tag) extends Table[Animal](tag, "animals") {
-    def animalId = column[Option[String]]("ANIMALID", O.PrimaryKey, O.AutoInc)
+    def animalId = column[Option[String]]("ANIMALID", O.PrimaryKey)
 
     def name = column[String]("NAME")
 

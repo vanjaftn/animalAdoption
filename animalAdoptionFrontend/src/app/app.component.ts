@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './modules/model/user.model';
 import { UserService } from './modules/service/user.service';
-import { AdminlService } from './modules/service/admin.service';
+import { AdminService } from './modules/service/admin.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   public loggedUserJwt = localStorage.getItem('token');
   public userIsAdmin : string = "";
 
-  constructor(private router: Router, private userService: UserService, private adminService : AdminlService) {
+  constructor(private router: Router, private userService: UserService, private adminService : AdminService) {
   }
 
   ngOnInit(): void {

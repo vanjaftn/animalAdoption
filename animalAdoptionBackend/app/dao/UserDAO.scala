@@ -12,7 +12,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
-import java.util.Date
+import java.util.{Date, UUID}
 import scala.util.Random
 
 
@@ -39,12 +39,20 @@ class UserDAO @Inject()(
     }
   }
 
-  def create(user: User): Future[User] = {
-    val newUserId = Option(Random.alphanumeric.take(16).mkString)
-    val newUser = user.copy(userId = newUserId)
-    db.run(Users += user.copy(userId = newUserId).copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
+//  def create(user: User): Future[User] = {
+//    val newUserId = Some(UUID.randomUUID().toString)
+//    val newUser = user.copy(password = BCrypt.hashpw(user.password, BCrypt.gensalt(12)))
+//    db.run(Users += newUser).map(res => newUser)
+//
+//  }
 
+  def create(user: User): Future[User] = {
+    val newUserId = UUID.randomUUID().toString  // Generate a new UUID for userId
+    val newUser = user.copy(userId = Some(newUserId))  // Assign the new userId to the user
+
+    db.run(Users += newUser.copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
   }
+
 
   def emailExists(email: String): Future[Option[User]] = {
     db.run(Users.filter(_.email === email).result.headOption)
@@ -58,8 +66,11 @@ class UserDAO @Inject()(
     db.run(Users.filter(_.userId === id).result.head)
   }
 
+  def delete(id: String): Future[Int] = {
+    db.run(Users.filter(_.userId === id).delete)
+  }
   class UsersTable(tag: Tag) extends Table[User](tag, "users") {
-    def userId = column[Option[String]]("USERID", O.PrimaryKey, O.AutoInc)
+    def userId = column[Option[String]]("USERID", O.PrimaryKey)
 
     def email = column[String]("EMAIL")
 

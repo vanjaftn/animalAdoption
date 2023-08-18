@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Animal } from '../model/animal.model';
 import { AnimalService } from '../service/animal.service';
-import { AdminlService } from '../service/admin.service';
+import { AdminService } from '../service/admin.service';
 
 @Component({
   selector: 'app-register-animal',
@@ -11,7 +11,7 @@ import { AdminlService } from '../service/admin.service';
 export class RegisterAnimalComponent {
   public animal : Animal = new Animal();
 
-  constructor(private adminService: AdminlService) { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
@@ -37,7 +37,7 @@ export class RegisterAnimalComponent {
 
       alert('Successfully registered');
 
-      window.location.href = '/login-user'
+      window.location.href = '/unadopted-animal'
     },
     (error) => {
       alert("Invalid registration");

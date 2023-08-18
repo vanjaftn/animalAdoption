@@ -27,6 +27,14 @@ export class UserService {
     return this.http.post(this.apiServerUrl + '/user', user, {headers: this.headers, responseType: 'text'});
   }
 
+  readAll(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allUsers', {headers: this.headers2, responseType: 'text'});
+  }
+
+  read(userId: string): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/user' + userId, {headers: this.headers2, responseType: 'text'});
+  }
+
   readLoggedInUser(): Observable<any> {
     return this.http.get(this.apiServerUrl + '/loggedInUser', {headers: this.headers2, responseType: 'text'});
   }

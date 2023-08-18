@@ -31,7 +31,7 @@ class VaccineDAO @Inject()(
 
   class VaccinesTable(tag: Tag) extends Table[Vaccine](tag, "vaccines") {
 
-    def vaccineId = column[Option[String]]("VACCINEID", O.PrimaryKey, O.AutoInc)
+    def vaccineId = column[Option[String]]("VACCINEID", O.PrimaryKey)
 
     def animalId = column[String]("ANIMALID")
 

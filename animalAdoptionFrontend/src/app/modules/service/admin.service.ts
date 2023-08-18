@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Animal } from '../model/animal.model';
+import { CreateVet } from '../model/create-vet.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminlService {
+export class AdminService {
 
   private apiServerUrl = 'http://localhost:9000';
   private token = localStorage.getItem('token')
@@ -18,6 +20,10 @@ export class AdminlService {
   
   registerAnimal(animal : Animal): Observable<any> {
     return this.http.post(this.apiServerUrl + '/animal', animal, {headers: this.headers2, responseType: 'text'});
+  }
+
+  registerVet(vet : User): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/vet', vet, {headers: this.headers2, responseType: 'text'});
   }
 
   adminExists(): Observable<any> {

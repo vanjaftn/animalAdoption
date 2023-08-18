@@ -9,11 +9,13 @@ import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
 import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/adoption-requests-page.component';
+import { RegisterVetComponent } from './modules/register-vet/register-vet.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
   { path: 'register-user', component: RegisterUserComponent},
   { path: 'register-animal', component: RegisterAnimalComponent},
+  { path: 'register-vet', component: RegisterVetComponent},
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
   { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},

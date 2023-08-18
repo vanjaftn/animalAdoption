@@ -72,7 +72,7 @@ class AdoptionDAO @Inject()(
 
   class AdoptionsTable(tag: Tag) extends Table[Adoption](tag, "adoptions") {
 
-    def adoptionId = column[Option[String]]("ADOPTIONID", O.PrimaryKey, O.AutoInc)
+    def adoptionId = column[Option[String]]("ADOPTIONID", O.PrimaryKey)
 
     def animalId = column[String]("ANIMALID")
 

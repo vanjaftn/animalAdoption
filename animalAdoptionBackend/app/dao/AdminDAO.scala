@@ -52,7 +52,7 @@ class AdminDAO @Inject()(
 
   class AdminsTable(tag: Tag) extends Table[Admin](tag, "admins") {
 
-    def adminId = column[Option[String]]("ADMINID", O.PrimaryKey, O.AutoInc)
+    def adminId = column[Option[String]]("ADMINID", O.PrimaryKey)
 
     def userId = column[String]("USERID")
 

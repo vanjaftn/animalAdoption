@@ -61,7 +61,7 @@ class SubscriptionDAO @Inject()(
   }
   class SubscriptionsTable(tag: Tag) extends Table[Subscription](tag, "subscriptions") {
 
-    def subscriptionId = column[Option[String]]("SUBSCRIPTIONID", O.PrimaryKey, O.AutoInc)
+    def subscriptionId = column[Option[String]]("SUBSCRIPTIONID", O.PrimaryKey)
 
     def animalId = column[String]("ANIMALID")
 

@@ -14,6 +14,7 @@ import { AnimalProfileComponent } from './modules/animal-profile/animal-profile.
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { RegisterAnimalComponent } from './modules/register-animal/register-animal.component';
 import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/adoption-requests-page.component';
+import { RegisterVetComponent } from './modules/register-vet/register-vet.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/
     AnimalProfileComponent,
     UserProfileComponent,
     RegisterAnimalComponent,
-    AdoptionRequestsPageComponent
+    AdoptionRequestsPageComponent,
+    RegisterVetComponent
   ],
   imports: [
     BrowserModule,

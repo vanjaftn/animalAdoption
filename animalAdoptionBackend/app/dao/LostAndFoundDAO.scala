@@ -31,7 +31,7 @@ class LostAndFoundDAO @Inject()(
 
   class LostAndFoundsTable(tag: Tag) extends Table[LostAndFound](tag, "lostAndFounds") {
 
-    def lostAndFoundId = column[Option[String]]("LOSTANDFOUNDID", O.PrimaryKey, O.AutoInc)
+    def lostAndFoundId = column[Option[String]]("LOSTANDFOUNDID", O.PrimaryKey)
 
     def animalId = column[String]("ANIMALID")
 
