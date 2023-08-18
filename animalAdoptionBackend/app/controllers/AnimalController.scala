@@ -72,4 +72,30 @@ class AnimalController @Inject() (
       Ok(Json.toJson(res))
     )
   }
+
+  def animalIsSterilized = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+    val newAnimal = request.body.validate[Animal]
+
+    newAnimal match {
+      case JsSuccess(animalObj, _) =>
+        animalService.animalIsSterilized(animalObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+  def animalSterilized = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val animalId = request.body.validate[String]
+    animalId match {
+      case JsSuccess(animalIdObj, _) =>
+        animalService.animalSterilized(animalIdObj).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
 }

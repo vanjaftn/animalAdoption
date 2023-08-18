@@ -27,7 +27,10 @@ POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
 GET     /animal/:id      controllers.AnimalController.read(id: String)
 GET     /allAdoptedAnimals            controllers.AnimalController.readAllAdopted
 GET     /allUsersSubscribedAnimals            controllers.AnimalController.readAllUsersSubscribedAnimals
-
++ nocsrf
+POST    /animalIsSterilized               controllers.AnimalController.animalIsSterilized
++ nocsrf
+POST    /animalSterilized               controllers.AnimalController.animalSterilized
 + nocsrf
 POST    /adoption  controllers.AdoptionController.create
 + nocsrf
@@ -71,6 +74,9 @@ POST    /adopter               controllers.AdopterController.create
 GET     /allAdopters            controllers.AdopterController.readAll
 + nocsrf
 POST    /deleteAdopter/:id      controllers.AdopterController.delete(id: String)
+
++ nocsrf
+GET     /vetExists            controllers.VetController.vetExists
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

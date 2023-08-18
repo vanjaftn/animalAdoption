@@ -1,6 +1,6 @@
 package service
 
-import dao.{AdoptionDAO, AnimalDAO, SubscriptionDAO}
+import dao.{AdoptionDAO, AnimalDAO, SubscriptionDAO, VetDAO}
 import model.Animal
 
 import javax.inject.Inject
@@ -8,6 +8,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class AnimalService @Inject()(animalDAO: AnimalDAO,
                               adoptionDAO: AdoptionDAO,
+                              vetDAO: VetDAO,
                               subscriptionDAO: SubscriptionDAO
                           )(implicit ec : ExecutionContext){
 
@@ -37,6 +38,18 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
 
   def readAllUsersSubscribedAnimals(userId : String): Future[Seq[Animal]] = {
     subscriptionDAO.readAllUsersSubscriptions(userId).map(_.map(subscription => read(subscription.animalId))).flatMap(animals => Future.sequence(animals))
+  }
+
+  def animalIsSterilized(animal: Animal, loggedInUser: String): Future[Animal] = {
+    vetDAO.vetExists(loggedInUser).flatMap {
+      case true => animalDAO.animalIsSterilized(animal)
+      case false => throw new Exception("User is not vet")
+    }
+
+  }
+
+  def animalSterilized(animalId: String): Future[Boolean] = {
+    animalDAO.animalSterilized(animalId)
   }
 
 }

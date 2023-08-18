@@ -25,7 +25,9 @@ class VetService @Inject()(vetDAO: VetDAO,
     }
   }
 
-
+  def vetExists(userId: String): Future[Boolean] = {
+    vetDAO.vetExists(userId)
+  }
 
   def readAll(): Future[Seq[Vet]] = {
     vetDAO.readAll

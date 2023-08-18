@@ -36,4 +36,8 @@ export class AnimalService {
     return this.http.post(this.apiServerUrl + '/deleteAnimal/' + id , {headers: this.headers2, responseType: 'text'});
   }
 
+  animalSterilized(id : string) : Observable<any> {
+    return this.http.post(this.apiServerUrl + '/animalSterilized', JSON.stringify(id) , {headers: this.headers2, responseType: 'text'});
+  }
+
 }

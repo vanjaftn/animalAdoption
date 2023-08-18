@@ -53,6 +53,15 @@ class AnimalDAO @Inject()(
       .map(res => animal)
   }
 
+  def animalIsSterilized(animal: Animal): Future[Animal] = {
+    db.run(Animals.filter(a => a.animalId === animal.animalId).map(_.sterilized).update(true))
+      .map(res => animal)
+  }
+
+  def animalSterilized(animalId: String): Future[Boolean] = {
+    db.run(Animals.filter(animal => (animal.animalId === animalId) && animal.sterilized === true).exists.result)
+  }
+
   class AnimalsTable(tag: Tag) extends Table[Animal](tag, "animals") {
     def animalId = column[Option[String]]("ANIMALID", O.PrimaryKey)
 

@@ -43,4 +43,12 @@ class VetController @Inject() (
     )
   }
 
+  def vetExists = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    vetService.vetExists(loggedInUser.userId.head).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
 }

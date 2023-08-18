@@ -28,7 +28,6 @@ class VetDAO @Inject()(
   def create(vet: Vet): Future[Vet] = {
     val newVet = vet.copy(vetId = Some(UUID.randomUUID().toString))
     db.run(Vets += newVet).map(_ => newVet)
-
   }
 
   def read(id: String): Future[Vet] = {
@@ -41,6 +40,10 @@ class VetDAO @Inject()(
 
   def delete(id: String): Future[Int] = {
     db.run(Vets.filter(_.vetId === id).delete)
+  }
+
+  def vetExists(userId: String): Future[Boolean] = {
+    db.run(Vets.filter(_.userId === userId).exists.result)
   }
 
   class VetsTable(tag: Tag) extends Table[Vet](tag, "vets") {

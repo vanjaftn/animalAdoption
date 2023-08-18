@@ -5,6 +5,7 @@ import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
 import { NewSubscription } from '../model/newSubscription.model';
 import { AdoptionService } from '../service/adoption.service';
 import { Adoption } from '../model/adoption.model';
+import { VetService } from '../service/vet.service';
 
 @Component({
   selector: 'app-animal-profile',
@@ -16,14 +17,18 @@ export class AnimalProfileComponent {
   public selectedAnimalProfileId = localStorage.getItem('selectedAnimalProfileId')
   public selectedAnimalProfile : AnimalWithSubscription = new AnimalWithSubscription
   public userIsAdmin = localStorage.getItem('userIsAdmin')
+  public userIsVet = localStorage.getItem('userIsVet')
   public adoption : Adoption = new Adoption
   public animalAdopted !: String
+  public animalSterilized !: String
   
-  constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,private adoptionService: AdoptionService) { }
+  constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
+    private adoptionService: AdoptionService, private vetService: VetService) { }
 
   ngOnInit(): void {
 
     this.read()
+    console.log(this.userIsVet)
   }
 
   read(){
@@ -33,6 +38,7 @@ export class AnimalProfileComponent {
 
       this.addSubscriptionStatus()
       this.setAdoptionStatus()
+      this.setSterilizationStatus()
     }
    );
   }
@@ -117,6 +123,13 @@ export class AnimalProfileComponent {
     });
   }
 
+  setSterilizationStatus(){
+    this.animalService.animalSterilized(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
+      this.animalSterilized = response
+      console.log(this.animalSterilized)
+    });
+  }
+  
   adopt(){
     console.log(this.selectedAnimalProfile.animalId)
 
@@ -142,6 +155,22 @@ export class AnimalProfileComponent {
   adoptionRequestPage(){
     const animalId = this.selectedAnimalProfileId
     const adoptionRequsestURL = `adoption-request-page/${animalId}`;
-    window.location.href = adoptionRequsestURL;  }
+    window.location.href = adoptionRequsestURL;  
+  }
+
+  animalIsSterilized(){
+    this.vetService.animalIsSterilized(this.selectedAnimalProfile).subscribe((response: any) => {
+      console.log(response)
+
+      alert('You have checked this animal as sterilized');
+
+      // window.location.href = '/login-user'
+    },
+    (error) => {
+      alert("Failed");
+      console.log(error);
+    }
+   );
+  }
   
 }
