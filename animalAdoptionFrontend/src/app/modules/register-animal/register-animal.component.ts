@@ -53,26 +53,29 @@ export class RegisterAnimalComponent {
       console.log(this.fileURLs)
 
 
-      if(this.animal.sterilized == null){
-        this.animal.sterilized = false
-      }
-
-      this.animal.chipNumber = Number(this.animal.chipNumber)
-      this.animal.photos = this.fileURLs
-      
-      this.adminService.registerAnimal(this.animal).subscribe((response: any) => {
-        console.log(response)
-  
-        alert('Successfully registered');
-  
-        window.location.href = '/unadopted-animals'
-      },
-      (error) => {
-        alert("Invalid registration");
-        console.log(error);
-      }
-     );
   });
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!REGISTRATION
+  if(this.animal.sterilized == null){
+    this.animal.sterilized = false
+  }
+
+  this.animal.chipNumber = Number(this.animal.chipNumber)
+  this.animal.photos = this.fileURLs
+
+  console.log(this.fileURLs)
+  
+  this.adminService.registerAnimal(this.animal).subscribe((response: any) => {
+    console.log(response)
+
+    alert('Successfully registered');
+
+    window.location.href = '/unadopted-animals'
+  },
+  (error) => {
+    alert("Invalid registration");
+    console.log(error);
+  }
+ );
 
   }
  
@@ -92,7 +95,5 @@ export class RegisterAnimalComponent {
     }
 
     console.log(this.selectedFiles)
-
-
   }
 }
