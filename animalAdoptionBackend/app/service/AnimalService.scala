@@ -1,7 +1,7 @@
 package service
 
 import dao.{AdoptionDAO, AnimalDAO, SubscriptionDAO, VetDAO}
-import model.Animal
+import model.{Animal, User}
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
@@ -53,5 +53,17 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
   def animalSterilized(animalId: String): Future[Boolean] = {
     animalDAO.animalSterilized(animalId)
   }
+
+  def readAllUnadoptedAnimals(): Future[Seq[Animal]] = {
+
+    for {
+      allAnimals <- readAll()
+      adoptedAnimalIds <- adoptionDAO.readAllAdoptedAnimalIds()
+    } yield {
+      // Filter out animals whose IDs are in the list of adopted animal IDs
+      allAnimals.filterNot(animal => adoptedAnimalIds.contains(animal.animalId.head)).sortBy(_.dateOfBirth)
+    }
+  }
+
 
 }

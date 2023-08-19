@@ -65,6 +65,12 @@ class AnimalController @Inject() (
     )
   }
 
+  def readAllUnadopted = Action.async { implicit request =>
+    animalService.readAllUnadoptedAnimals.map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
   def readAllUsersSubscribedAnimals = authAction.async { implicit request =>
     val loggedInUser = request.user
 

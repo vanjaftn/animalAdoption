@@ -43,8 +43,8 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     adoptionDAO.readByUserAndAnimalId(animalId, userId)
   }
 
-  def animalNotAdopted(animalId: String) = {
-    readAll().map(_.map(adoption => adoption.animalId != animalId))
+  def readAllApprovedAdoptions(): Future[Seq[Adoption]] = {
+    adoptionDAO.readAllApprovedAdoptions
   }
 
   def adminApprove(adoptionId: String, loggedUserId: String) : Future[Adoption] = {
@@ -70,4 +70,5 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
       case false => throw new Exception("User is not vet")
     }
   }
+
 }

@@ -9,7 +9,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:96
+  // @LINE:97
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -17,7 +17,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:96
+    // @LINE:97
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -29,7 +29,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:66
+  // @LINE:67
   class ReverseAdminController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -37,7 +37,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:66
+    // @LINE:67
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdminController.create",
       """
@@ -47,7 +47,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:67
+    // @LINE:68
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdminController.readAll",
       """
@@ -57,7 +57,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:68
+    // @LINE:69
     def adminExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdminController.adminExists",
       """
@@ -67,7 +67,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:70
+    // @LINE:71
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdminController.delete",
       """
@@ -97,7 +97,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:31
+    // @LINE:32
     def readAllUsersSubscribedAnimals: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.readAllUsersSubscribedAnimals",
       """
@@ -117,12 +117,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:33
+    // @LINE:34
     def animalIsSterilized: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.animalIsSterilized",
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "animalIsSterilized"})
+        }
+      """
+    )
+  
+    // @LINE:31
+    def readAllUnadopted: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.AnimalController.readAllUnadopted",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allUnadoptedAnimals"})
         }
       """
     )
@@ -147,7 +157,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:35
+    // @LINE:36
     def animalSterilized: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalController.animalSterilized",
       """
@@ -179,7 +189,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:55
+  // @LINE:56
   class ReverseSubscriptionController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -187,7 +197,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:57
+    // @LINE:58
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.readAll",
       """
@@ -197,7 +207,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:61
+    // @LINE:62
     def subscriptionExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.subscriptionExists",
       """
@@ -207,7 +217,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:56
+    // @LINE:57
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.read",
       """
@@ -217,7 +227,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:55
+    // @LINE:56
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.create",
       """
@@ -227,7 +237,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:59
+    // @LINE:60
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.delete",
       """
@@ -237,7 +247,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:63
+    // @LINE:64
     def readSubscriptionByAnimalAndUserId: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.SubscriptionController.readSubscriptionByAnimalAndUserId",
       """
@@ -359,7 +369,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:79
+  // @LINE:80
   class ReverseAdopterController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -367,7 +377,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:79
+    // @LINE:80
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdopterController.create",
       """
@@ -377,7 +387,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:80
+    // @LINE:81
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdopterController.readAll",
       """
@@ -387,7 +397,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:82
+    // @LINE:83
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdopterController.delete",
       """
@@ -399,7 +409,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:73
+  // @LINE:74
   class ReverseVetController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -407,7 +417,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:73
+    // @LINE:74
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VetController.create",
       """
@@ -417,7 +427,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:74
+    // @LINE:75
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VetController.readAll",
       """
@@ -427,7 +437,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:76
+    // @LINE:77
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VetController.delete",
       """
@@ -437,7 +447,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:85
+    // @LINE:86
     def vetExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VetController.vetExists",
       """
@@ -449,7 +459,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:37
+  // @LINE:38
   class ReverseAdoptionController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -457,7 +467,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:42
+    // @LINE:43
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.readAll",
       """
@@ -467,7 +477,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:52
+    // @LINE:53
     def animalAdminApproved: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.animalAdminApproved",
       """
@@ -477,7 +487,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:46
+    // @LINE:47
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.read",
       """
@@ -487,7 +497,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:37
+    // @LINE:38
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.create",
       """
@@ -497,7 +507,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:39
+    // @LINE:40
     def adminApprove: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.adminApprove",
       """
@@ -507,7 +517,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:44
+    // @LINE:45
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.delete",
       """
@@ -517,7 +527,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:41
+    // @LINE:42
     def vetApprove: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.vetApprove",
       """
@@ -527,7 +537,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:50
+    // @LINE:51
     def animalAdopted: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.animalAdopted",
       """
@@ -537,7 +547,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:48
+    // @LINE:49
     def readByUserAndAnimalId: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.readByUserAndAnimalId",
       """
@@ -549,7 +559,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:88
+  // @LINE:89
   class ReverseVaccineController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -557,7 +567,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:88
+    // @LINE:89
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VaccineController.create",
       """
@@ -567,7 +577,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:89
+    // @LINE:90
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VaccineController.readAll",
       """
@@ -577,7 +587,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:91
+    // @LINE:92
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VaccineController.delete",
       """
@@ -587,7 +597,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:93
+    // @LINE:94
     def readAllAnimalVaccines: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VaccineController.readAllAnimalVaccines",
       """

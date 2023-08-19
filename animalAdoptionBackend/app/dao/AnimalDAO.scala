@@ -45,7 +45,7 @@ class AnimalDAO @Inject()(
   }
 
   def readAll: Future[Seq[Animal]] = {
-    db.run(Animals.result)
+    db.run(Animals.sortBy(_.dateOfBirth).result)
   }
 
   def update(animal: Animal): Future[Animal] = {
@@ -61,6 +61,11 @@ class AnimalDAO @Inject()(
   def animalSterilized(animalId: String): Future[Boolean] = {
     db.run(Animals.filter(animal => (animal.animalId === animalId) && animal.sterilized === true).exists.result)
   }
+
+//  def readAllUnadoptedAnimals = {
+//    val subquery = Adoptions.map(_.animalId)
+//    db.run(Animals.filterNot(animal => adoptionDAO.animalNotAdopted(animalId)).result)
+//  }
 
   class AnimalsTable(tag: Tag) extends Table[Animal](tag, "animals") {
     def animalId = column[Option[String]]("ANIMALID", O.PrimaryKey)

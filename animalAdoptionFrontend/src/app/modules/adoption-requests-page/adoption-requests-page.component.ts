@@ -59,7 +59,11 @@ export class AdoptionRequestsPageComponent {
       this.adoptionService.adminApprove(adoption.adoptionId).subscribe((response: any) => {
         console.log(JSON.parse(response))
 
-      window.location.href = '/adopted-animals'
+      alert('Approved!');
+
+        const animalId = this.selectedAnimalProfileId!
+        const animalURL = `animal-profile/${animalId}`;
+        window.location.href = animalURL;
   
       });
     });
@@ -81,8 +85,13 @@ export class AdoptionRequestsPageComponent {
       let adoption = JSON.parse(response)
       this.adoptionService.vetApprove(adoption.adoptionId).subscribe((response: any) => {
         console.log(JSON.parse(response))
+
+      alert('Confirmed!');
+
         
-        window.location.href = '/adopted-animals'
+        const animalId = this.selectedAnimalProfileId!
+        const animalURL = `animal-profile/${animalId}`;
+        window.location.href = animalURL;
   
       });
     });

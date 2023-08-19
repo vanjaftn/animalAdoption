@@ -25,7 +25,7 @@ export class UnadoptedAnimalsPageComponent {
   }
 
   allUnadoptedAnimals(){
-    this.animalService.allAnimals().subscribe((response: any) => {
+    this.animalService.allUnadoptedAnimals().subscribe((response: any) => {
       console.log(response)
 
       this.unadoptedAnimals = JSON.parse(response)
@@ -94,7 +94,7 @@ console.log(response)
 
       // alert('Successfully registered');
 
-        window.location.href = '/adopted-animals'
+        window.location.href = '/unadopted-animals'
     }
     );
   }
@@ -110,7 +110,7 @@ console.log(response)
   
         // alert('Successfully registered');
   
-        window.location.href = '/adopted-animals'
+        window.location.href = '/unadopted-animals'
       }
       );
     });

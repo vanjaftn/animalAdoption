@@ -28,6 +28,7 @@ POST    /updateAnimal          controllers.AnimalController.update
 POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)
 GET     /animal/:id      controllers.AnimalController.read(id: String)
 GET     /allAdoptedAnimals            controllers.AnimalController.readAllAdopted
+GET     /allUnadoptedAnimals            controllers.AnimalController.readAllUnadopted
 GET     /allUsersSubscribedAnimals            controllers.AnimalController.readAllUsersSubscribedAnimals
 + nocsrf
 POST    /animalIsSterilized               controllers.AnimalController.animalIsSterilized

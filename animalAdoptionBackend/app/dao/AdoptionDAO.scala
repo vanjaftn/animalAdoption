@@ -67,13 +67,14 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(adoption => adoption.userId === userId && adoption.animalId=== animalId).result.head)
   }
 
+  def readAllAdoptedAnimalIds(): Future[Seq[String]] = {
+    // Define the query to retrieve all adopted animal IDs
+    val query = Adoptions.filter(animal => animal.adoptionStatus === "APPROVED").map(_.animalId).result
+    db.run(query)
+  }
 
-
-//  def animalNotAdopted(animalId: Option[String]): Future[Option[Adoption]] = {
-//    db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) || (adoption.animalId === animalId && adoption.adoptionStatus === "PENDING")).result.headOption)
-//  }
   def readAllApprovedAdoptions : Future[Seq[Adoption]] = {
-    db.run(Adoptions.filter(_.adoptionStatus === "APPROVED").result)
+    db.run(Adoptions.filter(_.adoptionStatus === "APPROVED").sortBy(_.adoptionDate).result)
   }
 
   def readAllAnimalPendingAdoptions(animalId: String): Future[Seq[Adoption]] = {

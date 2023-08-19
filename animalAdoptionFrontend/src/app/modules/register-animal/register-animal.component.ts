@@ -37,7 +37,7 @@ export class RegisterAnimalComponent {
 
       alert('Successfully registered');
 
-      window.location.href = '/unadopted-animal'
+      window.location.href = '/unadopted-animals'
     },
     (error) => {
       alert("Invalid registration");

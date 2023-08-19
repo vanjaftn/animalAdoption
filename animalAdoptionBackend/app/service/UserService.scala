@@ -1,6 +1,6 @@
 package service
 
-import dao.{AdoptionDAO, UserDAO}
+import dao.{AdoptionDAO, AnimalDAO, UserDAO}
 import dto.LoginUserDTO
 import model.User
 import org.mindrot.jbcrypt.BCrypt
@@ -65,4 +65,5 @@ class UserService @Inject()(userDAO: UserDAO,
       res
     }
   }
+
 }

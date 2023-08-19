@@ -23,6 +23,10 @@ export class AnimalService {
     return this.http.get(this.apiServerUrl + '/allAdoptedAnimals', {headers: this.headers, responseType: 'text'});
   }
 
+  allUnadoptedAnimals(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allUnadoptedAnimals', {headers: this.headers, responseType: 'text'});
+  }
+
   allSubscribedAnimals(): Observable<any> {
     return this.http.get(this.apiServerUrl + '/allUsersSubscribedAnimals', {headers: this.headers2, responseType: 'text'});
   }
