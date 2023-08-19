@@ -1,14 +1,15 @@
 package service
 
-import dao.{AdminDAO, AdoptionDAO, AnimalDAO, VetDAO}
-import model.Adoption
+import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, VetDAO}
+import model.{Adopter, Adoption}
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
-                                vetDAO : VetDAO,
-                                  adminDAO : AdminDAO,
+                                vetDAO: VetDAO,
+                                  adminDAO: AdminDAO,
+                                adopterDAO: AdopterDAO,
                              )(implicit ec : ExecutionContext) {
 
   def create(adoption: Adoption, loggedUserId : String): Future[Adoption] = {
@@ -65,10 +66,13 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     vetDAO.vetExists(loggedUserId).flatMap {
       case true => futureAdoption.flatMap { adoption =>
         val result: Future[Adoption] = adoptionDAO.vetApprove(adoption)
+        val adopter = new Adopter(Some(""), adoption.userId)
+        adopterDAO.create(adopter)
         result
       }
       case false => throw new Exception("User is not vet")
     }
+
   }
 
 }

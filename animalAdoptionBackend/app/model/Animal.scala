@@ -9,7 +9,6 @@ case class Animal(
                  name : String,
                  dateOfBirth : Date,
                  location : String,
-                 photoURLs : String,
                  description : String,
                  chipNumber : Int,
                  size : String,

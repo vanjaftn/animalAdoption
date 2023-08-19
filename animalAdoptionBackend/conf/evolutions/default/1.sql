@@ -15,7 +15,6 @@ CREATE TABLE `animals` (
 `name` varchar(255) NOT NULL,
 `dateOfBirth` timestamp NOT NULL,
 `location` varchar(255) NOT NULL,
-`photoURLs` varchar(255) NOT NULL,
 `description` varchar(255) NOT NULL,
 `chipNumber` int NOT NULL,
 `size` varchar(255) NOT NULL,
@@ -46,6 +45,7 @@ CREATE TABLE `lostAndFounds` (
 `userId` varchar(255) NOT NULL,
 `lostAndFoundDate` timestamp NOT NULL,
 `lostAndFoundStatus` varchar(255) NOT NULL,
+`approved` Boolean NOT NULL,
 PRIMARY KEY (`lostAndFoundId`)
 );
 
@@ -70,6 +70,19 @@ CREATE TABLE `vets` (
 PRIMARY KEY (`vetId`)
 );
 
+CREATE TABLE `adopters` (
+`adopterId` varchar(255) NOT NULL DEFAULT (UUID()),
+`userId` varchar(255) NOT NULL,
+PRIMARY KEY (`adopterId`)
+);
+
+CREATE TABLE `photos` (
+`photoId` varchar(255) NOT NULL DEFAULT (UUID()),
+`animalId` varchar(255) NOT NULL,
+`photoURL` varchar(255) NOT NULL,
+PRIMARY KEY (`photoId`)
+);
+
 # --- !Downs
 
 DROP TABLE users;
@@ -80,3 +93,6 @@ DROP TABLE lostAndFounds;
 DROP TABLE vaccines;
 DROP TABLE admins;
 DROP TABLE vets;
+DROP TABLE adopters;
+DROP TABLE photos;
+DROP TABLE play_evolutions;

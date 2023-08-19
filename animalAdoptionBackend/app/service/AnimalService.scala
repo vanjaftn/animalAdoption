@@ -1,19 +1,30 @@
 package service
 
-import dao.{AdoptionDAO, AnimalDAO, SubscriptionDAO, VetDAO}
-import model.{Animal, User}
+import dao.{AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO}
+import dto.AnimalWithPhotosDTO
+import model.{Animal, Photo, User}
 
+import java.util.UUID
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class AnimalService @Inject()(animalDAO: AnimalDAO,
                               adoptionDAO: AdoptionDAO,
                               vetDAO: VetDAO,
-                              subscriptionDAO: SubscriptionDAO
+                              subscriptionDAO: SubscriptionDAO,
+                              photoDAO: PhotoDAO
                           )(implicit ec : ExecutionContext){
 
-  def create(animal: Animal): Future[Animal] = {
-    animalDAO.create(animal)
+  def create(animal: AnimalWithPhotosDTO): Future[Animal] = {
+    val newAnimal : Animal = Animal(Some(UUID.randomUUID().toString), animal.name, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalTypeId, animal.sterilized)
+    if (animal.photos.nonEmpty) {
+      animal.photos.map {
+        photo =>
+          val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
+          photoDAO.create(newPhoto)
+      }
+    }
+    animalDAO.create(newAnimal)
   }
 
   def readAll(): Future[Seq[Animal]] = {
@@ -65,5 +76,14 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
     }
   }
 
+//  def addNewPhoto(animal: Animal, loggedInUser: String): Future[Animal] = {
+//    adopterDAO.adopterExists(loggedInUser).flatMap {
+//      case true => animalDAO.addNewPhotos(animal)
+//      case false => throw new Exception("User is not adopter")
+//    }
+//  }
 
+  def search(searchInput: String): Future[Seq[Animal]] = {
+    animalDAO.search(searchInput)
+  }
 }

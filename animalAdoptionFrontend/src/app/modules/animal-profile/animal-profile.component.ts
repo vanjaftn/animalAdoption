@@ -6,6 +6,7 @@ import { NewSubscription } from '../model/newSubscription.model';
 import { AdoptionService } from '../service/adoption.service';
 import { Adoption } from '../model/adoption.model';
 import { VetService } from '../service/vet.service';
+import { PhotoService } from '../service/photo.service';
 
 @Component({
   selector: 'app-animal-profile',
@@ -21,13 +22,16 @@ export class AnimalProfileComponent {
   public adoption : Adoption = new Adoption
   public animalAdopted !: String
   public animalSterilized !: String
+  public animalPhotos: Array<string> = new Array()
+  public profilePhoto: string = this.animalPhotos[0]
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
-    private adoptionService: AdoptionService, private vetService: VetService) { }
-
-  ngOnInit(): void {
+    private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService) { }
+    
+    ngOnInit(): void {
 
     this.read()
+    this.readPhotos()
     console.log(this.userIsVet)
   }
 
@@ -39,6 +43,23 @@ export class AnimalProfileComponent {
       this.addSubscriptionStatus()
       this.setAdoptionStatus()
       this.setSterilizationStatus()
+    }
+   );
+  }
+
+  readPhotos(){
+    this.photoService.allAnimalPhotos(this.selectedAnimalProfileId!).subscribe((response: any) => {
+      const allPhotos = JSON.parse(response)
+      console.log(allPhotos)
+
+      // @ts-ignore
+      allPhotos.forEach(photo => {
+        let photoURL : string
+        photoURL ="\\assets\\images\\"+photo.photoURL
+        this.animalPhotos.push(photoURL)
+      });
+      console.log(this.animalPhotos)
+
     }
    );
   }
@@ -59,7 +80,6 @@ export class AnimalProfileComponent {
         animalWithSubscription.description = this.selectedAnimalProfile.description
         animalWithSubscription.chipNumber = this.selectedAnimalProfile.chipNumber
         animalWithSubscription.animalTypeId = this.selectedAnimalProfile.animalTypeId
-        animalWithSubscription.photoURLs = this.selectedAnimalProfile.photoURLs
         animalWithSubscription.size = this.selectedAnimalProfile.size
         animalWithSubscription.sterilized = this.selectedAnimalProfile.sterilized
 

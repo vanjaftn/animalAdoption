@@ -51,7 +51,6 @@ export class SubscribedAnimalsPageComponent {
         animalWithSubscription.description = animal.description
         animalWithSubscription.chipNumber = animal.chipNumber
         animalWithSubscription.animalTypeId = animal.animalTypeId
-        animalWithSubscription.photoURLs = animal.photoURLs
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
         // console.log(animalWithSubscription)

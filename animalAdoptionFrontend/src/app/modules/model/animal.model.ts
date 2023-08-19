@@ -3,7 +3,6 @@ export class Animal {
     name: string = "";
     dateOfBirth !: Date;
     location: string = "";
-    photoURLs: string = "";
     description: string = "";
     chipNumber!: number;
     size: string = "";
@@ -16,7 +15,6 @@ export class Animal {
             this.name = obj.name;
             this.dateOfBirth = obj.dateOfBirth;
             this.location = obj.location;
-            this.photoURLs = obj.photoURLs;
             this.description = obj.description;
             this.chipNumber = obj.chipNumber;
             this.size = obj.size;

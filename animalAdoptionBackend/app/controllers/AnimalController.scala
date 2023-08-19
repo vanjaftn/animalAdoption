@@ -1,6 +1,7 @@
 package controllers
 
 import auth.AuthAction
+import dto.AnimalWithPhotosDTO
 import model.Animal
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
@@ -19,7 +20,7 @@ class AnimalController @Inject() (
                               ) extends AbstractController(controllerComponents) {
 
   def create = authAction.async(parse.json) { implicit request =>
-    val newAnimal = request.body.validate[Animal]
+    val newAnimal = request.body.validate[AnimalWithPhotosDTO]
     newAnimal match {
       case JsSuccess(animalObj, _) =>
         animalService.create(animalObj).map(res =>
@@ -104,4 +105,29 @@ class AnimalController @Inject() (
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
   }
+
+//  def addNewPhoto = authAction.async(parse.json) { implicit request =>
+//    val loggedInUser = request.user
+//
+//    val animalId = request.body.validate[Animal]
+//    animalId match {
+//      case JsSuccess(animalIdObj, _) =>
+//        animalService.addNewPhoto(animalIdObj, loggedInUser.userId.head).map(res =>
+//          Ok(Json.toJson(res))
+//        )
+//      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+//    }
+//  }
+
+  def search = authAction.async(parse.json) { implicit request =>
+      val loggedInUser = request.user
+      val searchInput = request.body.validate[String]
+    searchInput match {
+        case JsSuccess(searchInputObj, _) =>
+          animalService.search(searchInputObj).map(res =>
+            Ok(Json.toJson(res))
+          )
+        case JsError(errors) => Future.successful(BadRequest(errors.toString))
+      }
+    }
 }

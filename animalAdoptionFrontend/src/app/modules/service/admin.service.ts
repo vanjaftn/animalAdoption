@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Animal } from '../model/animal.model';
 import { CreateVet } from '../model/create-vet.model';
 import { User } from '../model/user.model';
+import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
   
-  registerAnimal(animal : Animal): Observable<any> {
+  registerAnimal(animal : AnimalWithPhotosDTO): Observable<any> {
     return this.http.post(this.apiServerUrl + '/animal', animal, {headers: this.headers2, responseType: 'text'});
   }
 

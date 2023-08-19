@@ -9,8 +9,8 @@ case class LostAndFound(
                      animalId : String,
                      userId : String,
                      lostAndFoundDate : Date,
-                     lostAndFoundStatus: String
-
+                     lostAndFoundStatus: String,
+                     approved: Boolean
                    )
 object LostAndFound {
   implicit val format: Format[LostAndFound] = Json.format[LostAndFound]

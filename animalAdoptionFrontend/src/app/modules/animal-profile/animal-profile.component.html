@@ -17,15 +17,7 @@
         <p>Description: {{selectedAnimalProfile.description}}</p>
       </div>
       <div class="profile-pictures">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
-        <img class="profile-picture" src="animal-pic1.jpg" alt="Animal Picture 1">
+        <img *ngFor="let photo of animalPhotos" class="profile-picture" src={{photo}} alt="Animal Picture 1">
         <!-- Repeat the <img> tags for your images -->
       </div>
     </div>

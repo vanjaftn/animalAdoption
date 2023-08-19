@@ -1,13 +1,12 @@
 package service
 
-import dao.{AdminDAO, AdoptionDAO}
-import model.{Admin}
+import dao.{AdminDAO, LostAndFoundDAO}
+import model.{Admin, LostAndFound}
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class AdminService @Inject()(adminDAO: AdminDAO,
-                              adoptionDAO: AdoptionDAO,
                              )(implicit ec : ExecutionContext){
 
   def create(admin: Admin): Future[Admin] = {
@@ -25,5 +24,6 @@ class AdminService @Inject()(adminDAO: AdminDAO,
   def adminExists(userId: String): Future[Boolean] = {
     adminDAO.adminExists(userId)
   }
+
 
 }

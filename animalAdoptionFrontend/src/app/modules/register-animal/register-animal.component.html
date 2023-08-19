@@ -41,6 +41,8 @@
         Is sterelized:
         <input type="checkbox" [(ngModel)]="animal.sterilized" id="sterilized" name="sterilized" />
       </label>
+
+    <input type="file" id="my-file" (change)="uploadPhoto($event)" multiple><br>
         
         <button type="submit" class="btn-register">Register</button>
       </form>

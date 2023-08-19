@@ -5,7 +5,7 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
-import java.util.Date
+import java.util.{Date, UUID}
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Random
@@ -26,9 +26,9 @@ class AdopterDAO @Inject()(
     )
 
   def create(adopter: Adopter): Future[Adopter] = {
-    val newAdopterId = Option(Random.alphanumeric.take(16).mkString)
-    val newAdopter = adopter.copy(adopterId = newAdopterId)
-    db.run(Adopters += adopter.copy(adopterId = Option(Random.alphanumeric.take(16).mkString))).map(_ => newAdopter)
+    val newAdopterId = UUID.randomUUID().toString
+    val newAdopter = adopter.copy(adopterId = Some(newAdopterId))
+    db.run(Adopters += newAdopter).map(_ => newAdopter)
 
   }
 
@@ -38,6 +38,10 @@ class AdopterDAO @Inject()(
 
   def delete(id: String): Future[Int] = {
     db.run(Adopters.filter(_.adopterId === id).delete)
+  }
+
+  def adopterExists(userId: String): Future[Boolean] = {
+    db.run(Adopters.filter(_.userId === userId).exists.result)
   }
 
   class AdoptersTable(tag: Tag) extends Table[Adopter](tag, "adopters") {
