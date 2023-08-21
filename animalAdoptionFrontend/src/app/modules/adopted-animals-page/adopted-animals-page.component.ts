@@ -14,6 +14,7 @@ export class AdoptedAnimalsPageComponent {
 
   adoptedAnimals : Array<Animal> = new Array()
   adoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
+  public dob: string =""
 
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
 
@@ -23,12 +24,19 @@ export class AdoptedAnimalsPageComponent {
     this.allAdoptedAnimals()
   }
 
+  public getDOB(date : Date): string {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let dob = day + '.' + month + '.' + year + '.'
+    return dob
+  }
+
   allAdoptedAnimals(){
     this.animalService.allAdoptedAnimals().subscribe((response: any) => {
       
       this.adoptedAnimals = JSON.parse(response)
       console.log(this.adoptedAnimals)
-      
       
       this.addSubscriptionStatus()
     });
@@ -56,7 +64,8 @@ export class AdoptedAnimalsPageComponent {
         animalWithSubscription.animalType = animal.animalType
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
-        // console.log(animalWithSubscription)
+        animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
+        console.log(animalWithSubscription)
         // console.log(adoptedAnimalsList)
 console.log(response)
         if(response == "false"){

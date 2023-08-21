@@ -5,6 +5,7 @@ import { SubscriptionService } from '../service/subscription.service';
 import { Subscription } from 'rxjs';
 import { NewSubscription } from '../model/newSubscription.model';
 import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { PhotoService } from '../service/photo.service';
 
 @Component({
   selector: 'app-unadopted-animals-page',
@@ -16,12 +17,20 @@ export class UnadoptedAnimalsPageComponent {
   unadoptedAnimals : Array<Animal> = new Array()
   unadoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
 
     this.allUnadoptedAnimals()
+  }
+
+  public getDOB(date : Date): string {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let dob = day + '.' + month + '.' + year + '.'
+    return dob
   }
 
   allUnadoptedAnimals(){
@@ -57,6 +66,7 @@ export class UnadoptedAnimalsPageComponent {
         animalWithSubscription.animalType = animal.animalType
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
+        animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
         // console.log(animalWithSubscription)
         // console.log(adoptedAnimalsList)
 console.log(response)
@@ -80,6 +90,18 @@ console.log(response)
 
         console.log(this.unadoptedAnimalsWithSubscription)
       })    
+      
+
+      this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+        const allPhotos = JSON.parse(response)
+  
+        animalWithSubscription.photoURL = "\\assets\\images\\"+allPhotos[0].photoURL
+        // @ts-ignore
+          let photoURL : string
+          photoURL ="\\assets\\images\\"+allPhotos[0]
+  
+        console.log(allPhotos[0].photoURL)
+      });
     });
   }
 
@@ -134,4 +156,5 @@ console.log(response)
       // window.location.href = '/unadopted-animals'
     });
   }
-}
+
+  }

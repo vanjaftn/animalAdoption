@@ -22,6 +22,14 @@ export class SubscribedAnimalsPageComponent {
     this.allUsersSubscribedAnimals()
   }
 
+    public getDOB(date : Date): string {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let dob = day + '.' + month + '.' + year + '.'
+    return dob
+    }
+
   allUsersSubscribedAnimals(){
     this.animalService.allSubscribedAnimals().subscribe((response: any) => {
       console.log(response)
@@ -54,6 +62,7 @@ export class SubscribedAnimalsPageComponent {
         animalWithSubscription.animalType = animal.animalType
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
+        animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
         // console.log(animalWithSubscription)
         // console.log(adoptedAnimalsList)
 console.log(response)

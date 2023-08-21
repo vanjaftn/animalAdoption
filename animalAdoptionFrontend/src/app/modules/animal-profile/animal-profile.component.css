@@ -32,13 +32,13 @@ body {
 .profile-content {
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Align children vertically */
-  gap: 20px; /* Add some space between profile-details and profile-pictures */
+  flex-direction: column; 
+  gap: 20px; 
 }
 
 .profile-pictures {
   display: flex;
-  flex-wrap: wrap; /* Wrap images to the next line if there are more than 4 */
+  flex-wrap: wrap; 
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;

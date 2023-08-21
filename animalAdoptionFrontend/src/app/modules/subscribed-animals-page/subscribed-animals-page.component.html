@@ -1,32 +1,30 @@
 <body>
-<div class="profiles-container">
-  <div class="profile-list">
-      <div class="profile-card" *ngFor="let animal of subscribedAnimalsWithSubscription">
-        <h3>{{animal.name}}</h3>
-        <p>Age : {{animal.dateOfBirth}}</p>
-          <div>
-            {{animal.location}}
+  <div class="profiles-container">
+    <div class="profile-list">
+        <div class="profile-card" *ngFor="let animal of subscribedAnimalsWithSubscription">
+          <div class="profile-pictures">
+            <img class="profile-picture clickable" [src]="animal.photoURL" alt="Animal Picture 1" >
           </div>
-          <div>
-            {{animal.size}}
-          </div>
-          <div>
-            <label>Is sterilized?</label>
-            {{animal.sterilized}}
-          </div>
-          <div>
-            <label>Chip number</label>
-            {{animal.chipNumber}}
-          </div>
-          <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
-          <button *ngIf="animal.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
-          <div>
+          <h3>{{animal.name}}</h3>
+          <p>Date of birth: {{animal.dob}}</p>
+            <div>
+              Gender: {{animal.gender}}
+            </div>
+            <div>
+              Location: {{animal.location}}
+            </div>
+            <div>
+              Size: {{animal.size}}
+            </div>
+            <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
+            <button *ngIf="animal.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
+            <div>
             <br>
             <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>
-          </div>
+            </div>
+        </div>
+  
+      <!-- Repeat more profile-card elements as needed -->
     </div>
-
-    <!-- Repeat more profile-card elements as needed -->
   </div>
-</div>
-</body>
+  </body>

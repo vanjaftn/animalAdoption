@@ -70,3 +70,23 @@
   .view-profile-button:hover {
     background-color: #FF9800;
   }
+
+  
+  .profile-pictures {
+    display: flex;
+    flex-wrap: wrap; /* Wrap images to the next line if there are more than 4 */
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }

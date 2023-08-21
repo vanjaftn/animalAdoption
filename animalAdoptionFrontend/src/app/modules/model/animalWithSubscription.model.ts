@@ -10,6 +10,8 @@ export class AnimalWithSubscription {
     animalType: string = "";
     sterilized!: Boolean;
     subscription: Boolean = true;
+    dob!: string
+    photoURL!: string
 
     public constructor(obj?: any) {
         if (obj) {

@@ -16,6 +16,7 @@
         <p>Size: {{selectedAnimalProfile.size}}</p>
         <p>Is sterilized?: {{animalSterilized}}</p>
         <p>Description: {{selectedAnimalProfile.description}}</p>
+        <p *ngIf="userIsVet == 'true' || userIsAdmin == 'true'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
       </div>
       <div class="profile-pictures">
         <img *ngFor="let photo of animalPhotos" class="profile-picture clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1" >
