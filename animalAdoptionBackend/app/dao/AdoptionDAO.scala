@@ -51,6 +51,10 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "ADMINAPPROVED").exists.result)
   }
 
+  def adoptionExists(animalId: String, userId: String): Future[Boolean] = {
+    db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.userId === userId && adoption.adoptionStatus === "APPROVED").exists.result)
+  }
+
   def delete(id: String): Future[Int] = {
     db.run(Adoptions.filter(_.adoptionId === id).delete)
   }

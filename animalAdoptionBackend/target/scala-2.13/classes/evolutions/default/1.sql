@@ -18,7 +18,7 @@ CREATE TABLE `animals` (
 `description` varchar(255) NOT NULL,
 `chipNumber` int NOT NULL,
 `size` varchar(255) NOT NULL,
-`animalTypeId` varchar(255) NOT NULL,
+`animalType` varchar(255) NOT NULL,
 `sterilized` Boolean NOT NULL,
 PRIMARY KEY (`animalId`)
 );
@@ -83,6 +83,60 @@ CREATE TABLE `photos` (
 PRIMARY KEY (`photoId`)
 );
 
+CREATE TABLE `animalTypes` (
+`animalTypeId` varchar(255) NOT NULL DEFAULT (UUID()),
+`animalType` varchar(255) NOT NULL,
+PRIMARY KEY (`animalTypeId`)
+);
+
+# --- password 123
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
+VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9', 'vanjateodorovic00@gmail.com', '$2a$12$AD1WXBqgWeJm09CFtuNPRu5FNgWBvtAvBmIcfOSfYzgcIsp7TKTbe', 'Vanja', 'Teodorovic', '2000-07-12 00:00:00');
+# --- password miki
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
+VALUES ('6c125f42-403c-11ee-be56-0242ac120002', 'mihajlo.m1k12000@gmail.com', '$2a$12$hTRrJRLYTuzoWi/yFBIHfez8AJ1xe4zm6xaDST1stm7weG15kNr2u', 'Mihajlo', 'Maksimovic', '2000-04-12 00:00:00');
+# --- password vaskica
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
+VALUES ('bffeea1c-403c-11ee-be56-0242ac120002', 'saskavujovic00@gmail.com', '$2a$12$.nISyNeIwBLKJdTQy0dyVuImbBbytRrXPwxnizWrQWFzQfiJGu9zC', 'Aleksandra', 'Vujovic', '2000-06-03 00:00:00');
+
+INSERT INTO `admins` (`userId`)
+VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9');
+
+INSERT INTO `vets` (`userId`)
+VALUES ('6c125f42-403c-11ee-be56-0242ac120002');
+
+INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('e8b87eec-403b-11ee-be56-0242ac120002', 'Alex', '2021-12-12 00:00:00', 'Sabac', 'Good boy', 2000, 'Big', 'Dog', true);
+INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'Bobo', '2020-04-04 00:00:00', 'Sabac', 'Black', 1414, 'Medium', 'Cat', true);
+INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'Nella', '2023-07-01 00:00:00', 'Sabac', 'Good boy', 8888, 'Small', 'Dog', false);
+
+INSERT INTO `adoptions` (`animalId`, `userId`, `adoptionDate`, `adoptionStatus`)
+VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'bffeea1c-403c-11ee-be56-0242ac120002', '2023-08-21 00:00:00', 'APPROVED');
+
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('e8b87eec-403b-11ee-be56-0242ac120002', 'beli.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('e8b87eec-403b-11ee-be56-0242ac120002', 'beli1.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'bobo.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'bobo1.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'nella.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'nella1.jpg');
+INSERT INTO `photos` (`animalId`, `photoURL`)
+VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'nella2.jpg');
+
+INSERT INTO `animalTypes` (`animalType`)
+VALUES ('Dog');
+INSERT INTO `animalTypes` (`animalType`)
+VALUES ('Cat');
+INSERT INTO `animalTypes` (`animalType`)
+VALUES ('Bunny');
+
 # --- !Downs
 
 DROP TABLE users;
@@ -95,4 +149,5 @@ DROP TABLE admins;
 DROP TABLE vets;
 DROP TABLE adopters;
 DROP TABLE photos;
+DROP TABLE animalTypes;
 DROP TABLE play_evolutions;

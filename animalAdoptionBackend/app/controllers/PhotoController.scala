@@ -19,7 +19,7 @@ class PhotoController @Inject() (
                                     implicit executionContext: ExecutionContext
                                   ) extends AbstractController(controllerComponents) {
 
-  def create = Action.async(parse.json) { implicit request =>
+  def create = authAction.async(parse.json) { implicit request =>
     val newPhoto = request.body.validate[Photo]
     newPhoto match {
       case JsSuccess(photoObj, _) =>
@@ -53,13 +53,25 @@ class PhotoController @Inject() (
     }
   }
 
+  def adopterAddPhotos = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val newPhoto = request.body.validate[Photo]
+    newPhoto match {
+      case JsSuccess(photoObj, _) =>
+        photoService.adopterAddPhotos(photoObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
   def uploadPhoto = authAction(parse.multipartFormData) { request =>
     val loggedInUser = request.user
     request.body.files.map { picture =>
       val filename = Paths.get(picture.filename).getFileName
       picture.ref.copyTo(Paths.get(s"C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/public/images/$filename"), replace = true)
       picture.ref.copyTo(Paths.get(s"C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionFrontend/src/assets/images/$filename"), replace = true)
-//      userService.changePhoto(loggedInUser.userId, filename.toString)
     }
     Ok("File uploaded")
   }

@@ -20,10 +20,12 @@ class AnimalController @Inject() (
                               ) extends AbstractController(controllerComponents) {
 
   def create = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
     val newAnimal = request.body.validate[AnimalWithPhotosDTO]
     newAnimal match {
       case JsSuccess(animalObj, _) =>
-        animalService.create(animalObj).map(res =>
+        animalService.create(animalObj, loggedInUser.userId.head).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -48,8 +50,10 @@ class AnimalController @Inject() (
     )
   }
 
-  def delete(id: String) = Action.async { implicit request =>
-    animalService.delete(id).map(res =>
+  def delete(id: String) = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    animalService.delete(id, loggedInUser.userId.head).map(res =>
       Ok(Json.toJson(res))
     )
   }

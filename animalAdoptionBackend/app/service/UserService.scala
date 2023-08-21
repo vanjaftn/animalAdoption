@@ -24,11 +24,11 @@ class UserService @Inject()(userDAO: UserDAO,
   }
 
   def create(user: User): Future[User] = {
-//    userDAO.emailExists(user.email).flatMap {
-//      case None =>
+    userDAO.emailExists(user.email).flatMap {
+      case None =>
         userDAO.create(user)
-//      case Some(_) => throw new Exception("Email already exists")
-//    }
+      case Some(_) => throw new Exception("Email already exists")
+    }
   }
   def emailExists(email: String): Future[Option[User]] = {
     userDAO.emailExists(email)

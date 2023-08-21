@@ -12,7 +12,7 @@ case class Animal(
                  description : String,
                  chipNumber : Int,
                  size : String,
-                 animalTypeId : String,
+                 animalType : String,
                  sterilized : Boolean
 
                )

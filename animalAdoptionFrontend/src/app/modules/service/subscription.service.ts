@@ -20,12 +20,8 @@ export class SubscriptionService {
     return this.http.post(this.apiServerUrl + '/subscription', subscribtion, {headers: this.headers2, responseType: 'text'});
   }
 
-  // unsubscribe(): Observable<any> {
-  //   return this.http.post(this.apiServerUrl + '/deleteSubscription' + '/533995d9-3aa3-11ee-8fc9-2cea7f077dd9', {headers: this.headers2, responseType: 'text'});
-  // }
-
   unsubscribe(id: string): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/deleteSubscription/' + id , {headers: this.headers2, responseType: 'text'});
+    return this.http.post(this.apiServerUrl + '/deleteSubscription/' + id , null, {headers: this.headers2, responseType: 'text'});
   }
 
   readByAnimalId(id: string): Observable<any> {

@@ -7,6 +7,7 @@ import { AdoptionService } from '../service/adoption.service';
 import { Adoption } from '../model/adoption.model';
 import { VetService } from '../service/vet.service';
 import { PhotoService } from '../service/photo.service';
+import { Photo } from '../model/photo.model';
 
 @Component({
   selector: 'app-animal-profile',
@@ -24,6 +25,12 @@ export class AnimalProfileComponent {
   public animalSterilized !: String
   public animalPhotos: Array<string> = new Array()
   public profilePhoto: string = this.animalPhotos[0]
+  public loggedInUserIsAdopter !: String
+  public addNewPhotosButton : Boolean = false
+  selectedFile!: File;
+  selectedFiles: Array<File> = new Array()
+  fileURLs : Array<string> = new Array()
+  allAnimalTypes : Array<String> = new Array()
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
     private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService) { }
@@ -79,7 +86,7 @@ export class AnimalProfileComponent {
         animalWithSubscription.location = this.selectedAnimalProfile.location
         animalWithSubscription.description = this.selectedAnimalProfile.description
         animalWithSubscription.chipNumber = this.selectedAnimalProfile.chipNumber
-        animalWithSubscription.animalTypeId = this.selectedAnimalProfile.animalTypeId
+        animalWithSubscription.animalType = this.selectedAnimalProfile.animalType
         animalWithSubscription.size = this.selectedAnimalProfile.size
         animalWithSubscription.sterilized = this.selectedAnimalProfile.sterilized
 
@@ -128,18 +135,26 @@ export class AnimalProfileComponent {
   }
   
   delete(animalId : string){
-
-    this.animalService.delete(animalId).subscribe((response: any) => {
-      console.log(response)
-      
-      window.location.href = '/adopted-animals'
-    });
+    
+    if(confirm("Are you sure to delete this animal?")) {
+      this.animalService.delete(animalId).subscribe((response: any) => {
+        console.log(response)
+        
+        window.location.href = '/unadopted-animals'
+      });   
+     }
   }
 
   setAdoptionStatus(){
     this.adoptionService.animalAdopted(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       this.animalAdopted = response
       console.log(this.animalAdopted)
+
+      this.adoptionService.adoptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
+        console.log(response)
+        this.loggedInUserIsAdopter = response
+        
+      });
     });
   }
 
@@ -199,4 +214,59 @@ export class AnimalProfileComponent {
    );
   }
   
+  addNewPhotoButtonChange(){
+    this.addNewPhotosButton = true
+  }
+
+  uploadPhoto(event: any){
+
+    const selectedFiles: FileList = event.target.files;
+
+    console.log(selectedFiles)
+
+    if (selectedFiles.length > 0) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        this.selectedFile = <File>event.target.files[i]
+        console.log(this.selectedFile)
+        
+        this.selectedFiles.push(this.selectedFile)
+
+      }
+    }
+
+    console.log(this.selectedFiles)
+  }
+
+  addNewPhotos() {
+
+    this.selectedFiles.forEach(file => {
+      const formData = new FormData();
+  
+      formData.append('image', file, file.name)
+    
+      console.log(file) 
+
+      let photo: Photo = new Photo
+      photo.animalId = this.selectedAnimalProfileId!
+      photo.photoURL = file.name
+    
+      this.photoService.adopterAddPhotos(photo).subscribe(response=>{
+        console.log(response)
+  
+      })
+      this.photoService.uploadPhoto(formData).subscribe(response=>{
+        console.log(response)
+  
+      })
+        this.fileURLs.push(file.name)
+  
+        console.log(this.fileURLs)
+        this.addNewPhotosButton = true
+        
+      });
+      alert('Succesfully added photos');
+      window.location.reload()
+
+
+  }
 }

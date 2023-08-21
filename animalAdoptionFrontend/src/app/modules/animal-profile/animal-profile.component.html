@@ -1,7 +1,7 @@
 <body>
   <div class="profile-container">
-    <button *ngIf="selectedAnimalProfile.subscription == false" (click)="subscribe()">Subscribe</button>
-    <button *ngIf="selectedAnimalProfile.subscription == true" style="background-color: #FF9800;" (click)="unsubscribe()">Unscubscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == false" style="background-color: #ff4f4f;" (click)="subscribe()">Subscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == true" (click)="unsubscribe()">Unscubscribe</button>
     <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'false'" (click)="adopt()">I want to adopt this animal</button>
      
         <div class="profile-header">
@@ -21,11 +21,16 @@
         <!-- Repeat the <img> tags for your images -->
       </div>
     </div>
-    <button *ngIf="userIsAdmin == 'true'" style="background-color: #FF9800;" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
-    <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" style="background-color: #FF9800;" (click)="animalIsSterilized()">Animal is sterilized</button>
-    <button *ngIf="userIsVet == 'true'" style="background-color: #FF9800;" (click)="animalVaccinesPage()">Show vaccine history</button>
-    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true')" style="background-color: #FF9800;" (click)="adoptionRequestPage()">See adoption requests</button>
+    <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
+    <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
+    <button *ngIf="userIsVet == 'true'" (click)="animalVaccinesPage()">Show vaccine history</button>
+    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true')" (click)="adoptionRequestPage()">See adoption requests</button>
+    <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new photos</button>
 
+    <div *ngIf="addNewPhotosButton == true" >
+    <input type="file" id="my-file" (change)="uploadPhoto($event)" multiple><br>
+    <button (click)="addNewPhotos()">Add photos</button>
+    </div>
   </div>
 
 </body>

@@ -29,6 +29,10 @@ export class AdoptionService {
     return this.http.post(this.apiServerUrl + '/vetApprove', JSON.stringify(adoptionId), {headers: this.headers2, responseType: 'text'});
   }
 
+  adoptionExists(animalId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/adoptionExists', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
+  }
+
   readByUserAndAnimalId(approveAdoptionDTO: ApproveAdoptionDTO): Observable<any> {
     return this.http.post(this.apiServerUrl + '/readByUserAndAnimalId', approveAdoptionDTO, {headers: this.headers2, responseType: 'text'});
   }

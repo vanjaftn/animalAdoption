@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { Animal } from '../model/animal.model';
 import { AnimalService } from '../service/animal.service';
 import { AdminService } from '../service/admin.service';
 import { PhotoService } from '../service/photo.service';
-import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
 import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
 
 @Component({
@@ -16,14 +14,14 @@ export class RegisterAnimalComponent {
   selectedFile!: File;
   selectedFiles: Array<File> = new Array()
   fileURLs : Array<string> = new Array()
+  allAnimalTypes : Array<String> = new Array()
 
 
-
-  constructor(private adminService: AdminService, private photoService: PhotoService) { }
+  constructor(private adminService: AdminService, private photoService: PhotoService, private animalService: AnimalService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
-
+    this.readAllAnimalTypes()
   }
 
   public getDate(): string {
@@ -63,6 +61,7 @@ export class RegisterAnimalComponent {
   this.animal.photos = this.fileURLs
 
   console.log(this.fileURLs)
+  console.log(this.animal)
   
   this.adminService.registerAnimal(this.animal).subscribe((response: any) => {
     console.log(response)
@@ -95,5 +94,18 @@ export class RegisterAnimalComponent {
     }
 
     console.log(this.selectedFiles)
+  }
+
+  readAllAnimalTypes() {
+
+    this.animalService.allAnimalTypes().subscribe((response: any) => {
+      console.log(JSON.parse(response))
+  
+      // @ts-ignore
+      JSON.parse(response).forEach(typeObject => {
+        
+        this.allAnimalTypes.push(typeObject.animalType)
+      });
+    });
   }
 }

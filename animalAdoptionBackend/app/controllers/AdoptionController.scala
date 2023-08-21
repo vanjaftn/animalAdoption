@@ -113,4 +113,19 @@ class AdoptionController @Inject() (
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
   }
+
+  def adoptionExists = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val animalId = request.body.validate[String]
+    animalId match {
+      case JsSuccess(animalIdObj, _) =>
+        adoptionService.adoptionExists(animalIdObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+
 }

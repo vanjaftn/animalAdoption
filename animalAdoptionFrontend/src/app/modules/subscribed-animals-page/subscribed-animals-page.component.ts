@@ -50,7 +50,7 @@ export class SubscribedAnimalsPageComponent {
         animalWithSubscription.location = animal.location
         animalWithSubscription.description = animal.description
         animalWithSubscription.chipNumber = animal.chipNumber
-        animalWithSubscription.animalTypeId = animal.animalTypeId
+        animalWithSubscription.animalType = animal.animalType
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
         // console.log(animalWithSubscription)

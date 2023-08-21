@@ -1,6 +1,6 @@
 package service
 
-import dao.{AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO}
+import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO}
 import dto.AnimalWithPhotosDTO
 import model.{Animal, Photo, User}
 
@@ -12,19 +12,25 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
                               adoptionDAO: AdoptionDAO,
                               vetDAO: VetDAO,
                               subscriptionDAO: SubscriptionDAO,
-                              photoDAO: PhotoDAO
+                              photoDAO: PhotoDAO,
+                              adminDAO: AdminDAO
                           )(implicit ec : ExecutionContext){
 
-  def create(animal: AnimalWithPhotosDTO): Future[Animal] = {
-    val newAnimal : Animal = Animal(Some(UUID.randomUUID().toString), animal.name, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalTypeId, animal.sterilized)
-    if (animal.photos.nonEmpty) {
-      animal.photos.map {
-        photo =>
-          val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
-          photoDAO.create(newPhoto)
-      }
+  def create(animal: AnimalWithPhotosDTO, loggedInUser: String): Future[Animal] = {
+    adminDAO.adminExists(loggedInUser).flatMap {
+      case true =>
+        val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), animal.name, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalTypeId, animal.sterilized)
+        if (animal.photos.nonEmpty) {
+          animal.photos.map {
+            photo =>
+              val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
+              photoDAO.create(newPhoto)
+          }
+        }
+        animalDAO.create(newAnimal)
+      case false => throw new Exception("User is not admin")
     }
-    animalDAO.create(newAnimal)
+
   }
 
   def readAll(): Future[Seq[Animal]] = {
@@ -39,8 +45,12 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
     animalDAO.update(animal)
   }
 
-  def delete(animalId: String): Future[Int] = {
-    animalDAO.delete(animalId)
+  def delete(animalId: String, loggedInUser: String): Future[Int] = {
+    adminDAO.adminExists(loggedInUser).flatMap {
+      case true =>
+        animalDAO.delete(animalId)
+      case false => throw new Exception("User is not admin")
+    }
   }
 
   def readAllAdoptedAnimals : Future[Seq[Animal]] = {
@@ -76,14 +86,9 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
     }
   }
 
-//  def addNewPhoto(animal: Animal, loggedInUser: String): Future[Animal] = {
-//    adopterDAO.adopterExists(loggedInUser).flatMap {
-//      case true => animalDAO.addNewPhotos(animal)
-//      case false => throw new Exception("User is not adopter")
-//    }
-//  }
-
   def search(searchInput: String): Future[Seq[Animal]] = {
     animalDAO.search(searchInput)
   }
+
+
 }

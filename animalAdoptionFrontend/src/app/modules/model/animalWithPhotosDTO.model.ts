@@ -6,7 +6,7 @@ export class AnimalWithPhotosDTO {
     description: string = "";
     chipNumber!: number;
     size: string = "";
-    animalTypeId: string = "";
+    animalType: string = "";
     sterilized!: Boolean;
     photos!: Array<string>;
 
@@ -21,7 +21,7 @@ export class AnimalWithPhotosDTO {
             this.description = obj.description;
             this.chipNumber = obj.chipNumber;
             this.size = obj.size;
-            this.animalTypeId = obj.animalTypeId;
+            this.animalType = obj.animalType;
             this.sterilized = obj.sterilized;
         }
     }

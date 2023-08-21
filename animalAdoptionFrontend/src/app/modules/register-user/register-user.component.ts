@@ -35,7 +35,7 @@ export class RegisterUserComponent {
       window.location.href = '/login-user'
     },
     (error) => {
-      alert("Invalid registration");
+      alert(error);
       console.log(error);
     }
    );

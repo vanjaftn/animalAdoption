@@ -19,6 +19,10 @@ export class AnimalService {
     return this.http.get(this.apiServerUrl + '/allAnimals', {headers: this.headers, responseType: 'text'});
   }
 
+  allAnimalTypes(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allAnimalTypes', {headers: this.headers, responseType: 'text'});
+  }
+
   allAdoptedAnimals(): Observable<any> {
     return this.http.get(this.apiServerUrl + '/allAdoptedAnimals', {headers: this.headers, responseType: 'text'});
   }
@@ -37,7 +41,8 @@ export class AnimalService {
   }
 
   delete(id : string) : Observable<any> {
-    return this.http.post(this.apiServerUrl + '/deleteAnimal/' + id , {headers: this.headers2, responseType: 'text'});
+    console.log(this.headers2)
+    return this.http.post(this.apiServerUrl + '/deleteAnimal/' + id ,null, {headers: this.headers2});
   }
 
   animalSterilized(id : string) : Observable<any> {

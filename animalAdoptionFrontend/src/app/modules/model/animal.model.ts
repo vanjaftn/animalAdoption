@@ -6,7 +6,7 @@ export class Animal {
     description: string = "";
     chipNumber!: number;
     size: string = "";
-    animalTypeId: string = "";
+    animalType: string = "";
     sterilized!: Boolean;
 
     public constructor(obj?: any) {
@@ -18,7 +18,7 @@ export class Animal {
             this.description = obj.description;
             this.chipNumber = obj.chipNumber;
             this.size = obj.size;
-            this.animalTypeId = obj.animalTypeId;
+            this.animalType = obj.animalType;
             this.sterilized = obj.sterilized;
         }
     }

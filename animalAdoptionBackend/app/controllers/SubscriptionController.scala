@@ -63,7 +63,7 @@ class SubscriptionController @Inject() (
     )
   }
 
-  def delete(id: String) = Action.async { implicit request =>
+  def delete(id: String) = authAction.async { implicit request =>
 //    val loggedInUser = request.user
 
     subscriptionService.delete(id).map(res =>

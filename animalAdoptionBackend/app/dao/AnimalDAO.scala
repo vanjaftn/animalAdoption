@@ -88,10 +88,10 @@ class AnimalDAO @Inject()(
     def description = column[String]("DESCRIPTION")
     def chipNumber = column[Int]("CHIPNUMBER")
     def size = column[String]("SIZE")
-    def animalTypeId = column[String]("ANIMALTYPEID")
+    def animalType = column[String]("ANIMALTYPE")
     def sterilized = column[Boolean]("STERILIZED")
 
 
-    def * = (animalId, name, dateOfBirth, location, description, chipNumber, size, animalTypeId, sterilized) <> ((Animal.apply _).tupled, Animal.unapply)
+    def * = (animalId, name, dateOfBirth, location, description, chipNumber, size, animalType, sterilized) <> ((Animal.apply _).tupled, Animal.unapply)
   }
 }

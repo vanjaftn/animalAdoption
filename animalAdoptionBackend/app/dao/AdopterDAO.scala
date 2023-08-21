@@ -26,9 +26,7 @@ class AdopterDAO @Inject()(
     )
 
   def create(adopter: Adopter): Future[Adopter] = {
-    val newAdopterId = UUID.randomUUID().toString
-    val newAdopter = adopter.copy(adopterId = Some(newAdopterId))
-    db.run(Adopters += newAdopter).map(_ => newAdopter)
+    db.run(Adopters += adopter).map(_ => adopter)
 
   }
 
