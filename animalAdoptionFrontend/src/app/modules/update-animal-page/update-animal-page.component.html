@@ -1,0 +1,72 @@
+<div class="registration-container">
+    <div class="registration-form">
+      <h2>New animal</h2>
+      <form (ngSubmit)="update()" class="form-two-columns">
+        <div class="form-column">
+          <!-- First Column -->
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder={{selectedAnimalProfile.name}} [(ngModel)]="selectedAnimalProfile.name" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="chipNumber">Chip number</label>
+            <input type="text" id="chipNumber" name="chipNumber" placeholder="Enter animal's Chip number" [(ngModel)]="selectedAnimalProfile.chipNumber" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Enter animal's location" [(ngModel)]="selectedAnimalProfile.location" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" placeholder="Enter animal's description" [(ngModel)]="selectedAnimalProfile.description" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="dateOfBirth" class="form-label">Date of birth:</label>
+            <input type="text" id="dateOfBirth" name="dateOfBirth" placeholder={{dob}}>
+          </div>
+        </div>
+  
+        <div class="form-column">
+          <!-- Second Column -->
+          <div class="form-group">
+            <label>Size</label>
+            <select [(ngModel)]="selectedAnimalProfile.size" class="form-control form-control-lg" name="size">
+              <option value="none" selected disabled hidden>Select an Option</option>
+              <option value="Big">Big</option>
+              <option value="Medium">Medium</option>
+              <option value="Small">Small</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="animalType" class="form-label"></label>
+            <input type="text" id="animalType" name="animalType" placeholder={{selectedAnimalProfile.animalType}} disabled="true">
+          </div>
+  
+          <div class="form-group">
+            <label for="animalType" class="form-label"></label>
+            <input type="text" id="animalType" name="animalType" placeholder={{selectedAnimalProfile.gender}} disabled="true">
+          </div>
+  
+          <div class="form-group">
+            <label>
+              Is sterelized:
+              <input type="checkbox" *ngIf="selectedAnimalProfile.sterilized" [(ngModel)]="selectedAnimalProfile.sterilized" id="sterilized" name="sterilized" checked/>
+              <input type="checkbox" *ngIf="!selectedAnimalProfile.sterilized" [(ngModel)]="selectedAnimalProfile.sterilized" id="sterilized" name="sterilized"/>
+            </label>
+          </div>
+  
+          <div class="form-group">
+            <input type="file" id="my-file" (change)="uploadPhoto($event)" multiple><br>
+          </div>
+  
+          <button type="submit" class="btn-register">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

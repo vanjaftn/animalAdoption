@@ -12,6 +12,8 @@ import { AdoptionRequestsPageComponent } from './modules/adoption-requests-page/
 import { RegisterVetComponent } from './modules/register-vet/register-vet.component';
 import { AnimalVaccinesComponent } from './modules/animal-vaccines/animal-vaccines.component';
 import { CreateVaccineComponent } from './modules/create-vaccine/create-vaccine.component';
+import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-animal-page.component';
+import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: 'adoption-request-page/:id', component: AdoptionRequestsPageComponent},
   { path: 'animal-vaccines-page/:id', component: AnimalVaccinesComponent},
   { path: 'create-vaccine-page', component: CreateVaccineComponent},
+  { path: 'update-animal-page', component: UpdateAnimalPageComponent},
+  { path: 'update-user-page', component: UpdateUserPageComponent},
 
 
 ];

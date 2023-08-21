@@ -23,6 +23,10 @@ export class AdminService {
     return this.http.post(this.apiServerUrl + '/animal', animal, {headers: this.headers2, responseType: 'text'});
   }
 
+  updateAnimal(animal : AnimalWithPhotosDTO): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/updateAnimal', animal, {headers: this.headers2, responseType: 'text'});
+  }
+
   registerVet(vet : User): Observable<any> {
     return this.http.post(this.apiServerUrl + '/vet', vet, {headers: this.headers2, responseType: 'text'});
   }

@@ -11,6 +11,8 @@
           <p>Password: {{loggedInUser.password}}</p>
           <p>Date of birth: {{loggedInUser.dateOfBirth}}</p>
         </div>
+        <button *ngIf="loggedUserJwt !== null" (click)="update()">Update</button>
+
       </div>
     </div>
   </body>

@@ -54,14 +54,9 @@ class AnimalDAO @Inject()(
   }
 
   def update(animal: Animal): Future[Animal] = {
-    db.run(Animals.filter(_.animalId === animal.animalId).map(_.description).update(animal.description))
+    db.run(Animals.filter(_.animalId === animal.animalId).update(animal))
       .map(res => animal)
   }
-
-//  def addNewPhotos(animal: Animal): Future[Animal] = {
-//    db.run(Animals.filter(_.animalId === animal.animalId).map(_.photoURLs).update(animal.photoURLs))
-//      .map(res => animal)
-//  }
 
   def animalIsSterilized(animal: Animal): Future[Animal] = {
     db.run(Animals.filter(a => a.animalId === animal.animalId).map(_.sterilized).update(true))
@@ -82,6 +77,7 @@ class AnimalDAO @Inject()(
     def name = column[String]("NAME")
 
     def dateOfBirth = column[Date]("DATEOFBIRTH")
+    def gender = column[String]("GENDER")
 
     def location = column[String]("LOCATION")
 
@@ -92,6 +88,6 @@ class AnimalDAO @Inject()(
     def sterilized = column[Boolean]("STERILIZED")
 
 
-    def * = (animalId, name, dateOfBirth, location, description, chipNumber, size, animalType, sterilized) <> ((Animal.apply _).tupled, Animal.unapply)
+    def * = (animalId, name, gender, dateOfBirth, location, description, chipNumber, size, animalType, sterilized) <> ((Animal.apply _).tupled, Animal.unapply)
   }
 }

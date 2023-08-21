@@ -22,7 +22,7 @@ export class AnimalProfileComponent {
   public userIsVet = localStorage.getItem('userIsVet')
   public adoption : Adoption = new Adoption
   public animalAdopted !: String
-  public animalSterilized !: String
+  public animalSterilized : string = ""
   public animalPhotos: Array<string> = new Array()
   public profilePhoto: string = this.animalPhotos[0]
   public loggedInUserIsAdopter !: String
@@ -31,6 +31,7 @@ export class AnimalProfileComponent {
   selectedFiles: Array<File> = new Array()
   fileURLs : Array<string> = new Array()
   allAnimalTypes : Array<String> = new Array()
+  public dob : String = ""
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
     private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService) { }
@@ -39,13 +40,22 @@ export class AnimalProfileComponent {
 
     this.read()
     this.readPhotos()
-    console.log(this.userIsVet)
+  }
+
+  public getDate(date : Date) {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    this.dob = day + '.' + month + '.' + year + '.'
   }
 
   read(){
     this.animalService.read(this.selectedAnimalProfileId!).subscribe((response: any) => {
       console.log(JSON.parse(response))
       this.selectedAnimalProfile = JSON.parse(response)
+
+      this.getDate(new Date(this.selectedAnimalProfile.dateOfBirth))
+
 
       this.addSubscriptionStatus()
       this.setAdoptionStatus()
@@ -57,7 +67,6 @@ export class AnimalProfileComponent {
   readPhotos(){
     this.photoService.allAnimalPhotos(this.selectedAnimalProfileId!).subscribe((response: any) => {
       const allPhotos = JSON.parse(response)
-      console.log(allPhotos)
 
       // @ts-ignore
       allPhotos.forEach(photo => {
@@ -65,8 +74,8 @@ export class AnimalProfileComponent {
         photoURL ="\\assets\\images\\"+photo.photoURL
         this.animalPhotos.push(photoURL)
       });
-      console.log(this.animalPhotos)
 
+      console.log(this.animalPhotos)
     }
    );
   }
@@ -77,12 +86,12 @@ export class AnimalProfileComponent {
 
       this.subscriptionService.subscriptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
 
-        console.log(this.selectedAnimalProfile)
         // console.log(animalWithSubscription)
 
         animalWithSubscription.animalId = this.selectedAnimalProfile.animalId
         animalWithSubscription.dateOfBirth = this.selectedAnimalProfile.dateOfBirth
         animalWithSubscription.name = this.selectedAnimalProfile.name
+        animalWithSubscription.gender = this.selectedAnimalProfile.gender
         animalWithSubscription.location = this.selectedAnimalProfile.location
         animalWithSubscription.description = this.selectedAnimalProfile.description
         animalWithSubscription.chipNumber = this.selectedAnimalProfile.chipNumber
@@ -96,7 +105,6 @@ export class AnimalProfileComponent {
         if(response == "true"){
           animalWithSubscription.subscription = true
         }
-        console.log(animalWithSubscription)
         this.selectedAnimalProfile = animalWithSubscription
       })    
   }
@@ -108,11 +116,10 @@ export class AnimalProfileComponent {
     subscription.animalId = this.selectedAnimalProfile.animalId
     // subscription.userId = localStorage.getItem('loggedUserEmail')
     this.subscriptionService.subscribe(subscription).subscribe((response: any) => {
-      console.log(response)
 
       // alert('Successfully registered');
 
-        // window.location.href = '/adopted-animals'
+      window.location.reload()
     }
     );
   }
@@ -121,14 +128,13 @@ export class AnimalProfileComponent {
 
     this.subscriptionService.readByAnimalId(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       let subscriptionId = JSON.parse(response).subscriptionId
-      console.log(subscriptionId)
 
       this.subscriptionService.unsubscribe(subscriptionId).subscribe((response: any) => {
-        console.log(response)
   
         // alert('Successfully registered');
   
-        // window.location.href = '/adopted-animals'
+      window.location.reload()
+
       }
       );
     });
@@ -148,10 +154,8 @@ export class AnimalProfileComponent {
   setAdoptionStatus(){
     this.adoptionService.animalAdopted(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       this.animalAdopted = response
-      console.log(this.animalAdopted)
 
       this.adoptionService.adoptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
-        console.log(response)
         this.loggedInUserIsAdopter = response
         
       });
@@ -161,7 +165,13 @@ export class AnimalProfileComponent {
   setSterilizationStatus(){
     this.animalService.animalSterilized(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       this.animalSterilized = response
-      console.log(this.animalSterilized)
+
+      if(response == 'true'){
+        this.animalSterilized = "Yes"
+      }
+      else{
+        this.animalSterilized = "No"
+      }
     });
   }
 
@@ -174,7 +184,6 @@ export class AnimalProfileComponent {
     this.adoption.userId = ""
 
     this.adoptionService.create(this.adoption).subscribe((response: any) => {
-      console.log(response)
 
       alert('You will be contacted by our admin as soon as possible via email');
 
@@ -201,7 +210,6 @@ export class AnimalProfileComponent {
 
   animalIsSterilized(){
     this.vetService.animalIsSterilized(this.selectedAnimalProfile).subscribe((response: any) => {
-      console.log(response)
 
       alert('You have checked this animal as sterilized');
 
@@ -233,8 +241,6 @@ export class AnimalProfileComponent {
 
       }
     }
-
-    console.log(this.selectedFiles)
   }
 
   addNewPhotos() {
@@ -266,7 +272,9 @@ export class AnimalProfileComponent {
       });
       alert('Succesfully added photos');
       window.location.reload()
+  }
 
-
+  update() {
+    window.location.href = '/update-animal-page'
   }
 }

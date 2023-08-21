@@ -10,10 +10,11 @@
     <div class="profile-content">
       <div class="profile-details">
         <!-- <h2 id="name">{{selectedAnimalProfile.name}}</h2> -->
-        <p>Date of Birth: {{selectedAnimalProfile.dateOfBirth}}</p>
+        <p>Gender: {{selectedAnimalProfile.gender}}</p>
+        <p>Date of Birth: {{dob}}</p>
         <p>Location: {{selectedAnimalProfile.location}}</p>
         <p>Size: {{selectedAnimalProfile.size}}</p>
-        <p>Is sterilized?: {{selectedAnimalProfile.sterilized}}</p>
+        <p>Is sterilized?: {{animalSterilized}}</p>
         <p>Description: {{selectedAnimalProfile.description}}</p>
       </div>
       <div class="profile-pictures">
@@ -22,8 +23,9 @@
       </div>
     </div>
     <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
+    <button *ngIf="userIsAdmin == 'true'" (click)="update()">Update animal</button>
     <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
-    <button *ngIf="userIsVet == 'true'" (click)="animalVaccinesPage()">Show vaccine history</button>
+    <button (click)="animalVaccinesPage()">Show vaccine history</button>
     <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true')" (click)="adoptionRequestPage()">See adoption requests</button>
     <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new photos</button>
 

@@ -14,6 +14,7 @@ import { VaccineService } from '../service/vaccine.service';
 export class AnimalVaccinesComponent {
   public animalVaccines: Array<Vaccine> = new Array()
   public selectedAnimalProfileId = localStorage.getItem('selectedAnimalProfileId')
+  public userIsVet = localStorage.getItem('userIsVet')
 
   constructor(private vaccineService: VaccineService) { }
 

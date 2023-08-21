@@ -53,3 +53,19 @@ body {
     font-size: 1.2rem;
     color: #666;
   }
+
+  button {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+  }
+  
+  button:hover {
+    background-color: #F57C00;
+  }

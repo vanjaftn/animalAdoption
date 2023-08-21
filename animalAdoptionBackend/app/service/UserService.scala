@@ -38,6 +38,10 @@ class UserService @Inject()(userDAO: UserDAO,
     userDAO.read(id)
   }
 
+  def update(user: User): Future[User] = {
+    userDAO.update(user)
+  }
+
   def delete(id: String): Future[Int] = {
     userDAO.delete(id)
   }

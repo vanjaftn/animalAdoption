@@ -32,12 +32,13 @@ class AnimalController @Inject() (
     }
   }
 
-  def update = Action.async(parse.json)  { implicit request =>
-    val newAnimal = request.body.validate[Animal]
+  def update = authAction.async(parse.json)  { implicit request =>
+    val loggedInUser = request.user
+    val newAnimal = request.body.validate[AnimalWithPhotosDTO]
 
     newAnimal match {
       case JsSuccess(animalObj, _) =>
-        animalService.update(animalObj).map(res =>
+        animalService.update(animalObj, loggedInUser.userId.head).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

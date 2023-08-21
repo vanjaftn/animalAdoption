@@ -1,6 +1,7 @@
 export class AnimalWithPhotosDTO {
     animalId : string = "";
     name: string = "";
+    gender: string = "";
     dateOfBirth !: Date;
     location: string = "";
     description: string = "";
@@ -15,6 +16,7 @@ export class AnimalWithPhotosDTO {
         if (obj) {
             this.animalId = obj.animalId;
             this.name = obj.name;
+            this.gender = obj.gender;
             this.dateOfBirth = obj.dateOfBirth;
             this.location = obj.location;
             this.photos = obj.photos;

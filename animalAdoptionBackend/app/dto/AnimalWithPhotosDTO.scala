@@ -7,12 +7,13 @@ case class AnimalWithPhotosDTO(
 
                    animalId : Option[String],
                    name : String,
+                   gender : String,
                    dateOfBirth : Date,
                    location : String,
                    description : String,
                    chipNumber : Int,
                    size : String,
-                   animalTypeId : String,
+                   animalType : String,
                    sterilized : Boolean,
                    photos : Seq[String]
 

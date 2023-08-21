@@ -47,6 +47,7 @@ export class SubscribedAnimalsPageComponent {
         animalWithSubscription.animalId = animal.animalId
         animalWithSubscription.dateOfBirth = animal.dateOfBirth
         animalWithSubscription.name = animal.name
+        animalWithSubscription.gender = animal.gender
         animalWithSubscription.location = animal.location
         animalWithSubscription.description = animal.description
         animalWithSubscription.chipNumber = animal.chipNumber
@@ -90,7 +91,7 @@ console.log(response)
 
       // alert('Successfully registered');
 
-        window.location.href = '/subscribed-animals'
+      window.location.reload()
     }
     );
   }
@@ -106,7 +107,7 @@ console.log(response)
   
         // alert('Successfully registered');
   
-        window.location.href = '/subscribed-animals'
+        window.location.reload()
       }
       );
     });

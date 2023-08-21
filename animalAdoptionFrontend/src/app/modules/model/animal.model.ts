@@ -1,6 +1,7 @@
 export class Animal {
     animalId : string = "";
     name: string = "";
+    gender: string = "";
     dateOfBirth !: Date;
     location: string = "";
     description: string = "";
@@ -13,6 +14,7 @@ export class Animal {
         if (obj) {
             this.animalId = obj.animalId;
             this.name = obj.name;
+            this.gender = obj.gender;
             this.dateOfBirth = obj.dateOfBirth;
             this.location = obj.location;
             this.description = obj.description;

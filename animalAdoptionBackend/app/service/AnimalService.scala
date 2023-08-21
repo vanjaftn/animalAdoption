@@ -19,7 +19,7 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
   def create(animal: AnimalWithPhotosDTO, loggedInUser: String): Future[Animal] = {
     adminDAO.adminExists(loggedInUser).flatMap {
       case true =>
-        val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), animal.name, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalTypeId, animal.sterilized)
+        val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), animal.name, animal.gender, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalType, animal.sterilized)
         if (animal.photos.nonEmpty) {
           animal.photos.map {
             photo =>
@@ -41,9 +41,20 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
     animalDAO.read(animalId)
   }
 
-  def update(animal: Animal): Future[Animal] = {
-    animalDAO.update(animal)
-  }
+  def update(animal: AnimalWithPhotosDTO, loggedInUser: String): Future[Animal] = {
+    adminDAO.adminExists(loggedInUser).flatMap {
+      case true =>
+        val newAnimal: Animal = Animal(animal.animalId, animal.name, animal.gender, animal.dateOfBirth, animal.location, animal.description, animal.chipNumber, animal.size, animal.animalType, animal.sterilized)
+        if (animal.photos.nonEmpty) {
+          animal.photos.map {
+            photo =>
+              val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
+              photoDAO.create(newPhoto)
+          }
+        }
+        animalDAO.update(newAnimal)
+      case false => throw new Exception("User is not admin")
+    }  }
 
   def delete(animalId: String, loggedInUser: String): Future[Int] = {
     adminDAO.adminExists(loggedInUser).flatMap {

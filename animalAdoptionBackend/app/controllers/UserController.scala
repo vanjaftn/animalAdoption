@@ -42,6 +42,17 @@ class UserController @Inject() (
     }
   }
 
+  def update = authAction.async(parse.json) { implicit request =>
+    val newDog = request.body.validate[User]
+    newDog match {
+      case JsSuccess(dogObj, _) =>
+        userService.update(dogObj).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
   def read(id: String) = authAction.async { implicit request =>
     userService.read(id).map(res =>
       Ok(Json.toJson(res))
@@ -62,7 +73,7 @@ class UserController @Inject() (
     )
   }
 
-  def readAll = authAction.async { implicit request =>
+  def readAll = Action.async { implicit request =>
 //    val loggedInUser = request.user
     userService.readAll.map(res =>
       Ok(Json.toJson(res))

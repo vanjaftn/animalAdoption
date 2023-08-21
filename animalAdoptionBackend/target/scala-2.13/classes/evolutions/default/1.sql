@@ -13,6 +13,7 @@ PRIMARY KEY (`userId`)
 CREATE TABLE `animals` (
 `animalId` varchar(255) NOT NULL DEFAULT (UUID()),
 `name` varchar(255) NOT NULL,
+`gender` varchar(255) NOT NULL,
 `dateOfBirth` timestamp NOT NULL,
 `location` varchar(255) NOT NULL,
 `description` varchar(255) NOT NULL,
@@ -105,12 +106,12 @@ VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9');
 INSERT INTO `vets` (`userId`)
 VALUES ('6c125f42-403c-11ee-be56-0242ac120002');
 
-INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
-VALUES ('e8b87eec-403b-11ee-be56-0242ac120002', 'Alex', '2021-12-12 00:00:00', 'Sabac', 'Good boy', 2000, 'Big', 'Dog', true);
-INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
-VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'Bobo', '2020-04-04 00:00:00', 'Sabac', 'Black', 1414, 'Medium', 'Cat', true);
-INSERT INTO `animals` (`animalId`, `name`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
-VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'Nella', '2023-07-01 00:00:00', 'Sabac', 'Good boy', 8888, 'Small', 'Dog', false);
+INSERT INTO `animals` (`animalId`, `name`, `gender`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('e8b87eec-403b-11ee-be56-0242ac120002', 'Alex', 'Male', '2021-12-12 00:00:00', 'Sabac', 'Good boy', 2000, 'Big', 'Dog', true);
+INSERT INTO `animals` (`animalId`, `name`, `gender`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'Bobo', 'Male', '2020-04-04 00:00:00', 'Sabac', 'Black', 1414, 'Medium', 'Cat', true);
+INSERT INTO `animals` (`animalId`, `name`, `gender`, `dateOfBirth`, `location`, `description`, `chipNumber`, `size`, `animalType`, `sterilized`)
+VALUES ('2e9c3746-403c-11ee-be56-0242ac120002', 'Nella', 'Female', '2023-07-01 00:00:00', 'Sabac', 'Good boy', 8888, 'Small', 'Dog', false);
 
 INSERT INTO `adoptions` (`animalId`, `userId`, `adoptionDate`, `adoptionStatus`)
 VALUES ('2899106c-403c-11ee-be56-0242ac120002', 'bffeea1c-403c-11ee-be56-0242ac120002', '2023-08-21 00:00:00', 'APPROVED');

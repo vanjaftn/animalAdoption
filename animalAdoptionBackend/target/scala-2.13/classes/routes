@@ -10,6 +10,8 @@ GET     /                           controllers.HomeController.index()
 POST    /login  controllers.UserController.loginUser
 + nocsrf
 POST    /user  controllers.UserController.create
++ nocsrf
+POST    /updateUser  controllers.UserController.update
 GET     /allUsers            controllers.UserController.readAll
 GET     /user/:id           controllers.UserController.read(id : String)
 + nocsrf
@@ -23,6 +25,7 @@ POST   /readAllAnimalAdminApprovedAdopters          controllers.UserController.r
 + nocsrf
 POST    /animal               controllers.AnimalController.create
 GET     /allAnimals            controllers.AnimalController.readAll
++ nocsrf
 POST    /updateAnimal          controllers.AnimalController.update
 + nocsrf
 POST    /deleteAnimal/:id      controllers.AnimalController.delete(id: String)

@@ -46,4 +46,8 @@ export class UserService {
   readAllAnimalAdminApprovedAdopters(animalId: String): Observable<any> {
     return this.http.post(this.apiServerUrl + '/readAllAnimalAdminApprovedAdopters', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }
+
+  update(user: User): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/updateUser', user, {headers: this.headers2, responseType: 'text'});
+  }
 }

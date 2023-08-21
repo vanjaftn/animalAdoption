@@ -10,6 +10,7 @@ import { User } from '../model/user.model';
 export class UserProfileComponent {
 
   public loggedInUser : User = new User
+  public loggedUserJwt = localStorage.getItem('token');
   
   constructor(private userService: UserService) { }
 
@@ -25,5 +26,9 @@ export class UserProfileComponent {
       this.loggedInUser = JSON.parse(response)
     }
    );
+  }
+
+  update() {
+    window.location.href = '/update-user-page'
   }
 }

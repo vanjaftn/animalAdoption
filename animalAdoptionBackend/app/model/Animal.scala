@@ -7,6 +7,7 @@ case class Animal(
 
                  animalId : Option[String],
                  name : String,
+                 gender: String,
                  dateOfBirth : Date,
                  location : String,
                  description : String,

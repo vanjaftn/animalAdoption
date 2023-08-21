@@ -10,6 +10,6 @@
         </div>
         
       </div>
-      <button (click)="createVaccinePage()">Add new vaccine</button>
+      <button *ngIf="userIsVet == 'true'" (click)="createVaccinePage()">Add new vaccine</button>
     </div>
 </body>

@@ -39,13 +39,6 @@ class UserDAO @Inject()(
     }
   }
 
-//  def create(user: User): Future[User] = {
-//    val newUserId = Some(UUID.randomUUID().toString)
-//    val newUser = user.copy(password = BCrypt.hashpw(user.password, BCrypt.gensalt(12)))
-//    db.run(Users += newUser).map(res => newUser)
-//
-//  }
-
   def create(user: User): Future[User] = {
     val newUserId = UUID.randomUUID().toString  // Generate a new UUID for userId
     val newUser = user.copy(userId = Some(newUserId))  // Assign the new userId to the user
@@ -64,6 +57,14 @@ class UserDAO @Inject()(
 
   def read(id: String): Future[User] = {
     db.run(Users.filter(_.userId === id).result.head)
+  }
+
+  def update(user: User): Future[User] = {
+    val hashPassword = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
+    val userWithHashedPassword = user.copy(password = hashPassword)
+
+    db.run(Users.filter(_.userId === user.userId).update(userWithHashedPassword))
+      .map(res => userWithHashedPassword)
   }
 
   def delete(id: String): Future[Int] = {
