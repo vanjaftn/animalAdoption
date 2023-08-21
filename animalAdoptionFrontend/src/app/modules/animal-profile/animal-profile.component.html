@@ -18,8 +18,14 @@
         <p>Description: {{selectedAnimalProfile.description}}</p>
       </div>
       <div class="profile-pictures">
-        <img *ngFor="let photo of animalPhotos" class="profile-picture" src={{photo}} alt="Animal Picture 1">
-        <!-- Repeat the <img> tags for your images -->
+        <img *ngFor="let photo of animalPhotos" class="profile-picture clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1" >
+      </div>
+      <!-- <div class="profile-pictures">
+        <img *ngFor="let photo of animalPhotos" [src]="photo" (click)="enlargeImage(photo)">
+      </div> -->
+      
+      <div class="enlarge-overlay" (click)="closeEnlarged()">
+        <img id="enlarged-image" src="" alt="Enlarged Image">
       </div>
     </div>
     <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>

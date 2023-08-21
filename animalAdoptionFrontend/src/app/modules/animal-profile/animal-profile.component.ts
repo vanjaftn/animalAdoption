@@ -75,7 +75,7 @@ export class AnimalProfileComponent {
         this.animalPhotos.push(photoURL)
       });
 
-      console.log(this.animalPhotos)
+      console.log(allPhotos)
     }
    );
   }
@@ -276,5 +276,18 @@ export class AnimalProfileComponent {
 
   update() {
     window.location.href = '/update-animal-page'
+  }
+
+  enlargeImage(imageSrc: string): void {
+    const enlargedImage = document.getElementById('enlarged-image') as HTMLImageElement;
+    enlargedImage.src = imageSrc;
+
+    const overlay = document.querySelector('.enlarge-overlay') as HTMLElement;
+    overlay.style.display = 'flex';
+  }
+
+  closeEnlarged(): void {
+    const overlay = document.querySelector('.enlarge-overlay') as HTMLElement;
+    overlay.style.display = 'none';
   }
 }

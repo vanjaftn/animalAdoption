@@ -19,6 +19,8 @@ import { AnimalVaccinesComponent } from './modules/animal-vaccines/animal-vaccin
 import { CreateVaccineComponent } from './modules/create-vaccine/create-vaccine.component';
 import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-animal-page.component';
 import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { UpdateUserPageComponent } from './modules/update-user-page/update-user-
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxImageZoomModule,
+    LightboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
