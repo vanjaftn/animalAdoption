@@ -46,7 +46,7 @@ export class UnadoptedAnimalsPageComponent {
   }
   addSubscriptionStatus() {
     
-    let adoptedAnimalsList : Array<AnimalWithSubscription> = new Array()
+    let unadoptedAnimalsList : Array<AnimalWithSubscription> = new Array()
 
     this.unadoptedAnimals.forEach(animal => {
       let animalWithSubscription : AnimalWithSubscription = new AnimalWithSubscription
@@ -72,21 +72,15 @@ export class UnadoptedAnimalsPageComponent {
 console.log(response)
         if(response == "false"){
           animalWithSubscription.subscription = false
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
         if(response == "true"){
           animalWithSubscription.subscription = true
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
-        console.log(animalWithSubscription)
-        console.log(adoptedAnimalsList)
   //       let addAnimal = animalWithSubscription
-        adoptedAnimalsList.push(animalWithSubscription)
+        unadoptedAnimalsList.push(animalWithSubscription)
         // console.log(animalWithSubscription)
-        console.log(adoptedAnimalsList)
-        this.unadoptedAnimalsWithSubscription = adoptedAnimalsList
+        console.log(unadoptedAnimalsList)
+        this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => a.dateOfBirth.getDate() - b.dateOfBirth.getDate())
 
         console.log(this.unadoptedAnimalsWithSubscription)
       })    

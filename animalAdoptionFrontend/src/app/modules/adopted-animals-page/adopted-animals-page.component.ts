@@ -4,6 +4,7 @@ import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
 import { NewSubscription } from '../model/newSubscription.model';
 import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { PhotoService } from '../service/photo.service';
 
 @Component({
   selector: 'app-adopted-animals-page',
@@ -16,7 +17,7 @@ export class AdoptedAnimalsPageComponent {
   adoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
   public dob: string =""
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
@@ -84,10 +85,22 @@ console.log(response)
         adoptedAnimalsList.push(animalWithSubscription)
         // console.log(animalWithSubscription)
         console.log(adoptedAnimalsList)
-        this.adoptedAnimalsWithSubscription = adoptedAnimalsList
-
+        // this.adoptedAnimalsWithSubscription = adoptedAnimalsList
+        this.adoptedAnimalsWithSubscription = adoptedAnimalsList.sort((a, b) => a.dateOfBirth.getUTCDate() - b.dateOfBirth.getUTCDate())
+        
         console.log(this.adoptedAnimalsWithSubscription)
       })    
+
+      this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+        const allPhotos = JSON.parse(response)
+  
+        animalWithSubscription.photoURL = "\\assets\\images\\"+allPhotos[0].photoURL
+        // @ts-ignore
+          let photoURL : string
+          photoURL ="\\assets\\images\\"+allPhotos[0]
+  
+        console.log(allPhotos[0].photoURL)
+      });
     });
   }
 

@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../model/user.model';
-import { UserService } from '../service/user.service';
-import { AdoptionService } from '../service/adoption.service';
-import { ApproveAdoptionDTO } from '../model/approveAdoptionDTO.model';
 import { Vaccine } from '../model/vaccine.model';
 import { VaccineService } from '../service/vaccine.service';
 

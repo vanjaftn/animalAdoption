@@ -9,8 +9,9 @@ import { User } from '../model/user.model';
 })
 export class UserProfileComponent {
 
-  public loggedInUser : User = new User
+  public loggedInUser: User = new User
   public loggedUserJwt = localStorage.getItem('token');
+  public dob: string = ""
   
   constructor(private userService: UserService) { }
 
@@ -19,11 +20,20 @@ export class UserProfileComponent {
     this.read()
   }
 
+  public getDate(date : Date) {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    this.dob = day + '.' + month + '.' + year + '.'
+  }
+
   read(){
     this.userService.readLoggedInUser().subscribe((response: any) => {
       console.log(JSON.parse(response))
 
       this.loggedInUser = JSON.parse(response)
+      this.getDate(new Date(this.loggedInUser.dateOfBirth))
+
     }
    );
   }

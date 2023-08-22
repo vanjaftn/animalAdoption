@@ -4,6 +4,7 @@ import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
 import { Animal } from '../model/animal.model';
 import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { PhotoService } from '../service/photo.service';
 
 @Component({
   selector: 'app-subscribed-animals-page',
@@ -14,7 +15,7 @@ export class SubscribedAnimalsPageComponent {
   subscribedAnimals : Array<Animal> = new Array()
   subscribedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
@@ -42,7 +43,7 @@ export class SubscribedAnimalsPageComponent {
   }
   addSubscriptionStatus() {
     
-    let adoptedAnimalsList : Array<AnimalWithSubscription> = new Array()
+    let subscribedAnimalsList : Array<AnimalWithSubscription> = new Array()
 
     this.subscribedAnimals.forEach(animal => {
       let animalWithSubscription : AnimalWithSubscription = new AnimalWithSubscription
@@ -68,24 +69,28 @@ export class SubscribedAnimalsPageComponent {
 console.log(response)
         if(response == "false"){
           animalWithSubscription.subscription = false
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
         if(response == "true"){
           animalWithSubscription.subscription = true
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
-        console.log(animalWithSubscription)
-        console.log(adoptedAnimalsList)
   //       let addAnimal = animalWithSubscription
-        adoptedAnimalsList.push(animalWithSubscription)
+        subscribedAnimalsList.push(animalWithSubscription)
         // console.log(animalWithSubscription)
-        console.log(adoptedAnimalsList)
-        this.subscribedAnimalsWithSubscription = adoptedAnimalsList
+        console.log(subscribedAnimalsList)
+        this.subscribedAnimalsWithSubscription = subscribedAnimalsList.sort((a, b) => a.dateOfBirth.getDate() - b.dateOfBirth.getDate())
 
         console.log(this.subscribedAnimalsWithSubscription)
       })    
+      this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+        const allPhotos = JSON.parse(response)
+  
+        animalWithSubscription.photoURL = "\\assets\\images\\"+allPhotos[0].photoURL
+        // @ts-ignore
+          let photoURL : string
+          photoURL ="\\assets\\images\\"+allPhotos[0]
+  
+        console.log(allPhotos[0].photoURL)
+      });
     });
   }
 

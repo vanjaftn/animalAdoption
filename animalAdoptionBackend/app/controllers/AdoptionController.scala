@@ -37,8 +37,24 @@ class AdoptionController @Inject() (
     )
   }
 
-  def delete(id: String) = Action.async { implicit request =>
+  def delete(id: String) = authAction.async { implicit request =>
     adoptionService.delete(id).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def deletePending(id: String) = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    adoptionService.deletePending(id, loggedInUser.userId.head).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def deleteApproved(id: String) = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    adoptionService.deleteApproved(id, loggedInUser.userId.head).map(res =>
       Ok(Json.toJson(res))
     )
   }

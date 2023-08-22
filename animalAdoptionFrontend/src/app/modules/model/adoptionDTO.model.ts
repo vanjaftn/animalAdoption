@@ -1,4 +1,4 @@
-export class ApproveAdoptionDTO {
+export class AdoptionDTO {
     animalId: string = "";
     userId: string = "";
 

@@ -33,6 +33,22 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     adoptionDAO.delete(adoptionId)
   }
 
+  def deletePending(adoptionId: String, loggedInUser: String): Future[Int] = {
+
+    adminDAO.adminExists(loggedInUser).flatMap {
+      case true => adoptionDAO.deletePending(adoptionId)
+      case false => throw new Exception("User is not admin")
+    }
+  }
+
+  def deleteApproved(adoptionId: String, loggedInUser: String): Future[Int] = {
+
+    vetDAO.vetExists(loggedInUser).flatMap {
+      case true => adoptionDAO.deleteApproved(adoptionId)
+      case false => throw new Exception("User is not vet")
+    }
+  }
+
   def animalAdopted(animalId: String): Future[Boolean] = {
     adoptionDAO.animalAdopted(animalId)
   }
@@ -49,10 +65,10 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     adoptionDAO.readAllApprovedAdoptions
   }
 
-  def adminApprove(adoptionId: String, loggedUserId: String) : Future[Adoption] = {
+  def adminApprove(adoptionId: String, loggedInUser: String) : Future[Adoption] = {
     val futureAdoption: Future[Adoption] = read(adoptionId)
 
-    adminDAO.adminExists(loggedUserId).flatMap{
+    adminDAO.adminExists(loggedInUser).flatMap{
       case true => futureAdoption.flatMap { adoption =>
         val result: Future[Adoption] = adoptionDAO.adminApprove(adoption)
         result
@@ -61,14 +77,19 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     }
   }
 
-  def vetApprove(adoptionId: String, loggedUserId: String): Future[Adoption] = {
+  def vetApprove(adoptionId: String, loggedInUser: String): Future[Adoption] = {
     val futureAdoption: Future[Adoption] = read(adoptionId)
 
-    vetDAO.vetExists(loggedUserId).flatMap {
+    vetDAO.vetExists(loggedInUser).flatMap {
       case true => futureAdoption.flatMap { adoption =>
         val result: Future[Adoption] = adoptionDAO.vetApprove(adoption)
         val adopter = new Adopter(Some(UUID.randomUUID().toString), adoption.userId)
         adopterDAO.create(adopter)
+
+        adoptionDAO.readAllAnimalAdminApprovedAdoptions(adoption.animalId).map(_.map { adoption =>
+          adoptionDAO.delete(adoption.adoptionId.head)
+        })
+
         result
       }
       case false => throw new Exception("User is not vet")

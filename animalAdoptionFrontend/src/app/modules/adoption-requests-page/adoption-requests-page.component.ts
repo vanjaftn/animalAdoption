@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 import { AdoptionService } from '../service/adoption.service';
-import { ApproveAdoptionDTO } from '../model/approveAdoptionDTO.model';
+import { AdoptionDTO } from '../model/adoptionDTO.model';
 
 @Component({
   selector: 'app-adoption-requests-page',
@@ -48,7 +48,7 @@ export class AdoptionRequestsPageComponent {
 
     //   this.adoptionRequests = JSON.parse(response)
     // });
-    let approveAdoptionDTO = new ApproveAdoptionDTO
+    let approveAdoptionDTO = new AdoptionDTO
     approveAdoptionDTO.animalId = this.selectedAnimalProfileId!
     approveAdoptionDTO.userId = userId
 
@@ -75,7 +75,7 @@ export class AdoptionRequestsPageComponent {
 
     //   this.adoptionRequests = JSON.parse(response)
     // });
-    let approveAdoptionDTO = new ApproveAdoptionDTO
+    let approveAdoptionDTO = new AdoptionDTO
     approveAdoptionDTO.animalId = this.selectedAnimalProfileId!
     approveAdoptionDTO.userId = userId
 
@@ -94,6 +94,53 @@ export class AdoptionRequestsPageComponent {
         window.location.href = animalURL;
   
       });
+    });
+  }
+
+  adminReject(userId: string) {
+
+      let adoptionDTO = new AdoptionDTO
+      adoptionDTO.animalId = this.selectedAnimalProfileId!
+      adoptionDTO.userId = userId
+  
+      this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
+        console.log(JSON.parse(response))
+        let adoption = JSON.parse(response)
+  
+        this.adoptionService.deletePending(adoption.adoptionId).subscribe((response: any) => {
+          console.log(JSON.parse(response))
+
+        alert('Adopter rejected');
+
+        const animalId = this.selectedAnimalProfileId
+        const adoptionRequsestURL = `adoption-request-page/${animalId}`;
+        window.location.href = adoptionRequsestURL;  
+
+        });
+        
+      });
+
+  }
+
+  vetReject(userId: string) {
+    let adoptionDTO = new AdoptionDTO
+    adoptionDTO.animalId = this.selectedAnimalProfileId!
+    adoptionDTO.userId = userId
+
+    this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
+      console.log(JSON.parse(response))
+      let adoption = JSON.parse(response)
+
+      this.adoptionService.deleteApproved(adoption.adoptionId).subscribe((response: any) => {
+        console.log(JSON.parse(response))
+
+        alert('Adopter rejected');
+
+        const animalId = this.selectedAnimalProfileId
+        const adoptionRequsestURL = `adoption-request-page/${animalId}`;
+        window.location.href = adoptionRequsestURL;
+      });
+      
     });
   }
 

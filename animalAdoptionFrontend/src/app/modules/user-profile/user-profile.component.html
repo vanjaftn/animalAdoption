@@ -8,8 +8,7 @@
         <div class="profile-details">
           <h2>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h2>
           <p>Email: {{loggedInUser.email}}</p>
-          <p>Password: {{loggedInUser.password}}</p>
-          <p>Date of birth: {{loggedInUser.dateOfBirth}}</p>
+          <p>Date of birth: {{dob}}</p>
         </div>
         <button *ngIf="loggedUserJwt !== null" (click)="update()">Update</button>
 

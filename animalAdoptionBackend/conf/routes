@@ -50,6 +50,10 @@ GET     /allAdoptions            controllers.AdoptionController.readAll
 + nocsrf
 POST    /deleteAdoption/:id      controllers.AdoptionController.delete(id: String)
 + nocsrf
+POST    /deletePending/:id      controllers.AdoptionController.deletePending(id: String)
++ nocsrf
+POST    /deleteApproved/:id      controllers.AdoptionController.deleteApproved(id: String)
++ nocsrf
 GET    /adoption/:id      controllers.AdoptionController.read(id: String)
 + nocsrf
 POST    /readByUserAndAnimalId      controllers.AdoptionController.readByUserAndAnimalId
