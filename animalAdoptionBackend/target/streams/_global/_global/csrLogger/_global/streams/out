@@ -1,8 +1,2 @@
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-evolutions_2.13/2.8.20/play-jdbc-evolutions_2.13-2.8.20.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-api_2.13/2.8.20/play-jdbc-api_2.13-2.8.20.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-evolutions_2.13/2.8.20/play-jdbc-evolutions_2.13-2.8.20.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-api_2.13/2.8.20/play-jdbc-api_2.13-2.8.20.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-evolutions_2.13/2.8.20/play-jdbc-evolutions_2.13-2.8.20-sources.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-api_2.13/2.8.20/play-jdbc-api_2.13-2.8.20-sources.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-api_2.13/2.8.20/play-jdbc-api_2.13-2.8.20-javadoc.jar
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play/play-jdbc-evolutions_2.13/2.8.20/play-jdbc-evolutions_2.13-2.8.20-javadoc.jar
+[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play-plugins-mailer_2.13/2.1-RC2/play-plugins-mailer_2.13-2.1-RC2.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/play-plugins-mailer_2.13/2.1-RC2/play-plugins-mailer_2.13-2.1-RC2.pom.sha1

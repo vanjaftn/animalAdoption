@@ -2,6 +2,7 @@ package model
 
 import play.api.libs.json.{Format, Json}
 import org.mindrot.jbcrypt.BCrypt
+import play.api.data.Forms.email
 
 import java.util.Date
 

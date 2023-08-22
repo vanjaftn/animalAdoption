@@ -7,8 +7,8 @@ import _root_.play.twirl.api.Html
 import _root_.play.twirl.api.JavaScript
 import _root_.play.twirl.api.Txt
 import _root_.play.twirl.api.Xml
-import controllers.routes
 import models._
+import controllers._
 import play.api.i18n._
 import views.html._
 import play.api.templates.PlayMagic._

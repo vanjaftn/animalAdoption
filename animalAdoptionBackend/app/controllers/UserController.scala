@@ -10,7 +10,6 @@ import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 import play.api.mvc.{AbstractController, ControllerComponents}
 
-import java.nio.file.Paths
 class UserController @Inject() (
                                  userService: UserService,
                                  controllerComponents: ControllerComponents,
@@ -30,6 +29,20 @@ class UserController @Inject() (
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
   }
+
+//  def sendConfirmationEmail(email: String, token: String): Unit = {
+//    val subject = "Confirm your registration"
+//    val body = s"Click the following link to confirm your registration: http://yourapp.com/confirm/$token"
+//
+//    val email = Email(
+//      subject,
+//      "YourApp <noreply@yourapp.com>",
+//      Seq(email),
+//      bodyText = Some(body)
+//    )
+//
+//    mailerClient.send(email)
+//  }
 
   def create = Action.async(parse.json) { implicit request =>
     val newDog = request.body.validate[User]

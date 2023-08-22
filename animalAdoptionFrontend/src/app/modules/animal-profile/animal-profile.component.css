@@ -83,7 +83,7 @@ button:hover {
 }
 
 
-.profile-picture:hover {
+.media:hover {
   transform: scale(1.1); /* Enlarge the image by 10% on hover */
 }
 

@@ -27,17 +27,37 @@ export class RegisterUserComponent {
   }
 
   register(){
-    this.userService.register(this.user).subscribe((response: any) => {
-      console.log(response)
-
-      alert('Successfully registered');
-
-      window.location.href = '/login-user'
-    },
-    (error) => {
-      alert(error);
-      console.log(error);
+    if(this.isInputValid()){
+      this.userService.register(this.user).subscribe((response: any) => {
+        console.log(response)
+  
+        alert('Successfully registered');
+  
+        window.location.href = '/login-user'
+      },
+      (error) => {
+        alert("Invalid registration");
+        console.log(error);
+      }
+     );
     }
-   );
+  }
+
+  public isInputValid(): boolean {
+
+    var regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;     
+    // Converting the email to lowercase
+    if(!regexp.test(String(this.user.email).toLowerCase())) {
+      alert('email format is not valid')
+      return false;
+    }
+
+    if (this.user.firstName.trim() == '' || this.user.lastName.trim() == '' || this.user.email.trim() == ''
+    || this.user.password.trim() == '' || this.user.dateOfBirth == null) {
+        alert('Please fill in all fields!');
+        return false;
+     }
+
+     return true;
   }
 }

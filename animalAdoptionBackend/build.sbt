@@ -17,6 +17,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-slick-evolutions" % "5.0.0",
   "com.pauldijou" %% "jwt-play" % "5.0.0",
   "com.pauldijou" %% "jwt-core" % "5.0.0",
-  "org.mindrot"  % "jbcrypt"   % "0.3m"
+  "org.mindrot"  % "jbcrypt"   % "0.3m",
+
 )
+
 

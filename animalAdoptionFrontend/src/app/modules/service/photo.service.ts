@@ -28,6 +28,10 @@ export class PhotoService {
     return this.http.post(this.apiServerUrl + '/photo', photo, {headers: this.headers3, responseType: 'text'});
   }
 
+  delete(photoId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/deletePhoto/' + photoId, null, {headers: this.headers3, responseType: 'text'});
+  }
+
   allAnimalPhotos(animalId: string): Observable<any> {
     return this.http.post(this.apiServerUrl + '/allAnimalPhotos', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }

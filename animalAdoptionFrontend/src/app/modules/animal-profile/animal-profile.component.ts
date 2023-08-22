@@ -30,6 +30,7 @@ export class AnimalProfileComponent {
   public profilePhoto: string = this.animalPhotos[0]
   public loggedInUserIsAdopter !: String
   public addNewPhotosButton : Boolean = false
+  public deletePhotosButton : Boolean = false
   selectedFile!: File;
   selectedFiles: Array<File> = new Array()
   fileURLs : Array<string> = new Array()
@@ -160,7 +161,7 @@ export class AnimalProfileComponent {
   
   delete(animalId : string){
     
-    if(confirm("Are you sure to delete this animal?")) {
+    if(confirm("Are you sure you want to delete this animal?")) {
       this.animalService.delete(animalId).subscribe((response: any) => {
         console.log(response)
         
@@ -242,6 +243,10 @@ export class AnimalProfileComponent {
   
   addNewPhotoButtonChange(){
     this.addNewPhotosButton = true
+  }
+
+  deletePhotoButtonChange(){
+    this.deletePhotosButton = true
   }
 
   uploadPhoto(event: any){

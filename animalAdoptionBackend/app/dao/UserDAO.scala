@@ -13,8 +13,7 @@ import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
 import java.util.{Date, UUID}
-import scala.util.Random
-
+import slick.jdbc.MySQLProfile.api._
 
 class UserDAO @Inject()(
                          protected val dbConfigProvider: DatabaseConfigProvider
@@ -40,10 +39,15 @@ class UserDAO @Inject()(
   }
 
   def create(user: User): Future[User] = {
-    val newUserId = UUID.randomUUID().toString  // Generate a new UUID for userId
-    val newUser = user.copy(userId = Some(newUserId))  // Assign the new userId to the user
+    if(UsersTable.validateEmailFormat(user.email)){
+      val newUserId = UUID.randomUUID().toString  // Generate a new UUID for userId
+      val newUser = user.copy(userId = Some(newUserId))  // Assign the new userId to the user
 
-    db.run(Users += newUser.copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
+      db.run(Users += newUser.copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
+    }
+    else{
+      throw new Exception("Invalid email form")
+    }
   }
 
 
@@ -83,6 +87,15 @@ class UserDAO @Inject()(
 
     def dateOfBirth = column[Date]("DATEOFBIRTH")
 
+
     def * = (userId, email, password, firstName, lastName, dateOfBirth) <> ((User.apply _).tupled, User.unapply)
+  }
+
+  object UsersTable {
+    // Validate email format before inserting data into the database
+    def validateEmailFormat(email: String): Boolean = {
+      val emailRegex = ".+@.+\\..+"
+      email.matches(emailRegex)
+    }
   }
 }

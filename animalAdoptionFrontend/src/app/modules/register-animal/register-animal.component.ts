@@ -37,48 +37,70 @@ export class RegisterAnimalComponent {
 
   register(){
 
-  this.selectedFiles.forEach(file => {
-    const formData = new FormData();
+    if(this.isInputValid()){
 
-    formData.append('image', file, file.name)
-  
-    console.log(file) 
-  
-    this.photoService.uploadMedia(formData).subscribe(response=>{
-      console.log(response)
-      // window.location.reload()
+    this.selectedFiles.forEach(file => {
+      const formData = new FormData();
 
-    })
-      this.fileURLs.push(file.name)
+      formData.append('image', file, file.name)
+    
+      console.log(file) 
+    
+      this.photoService.uploadMedia(formData).subscribe(response=>{
+        console.log(response)
+        // window.location.reload()
+
+      })
+        this.fileURLs.push(file.name)
+
+        console.log(this.fileURLs)
+
+
+    });
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!REGISTRATION
+      if(this.animal.sterilized == null){
+        this.animal.sterilized = false
+      }
+
+      this.animal.chipNumber = Number(this.animal.chipNumber)
+      this.animal.photos = this.fileURLs
 
       console.log(this.fileURLs)
+      console.log(this.animal)
+      
+        this.adminService.registerAnimal(this.animal).subscribe((response: any) => {
+          console.log(response)
+    
+          alert('Successfully registered');
+    
+          window.location.href = '/unadopted-animals'
+        },
+        (error) => {
+          alert("Invalid registration");
+          console.log(error);
+        });
+      }
 
-
-  });
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!REGISTRATION
-  if(this.animal.sterilized == null){
-    this.animal.sterilized = false
   }
 
-  this.animal.chipNumber = Number(this.animal.chipNumber)
-  this.animal.photos = this.fileURLs
-
-  console.log(this.fileURLs)
-  console.log(this.animal)
   
-  this.adminService.registerAnimal(this.animal).subscribe((response: any) => {
-    console.log(response)
+  public isInputValid(): boolean {
 
-    alert('Successfully registered');
+    var regexp = /^\d+$/     
+    // Converting the email to lowercase
+    if(!regexp.test(String(this.animal.chipNumber))) {
+      alert('Chip number must contain only numbers')
+      return false;
+    }
 
-    window.location.href = '/unadopted-animals'
-  },
-  (error) => {
-    alert("Invalid registration");
-    console.log(error);
-  }
- );
+    if (this.animal.name.trim() == '' || this.animal.animalType.trim() == '' || this.animal.chipNumber == 0
+    || this.animal.description.trim() == ''|| this.animal.gender.trim() == ''|| this.animal.location.trim() == '' 
+    || this.animal.dateOfBirth == null|| this.animal.size.trim() == '') {
+        alert('Please fill in all fields!');
+        return false;
+     }
 
+     return true;
   }
  
   uploadPhoto(event: any) {

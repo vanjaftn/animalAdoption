@@ -25,6 +25,10 @@ export class VideoService {
     return this.http.post(this.apiServerUrl + '/video', video, {headers: this.headers3, responseType: 'text'});
   }
 
+  delete(videoId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/deleteVideo/' + videoId, null, {headers: this.headers3, responseType: 'text'});
+  }
+
   allAnimalVideos(animalId: string): Observable<any> {
     return this.http.post(this.apiServerUrl + '/allAnimalVideos', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }
