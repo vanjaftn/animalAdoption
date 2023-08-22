@@ -72,5 +72,11 @@
         <button type="submit" class="btn-register">Register</button>
       </div>
     </form>
+    <button class="btn-add-animal-type" (click)="openAddNewTypeWindow()">Add new animal type</button>
+      <div *ngIf="addAnimalTypeButton" class="form-group">
+        <input type="text" id="new-type" [(ngModel)]="newType"><br>
+        <button class="btn-add-animal-type" (click)="addNewType()">Add</button>
+      </div>
   </div>
+
 </div>

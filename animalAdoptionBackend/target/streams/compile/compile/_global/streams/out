@@ -1,21 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\dao\AdoptionDAO.scala:63:72: Cannot perform option-mapped operation[0m
-[0m[[0m[31merror[0m] [0m[0m      with type: (Boolean, String) => R[0m
-[0m[[0m[31merror[0m] [0m[0m  for base type: (Boolean, Boolean) => Boolean[0m
-[0m[[0m[31merror[0m] [0m[0m    db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.adoptionStatus ===).delete)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\dao\AdoptionDAO.scala:63:28: ambiguous implicit values:[0m
-[0m[[0m[31merror[0m] [0m[0m both value BooleanColumnCanBeQueryCondition in object CanBeQueryCondition of type slick.lifted.CanBeQueryCondition[slick.lifted.Rep[Boolean]][0m
-[0m[[0m[31merror[0m] [0m[0m and value BooleanOptionColumnCanBeQueryCondition in object CanBeQueryCondition of type slick.lifted.CanBeQueryCondition[slick.lifted.Rep[Option[Boolean]]][0m
-[0m[[0m[31merror[0m] [0m[0m match expected type slick.lifted.CanBeQueryCondition[Nothing][0m
-[0m[[0m[31merror[0m] [0m[0m    db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.adoptionStatus ===).delete)[0m
-[0m[[0m[31merror[0m] [0m[0m                           ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\dao\AdoptionDAO.scala:63:99: postfix operator === needs to be enabled[0m
-[0m[[0m[31merror[0m] [0m[0mby making the implicit value scala.language.postfixOps visible.[0m
-[0m[[0m[31merror[0m] [0m[0m----[0m
-[0m[[0m[31merror[0m] [0m[0mThis can be achieved by adding the import clause 'import scala.language.postfixOps'[0m
-[0m[[0m[31merror[0m] [0m[0mor by setting the compiler option -language:postfixOps.[0m
-[0m[[0m[31merror[0m] [0m[0mSee the Scaladoc for value scala.language.postfixOps for a discussion[0m
-[0m[[0m[31merror[0m] [0m[0mwhy the feature needs to be explicitly enabled.[0m
-[0m[[0m[31merror[0m] [0m[0m    db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.adoptionStatus ===).delete)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AnimalTypeController.scala:27:45: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : model.User[0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m        animalTypeService.create(animalObj, loggedInUser).map(res =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AnimalTypeController.scala:35:23: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m    animalTypeService.readAll.map(res =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m                      ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

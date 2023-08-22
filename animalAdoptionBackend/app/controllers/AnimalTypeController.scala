@@ -18,11 +18,13 @@ class AnimalTypeController @Inject() (
                                   implicit executionContext: ExecutionContext
                                 ) extends AbstractController(controllerComponents) {
 
-  def create = Action.async(parse.json) { implicit request =>
+  def create = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
     val newAdmin = request.body.validate[AnimalType]
     newAdmin match {
       case JsSuccess(animalObj, _) =>
-        animalTypeService.create(animalObj).map(res =>
+        animalTypeService.create(animalObj, loggedInUser).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

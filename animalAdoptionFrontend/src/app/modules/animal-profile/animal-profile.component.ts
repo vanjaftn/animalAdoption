@@ -270,7 +270,7 @@ export class AnimalProfileComponent {
         this.addNewPhotosButton = true
         
       });
-      alert('Succesfully added photos');
+      alert('Successfully added photos');
       window.location.reload()
   }
 

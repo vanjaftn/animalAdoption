@@ -1,16 +1,22 @@
 package service
 
-import dao.{AnimalTypeDAO}
-import model.{AnimalType}
+import dao.{AdminDAO, AnimalTypeDAO}
+import model.AnimalType
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class AnimalTypeService @Inject()(animalTypeDAO: AnimalTypeDAO,
+                                  adminDAO: AdminDAO
                             )(implicit ec : ExecutionContext){
 
-  def create(animalType: AnimalType): Future[AnimalType] = {
-    animalTypeDAO.create(animalType)
+  def create(animalType: AnimalType, loggedInUser: String): Future[AnimalType] = {
+
+    adminDAO.adminExists(loggedInUser).flatMap{
+      case true => animalTypeDAO.create(animalType)
+      case false => throw new Exception("User is not admin")
+    }
+
   }
 
   def readAll(): Future[Seq[AnimalType]] = {

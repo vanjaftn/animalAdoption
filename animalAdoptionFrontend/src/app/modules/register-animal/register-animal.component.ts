@@ -3,6 +3,7 @@ import { AnimalService } from '../service/animal.service';
 import { AdminService } from '../service/admin.service';
 import { PhotoService } from '../service/photo.service';
 import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
+import { AnimalTypeService } from '../service/animalType.service';
 
 @Component({
   selector: 'app-register-animal',
@@ -11,13 +12,15 @@ import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
 })
 export class RegisterAnimalComponent {
   public animal : AnimalWithPhotosDTO = new AnimalWithPhotosDTO();
-  selectedFile!: File;
-  selectedFiles: Array<File> = new Array()
-  fileURLs : Array<string> = new Array()
-  allAnimalTypes : Array<String> = new Array()
+  public selectedFile!: File;
+  public selectedFiles: Array<File> = new Array()
+  public fileURLs : Array<string> = new Array()
+  public allAnimalTypes : Array<String> = new Array()
+  public addAnimalTypeButton: Boolean = false
+  public newType: string = ""
 
-
-  constructor(private adminService: AdminService, private photoService: PhotoService, private animalService: AnimalService) { }
+  constructor(private adminService: AdminService, private photoService: PhotoService, private animalService: AnimalService,
+    private animalTypeService: AnimalTypeService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
@@ -107,5 +110,26 @@ export class RegisterAnimalComponent {
         this.allAnimalTypes.push(typeObject.animalType)
       });
     });
+  }
+
+  openAddNewTypeWindow(){
+    this.addAnimalTypeButton = true;
+  }
+
+  addNewType(){
+    console.log(this.newType)
+    if(this.newType === ""){
+      alert("You didn't write any new type")
+    }
+    else{
+      this.animalTypeService.create(this.newType).subscribe((response: any) => {
+        console.log(JSON.parse(response))
+        alert("Successfully added new type")
+
+        window.location.href = '/register-animal'
+    
+      });
+
+    }
   }
 }
