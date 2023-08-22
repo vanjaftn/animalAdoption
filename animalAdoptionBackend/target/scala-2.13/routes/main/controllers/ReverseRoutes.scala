@@ -9,14 +9,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers {
 
-  // @LINE:138
+  // @LINE:148
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:138
+    // @LINE:148
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -49,12 +49,6 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "photo")
     }
   
-    // @LINE:129
-    def uploadPhoto: Call = {
-      
-      Call("POST", _prefix + { _defaultPrefix } + "uploadPhoto")
-    }
-  
     // @LINE:131
     def readAllAnimalPhotos: Call = {
       
@@ -65,6 +59,12 @@ package controllers {
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deletePhoto/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:129
+    def uploadMedia: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "uploadMedia")
     }
   
   }
@@ -102,20 +102,20 @@ package controllers {
   
   }
 
-  // @LINE:134
+  // @LINE:144
   class ReverseAnimalTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:134
+    // @LINE:144
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "animalType")
     }
   
-    // @LINE:135
+    // @LINE:145
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allAnimalTypes")
@@ -317,6 +317,45 @@ package controllers {
     def index(): Call = {
       
       Call("GET", _prefix)
+    }
+  
+  }
+
+  // @LINE:134
+  class ReverseVideoController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:137
+    def readAll: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allVideos")
+    }
+  
+    // @LINE:136
+    def adopterAddPhotos: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "adopterAddVideos")
+    }
+  
+    // @LINE:134
+    def create: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "video")
+    }
+  
+    // @LINE:139
+    def delete(id:String): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "deleteVideo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:141
+    def readAllAnimalVideos: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "allAnimalVideos")
     }
   
   }

@@ -126,9 +126,19 @@ GET /allPhotos    controllers.PhotoController.readAll
 + nocsrf
 POST     /deletePhoto/:id           controllers.PhotoController.delete(id : String)
 + nocsrf
-POST /uploadPhoto    controllers.PhotoController.uploadPhoto
+POST /uploadMedia    controllers.PhotoController.uploadMedia
 + nocsrf
 POST /allAnimalPhotos    controllers.PhotoController.readAllAnimalPhotos
+
++ nocsrf
+POST /video    controllers.VideoController.create
++ nocsrf
+POST /adopterAddVideos    controllers.VideoController.adopterAddPhotos
+GET /allVideos    controllers.VideoController.readAll
++ nocsrf
+POST     /deleteVideo/:id           controllers.VideoController.delete(id : String)
++ nocsrf
+POST /allAnimalVideos    controllers.VideoController.readAllAnimalVideos
 
 + nocsrf
 POST /animalType    controllers.AnimalTypeController.create

@@ -9,7 +9,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:138
+  // @LINE:148
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -17,7 +17,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:138
+    // @LINE:148
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -67,16 +67,6 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:129
-    def uploadPhoto: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.PhotoController.uploadPhoto",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "uploadPhoto"})
-        }
-      """
-    )
-  
     // @LINE:131
     def readAllAnimalPhotos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.PhotoController.readAllAnimalPhotos",
@@ -93,6 +83,16 @@ package controllers.javascript {
       """
         function(id0) {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deletePhoto/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:129
+    def uploadMedia: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.PhotoController.uploadMedia",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "uploadMedia"})
         }
       """
     )
@@ -149,7 +149,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:134
+  // @LINE:144
   class ReverseAnimalTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -157,7 +157,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:134
+    // @LINE:144
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalTypeController.create",
       """
@@ -167,7 +167,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:135
+    // @LINE:145
     def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AnimalTypeController.readAll",
       """
@@ -483,6 +483,66 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:134
+  class ReverseVideoController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:137
+    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VideoController.readAll",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "allVideos"})
+        }
+      """
+    )
+  
+    // @LINE:136
+    def adopterAddPhotos: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VideoController.adopterAddPhotos",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "adopterAddVideos"})
+        }
+      """
+    )
+  
+    // @LINE:134
+    def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VideoController.create",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "video"})
+        }
+      """
+    )
+  
+    // @LINE:139
+    def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VideoController.delete",
+      """
+        function(id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "deleteVideo/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:141
+    def readAllAnimalVideos: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VideoController.readAllAnimalVideos",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "allAnimalVideos"})
         }
       """
     )

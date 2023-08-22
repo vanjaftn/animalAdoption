@@ -16,8 +16,8 @@ export class PhotoService {
 
   constructor(private http: HttpClient) { }
   
-  uploadPhoto(file: FormData): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/uploadPhoto', file, {headers: this.headers3, responseType: 'text'});
+  uploadMedia(file: FormData): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/uploadMedia', file, {headers: this.headers3, responseType: 'text'});
   }
 
   adopterAddPhotos(photo: Photo): Observable<any> {

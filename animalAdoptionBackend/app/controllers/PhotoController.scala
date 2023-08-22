@@ -66,7 +66,7 @@ class PhotoController @Inject() (
     }
   }
 
-  def uploadPhoto = authAction(parse.multipartFormData) { request =>
+  def uploadMedia = authAction(parse.multipartFormData) { request =>
     val loggedInUser = request.user
     request.body.files.map { picture =>
       val filename = Paths.get(picture.filename).getFileName

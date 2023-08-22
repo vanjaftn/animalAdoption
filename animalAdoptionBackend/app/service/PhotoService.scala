@@ -22,8 +22,8 @@ class PhotoService @Inject()(photoDAO: PhotoDAO,
   def readAllAnimalPhotos(animalId: String): Future[Seq[Photo]] = {
     photoDAO.readAllAnimalPhotos(animalId)
   }
-  def delete(vetId: String): Future[Int] = {
-    photoDAO.delete(vetId)
+  def delete(id: String): Future[Int] = {
+    photoDAO.delete(id)
   }
 
   def adopterAddPhotos(photo: Photo, loggedInUser: String) = {

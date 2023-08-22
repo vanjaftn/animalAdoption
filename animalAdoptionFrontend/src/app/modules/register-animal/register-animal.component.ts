@@ -44,7 +44,7 @@ export class RegisterAnimalComponent {
   
     console.log(file) 
   
-    this.photoService.uploadPhoto(formData).subscribe(response=>{
+    this.photoService.uploadMedia(formData).subscribe(response=>{
       console.log(response)
       // window.location.reload()
 

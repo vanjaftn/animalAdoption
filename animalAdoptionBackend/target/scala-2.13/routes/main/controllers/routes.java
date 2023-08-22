@@ -15,6 +15,7 @@ public class routes {
   public static final controllers.ReverseSubscriptionController SubscriptionController = new controllers.ReverseSubscriptionController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseUserController UserController = new controllers.ReverseUserController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseHomeController HomeController = new controllers.ReverseHomeController(RoutesPrefix.byNamePrefix());
+  public static final controllers.ReverseVideoController VideoController = new controllers.ReverseVideoController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseAdopterController AdopterController = new controllers.ReverseAdopterController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseVetController VetController = new controllers.ReverseVetController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseAdoptionController AdoptionController = new controllers.ReverseAdoptionController(RoutesPrefix.byNamePrefix());
@@ -31,6 +32,7 @@ public class routes {
     public static final controllers.javascript.ReverseSubscriptionController SubscriptionController = new controllers.javascript.ReverseSubscriptionController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseUserController UserController = new controllers.javascript.ReverseUserController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseHomeController HomeController = new controllers.javascript.ReverseHomeController(RoutesPrefix.byNamePrefix());
+    public static final controllers.javascript.ReverseVideoController VideoController = new controllers.javascript.ReverseVideoController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseAdopterController AdopterController = new controllers.javascript.ReverseAdopterController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseVetController VetController = new controllers.javascript.ReverseVetController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseAdoptionController AdoptionController = new controllers.javascript.ReverseAdoptionController(RoutesPrefix.byNamePrefix());

@@ -26,8 +26,7 @@ class PhotoDAO @Inject()(
     )
 
   def create(photo: Photo): Future[Photo] = {
-    val newPhoto = photo.copy(photoId = Some(UUID.randomUUID().toString))
-    db.run(Photos += newPhoto).map(_ => newPhoto)
+    db.run(Photos += photo).map(_ => photo)
   }
 
   def read(id: String): Future[Photo] = {

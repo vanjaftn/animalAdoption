@@ -24,7 +24,7 @@ class AnimalTypeController @Inject() (
     val newAdmin = request.body.validate[AnimalType]
     newAdmin match {
       case JsSuccess(animalObj, _) =>
-        animalTypeService.create(animalObj, loggedInUser).map(res =>
+        animalTypeService.create(animalObj, loggedInUser.userId.head).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

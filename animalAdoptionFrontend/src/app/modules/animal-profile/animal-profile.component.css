@@ -36,7 +36,7 @@ body {
   gap: 20px; 
 }
 
-.profile-pictures {
+.medias {
   display: flex;
   flex-wrap: wrap; 
   justify-content: center;
@@ -44,7 +44,7 @@ body {
   margin-bottom: 20px;
 }
 
-.profile-picture {
+.media {
   width: 150px;
   height: 150px;
   border-radius: 10px;

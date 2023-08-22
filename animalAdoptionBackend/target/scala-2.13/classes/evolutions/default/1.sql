@@ -84,6 +84,13 @@ CREATE TABLE `photos` (
 PRIMARY KEY (`photoId`)
 );
 
+CREATE TABLE `videos` (
+`videoId` varchar(255) NOT NULL DEFAULT (UUID()),
+`animalId` varchar(255) NOT NULL,
+`videoURL` varchar(255) NOT NULL,
+PRIMARY KEY (`videoId`)
+);
+
 CREATE TABLE `animalTypes` (
 `animalTypeId` varchar(255) NOT NULL DEFAULT (UUID()),
 `animalType` varchar(255) NOT NULL,

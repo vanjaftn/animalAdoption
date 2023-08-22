@@ -8,6 +8,8 @@ import { Adoption } from '../model/adoption.model';
 import { VetService } from '../service/vet.service';
 import { PhotoService } from '../service/photo.service';
 import { Photo } from '../model/photo.model';
+import { VideoService } from '../service/video.service';
+import { Video } from '../model/video.model';
 
 @Component({
   selector: 'app-animal-profile',
@@ -24,6 +26,7 @@ export class AnimalProfileComponent {
   public animalAdopted !: String
   public animalSterilized : string = ""
   public animalPhotos: Array<string> = new Array()
+  public animalVideos: Array<string> = new Array()
   public profilePhoto: string = this.animalPhotos[0]
   public loggedInUserIsAdopter !: String
   public addNewPhotosButton : Boolean = false
@@ -34,12 +37,13 @@ export class AnimalProfileComponent {
   public dob : String = ""
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
-    private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService) { }
+    private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService,
+    private videoService: VideoService) { }
     
     ngOnInit(): void {
 
     this.read()
-    this.readPhotos()
+    this.readMedia()
   }
 
   public getDate(date : Date) {
@@ -64,7 +68,7 @@ export class AnimalProfileComponent {
    );
   }
 
-  readPhotos(){
+  readMedia(){
     this.photoService.allAnimalPhotos(this.selectedAnimalProfileId!).subscribe((response: any) => {
       const allPhotos = JSON.parse(response)
 
@@ -78,6 +82,20 @@ export class AnimalProfileComponent {
       console.log(allPhotos)
     }
    );
+
+   this.videoService.allAnimalVideos(this.selectedAnimalProfileId!).subscribe((response: any) => {
+      const allVideos = JSON.parse(response)
+
+      // @ts-ignore
+      allVideos.forEach(video => {
+        let videoURL : string
+        videoURL ="\\assets\\images\\"+video.videoURL
+        this.animalVideos.push(videoURL)
+      });
+
+      console.log(allVideos)
+    }
+  );
   }
 
   addSubscriptionStatus() {
@@ -255,12 +273,24 @@ export class AnimalProfileComponent {
       let photo: Photo = new Photo
       photo.animalId = this.selectedAnimalProfileId!
       photo.photoURL = file.name
+
+      let video: Video = new Video
+      video.animalId = this.selectedAnimalProfileId!
+      video.videoURL = file.name
     
-      this.photoService.adopterAddPhotos(photo).subscribe(response=>{
-        console.log(response)
-  
-      })
-      this.photoService.uploadPhoto(formData).subscribe(response=>{
+      if(photo.photoURL.endsWith("mp4")){
+        this.videoService.adopterAddVideos(video).subscribe(response=>{
+          console.log(response)
+    
+        })
+      }
+      else{
+        this.photoService.adopterAddPhotos(photo).subscribe(response=>{
+          console.log(response)
+    
+        })
+      }
+      this.photoService.uploadMedia(formData).subscribe(response=>{
         console.log(response)
   
       })
@@ -289,5 +319,14 @@ export class AnimalProfileComponent {
   closeEnlarged(): void {
     const overlay = document.querySelector('.enlarge-overlay') as HTMLElement;
     overlay.style.display = 'none';
+  }
+
+  playVideo(media: any) {
+    // Here, you can use the media's URL to play the video
+    const videoElement = document.getElementById('enlarged-media') as HTMLVideoElement;
+    videoElement.src = media.url;
+
+    videoElement.muted = !videoElement.muted;
+    videoElement.play();
   }
 }

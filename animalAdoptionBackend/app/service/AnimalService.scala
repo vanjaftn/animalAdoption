@@ -1,8 +1,8 @@
 package service
 
-import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO}
+import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO, VideoDAO}
 import dto.AnimalWithPhotosDTO
-import model.{Animal, Photo, User}
+import model.{Animal, Photo, User, Video}
 
 import java.util.UUID
 import javax.inject.Inject
@@ -13,7 +13,8 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
                               vetDAO: VetDAO,
                               subscriptionDAO: SubscriptionDAO,
                               photoDAO: PhotoDAO,
-                              adminDAO: AdminDAO
+                              adminDAO: AdminDAO,
+                              videoDAO: VideoDAO
                           )(implicit ec : ExecutionContext){
 
   def create(animal: AnimalWithPhotosDTO, loggedInUser: String): Future[Animal] = {
@@ -23,8 +24,14 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
         if (animal.photos.nonEmpty) {
           animal.photos.map {
             photo =>
-              val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
-              photoDAO.create(newPhoto)
+              if (photo.endsWith("mp4")) {
+                val newVideo: Video = Video(Some(UUID.randomUUID().toString), newAnimal.animalId.head, photo)
+                videoDAO.create(newVideo)
+              }
+              else {
+                val newPhoto: Photo = Photo(Some(UUID.randomUUID().toString), newAnimal.animalId.head, photo)
+                photoDAO.create(newPhoto)
+              }
           }
         }
         animalDAO.create(newAnimal)
@@ -48,8 +55,14 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
         if (animal.photos.nonEmpty) {
           animal.photos.map {
             photo =>
-              val newPhoto: Photo = Photo(Some(""), newAnimal.animalId.head, photo)
-              photoDAO.create(newPhoto)
+              if(photo.endsWith("mp4")){
+                val newVideo: Video = Video(Some(UUID.randomUUID().toString), newAnimal.animalId.head, photo)
+                videoDAO.create(newVideo)
+              }
+              else{
+                val newPhoto: Photo = Photo(Some(UUID.randomUUID().toString), newAnimal.animalId.head, photo)
+                photoDAO.create(newPhoto)
+              }
           }
         }
         animalDAO.update(newAnimal)
