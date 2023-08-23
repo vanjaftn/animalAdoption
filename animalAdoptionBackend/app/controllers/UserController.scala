@@ -56,10 +56,10 @@ class UserController @Inject() (
   }
 
   def update = authAction.async(parse.json) { implicit request =>
-    val newDog = request.body.validate[User]
-    newDog match {
-      case JsSuccess(dogObj, _) =>
-        userService.update(dogObj).map(res =>
+    val newAnimal = request.body.validate[User]
+    newAnimal match {
+      case JsSuccess(animalObj, _) =>
+        userService.update(animalObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -114,4 +114,18 @@ class UserController @Inject() (
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
   }
+
+  def passwordExists = authAction.async(parse.json) { implicit request =>
+    val loggedInUser = request.user
+
+    val password = request.body.validate[String]
+    password match {
+      case JsSuccess(passwordObj, _) =>
+        userService.passwordExists(passwordObj, loggedInUser.userId.head).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
 }

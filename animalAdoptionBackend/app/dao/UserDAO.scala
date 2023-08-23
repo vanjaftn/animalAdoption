@@ -50,6 +50,10 @@ class UserDAO @Inject()(
     }
   }
 
+  def update(user: User): Future[User] = {
+    db.run(Users.filter(_.userId === user.userId).update(user))
+      .map(res => user)
+  }
 
   def emailExists(email: String): Future[Option[User]] = {
     db.run(Users.filter(_.email === email).result.headOption)
@@ -63,17 +67,14 @@ class UserDAO @Inject()(
     db.run(Users.filter(_.userId === id).result.head)
   }
 
-  def update(user: User): Future[User] = {
-    val hashPassword = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
-    val userWithHashedPassword = user.copy(password = hashPassword)
-
-    db.run(Users.filter(_.userId === user.userId).update(userWithHashedPassword))
-      .map(res => userWithHashedPassword)
-  }
-
   def delete(id: String): Future[Int] = {
     db.run(Users.filter(_.userId === id).delete)
   }
+
+  def passwordExists(password: String, loggedInUser: String): Future[Boolean] = {
+    db.run(Users.filter(user => user.password === password && user.userId === loggedInUser).exists.result)
+  }
+
   class UsersTable(tag: Tag) extends Table[User](tag, "users") {
     def userId = column[Option[String]]("USERID", O.PrimaryKey)
 

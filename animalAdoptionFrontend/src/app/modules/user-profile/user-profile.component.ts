@@ -41,4 +41,8 @@ export class UserProfileComponent {
   update() {
     window.location.href = '/update-user-page'
   }
+
+  changePassword() {
+    window.location.href = '/change-password-page'
+  }
 }

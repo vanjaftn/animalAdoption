@@ -10,8 +10,10 @@
           <p>Email: {{loggedInUser.email}}</p>
           <p>Date of birth: {{dob}}</p>
         </div>
-        <button *ngIf="loggedUserJwt !== null" (click)="update()">Update</button>
-
+        <div>
+          <button *ngIf="loggedUserJwt !== null" (click)="update()">Update</button>
+          <button *ngIf="loggedUserJwt !== null" style="margin-left: 5px;"  (click)="changePassword()">Change password</button>
+        </div>
       </div>
     </div>
   </body>

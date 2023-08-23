@@ -1,16 +1,17 @@
 package controllers
 
 import auth.AuthAction
-import model.{Admin}
+import model.Admin
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
-import service.AdminService
+import service.{AdminService, UserService}
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class AdminController @Inject() (
                                    adminService: AdminService,
+                                   userService: UserService,
                                    controllerComponents: ControllerComponents,
                                    authAction: AuthAction
 
@@ -48,4 +49,5 @@ class AdminController @Inject() (
       Ok(Json.toJson(res))
     )
   }
+
 }

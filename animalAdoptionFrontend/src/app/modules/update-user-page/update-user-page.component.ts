@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { AnimalService } from '../service/animal.service';
-import { AdminService } from '../service/admin.service';
-import { PhotoService } from '../service/photo.service';
-import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
 import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 
@@ -15,7 +11,7 @@ export class UpdateUserPageComponent {
   public userProfile: User = new User
   public dob : String = ""
 
-  constructor(private adminService: AdminService, private photoService: PhotoService, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));

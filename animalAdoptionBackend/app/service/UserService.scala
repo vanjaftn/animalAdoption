@@ -34,12 +34,27 @@ class UserService @Inject()(userDAO: UserDAO,
     userDAO.emailExists(email)
   }
 
+  def passwordExists(password: String, loggedInUser: String) = {
+    val readUser = read(loggedInUser)
+    readUser.flatMap( user =>
+      if(BCrypt.checkpw(password, user.password)){
+        val result = userDAO.passwordExists(password, loggedInUser)
+        result
+      }
+      else{
+        throw new Exception("Wrong password")
+      })
+
+  }
+
   def read(id: String): Future[User] = {
     userDAO.read(id)
   }
 
   def update(user: User): Future[User] = {
-    userDAO.update(user)
+    val userWithHashedPassword = user.copy(password = BCrypt.hashpw(user.password, BCrypt.gensalt(12)))
+
+    userDAO.update(userWithHashedPassword)
   }
 
   def delete(id: String): Future[Int] = {

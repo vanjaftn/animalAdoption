@@ -14,6 +14,7 @@ import { AnimalVaccinesComponent } from './modules/animal-vaccines/animal-vaccin
 import { CreateVaccineComponent } from './modules/create-vaccine/create-vaccine.component';
 import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-animal-page.component';
 import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
+import { ChangePasswordPageComponent } from './modules/change-password-page/change-password-page.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'create-vaccine-page', component: CreateVaccineComponent},
   { path: 'update-animal-page', component: UpdateAnimalPageComponent},
   { path: 'update-user-page', component: UpdateUserPageComponent},
+  { path: 'change-password-page', component: ChangePasswordPageComponent},
 
 
 ];

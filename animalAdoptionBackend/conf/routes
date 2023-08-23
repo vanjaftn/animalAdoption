@@ -12,6 +12,8 @@ POST    /login  controllers.UserController.loginUser
 POST    /user  controllers.UserController.create
 + nocsrf
 POST    /updateUser  controllers.UserController.update
++ nocsrf
+POST    /passwordExists  controllers.UserController.passwordExists
 GET     /allUsers            controllers.UserController.readAll
 GET     /user/:id           controllers.UserController.read(id : String)
 + nocsrf

@@ -50,4 +50,8 @@ export class UserService {
   update(user: User): Observable<any> {
     return this.http.post(this.apiServerUrl + '/updateUser', user, {headers: this.headers2, responseType: 'text'});
   }
+
+  passwordExists(password: String): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/passwordExists', JSON.stringify(password), {headers: this.headers2, responseType: 'text'});
+  }
 }

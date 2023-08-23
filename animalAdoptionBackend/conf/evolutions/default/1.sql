@@ -157,5 +157,6 @@ DROP TABLE admins;
 DROP TABLE vets;
 DROP TABLE adopters;
 DROP TABLE photos;
+DROP TABLE videos;
 DROP TABLE animalTypes;
 DROP TABLE play_evolutions;

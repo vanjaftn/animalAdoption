@@ -21,6 +21,7 @@ import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-a
 import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { LightboxModule } from 'ngx-lightbox';
+import { ChangePasswordPageComponent } from './modules/change-password-page/change-password-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LightboxModule } from 'ngx-lightbox';
     AnimalVaccinesComponent,
     CreateVaccineComponent,
     UpdateAnimalPageComponent,
-    UpdateUserPageComponent
+    UpdateUserPageComponent,
+    ChangePasswordPageComponent
   ],
   imports: [
     BrowserModule,
