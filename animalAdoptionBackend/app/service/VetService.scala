@@ -4,6 +4,7 @@ package service
 import dao.{AdminDAO, UserDAO, VetDAO}
 import model.{User, Vet}
 
+import java.util.UUID
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -18,7 +19,7 @@ class VetService @Inject()(vetDAO: VetDAO,
 
       adminDAO.adminExists(loggedUserId).flatMap {
       case true => user.flatMap{ newVet =>
-          val createVet : Vet = new Vet(Some(""), newVet.userId.head)
+          val createVet : Vet = new Vet(Some(UUID.randomUUID().toString), newVet.userId.head)
           vetDAO.create(createVet)
       }
       case false => throw new Exception("User is not admin")

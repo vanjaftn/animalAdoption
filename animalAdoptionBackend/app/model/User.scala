@@ -14,7 +14,8 @@ case class User(
                  firstName : String,
                  lastName : String,
                  dateOfBirth : Date,
-
+                 phoneNumber : Int,
+                 personalId : Int
                )
 object User {
   implicit val format: Format[User] = Json.format[User]

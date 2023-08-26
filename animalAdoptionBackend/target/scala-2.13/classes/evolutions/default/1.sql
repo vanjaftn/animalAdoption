@@ -7,6 +7,8 @@ CREATE TABLE `users` (
 `firstName` varchar(255) NOT NULL,
 `lastName` varchar(255) NOT NULL,
 `dateOfBirth` timestamp NOT NULL,
+`phoneNumber` int NOT NULL,
+`personalId` int NOT NULL,
 PRIMARY KEY (`userId`)
 );
 
@@ -98,14 +100,14 @@ PRIMARY KEY (`animalTypeId`)
 );
 
 # --- password 123
-INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
-VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9', 'vanjateodorovic00@gmail.com', '$2a$12$AD1WXBqgWeJm09CFtuNPRu5FNgWBvtAvBmIcfOSfYzgcIsp7TKTbe', 'Vanja', 'Teodorovic', '2000-07-12 00:00:00');
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`, `phoneNumber`, `personalId`)
+VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9', 'vanjateodorovic00@gmail.com', '$2a$12$AD1WXBqgWeJm09CFtuNPRu5FNgWBvtAvBmIcfOSfYzgcIsp7TKTbe', 'Vanja', 'Teodorovic', '2000-07-12 00:00:00', 0628722320, 1207555);
 # --- password miki
-INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
-VALUES ('6c125f42-403c-11ee-be56-0242ac120002', 'mihajlo.m1k12000@gmail.com', '$2a$12$hTRrJRLYTuzoWi/yFBIHfez8AJ1xe4zm6xaDST1stm7weG15kNr2u', 'Mihajlo', 'Maksimovic', '2000-04-12 00:00:00');
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`, `phoneNumber`, `personalId`)
+VALUES ('6c125f42-403c-11ee-be56-0242ac120002', 'mihajlo.m1k12000@gmail.com', '$2a$12$hTRrJRLYTuzoWi/yFBIHfez8AJ1xe4zm6xaDST1stm7weG15kNr2u', 'Mihajlo', 'Maksimovic', '2000-04-12 00:00:00', 062626262, 1204555);
 # --- password vaskica
-INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`)
-VALUES ('bffeea1c-403c-11ee-be56-0242ac120002', 'saskavujovic00@gmail.com', '$2a$12$.nISyNeIwBLKJdTQy0dyVuImbBbytRrXPwxnizWrQWFzQfiJGu9zC', 'Aleksandra', 'Vujovic', '2000-06-03 00:00:00');
+INSERT INTO `users` (`userId`, `email`, `password`, `firstName`, `lastName`, `dateOfBirth`, `phoneNumber`, `personalId`)
+VALUES ('bffeea1c-403c-11ee-be56-0242ac120002', 'saskavujovic00@gmail.com', '$2a$12$.nISyNeIwBLKJdTQy0dyVuImbBbytRrXPwxnizWrQWFzQfiJGu9zC', 'Aleksandra', 'Vujovic', '2000-06-03 00:00:00', 06363636, 0306555);
 
 INSERT INTO `admins` (`userId`)
 VALUES ('d022ab98-403a-11ee-a70e-2cea7f077dd9');

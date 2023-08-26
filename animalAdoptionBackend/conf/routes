@@ -113,12 +113,20 @@ POST    /lost  controllers.LostAndFoundController.createLost
 + nocsrf
 POST    /found  controllers.LostAndFoundController.createFound
 GET     /allLostAndFound            controllers.LostAndFoundController.readAll
+GET     /allLostAndFoundNotApproved            controllers.LostAndFoundController.readAllNotApproved
+GET     /allLostAndFoundApproved            controllers.LostAndFoundController.readAllApproved
 GET     /allLost            controllers.LostAndFoundController.readAllLost
 GET     /allFound            controllers.LostAndFoundController.readAllFound
 GET     /readAllLostNotApproved            controllers.LostAndFoundController.readAllLostNotApproved
 GET     /readAllFoundNotApproved            controllers.LostAndFoundController.readAllFoundNotApproved
 + nocsrf
 POST    /adminApproveLAF  controllers.LostAndFoundController.adminApproveLAF
+GET     /lostAndFound/:id           controllers.LostAndFoundController.read(id : String)
++ nocsrf
+POST     /deleteLostAndFound/:id           controllers.LostAndFoundController.delete(id : String)
+GET     /lostAndFoundByAnimalId/:id           controllers.LostAndFoundController.readByAnimalId(id : String)
++ nocsrf
+POST     /lostAndFoundExists            controllers.LostAndFoundController.lostAndFoundExists
 
 + nocsrf
 POST /photo    controllers.PhotoController.create

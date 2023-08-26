@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Animal } from '../model/animal.model';
 import { CreateVet } from '../model/create-vet.model';
 import { User } from '../model/user.model';
-import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
+import { AnimalWithPhotosDTO } from '../model/animal-with-photos-DTO.model';
 
 @Injectable({
   providedIn: 'root'

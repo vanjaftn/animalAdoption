@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Adoption } from '../model/adoption.model';
-import { AdoptionDTO } from '../model/adoptionDTO.model';
+import { AdoptionDTO } from '../model/adoption-DTO.model';
 
 @Injectable({
   providedIn: 'root'

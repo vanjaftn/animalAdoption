@@ -88,8 +88,12 @@ class UserDAO @Inject()(
 
     def dateOfBirth = column[Date]("DATEOFBIRTH")
 
+    def phoneNumber = column[Int]("PHONENUMBER")
 
-    def * = (userId, email, password, firstName, lastName, dateOfBirth) <> ((User.apply _).tupled, User.unapply)
+    def personalId = column[Int]("PERSONALID")
+
+
+    def * = (userId, email, password, firstName, lastName, dateOfBirth, phoneNumber, personalId) <> ((User.apply _).tupled, User.unapply)
   }
 
   object UsersTable {

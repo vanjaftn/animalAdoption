@@ -3,9 +3,10 @@ import { AnimalService } from '../service/animal.service';
 import { Animal } from '../model/animal.model';
 import { SubscriptionService } from '../service/subscription.service';
 import { Subscription } from 'rxjs';
-import { NewSubscription } from '../model/newSubscription.model';
-import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { NewSubscription } from '../model/new-subscription.model';
+import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
+import { LostAndFoundService } from '../service/lostAndFound.service';
 
 @Component({
   selector: 'app-unadopted-animals-page',
@@ -17,7 +18,8 @@ export class UnadoptedAnimalsPageComponent {
   unadoptedAnimals : Array<Animal> = new Array()
   unadoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService,
+     private photoService: PhotoService, private lostAndFoundService: LostAndFoundService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
@@ -52,7 +54,10 @@ export class UnadoptedAnimalsPageComponent {
       let animalWithSubscription : AnimalWithSubscription = new AnimalWithSubscription
 
       this.subscriptionService.subscriptionExists(animal.animalId).subscribe((response: any) => {
+        
+      this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
 
+        if(responseLAF === "false") {
         console.log(animal)
         // console.log(animalWithSubscription)
 
@@ -83,7 +88,10 @@ console.log(response)
         this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => a.dateOfBirth.getDate() - b.dateOfBirth.getDate())
 
         console.log(this.unadoptedAnimalsWithSubscription)
-      })    
+
+        }
+      });
+    })    
       
 
       this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {

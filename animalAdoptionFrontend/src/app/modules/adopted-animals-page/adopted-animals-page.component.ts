@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Animal } from '../model/animal.model';
 import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
-import { NewSubscription } from '../model/newSubscription.model';
-import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { NewSubscription } from '../model/new-subscription.model';
+import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
+import { LostAndFoundService } from '../service/lostAndFound.service';
 
 @Component({
   selector: 'app-adopted-animals-page',
@@ -17,7 +18,8 @@ export class AdoptedAnimalsPageComponent {
   adoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
   public dob: string =""
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService
+    , private lostAndFoundService: LostAndFoundService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
@@ -101,6 +103,7 @@ console.log(response)
   
         console.log(allPhotos[0].photoURL)
       });
+      
     });
   }
 

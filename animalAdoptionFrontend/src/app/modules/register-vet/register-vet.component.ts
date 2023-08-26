@@ -28,6 +28,10 @@ export class RegisterVetComponent {
 
   register(){
     if(this.isInputValid()){
+
+      this.vet.phoneNumber = Number(this.vet.phoneNumber)
+      this.vet.personalId = Number(this.vet.personalId)
+
       this.adminService.registerVet(this.vet).subscribe((response: any) => {
         console.log(response)
   

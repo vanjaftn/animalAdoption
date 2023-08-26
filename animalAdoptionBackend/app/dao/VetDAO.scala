@@ -26,8 +26,7 @@ class VetDAO @Inject()(
     )
 
   def create(vet: Vet): Future[Vet] = {
-    val newVet = vet.copy(vetId = Some(UUID.randomUUID().toString))
-    db.run(Vets += newVet).map(_ => newVet)
+    db.run(Vets += vet).map(_ => vet)
   }
 
   def read(id: String): Future[Vet] = {

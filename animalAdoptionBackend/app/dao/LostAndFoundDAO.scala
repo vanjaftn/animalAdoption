@@ -29,12 +29,15 @@ class LostAndFoundDAO @Inject()(
     )
 
   def create(lostAndFound: LostAndFound): Future[LostAndFound] = {
-    val newLostAndFound = lostAndFound.copy(lostAndFoundId = Some(UUID.randomUUID().toString))
-    db.run(LostAndFounds += newLostAndFound).map(_ => newLostAndFound)
+    db.run(LostAndFounds += lostAndFound).map(_ => lostAndFound)
   }
 
   def read(id: String): Future[LostAndFound] = {
     db.run(LostAndFounds.filter(_.lostAndFoundId === id).result.head)
+  }
+
+  def readByAnimalId(id: String): Future[LostAndFound] = {
+    db.run(LostAndFounds.filter(_.animalId === id).result.head)
   }
 
   def approve(lostAndFound: LostAndFound): Future[LostAndFound] = {
@@ -44,6 +47,17 @@ class LostAndFoundDAO @Inject()(
 
   def readAll: Future[Seq[LostAndFound]] = {
     db.run(LostAndFounds.result)
+  }
+
+  def delete(id: String): Future[Int] = {
+    db.run(LostAndFounds.filter(_.lostAndFoundId === id).delete)
+  }
+  def readAllApproved: Future[Seq[LostAndFound]] = {
+    db.run(LostAndFounds.filter(_.approved === true).result)
+  }
+
+  def readAllNotApproved: Future[Seq[LostAndFound]] = {
+    db.run(LostAndFounds.filter(_.approved === false).result)
   }
 
   def readAllLostNotApproved: Future[Seq[LostAndFound]] = {
@@ -61,6 +75,9 @@ class LostAndFoundDAO @Inject()(
     db.run(LostAndFounds.filter(found => found.lostAndFoundStatus === "FOUND" && found.approved === true).result)
   }
 
+  def lostAndFoundExists(animalId: String): Future[Boolean] = {
+    db.run(LostAndFounds.filter(_.animalId === animalId).exists.result)
+  }
 
   class LostAndFoundsTable(tag: Tag) extends Table[LostAndFound](tag, "lostAndFounds") {
 

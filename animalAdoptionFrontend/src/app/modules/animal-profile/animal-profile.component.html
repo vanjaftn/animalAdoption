@@ -1,8 +1,9 @@
 <body>
   <div class="profile-container">
-    <button *ngIf="selectedAnimalProfile.subscription == false" style="background-color: #ff4f4f;" (click)="subscribe()">Subscribe</button>
-    <button *ngIf="selectedAnimalProfile.subscription == true" (click)="unsubscribe()">Unscubscribe</button>
-    <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'false'" (click)="adopt()">I want to adopt this animal</button>
+    <button *ngIf="selectedAnimalProfile.subscription == false && isLostAndFound == 'false'" style="background-color: #ff4f4f;" (click)="subscribe()">Subscribe</button>
+    <button *ngIf="selectedAnimalProfile.subscription == true && isLostAndFound == 'false'" (click)="unsubscribe()">Unscubscribe</button>
+    <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'false' && isLostAndFound == 'false'" (click)="adopt()">I want to adopt this animal</button>
+    <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'true' && isApproved == 'false'" (click)="approveLostAndFound()">Approve</button>
      
         <div class="profile-header">
       <h1>{{selectedAnimalProfile.name}}</h1>
@@ -11,12 +12,12 @@
       <div class="profile-details">
         <!-- <h2 id="name">{{selectedAnimalProfile.name}}</h2> -->
         <p>Gender: {{selectedAnimalProfile.gender}}</p>
-        <p>Date of Birth: {{dob}}</p>
+        <p *ngIf="isLostAndFound == 'false'">Date of Birth: {{dob}}</p>
         <p>Location: {{selectedAnimalProfile.location}}</p>
         <p>Size: {{selectedAnimalProfile.size}}</p>
         <p>Is sterilized?: {{animalSterilized}}</p>
         <p>Description: {{selectedAnimalProfile.description}}</p>
-        <p *ngIf="userIsVet == 'true' || userIsAdmin == 'true'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
+        <p *ngIf="(userIsVet == 'true' || userIsAdmin == 'true') && isLostAndFound == 'false'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
       </div>
       <div class="medias">
         <img *ngFor="let photo of animalPhotos" class="media clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1" >
@@ -30,10 +31,10 @@
       </div>
     </div>
     <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
-    <button *ngIf="userIsAdmin == 'true'" (click)="update()">Update animal</button>
+    <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'false'" (click)="update()">Update animal</button>
     <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
-    <button (click)="animalVaccinesPage()">Show vaccine history</button>
-    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true')" (click)="adoptionRequestPage()">See adoption requests</button>
+    <button *ngIf="isLostAndFound == 'false'" (click)="animalVaccinesPage()">Show vaccine history</button>
+    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true') && isLostAndFound == 'false'" (click)="adoptionRequestPage()">See adoption requests</button>
     <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new media</button>
 
     <div *ngIf="addNewPhotosButton == true" >

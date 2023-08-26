@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 import { AdoptionService } from '../service/adoption.service';
-import { AdoptionDTO } from '../model/adoptionDTO.model';
+import { AdoptionDTO } from '../model/adoption-DTO.model';
 
 @Component({
   selector: 'app-adoption-requests-page',

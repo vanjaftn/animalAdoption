@@ -22,6 +22,9 @@ import { UpdateUserPageComponent } from './modules/update-user-page/update-user-
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { LightboxModule } from 'ngx-lightbox';
 import { ChangePasswordPageComponent } from './modules/change-password-page/change-password-page.component';
+import { RegisterLostAndFoundComponent } from './modules/register-lost-and-found/register-lost-and-found.component';
+import { LostAndFoundPageComponent } from './modules/lost-and-found-page/lost-and-found-page.component';
+import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-found-page/approve-lost-and-found-page.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ChangePasswordPageComponent } from './modules/change-password-page/chan
     CreateVaccineComponent,
     UpdateAnimalPageComponent,
     UpdateUserPageComponent,
-    ChangePasswordPageComponent
+    ChangePasswordPageComponent,
+    RegisterLostAndFoundComponent,
+    LostAndFoundPageComponent,
+    ApproveLostAndFoundPageComponent
   ],
   imports: [
     BrowserModule,

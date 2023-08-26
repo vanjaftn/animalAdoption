@@ -9,6 +9,8 @@ export class Animal {
     size: string = "";
     animalType: string = "";
     sterilized!: Boolean;
+    dob!: string
+    photoURL!: string
 
     public constructor(obj?: any) {
         if (obj) {

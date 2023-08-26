@@ -1,0 +1,80 @@
+<div class="registration-container">
+    <div class="registration-form">
+      <h2>New animal</h2>
+      <form (ngSubmit)="register()" class="form-two-columns">
+        <div class="form-column">
+          <!-- First Column -->
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter animal's name" [(ngModel)]="animal.name" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Enter animal's location" [(ngModel)]="animal.location" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" placeholder="Enter animal's description" [(ngModel)]="animal.description" required>
+          </div>
+        </div>
+  
+        <div class="form-column">
+          <!-- Second Column -->
+          <div class="form-group">
+            <label>Size</label>
+            <select [(ngModel)]="animal.size" class="form-control form-control-lg" name="size">
+              <option value="none" selected disabled hidden>Select an Option</option>
+              <option value="Big">Big</option>
+              <option value="Medium">Medium</option>
+              <option value="Small">Small</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label>Type</label>
+            <select [(ngModel)]="animal.animalType" class="form-control form-control-lg" name="size">
+              <option *ngFor="let type of allAnimalTypes" [value]="type">{{type}}</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label>Gender</label>
+            <select [(ngModel)]="animal.gender" class="form-control form-control-lg" name="size">
+              <option value="none" selected disabled hidden>Select an Option</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label>
+              Is sterelized:
+              <input type="checkbox" [(ngModel)]="animal.sterilized" id="sterilized" name="sterilized" />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <input type="radio" id="lost" name="isAnimalLostOrFound" value="Lost" [(ngModel)]="isAnimalLostOrFound">Lost
+            <!-- <label for="isAnimalLostOrFound">Lost</label> -->
+            <input type="radio" id="found" name="isAnimalLostOrFound" value="Found" [(ngModel)]="isAnimalLostOrFound">Found
+            <!-- <label for="isAnimalLostOrFound">Found</label> -->
+          </div>
+  
+          <div class="form-group">
+            <input type="file" id="my-file" (change)="uploadPhoto($event)" multiple><br>
+          </div>
+  
+          <button type="submit" class="btn-register">Register</button>
+        </div>
+      </form>
+      <button class="btn-add-animal-type" (click)="openAddNewTypeWindow()">Add new animal type</button>
+        <div *ngIf="addAnimalTypeButton" class="form-group">
+          <input type="text" id="new-type" [(ngModel)]="newType"><br>
+          <button class="btn-add-animal-type" (click)="addNewType()">Add</button>
+        </div>
+    </div>
+  
+  </div>
+  

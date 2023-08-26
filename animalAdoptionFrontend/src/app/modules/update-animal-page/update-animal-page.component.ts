@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AnimalService } from '../service/animal.service';
 import { AdminService } from '../service/admin.service';
 import { PhotoService } from '../service/photo.service';
-import { AnimalWithPhotosDTO } from '../model/animalWithPhotosDTO.model';
+import { AnimalWithPhotosDTO } from '../model/animal-with-photos-DTO.model';
 
 @Component({
   selector: 'app-update-animal-page',

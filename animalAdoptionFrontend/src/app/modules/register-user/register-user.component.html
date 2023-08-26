@@ -1,7 +1,8 @@
 <div class="registration-container">
     <div class="registration-form">
       <h2>Sign in</h2>
-      <form (ngSubmit)="register()">
+      <form (ngSubmit)="register()" class="form-two-columns">
+        <div class="form-column">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="Enter your email" [(ngModel)]="user.email" required>
@@ -21,14 +22,26 @@
           <label for="lastName">Last name</label>
           <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"  [(ngModel)]="user.lastName" required>
         </div>
+      </div>
 
+      <div class="form-column">
         <div class="form-group">
           <label for="dateOfBirth" class="form-label">Date of birth</label>
           <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" max="{{getDate()}}">
       </div>
-        
-        <button type="submit" class="btn-register">Register</button>
-      </form>
+
+      <div class="form-group">
+        <label for="phoneNumber" class="form-label">Phone number</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="personalId" class="form-label">Personal id</label>
+      <input type="text" id="personalId" name="personalId" [(ngModel)]="user.personalId">
+  </div>
+      <button type="submit" class="btn-register">Register</button>
+    </div>
+  </form>
     </div>
   </div>
   

@@ -15,6 +15,7 @@ export class RegisterUserComponent {
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
+    console.log(this.user);
 
   }
 
@@ -27,7 +28,11 @@ export class RegisterUserComponent {
   }
 
   register(){
+    console.log("uslo")
     if(this.isInputValid()){
+      this.user.phoneNumber = Number(this.user.phoneNumber)
+      this.user.personalId = Number(this.user.personalId)
+
       this.userService.register(this.user).subscribe((response: any) => {
         console.log(response)
   
@@ -52,8 +57,19 @@ export class RegisterUserComponent {
       return false;
     }
 
+    var regexp2 = /^\d+$/      
+    if(!regexp2.test(String(this.user.personalId))) {
+      alert('Personal id must contain only numbers')
+      return false;
+    }
+
+    if(!regexp2.test(String(this.user.phoneNumber))) {
+      alert('Phone number must contain only numbers')
+      return false;
+    }
+
     if (this.user.firstName.trim() == '' || this.user.lastName.trim() == '' || this.user.email.trim() == ''
-    || this.user.password.trim() == '' || this.user.dateOfBirth == null) {
+    || this.user.password.trim() == '' || this.user.personalId == 0 || this.user.phoneNumber == 0 || this.user.dateOfBirth == null) {
         alert('Please fill in all fields!');
         return false;
      }

@@ -15,15 +15,21 @@ import { CreateVaccineComponent } from './modules/create-vaccine/create-vaccine.
 import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-animal-page.component';
 import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
 import { ChangePasswordPageComponent } from './modules/change-password-page/change-password-page.component';
+import { RegisterLostAndFoundComponent } from './modules/register-lost-and-found/register-lost-and-found.component';
+import { LostAndFoundPageComponent } from './modules/lost-and-found-page/lost-and-found-page.component';
+import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-found-page/approve-lost-and-found-page.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
   { path: 'register-user', component: RegisterUserComponent},
   { path: 'register-animal', component: RegisterAnimalComponent},
   { path: 'register-vet', component: RegisterVetComponent},
+  { path: 'register-lost-and-found', component: RegisterLostAndFoundComponent},
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
   { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},
+  { path: 'lost-and-found-animals', component: LostAndFoundPageComponent},
+  { path: 'approve-lost-and-found-animals', component: ApproveLostAndFoundPageComponent},
   { path: 'animal-profile/:id', component: AnimalProfileComponent},
   { path: 'user-profile', component: UserProfileComponent},
   { path: 'adoption-request-page/:id', component: AdoptionRequestsPageComponent},

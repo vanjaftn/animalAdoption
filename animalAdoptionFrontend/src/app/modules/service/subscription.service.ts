@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { NewSubscription } from '../model/newSubscription.model';
+import { NewSubscription } from '../model/new-subscription.model';
 
 @Injectable({
   providedIn: 'root'

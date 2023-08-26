@@ -6,6 +6,8 @@ export class CreateVet {
     firstName: string = "";
     lastName: string = "";
     dateOfBirth !: Date;
+    phoneNumber !: number;
+    personalId !: number;
     ordination: string = "";
 
     public constructor(obj?: any) {
@@ -17,6 +19,8 @@ export class CreateVet {
             this.lastName = obj.lastName;
             this.dateOfBirth = obj.dateOfBirth;
             this.vetId = obj.vetId;
+            this.phoneNumber = obj.phoneNumber;
+            this.personalId = obj.personalId;
             this.ordination = obj.ordination;
         }
     }

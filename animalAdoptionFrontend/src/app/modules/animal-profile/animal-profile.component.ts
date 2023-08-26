@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
-import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
-import { NewSubscription } from '../model/newSubscription.model';
+import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
+import { NewSubscription } from '../model/new-subscription.model';
 import { AdoptionService } from '../service/adoption.service';
 import { Adoption } from '../model/adoption.model';
 import { VetService } from '../service/vet.service';
@@ -10,6 +10,9 @@ import { PhotoService } from '../service/photo.service';
 import { Photo } from '../model/photo.model';
 import { VideoService } from '../service/video.service';
 import { Video } from '../model/video.model';
+import { LostAndFoundService } from '../service/lostAndFound.service';
+import { LostAndFoundPageComponent } from '../lost-and-found-page/lost-and-found-page.component';
+import { LostAndFound } from '../model/lost-and-found.model';
 
 @Component({
   selector: 'app-animal-profile',
@@ -31,20 +34,24 @@ export class AnimalProfileComponent {
   public loggedInUserIsAdopter !: String
   public addNewPhotosButton : Boolean = false
   public deletePhotosButton : Boolean = false
-  selectedFile!: File;
-  selectedFiles: Array<File> = new Array()
-  fileURLs : Array<string> = new Array()
-  allAnimalTypes : Array<String> = new Array()
+  public selectedFile!: File;
+  public selectedFiles: Array<File> = new Array()
+  public fileURLs : Array<string> = new Array()
+  public allAnimalTypes : Array<String> = new Array()
   public dob : String = ""
+  public isLostAndFound : string = ""
+  public isApproved : string = ""
+  public lostAndFoundAnimal: LostAndFound = new LostAndFound
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
     private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService,
-    private videoService: VideoService) { }
+    private videoService: VideoService , private lostAndFoundService: LostAndFoundService) { }
     
     ngOnInit(): void {
 
     this.read()
     this.readMedia()
+    this.readLostAndFound()
   }
 
   public getDate(date : Date) {
@@ -333,5 +340,34 @@ export class AnimalProfileComponent {
 
     videoElement.muted = !videoElement.muted;
     videoElement.play();
+  }
+
+  readLostAndFound(){
+
+    this.lostAndFoundService.lostAndFoundExists(this.selectedAnimalProfileId!).subscribe((response: any) => {
+      this.isLostAndFound = response
+      
+      if(response === "true") {
+        this.lostAndFoundService.readByAnimalId(this.selectedAnimalProfileId!).subscribe((response: any) => {
+          this.lostAndFoundAnimal = response
+          console.log(this.lostAndFoundAnimal)
+          this.isApproved = JSON.parse(response).approved.toString()
+        });
+      }
+    });
+  }
+
+  approveLostAndFound(){
+    console.log(this.lostAndFoundAnimal)
+
+    this.lostAndFoundService.adminApproveLAF(this.lostAndFoundAnimal).subscribe((response: any) => {
+      this.isLostAndFound = response
+      console.log(this.isLostAndFound)
+
+      alert('Successfully approved');
+
+
+      // window.location.href = '/unadopted-animals'
+    });
   }
 }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NewSubscription } from '../model/newSubscription.model';
+import { NewSubscription } from '../model/new-subscription.model';
 import { AnimalService } from '../service/animal.service';
 import { SubscriptionService } from '../service/subscription.service';
 import { Animal } from '../model/animal.model';
-import { AnimalWithSubscription } from '../model/animalWithSubscription.model';
+import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
 
 @Component({

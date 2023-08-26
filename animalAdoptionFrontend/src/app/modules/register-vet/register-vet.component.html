@@ -1,34 +1,46 @@
 <div class="registration-container">
-    <div class="registration-form">
-      <h2>Sign in</h2>
-      <form (ngSubmit)="register()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" [(ngModel)]="vet.email" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password"  [(ngModel)]="vet.password" required>
-        </div>
-
-        <div class="form-group">
-          <label for="firstName">First name</label>
-          <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"  [(ngModel)]="vet.firstName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="lastName">Last name</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"  [(ngModel)]="vet.lastName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="dateOfBirth" class="form-label">Date of birth</label>
-          <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="vet.dateOfBirth" max="{{getDate()}}">
+  <div class="registration-form">
+    <h2>New vet</h2>
+    <form (ngSubmit)="register()" class="form-two-columns">
+      <div class="form-column">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" [(ngModel)]="vet.email" required>
       </div>
-        
-        <button type="submit" class="btn-register">Register</button>
-      </form>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password"  [(ngModel)]="vet.password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"  [(ngModel)]="vet.firstName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name"  [(ngModel)]="vet.lastName" required>
+      </div>
     </div>
+
+    <div class="form-column">
+      <div class="form-group">
+        <label for="dateOfBirth" class="form-label">Date of birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="vet.dateOfBirth" max="{{getDate()}}">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="form-label">Phone number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="vet.phoneNumber">
   </div>
-  
+
+  <div class="form-group">
+    <label for="personalId" class="form-label">Personal id</label>
+    <input type="text" id="personalId" name="personalId" [(ngModel)]="vet.personalId">
+</div>
+    <button type="submit" class="btn-register">Register</button>
+  </div>
+</form>
+  </div>
+</div>
