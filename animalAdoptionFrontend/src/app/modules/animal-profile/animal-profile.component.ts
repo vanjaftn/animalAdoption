@@ -41,6 +41,7 @@ export class AnimalProfileComponent {
   public dob : String = ""
   public isLostAndFound : string = ""
   public isApproved : string = ""
+  public lostOrFound : string = ""
   public lostAndFoundAnimal: LostAndFound = new LostAndFound
   
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
@@ -352,6 +353,14 @@ export class AnimalProfileComponent {
           this.lostAndFoundAnimal = response
           console.log(this.lostAndFoundAnimal)
           this.isApproved = JSON.parse(response).approved.toString()
+          this.lostOrFound = JSON.parse(response).lostAndFoundStatus
+
+          if( JSON.parse(response).lostAndFoundStatus == "LOST"){
+            this.lostOrFound = "Lost"
+          }
+          if( JSON.parse(response).lostAndFoundStatus == "FOUND"){
+            this.lostOrFound = "Found"
+          }        
         });
       }
     });

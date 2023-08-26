@@ -17,6 +17,7 @@
         <p>Size: {{selectedAnimalProfile.size}}</p>
         <p>Is sterilized?: {{animalSterilized}}</p>
         <p>Description: {{selectedAnimalProfile.description}}</p>
+        <p *ngIf="isLostAndFound == 'true'">Lost or found: {{lostOrFound}}</p>
         <p *ngIf="(userIsVet == 'true' || userIsAdmin == 'true') && isLostAndFound == 'false'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
       </div>
       <div class="medias">
