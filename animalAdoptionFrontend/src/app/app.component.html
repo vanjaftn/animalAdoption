@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
      <ul class="navbar-nav mr-auto" >
       <li class="nav-item active">
-         <a class="nav-link" routerLink="/register-user">Sign up</a>
+         <a *ngIf="loggedUserJwt == null" class="nav-link" routerLink="/register-user">Sign up</a>
       </li>
       <li class="nav-item active">
          <a *ngIf="userIsAdmin === 'true'" class="nav-link" routerLink="/register-animal">New animal</a>
@@ -24,10 +24,10 @@
          <a *ngIf="userIsAdmin === 'true'" class="nav-link" routerLink="/approve-lost-and-found-animals">Approve lost or found</a>
       </li>
       <li class="nav-item active">
-         <a class="nav-link" routerLink="/unadopted-animals">For adoption</a>
+         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/unadopted-animals">For adoption</a>
       </li>
       <li class="nav-item active">
-         <a class="nav-link" routerLink="/adopted-animals">Adopted animals</a>
+         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/adopted-animals">Adopted animals</a>
       </li>
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/subscribed-animals">Subscriptions</a>

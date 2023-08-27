@@ -526,3 +526,8 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[type mismatch;
 
 2023-08-26 16:02:19 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
 2023-08-26 16:24:27 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m db - Thread starvation or clock leap detected (housekeeper delta=3m36s453ms286µs600ns).
+2023-08-27 21:41:37 [31mWARN [0;39m [36mcom.zaxxer.hikari.pool.HikariPool[0;39m [35m[0;39m db - Thread starvation or clock leap detected (housekeeper delta=1d3h56m41s219ms118µs700ns).
+2023-08-27 21:42:43 [34mINFO [0;39m [36mp.a.i.l.c.CoordinatedShutdownSupport[0;39m [35m[0;39m Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2023-08-27 21:42:43 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2023-08-27 21:42:43 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2023-08-27 21:42:44 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
