@@ -5,6 +5,7 @@ import { SubscriptionService } from '../service/subscription.service';
 import { Animal } from '../model/animal.model';
 import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
+import { SearchRequestDTO } from '../model/search-request-DTO.model';
 
 @Component({
   selector: 'app-subscribed-animals-page',
@@ -14,6 +15,7 @@ import { PhotoService } from '../service/photo.service';
 export class SubscribedAnimalsPageComponent {
   subscribedAnimals : Array<Animal> = new Array()
   subscribedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
+  public searchInput: string = ""
 
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService) { }
 
@@ -144,5 +146,25 @@ console.log(response)
 
       // window.location.href = '/subscribed-animals'
     });
+  }
+
+  search() {
+    if(this.searchInput == ""){
+      console.log("nista nije upisano")
+    }
+    else{
+      let searchRequest : SearchRequestDTO = new SearchRequestDTO
+      searchRequest.searchInput = this.searchInput
+      searchRequest.animals = this.subscribedAnimals
+
+      this.animalService.search(searchRequest).subscribe((response: any) => {
+        console.log(response)
+        this.subscribedAnimals = JSON.parse(response)
+        this.subscribedAnimalsWithSubscription = JSON.parse(response)
+
+        this.addSubscriptionStatus()
+       
+      });
+    }
   }
 }

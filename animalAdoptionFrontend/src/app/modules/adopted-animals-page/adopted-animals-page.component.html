@@ -1,5 +1,9 @@
 <body>
   <div class="profiles-container">
+    <div class="search-container">
+      <input class="search-input" [(ngModel)]="searchInput" placeholder="Search by name or location">
+      <button class="search-button" (click)="search()">Search</button>
+    </div>
     <div class="profile-list">
         <div class="profile-card" *ngFor="let animal of adoptedAnimalsWithSubscription">
           <div class="profile-pictures">

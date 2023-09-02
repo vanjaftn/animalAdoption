@@ -1,7 +1,7 @@
 package controllers
 
 import auth.AuthAction
-import dto.AnimalWithPhotosDTO
+import dto.{AnimalWithPhotosDTO, SearchRequestDTO}
 import model.Animal
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import play.api.mvc.{AbstractController, ControllerComponents}
@@ -46,7 +46,7 @@ class AnimalController @Inject() (
   }
 
   def readAll = Action.async { implicit request =>
-    animalService.readAll.map(res =>
+    animalService.readAll().map(res =>
       Ok(Json.toJson(res))
     )
   }
@@ -72,7 +72,7 @@ class AnimalController @Inject() (
   }
 
   def readAllUnadopted = Action.async { implicit request =>
-    animalService.readAllUnadoptedAnimals.map(res =>
+    animalService.readAllUnadoptedAnimals().map(res =>
       Ok(Json.toJson(res))
     )
   }
@@ -111,28 +111,19 @@ class AnimalController @Inject() (
     }
   }
 
-//  def addNewPhoto = authAction.async(parse.json) { implicit request =>
-//    val loggedInUser = request.user
-//
-//    val animalId = request.body.validate[Animal]
-//    animalId match {
-//      case JsSuccess(animalIdObj, _) =>
-//        animalService.addNewPhoto(animalIdObj, loggedInUser.userId.head).map(res =>
-//          Ok(Json.toJson(res))
-//        )
-//      case JsError(errors) => Future.successful(BadRequest(errors.toString))
-//    }
-//  }
-
-  def search = authAction.async(parse.json) { implicit request =>
-      val loggedInUser = request.user
-      val searchInput = request.body.validate[String]
-    searchInput match {
-        case JsSuccess(searchInputObj, _) =>
-          animalService.search(searchInputObj).map(res =>
-            Ok(Json.toJson(res))
-          )
-        case JsError(errors) => Future.successful(BadRequest(errors.toString))
-      }
+  def search = authAction.async(parse.json) { request =>
+    val loggedInUser = request.user
+    val searchRequest = request.body.validate[SearchRequestDTO]
+    searchRequest match {
+      case JsSuccess(searchRequestObj, _) =>
+        animalService.search(searchRequestObj.searchInput, searchRequestObj.animals).map(res =>
+          Ok(Json.toJson(res))
+        )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
+
+  }
+
+
+
 }

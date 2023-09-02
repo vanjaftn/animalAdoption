@@ -3,6 +3,7 @@ package service
 import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO, VideoDAO}
 import dto.AnimalWithPhotosDTO
 import model.{Animal, Photo, User, Video}
+import slick.lifted.TableQuery
 
 import java.util.UUID
 import javax.inject.Inject
@@ -110,8 +111,8 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
     }
   }
 
-  def search(searchInput: String): Future[Seq[Animal]] = {
-    animalDAO.search(searchInput)
+  def search(searchInput: String, animals: Seq[Animal]): Future[Seq[Animal]] = {
+    animalDAO.search(searchInput, animals)
   }
 
 

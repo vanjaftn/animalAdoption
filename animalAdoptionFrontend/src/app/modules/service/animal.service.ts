@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SearchRequestDTO } from '../model/search-request-DTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +50,7 @@ export class AnimalService {
     return this.http.post(this.apiServerUrl + '/animalSterilized', JSON.stringify(id) , {headers: this.headers2, responseType: 'text'});
   }
 
+  search(searchRequest: SearchRequestDTO) : Observable<any> {
+    return this.http.post(this.apiServerUrl + '/searchAnimal', searchRequest , {headers: this.headers2, responseType: 'text'});
+  }
 }

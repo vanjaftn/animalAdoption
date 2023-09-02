@@ -6,6 +6,7 @@ import { NewSubscription } from '../model/new-subscription.model';
 import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
 import { LostAndFoundService } from '../service/lostAndFound.service';
+import { SearchRequestDTO } from '../model/search-request-DTO.model';
 
 @Component({
   selector: 'app-adopted-animals-page',
@@ -16,7 +17,8 @@ export class AdoptedAnimalsPageComponent {
 
   adoptedAnimals : Array<Animal> = new Array()
   adoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
-  public dob: string =""
+  public dob: string = ""
+  public searchInput: string = ""
 
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService
     , private lostAndFoundService: LostAndFoundService) { }
@@ -157,5 +159,25 @@ console.log(response)
 
       // window.location.href = '/unadopted-animals'
     });
+  }
+
+  search() {
+    if(this.searchInput == ""){
+      console.log("nista nije upisano")
+    }
+    else{
+      let searchRequest : SearchRequestDTO = new SearchRequestDTO
+      searchRequest.searchInput = this.searchInput
+      searchRequest.animals = this.adoptedAnimals
+
+      this.animalService.search(searchRequest).subscribe((response: any) => {
+        console.log(response)
+        this.adoptedAnimals = JSON.parse(response)
+        this.adoptedAnimalsWithSubscription = JSON.parse(response)
+
+        this.addSubscriptionStatus()
+       
+      });
+    }
   }
 }

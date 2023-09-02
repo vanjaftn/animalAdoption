@@ -67,8 +67,10 @@ class AnimalDAO @Inject()(
     db.run(Animals.filter(animal => (animal.animalId === animalId) && animal.sterilized === true).exists.result)
   }
 
-  def search(searchInput: String): Future[Seq[Animal]] = {
-    db.run(Animals.filter(animal => animal.name.like(s"%${searchInput}%") || animal.location.like(s"%${searchInput}%") ).result)
+  def search(searchInput: String, animals: Seq[Animal]): Future[Seq[Animal]] = {
+    val animalsTableQuery = TableQuery[AnimalsTable].filter(_.animalId.inSet(animals.map(_.animalId.head)))
+
+    db.run(animalsTableQuery.filter(animal => animal.name.like(s"%${searchInput}%") || animal.location.like(s"%${searchInput}%") ).result)
   }
 
   class AnimalsTable(tag: Tag) extends Table[Animal](tag, "animals") {

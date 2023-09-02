@@ -1,30 +1,33 @@
 <body>
   <div class="profiles-container">
+    <div class="search-container">
+      <input class="search-input" [(ngModel)]="searchInput" placeholder="Search by name or location">
+      <button class="search-button" (click)="search()">Search</button>
+    </div>
     <div class="profile-list">
-        <div class="profile-card" *ngFor="let animal of unadoptedAnimalsWithSubscription">
-          <div class="profile-pictures">
-            <img class="profile-picture clickable" [src]="animal.photoURL" alt="Animal Picture 1" >
-          </div>
-          <h3>{{animal.name}}</h3>
-          <p>Date of birth: {{animal.dob}}</p>
-            <div>
-              Gender: {{animal.gender}}
-            </div>
-            <div>
-              Location: {{animal.location}}
-            </div>
-            <div>
-              Size: {{animal.size}}
-            </div>
-            <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
-            <button *ngIf="animal.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
-            <div>
-            <br>
-            <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>
-            </div>
+
+      <div class="profile-card" *ngFor="let animal of unadoptedAnimalsWithSubscription">
+        <div class="profile-pictures">
+          <img class="profile-picture clickable" [src]="animal.photoURL" alt="Animal Picture 1" >
         </div>
-  
-      <!-- Repeat more profile-card elements as needed -->
+        <h3>{{animal.name}}</h3>
+        <p>Date of birth: {{animal.dob}}</p>
+          <div>
+            Gender: {{animal.gender}}
+          </div>
+          <div>
+            Location: {{animal.location}}
+          </div>
+          <div>
+            Size: {{animal.size}}
+          </div>
+          <button *ngIf="animal.subscription == false" class="subscription-button" (click)="subscribe(animal.animalId)">Subscribe</button>
+          <button *ngIf="animal.subscription == true" style="background-color: #FF9800;" class="subscription-button" (click)="unsubscribe(animal.animalId)">Unscubscribe</button>
+          <div>
+          <br>
+          <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>
+          </div>
+      </div>
     </div>
   </div>
-  </body>
+</body>
