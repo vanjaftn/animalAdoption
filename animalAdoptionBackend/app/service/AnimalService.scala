@@ -1,6 +1,6 @@
 package service
 
-import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, PhotoDAO, SubscriptionDAO, VetDAO, VideoDAO}
+import dao.{AdminDAO, AdopterDAO, AdoptionDAO, AnimalDAO, LostAndFoundDAO, PhotoDAO, SubscriptionDAO, VetDAO, VideoDAO}
 import dto.AnimalWithPhotosDTO
 import model.{Animal, Photo, User, Video}
 import slick.lifted.TableQuery
@@ -15,7 +15,8 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
                               subscriptionDAO: SubscriptionDAO,
                               photoDAO: PhotoDAO,
                               adminDAO: AdminDAO,
-                              videoDAO: VideoDAO
+                              videoDAO: VideoDAO,
+                              lostAndFoundDAO: LostAndFoundDAO
                           )(implicit ec : ExecutionContext){
 
   def create(animal: AnimalWithPhotosDTO, loggedInUser: String): Future[Animal] = {
@@ -73,7 +74,11 @@ class AnimalService @Inject()(animalDAO: AnimalDAO,
   def delete(animalId: String, loggedInUser: String): Future[Int] = {
     adminDAO.adminExists(loggedInUser).flatMap {
       case true =>
-        animalDAO.delete(animalId)
+        lostAndFoundDAO.lostAndFoundExists(animalId).flatMap {
+          case true => animalDAO.delete(animalId)
+                        lostAndFoundDAO.readByAnimalId(animalId).flatMap(laf => lostAndFoundDAO.delete(laf.lostAndFoundId.head))
+          case false => animalDAO.delete(animalId)
+        }
       case false => throw new Exception("User is not admin")
     }
   }

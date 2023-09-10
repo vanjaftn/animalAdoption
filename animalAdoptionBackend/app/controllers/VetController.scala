@@ -31,6 +31,12 @@ class VetController @Inject() (
     }
   }
 
+  def read(id: String) = Action.async { implicit request =>
+    vetService.read(id).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
   def readAll = Action.async { implicit request =>
     vetService.readAll.map(res =>
       Ok(Json.toJson(res))

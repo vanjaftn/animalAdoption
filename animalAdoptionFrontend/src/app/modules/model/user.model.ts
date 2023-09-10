@@ -17,7 +17,6 @@ export class User {
             this.dateOfBirth = obj.dateOfBirth;
             this.phoneNumber = obj.phoneNumber;
             this.personalId = obj.personalId;
-            
         }
     }
 }

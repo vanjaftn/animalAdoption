@@ -21,5 +21,9 @@ class AdopterService @Inject()(adopterDAO: AdopterDAO
     adopterDAO.delete(vetId)
   }
 
+  def adopterExist(userId: String): Future[Boolean] = {
+    adopterDAO.adopterExist(userId)
+  }
+
 }
 

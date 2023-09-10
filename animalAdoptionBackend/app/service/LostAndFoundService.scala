@@ -91,6 +91,14 @@ class LostAndFoundService @Inject()(lostAndFoundDAO: LostAndFoundDAO,
       lostAndFoundDAO.readAllApproved
     }
 
+    def readAllLostApproved(): Future[Seq[LostAndFound]] = {
+      lostAndFoundDAO.readAllLostApproved
+    }
+
+    def readAllFoundApproved(): Future[Seq[LostAndFound]] = {
+      lostAndFoundDAO.readAllFoundApproved
+    }
+
     def readAllNotApproved(): Future[Seq[LostAndFound]] = {
       lostAndFoundDAO.readAllNotApproved
     }

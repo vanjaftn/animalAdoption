@@ -18,6 +18,9 @@ import { ChangePasswordPageComponent } from './modules/change-password-page/chan
 import { RegisterLostAndFoundComponent } from './modules/register-lost-and-found/register-lost-and-found.component';
 import { LostAndFoundPageComponent } from './modules/lost-and-found-page/lost-and-found-page.component';
 import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-found-page/approve-lost-and-found-page.component';
+import { LostPageComponent } from './modules/lost-page/lost-page.component';
+import { FoundPageComponent } from './modules/found-page/found-page.component';
+import { MyAdoptedAnimalsComponent } from './modules/my-adopted-animals/my-adopted-animals.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -28,7 +31,8 @@ const routes: Routes = [
   { path: 'unadopted-animals', component: UnadoptedAnimalsPageComponent},
   { path: 'adopted-animals', component: AdoptedAnimalsPageComponent},
   { path: 'subscribed-animals', component: SubscribedAnimalsPageComponent},
-  { path: 'lost-and-found-animals', component: LostAndFoundPageComponent},
+  { path: 'lost-animals', component: LostPageComponent},
+  { path: 'found-animals', component: FoundPageComponent},
   { path: 'approve-lost-and-found-animals', component: ApproveLostAndFoundPageComponent},
   { path: 'animal-profile/:id', component: AnimalProfileComponent},
   { path: 'user-profile', component: UserProfileComponent},
@@ -38,8 +42,7 @@ const routes: Routes = [
   { path: 'update-animal-page', component: UpdateAnimalPageComponent},
   { path: 'update-user-page', component: UpdateUserPageComponent},
   { path: 'change-password-page', component: ChangePasswordPageComponent},
-
-
+  { path: 'my-adopted-animals-page', component: MyAdoptedAnimalsComponent},
 ];
 
 @NgModule({

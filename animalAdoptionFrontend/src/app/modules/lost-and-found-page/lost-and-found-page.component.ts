@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Animal } from '../model/animal.model';
 import { AnimalService } from '../service/animal.service';
-import { SubscriptionService } from '../service/subscription.service';
-import { NewSubscription } from '../model/new-subscription.model';
-import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
 import { LostAndFoundService } from '../service/lostAndFound.service';
 
@@ -34,6 +31,16 @@ export class LostAndFoundPageComponent {
   }
 
   allAnimals(){
+    this.lostAndFoundService.readAllLostApproved().subscribe((response: any) => {
+      console.log(JSON.parse(response))
+      
+    });
+
+    this.lostAndFoundService.readAllFoundApproved().subscribe((response: any) => {
+      console.log(JSON.parse(response))
+      
+    });
+  
     this.lostAndFoundService.readAllApproved().subscribe((response: any) => {
       
       // @ts-ignore

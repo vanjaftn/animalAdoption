@@ -75,6 +75,10 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.result)
   }
 
+  def readAllUsersAdoptions(userId: String): Future[Seq[Adoption]] = {
+    db.run(Adoptions.filter(_.userId === userId).result)
+  }
+
   def readByUserAndAnimalId(animalId: String, userId: String): Future[Adoption] = {
     db.run(Adoptions.filter(adoption => adoption.userId === userId && adoption.animalId=== animalId).result.head)
   }
@@ -97,11 +101,6 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(adoption => adoption.adoptionStatus === "ADMINAPPROVED" && adoption.animalId === animalId).result)
   }
 
-
-  def readAllButApprovedAdoptions(animalId: String): Future[Seq[Adoption]] = {
-    db.run(Adoptions.filter(adoption => (adoption.adoptionStatus === "ADMINAPPROVED" && adoption.animalId === animalId) ||
-      (adoption.adoptionStatus === "PENDING" && adoption.animalId === animalId)).result)
-  }
 
   class AdoptionsTable(tag: Tag) extends Table[Adoption](tag, "adoptions") {
 

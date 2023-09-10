@@ -65,7 +65,7 @@ POST    /animalAdopted  controllers.AdoptionController.animalAdopted
 POST    /animalAdminApproved  controllers.AdoptionController.animalAdminApproved
 + nocsrf
 POST     /adoptionExists            controllers.AdoptionController.adoptionExists
-
+GET     /readAllUsersAdoptions      controllers.AdoptionController.readAllUsersAdoptions
 + nocsrf
 POST    /subscription  controllers.SubscriptionController.create
 GET     /subscription/:id           controllers.SubscriptionController.read(id : String)
@@ -86,6 +86,7 @@ POST    /deleteAdmin/:id      controllers.AdminController.delete(id: String)
 
 + nocsrf
 POST    /vet               controllers.VetController.create
+GET     /vet/:id           controllers.UserController.read(id : String)
 GET     /allVets            controllers.VetController.readAll
 + nocsrf
 POST    /deleteVet/:id      controllers.VetController.delete(id: String)
@@ -95,7 +96,8 @@ POST    /adopter               controllers.AdopterController.create
 GET     /allAdopters            controllers.AdopterController.readAll
 + nocsrf
 POST    /deleteAdopter/:id      controllers.AdopterController.delete(id: String)
-
++ nocsrf
+GET     /adopterExist            controllers.AdopterController.adopterExist
 
 + nocsrf
 GET     /vetExists            controllers.VetController.vetExists
@@ -115,6 +117,8 @@ POST    /found  controllers.LostAndFoundController.createFound
 GET     /allLostAndFound            controllers.LostAndFoundController.readAll
 GET     /allLostAndFoundNotApproved            controllers.LostAndFoundController.readAllNotApproved
 GET     /allLostAndFoundApproved            controllers.LostAndFoundController.readAllApproved
+GET     /allLostApproved            controllers.LostAndFoundController.readAllLostApproved
+GET     /allFoundApproved            controllers.LostAndFoundController.readAllFoundApproved
 GET     /allLost            controllers.LostAndFoundController.readAllLost
 GET     /allFound            controllers.LostAndFoundController.readAllFound
 GET     /readAllLostNotApproved            controllers.LostAndFoundController.readAllLostNotApproved

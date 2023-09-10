@@ -58,7 +58,8 @@ export class RegisterVetComponent {
     }
 
     if (this.vet.firstName.trim() == '' || this.vet.lastName.trim() == '' || this.vet.email.trim() == ''
-    || this.vet.password.trim() == '' || this.vet.dateOfBirth == null) {
+    || this.vet.password.trim() == '' || this.vet.dateOfBirth == null || this.vet.phoneNumber == 0
+     || this.vet.personalId == 0) {
         alert('Please fill in all fields!');
         return false;
      }

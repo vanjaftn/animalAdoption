@@ -31,20 +31,32 @@ export class CreateVaccineComponent {
 
   register(){
 
-    this.vaccine.animalId = this.selectedAnimalProfileId!
-    this.vaccineService.create(this.vaccine).subscribe((response: any) => {
-      console.log(response)
+    if(this.isInputValid()){
+      this.vaccine.animalId = this.selectedAnimalProfileId!
+      this.vaccineService.create(this.vaccine).subscribe((response: any) => {
+        console.log(response)
+  
+        alert('Successfully created');
+  
+      const animalId = this.selectedAnimalProfileId
+      const adoptionRequsestURL = `animal-vaccines-page/${animalId}`;
+      window.location.href = adoptionRequsestURL;  
+  
+      },
+      (error) => {
+        alert("Failed");
+        console.log(error);
+      });
+    }
+  }
 
-      alert('Successfully created');
+  public isInputValid(): boolean {
 
-    const animalId = this.selectedAnimalProfileId
-    const adoptionRequsestURL = `animal-vaccines-page/${animalId}`;
-    window.location.href = adoptionRequsestURL;  
+    if (this.vaccine.vaccineDate == null || this.vaccine.vaccineType.trim() == '') {
+        alert('Please fill in all fields!');
+        return false;
+     }
 
-    },
-    (error) => {
-      alert("Failed");
-      console.log(error);
-    });
+     return true;
   }
 }

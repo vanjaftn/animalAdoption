@@ -15,13 +15,16 @@
          <a *ngIf="userIsAdmin === 'true'" class="nav-link" routerLink="/register-vet">New vet</a>
       </li>
       <li class="nav-item active">
-         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/register-lost-and-found">Add new lost or found</a>
-      </li>
-      <li class="nav-item active">
-         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/lost-and-found-animals">Lost or found</a>
+         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/register-lost-and-found">New lost or found</a>
       </li>
       <li class="nav-item active">
          <a *ngIf="userIsAdmin === 'true'" class="nav-link" routerLink="/approve-lost-and-found-animals">Approve lost or found</a>
+      </li>
+      <li class="nav-item active">
+         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/lost-animals">Lost</a>
+      </li>
+      <li class="nav-item active">
+         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/found-animals">Found</a>
       </li>
       <li class="nav-item active">
          <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/unadopted-animals">For adoption</a>
@@ -31,6 +34,9 @@
       </li>
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/subscribed-animals">Subscriptions</a>
+      </li>
+      <li *ngIf="userIsAdopter === 'true'" class="nav-item active">
+         <a class="nav-link" routerLink="/my-adopted-animals-page">My adoptions</a>
       </li>
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/user-profile">Profile page</a>

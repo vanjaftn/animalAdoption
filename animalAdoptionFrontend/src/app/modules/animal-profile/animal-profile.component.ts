@@ -113,8 +113,6 @@ export class AnimalProfileComponent {
 
       this.subscriptionService.subscriptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
 
-        // console.log(animalWithSubscription)
-
         animalWithSubscription.animalId = this.selectedAnimalProfile.animalId
         animalWithSubscription.dateOfBirth = this.selectedAnimalProfile.dateOfBirth
         animalWithSubscription.name = this.selectedAnimalProfile.name
@@ -141,10 +139,7 @@ export class AnimalProfileComponent {
     let subscription = new NewSubscription
 
     subscription.animalId = this.selectedAnimalProfile.animalId
-    // subscription.userId = localStorage.getItem('loggedUserEmail')
     this.subscriptionService.subscribe(subscription).subscribe((response: any) => {
-
-      // alert('Successfully registered');
 
       window.location.reload()
     }
@@ -157,8 +152,6 @@ export class AnimalProfileComponent {
       let subscriptionId = JSON.parse(response).subscriptionId
 
       this.subscriptionService.unsubscribe(subscriptionId).subscribe((response: any) => {
-  
-        // alert('Successfully registered');
   
       window.location.reload()
 
@@ -175,7 +168,7 @@ export class AnimalProfileComponent {
         
         window.location.href = '/unadopted-animals'
       });   
-     }
+    }
   }
 
   setAdoptionStatus(){

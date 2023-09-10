@@ -41,4 +41,12 @@ class AdopterController @Inject() (
     )
   }
 
+  def adopterExist = authAction.async { implicit request =>
+    val loggedInUser = request.user
+
+    adopterService.adopterExist(loggedInUser.userId.head).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
 }

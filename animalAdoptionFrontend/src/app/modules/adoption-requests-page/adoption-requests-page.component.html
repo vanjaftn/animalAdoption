@@ -7,13 +7,13 @@
               <button style="background-color: #ff4f4f; margin-left: 5px;" (click)="adminReject(user.userId)">Reject this adopter</button>
             </div>
             <h3>{{user.firstName}} {{user.lastName}}</h3>
-            <p>Age: {{user.dateOfBirth}}</p>
-              <div>
-                Email: {{user.email}}
-              </div>
-              <div>
-                <button>Send email!!</button>
-              </div>
+            <p>Date of birth: {{user.dob}}</p>
+            <div>
+              Email: {{user.email}}
+            </div>
+            <div>
+              Phone number: {{user.phoneNumber}}
+            </div>
               
           </div>
     
@@ -25,14 +25,13 @@
             <button style="background-color: #ff4f4f; margin-left: 5px;" (click)="vetReject(user.userId)">Reject this adopter</button>
           </div>
           <h3>{{user.firstName}} {{user.lastName}}</h3>
-          <p>Age: {{user.dateOfBirth}}</p>
-            <div>
-              Email: {{user.email}}
-            </div>
-            <div>
-              <button>Send email!!</button>
-            </div>
-            
+          <p>Age: {{user.dob}}</p>
+          <div>
+            Email: {{user.email}}
+          </div>
+          <div>
+            Phone number: {{user.phoneNumber}}
+          </div>
         </div>
   
     </div>

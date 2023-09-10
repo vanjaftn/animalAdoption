@@ -22,6 +22,10 @@ export class VetService {
     return this.http.get(this.apiServerUrl + '/vetExists', {headers: this.headers2, responseType: 'text'});
   }
 
+  read(id: string): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/vet/' + id, {headers: this.headers2, responseType: 'text'});
+  }
+
   animalIsSterilized(animal: Animal): Observable<any> {
     return this.http.post(this.apiServerUrl + '/animalIsSterilized', animal,{headers: this.headers2, responseType: 'text'});
   }

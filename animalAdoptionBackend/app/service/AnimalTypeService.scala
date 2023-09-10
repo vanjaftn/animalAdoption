@@ -11,12 +11,7 @@ class AnimalTypeService @Inject()(animalTypeDAO: AnimalTypeDAO,
                             )(implicit ec : ExecutionContext){
 
   def create(animalType: AnimalType, loggedInUser: String): Future[AnimalType] = {
-
-    adminDAO.adminExists(loggedInUser).flatMap{
-      case true => animalTypeDAO.create(animalType)
-      case false => throw new Exception("User is not admin")
-    }
-
+    animalTypeDAO.create(animalType)
   }
 
   def readAll(): Future[Seq[AnimalType]] = {

@@ -38,7 +38,7 @@ class AdopterDAO @Inject()(
     db.run(Adopters.filter(_.adopterId === id).delete)
   }
 
-  def adopterExists(userId: String): Future[Boolean] = {
+  def adopterExist(userId: String): Future[Boolean] = {
     db.run(Adopters.filter(_.userId === userId).exists.result)
   }
 

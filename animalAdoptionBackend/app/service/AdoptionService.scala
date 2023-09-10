@@ -101,4 +101,8 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
     adoptionDAO.adoptionExists(animalId, loggedUserId)
   }
 
+  def readAllUsersAdoptions(userId: String): Future[Seq[Adoption]] = {
+    adoptionDAO.readAllUsersAdoptions(userId)
+  }
+
 }

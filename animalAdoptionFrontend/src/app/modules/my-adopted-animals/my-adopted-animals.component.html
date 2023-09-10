@@ -1,0 +1,27 @@
+<body>
+    <div class="profiles-container">
+      <div class="profile-list">
+          <div class="profile-card" *ngFor="let animal of myAdoptedAnimals">
+            <div class="profile-pictures">
+              <img class="profile-picture clickable" [src]="animal.photoURL" alt="Animal Picture 1" >
+            </div>
+            <h3>{{animal.name}}</h3>
+            <p>Date of birth: {{animal.dob}}</p>
+              <div>
+                Gender: {{animal.gender}}
+              </div>
+              <div>
+                Location: {{animal.location}}
+              </div>
+              <div>
+                Size: {{animal.size}}
+              </div>
+              <div>
+              <br>
+              <button class="view-profile-button" (click)="read(animal.animalId)">View animal profile</button>
+              </div>
+          </div>
+    
+      </div>
+    </div>
+    </body>

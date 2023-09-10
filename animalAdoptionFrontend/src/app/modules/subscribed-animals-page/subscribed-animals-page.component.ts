@@ -150,7 +150,6 @@ console.log(response)
 
   search() {
     if(this.searchInput == ""){
-      console.log("nista nije upisano")
     }
     else{
       let searchRequest : SearchRequestDTO = new SearchRequestDTO

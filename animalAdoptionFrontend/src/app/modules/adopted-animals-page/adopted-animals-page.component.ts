@@ -5,7 +5,6 @@ import { SubscriptionService } from '../service/subscription.service';
 import { NewSubscription } from '../model/new-subscription.model';
 import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
-import { LostAndFoundService } from '../service/lostAndFound.service';
 import { SearchRequestDTO } from '../model/search-request-DTO.model';
 
 @Component({
@@ -20,8 +19,8 @@ export class AdoptedAnimalsPageComponent {
   public dob: string = ""
   public searchInput: string = ""
 
-  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, private photoService: PhotoService
-    , private lostAndFoundService: LostAndFoundService) { }
+  constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, 
+    private photoService: PhotoService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))

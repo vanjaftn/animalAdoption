@@ -9,6 +9,7 @@
           <h2>Name: {{loggedInUser.firstName}} {{loggedInUser.lastName}}</h2>
           <p>Email: {{loggedInUser.email}}</p>
           <p>Date of birth: {{dob}}</p>
+          <p>Phone number: {{loggedInUser.phoneNumber}}</p>
         </div>
         <div>
           <button *ngIf="loggedUserJwt !== null" (click)="update()">Update</button>

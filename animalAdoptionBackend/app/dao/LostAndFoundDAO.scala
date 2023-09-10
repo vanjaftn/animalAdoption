@@ -56,6 +56,14 @@ class LostAndFoundDAO @Inject()(
     db.run(LostAndFounds.filter(_.approved === true).result)
   }
 
+  def readAllLostApproved: Future[Seq[LostAndFound]] = {
+    db.run(LostAndFounds.filter(lostAndFound => lostAndFound.approved === true && lostAndFound.lostAndFoundStatus=== "LOST" ).result)
+  }
+
+  def readAllFoundApproved: Future[Seq[LostAndFound]] = {
+    db.run(LostAndFounds.filter(lostAndFound => lostAndFound.approved === true && lostAndFound.lostAndFoundStatus=== "FOUND" ).result)
+  }
+
   def readAllNotApproved: Future[Seq[LostAndFound]] = {
     db.run(LostAndFounds.filter(_.approved === false).result)
   }

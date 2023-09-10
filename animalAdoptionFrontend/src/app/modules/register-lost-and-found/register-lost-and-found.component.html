@@ -1,6 +1,6 @@
 <div class="registration-container">
     <div class="registration-form">
-      <h2>New animal</h2>
+      <h2>New Lost and Found</h2>
       <form (ngSubmit)="register()" class="form-two-columns">
         <div class="form-column">
           <!-- First Column -->
@@ -16,7 +16,7 @@
   
           <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" id="description" name="description" placeholder="Enter animal's description" [(ngModel)]="animal.description" required>
+            <textarea id="description" name="description" placeholder="Enter animal's description" [(ngModel)]="animal.description" required></textarea>
           </div>
         </div>
   

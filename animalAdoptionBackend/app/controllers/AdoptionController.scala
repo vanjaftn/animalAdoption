@@ -143,5 +143,11 @@ class AdoptionController @Inject() (
     }
   }
 
+  def readAllUsersAdoptions = authAction.async { implicit request =>
+    val loggedInUser = request.user
 
+    adoptionService.readAllUsersAdoptions(loggedInUser.userId.head).map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
 }

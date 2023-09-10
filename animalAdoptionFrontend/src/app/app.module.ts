@@ -25,6 +25,9 @@ import { ChangePasswordPageComponent } from './modules/change-password-page/chan
 import { RegisterLostAndFoundComponent } from './modules/register-lost-and-found/register-lost-and-found.component';
 import { LostAndFoundPageComponent } from './modules/lost-and-found-page/lost-and-found-page.component';
 import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-found-page/approve-lost-and-found-page.component';
+import { LostPageComponent } from './modules/lost-page/lost-page.component';
+import { FoundPageComponent } from './modules/found-page/found-page.component';
+import { MyAdoptedAnimalsComponent } from './modules/my-adopted-animals/my-adopted-animals.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-fou
     ChangePasswordPageComponent,
     RegisterLostAndFoundComponent,
     LostAndFoundPageComponent,
-    ApproveLostAndFoundPageComponent
+    ApproveLostAndFoundPageComponent,
+    LostPageComponent,
+    FoundPageComponent,
+    MyAdoptedAnimalsComponent
   ],
   imports: [
     BrowserModule,

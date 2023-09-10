@@ -9,14 +9,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:7
 package controllers {
 
-  // @LINE:158
+  // @LINE:162
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:158
+    // @LINE:162
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -24,44 +24,44 @@ package controllers {
   
   }
 
-  // @LINE:132
+  // @LINE:136
   class ReversePhotoController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:135
+    // @LINE:139
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allPhotos")
     }
   
-    // @LINE:134
+    // @LINE:138
     def adopterAddPhotos: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "adopterAddPhotos")
     }
   
-    // @LINE:132
+    // @LINE:136
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "photo")
     }
   
-    // @LINE:141
+    // @LINE:145
     def readAllAnimalPhotos: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "allAnimalPhotos")
     }
   
-    // @LINE:137
+    // @LINE:141
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deletePhoto/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:139
+    // @LINE:143
     def uploadMedia: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "uploadMedia")
@@ -102,20 +102,20 @@ package controllers {
   
   }
 
-  // @LINE:154
+  // @LINE:158
   class ReverseAnimalTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:154
+    // @LINE:158
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "animalType")
     }
   
-    // @LINE:155
+    // @LINE:159
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allAnimalTypes")
@@ -264,8 +264,16 @@ package controllers {
   
     // @LINE:18
     def read(id:String): Call = {
+    
+      (id: @unchecked) match {
       
-      Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+        // @LINE:18
+        case (id)  =>
+          
+          Call("GET", _prefix + { _defaultPrefix } + "user/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      
+      }
+    
     }
   
     // @LINE:25
@@ -327,38 +335,38 @@ package controllers {
   
   }
 
-  // @LINE:144
+  // @LINE:148
   class ReverseVideoController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:147
+    // @LINE:151
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allVideos")
     }
   
-    // @LINE:146
+    // @LINE:150
     def adopterAddPhotos: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "adopterAddVideos")
     }
   
-    // @LINE:144
+    // @LINE:148
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "video")
     }
   
-    // @LINE:149
+    // @LINE:153
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteVideo/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:151
+    // @LINE:155
     def readAllAnimalVideos: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "allAnimalVideos")
@@ -366,29 +374,35 @@ package controllers {
   
   }
 
-  // @LINE:94
+  // @LINE:95
   class ReverseAdopterController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:94
+    // @LINE:95
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "adopter")
     }
   
-    // @LINE:95
+    // @LINE:96
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allAdopters")
     }
   
-    // @LINE:97
+    // @LINE:98
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteAdopter/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+    }
+  
+    // @LINE:100
+    def adopterExist: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "adopterExist")
     }
   
   }
@@ -406,19 +420,19 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "vet")
     }
   
-    // @LINE:89
+    // @LINE:90
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allVets")
     }
   
-    // @LINE:91
+    // @LINE:92
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteVet/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:101
+    // @LINE:103
     def vetExists: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "vetExists")
@@ -505,34 +519,40 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "readByUserAndAnimalId")
     }
   
+    // @LINE:68
+    def readAllUsersAdoptions: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "readAllUsersAdoptions")
+    }
+  
   }
 
-  // @LINE:104
+  // @LINE:106
   class ReverseVaccineController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:104
+    // @LINE:106
     def create: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "vaccine")
     }
   
-    // @LINE:105
+    // @LINE:107
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allVaccines")
     }
   
-    // @LINE:107
+    // @LINE:109
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteVaccine/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:109
+    // @LINE:111
     def readAllAnimalVaccines: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "readAllAnimalVaccines")
@@ -540,92 +560,104 @@ package controllers {
   
   }
 
-  // @LINE:112
+  // @LINE:114
   class ReverseLostAndFoundController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:115
+    // @LINE:117
     def readAll: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allLostAndFound")
     }
   
-    // @LINE:117
+    // @LINE:119
     def readAllApproved: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allLostAndFoundApproved")
     }
   
-    // @LINE:116
+    // @LINE:118
     def readAllNotApproved: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allLostAndFoundNotApproved")
     }
   
-    // @LINE:127
+    // @LINE:131
     def readByAnimalId(id:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "lostAndFoundByAnimalId/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:124
+    // @LINE:128
     def read(id:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "lostAndFound/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:119
+    // @LINE:123
     def readAllFound: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allFound")
     }
   
-    // @LINE:114
+    // @LINE:116
     def createFound: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "found")
     }
   
-    // @LINE:129
+    // @LINE:120
+    def readAllLostApproved: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allLostApproved")
+    }
+  
+    // @LINE:133
     def lostAndFoundExists: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "lostAndFoundExists")
     }
   
-    // @LINE:118
+    // @LINE:122
     def readAllLost: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "allLost")
     }
   
-    // @LINE:123
+    // @LINE:127
     def adminApproveLAF: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "adminApproveLAF")
     }
   
-    // @LINE:126
+    // @LINE:130
     def delete(id:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "deleteLostAndFound/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:112
+    // @LINE:114
     def createLost: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "lost")
     }
   
     // @LINE:121
+    def readAllFoundApproved: Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "allFoundApproved")
+    }
+  
+    // @LINE:125
     def readAllFoundNotApproved: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "readAllFoundNotApproved")
     }
   
-    // @LINE:120
+    // @LINE:124
     def readAllLostNotApproved: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "readAllLostNotApproved")

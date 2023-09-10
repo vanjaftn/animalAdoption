@@ -41,6 +41,14 @@ export class LostAndFoundService {
     return this.http.get(this.apiServerUrl + '/allLostAndFoundApproved', {headers: this.headers2, responseType: 'text'});
   }
 
+  readAllLostApproved(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allLostApproved', {headers: this.headers2, responseType: 'text'});
+  }
+
+  readAllFoundApproved(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/allFoundApproved', {headers: this.headers2, responseType: 'text'});
+  }
+
   lostAndFoundExists(id : string): Observable<any> {
     return this.http.post(this.apiServerUrl + '/lostAndFoundExists', JSON.stringify(id), {headers: this.headers2, responseType: 'text'});
   }

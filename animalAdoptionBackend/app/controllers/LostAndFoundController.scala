@@ -70,6 +70,18 @@ class LostAndFoundController @Inject() (
     )
   }
 
+  def readAllLostApproved = Action.async { implicit request =>
+    lostAndFoundService.readAllLostApproved().map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
+  def readAllFoundApproved = Action.async { implicit request =>
+    lostAndFoundService.readAllFoundApproved().map(res =>
+      Ok(Json.toJson(res))
+    )
+  }
+
   def readAllNotApproved = Action.async { implicit request =>
     lostAndFoundService.readAllNotApproved().map(res =>
       Ok(Json.toJson(res))
