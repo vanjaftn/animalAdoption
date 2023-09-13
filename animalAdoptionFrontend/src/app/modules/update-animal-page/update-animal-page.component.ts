@@ -65,9 +65,6 @@ export class UpdateAnimalPageComponent {
 
   });
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!REGISTRATION
-  // if(this.selectedAnimalProfile.sterilized == null){
-  //   this.animal.sterilized = false
-  // }
 
   this.selectedAnimalProfile.chipNumber = Number(this.selectedAnimalProfile.chipNumber)
   this.selectedAnimalProfile.photos = this.fileURLs

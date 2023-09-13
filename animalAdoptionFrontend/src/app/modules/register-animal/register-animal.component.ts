@@ -95,7 +95,7 @@ export class RegisterAnimalComponent {
 
     if (this.animal.name.trim() == '' || this.animal.animalType.trim() == '' || this.animal.chipNumber == 0
     || this.animal.description.trim() == ''|| this.animal.gender.trim() == ''|| this.animal.location.trim() == '' 
-    || this.animal.dateOfBirth == null|| this.animal.size.trim() == '') {
+    || this.animal.dateOfBirth == null || this.animal.size.trim() == '') {
         alert('Please fill in all fields!');
         return false;
      }

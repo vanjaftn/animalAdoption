@@ -35,8 +35,8 @@
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/subscribed-animals">Subscriptions</a>
       </li>
-      <li *ngIf="userIsAdopter === 'true'" class="nav-item active">
-         <a class="nav-link" routerLink="/my-adopted-animals-page">My adoptions</a>
+      <li class="nav-item active">
+         <a *ngIf="userIsAdopter === 'true'" class="nav-link" routerLink="/my-adopted-animals-page">My adoptions</a>
       </li>
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/user-profile">Profile page</a>

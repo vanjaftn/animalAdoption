@@ -39,8 +39,8 @@
     <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new media</button>
 
     <div *ngIf="addNewPhotosButton == true" >
-    <input type="file" id="my-file" (change)="uploadPhoto($event)" multiple><br>
-    <button (click)="addNewPhotos()">Add photos</button>
+    <input type="file" id="my-file" (change)="uploadMedia($event)" multiple><br>
+    <button (click)="addNewMedia()">Add media</button>
     </div>
   </div>
 

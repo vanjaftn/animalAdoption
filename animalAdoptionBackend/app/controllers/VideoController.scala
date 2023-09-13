@@ -53,7 +53,7 @@ class VideoController @Inject() (
     }
   }
 
-  def adopterAddPhotos = authAction.async(parse.json) { implicit request =>
+  def adopterAddVideos = authAction.async(parse.json) { implicit request =>
     val loggedInUser = request.user
 
     val newVideo = request.body.validate[Video]

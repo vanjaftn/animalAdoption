@@ -51,36 +51,24 @@ export class AppComponent {
 
   adminExist(){
     this.adminService.adminExists().subscribe((response: any) => {
-      console.log(JSON.parse(response))
-
-
       localStorage.setItem('userIsAdmin', JSON.parse(response));
       this.userIsAdmin = localStorage.getItem('userIsAdmin')!
-      console.log(this.userIsAdmin)
     }
    );
   }
 
   vetExist(){
     this.vetService.vetExists().subscribe((response: any) => {
-      console.log(JSON.parse(response))
-
-
       localStorage.setItem('userIsVet', JSON.parse(response));
       this.userIsVet = localStorage.getItem('userIsVet')!
-      console.log(this.userIsVet)
     }
    );
   }
 
   adopterExist(){
     this.adopterService.adopterExist().subscribe((response: any) => {
-      console.log(JSON.parse(response))
-
-
       localStorage.setItem('userIsAdopter', JSON.parse(response));
       this.userIsAdopter = localStorage.getItem('userIsAdopter')!
-      console.log(this.userIsAdopter)
     }
    );
   }

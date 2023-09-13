@@ -83,7 +83,7 @@ export class AdoptionRequestsPageComponent {
   }
 
   adminApprove(userId: string) {
-    if(confirm("Are you sure you want to delete this animal?")) {
+    if(confirm("Are you sure you want to approve this adopter?")) {
       let approveAdoptionDTO = new AdoptionDTO
       approveAdoptionDTO.animalId = this.selectedAnimalProfileId!
       approveAdoptionDTO.userId = userId
@@ -108,45 +108,58 @@ export class AdoptionRequestsPageComponent {
   }
 
   vetApprove(userId: string) {
-    if(confirm("Are you sure you want to delete this animal?")) {
-      let approveAdoptionDTO = new AdoptionDTO
-      approveAdoptionDTO.animalId = this.selectedAnimalProfileId!
-      approveAdoptionDTO.userId = userId
+    if(confirm("Are you sure you want to approve this adopter?")) {
+      let adoptionDTO = new AdoptionDTO
+      adoptionDTO.animalId = this.selectedAnimalProfileId!
+      adoptionDTO.userId = userId
   
-      this.adoptionService.readByUserAndAnimalId(approveAdoptionDTO).subscribe((response: any) => {
-        console.log(JSON.parse(response))
-  
+      this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
         let adoption = JSON.parse(response)
-        this.adoptionService.vetApprove(adoption.adoptionId).subscribe((response: any) => {
-          console.log(JSON.parse(response))
-  
-        alert('Confirmed!');
-  
-          
+
+        this.adoptionService.vetApprove(adoption.adoptionId).subscribe(() => {
+          alert('Confirmed!');
+
           const animalId = this.selectedAnimalProfileId!
           const animalURL = `animal-profile/${animalId}`;
           window.location.href = animalURL;
-    
         });
       });
  
     }
   }
 
-  adminReject(userId: string) {
-    if(confirm("Are you sure you want to delete this animal?")) {
+  vetReject(userId: string) {
+    if(confirm("Are you sure you want to reject this adopter?")) {
       let adoptionDTO = new AdoptionDTO
       adoptionDTO.animalId = this.selectedAnimalProfileId!
       adoptionDTO.userId = userId
   
       this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
-        console.log(JSON.parse(response))
+        let adoption = JSON.parse(response)
+
+        this.adoptionService.deleteApproved(adoption.adoptionId).subscribe(() => {
+          alert('Adopter rejected!');
+
+          const animalId = this.selectedAnimalProfileId
+          const adoptionRequsestURL = `adoption-request-page/${animalId}`;
+          window.location.href = adoptionRequsestURL;
+        });
+      });
+
+    }
+  }
+
+  adminReject(userId: string) {
+    if(confirm("Are you sure you want to reject this adopter?")) {
+      let adoptionDTO = new AdoptionDTO
+      adoptionDTO.animalId = this.selectedAnimalProfileId!
+      adoptionDTO.userId = userId
+  
+      this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
         let adoption = JSON.parse(response)
   
-        this.adoptionService.deletePending(adoption.adoptionId).subscribe((response: any) => {
-          console.log(JSON.parse(response))
-  
-        alert('Adopter rejected');
+        this.adoptionService.deletePending(adoption.adoptionId).subscribe(() => {
+        alert('Adopter rejected!');
   
         const animalId = this.selectedAnimalProfileId
         const adoptionRequsestURL = `adoption-request-page/${animalId}`;
@@ -156,30 +169,6 @@ export class AdoptionRequestsPageComponent {
       });
     }
 
-  }
-
-  vetReject(userId: string) {
-    if(confirm("Are you sure you want to delete this animal?")) {
-      let adoptionDTO = new AdoptionDTO
-      adoptionDTO.animalId = this.selectedAnimalProfileId!
-      adoptionDTO.userId = userId
-  
-      this.adoptionService.readByUserAndAnimalId(adoptionDTO).subscribe((response: any) => {
-        console.log(JSON.parse(response))
-        let adoption = JSON.parse(response)
-  
-        this.adoptionService.deleteApproved(adoption.adoptionId).subscribe((response: any) => {
-          console.log(JSON.parse(response))
-  
-          alert('Adopter rejected');
-  
-          const animalId = this.selectedAnimalProfileId
-          const adoptionRequsestURL = `adoption-request-page/${animalId}`;
-          window.location.href = adoptionRequsestURL;
-        });
-      });
-
-    }
   }
 
 }

@@ -203,7 +203,7 @@ export class AnimalProfileComponent {
     this.adoption.animalId = this.selectedAnimalProfile.animalId
     this.adoption.userId = ""
 
-    this.adoptionService.create(this.adoption).subscribe((response: any) => {
+    this.adoptionService.create(this.adoption).subscribe(() => {
 
       alert('You will be contacted by our admin as soon as possible via email');
 
@@ -250,11 +250,9 @@ export class AnimalProfileComponent {
     this.deletePhotosButton = true
   }
 
-  uploadPhoto(event: any){
+  uploadMedia(event: any){
 
     const selectedFiles: FileList = event.target.files;
-
-    console.log(selectedFiles)
 
     if (selectedFiles.length > 0) {
       for (let i = 0; i < selectedFiles.length; i++) {
@@ -267,14 +265,11 @@ export class AnimalProfileComponent {
     }
   }
 
-  addNewPhotos() {
-
+  addNewMedia() {
     this.selectedFiles.forEach(file => {
       const formData = new FormData();
   
       formData.append('image', file, file.name)
-    
-      console.log(file) 
 
       let photo: Photo = new Photo
       photo.animalId = this.selectedAnimalProfileId!
@@ -285,28 +280,17 @@ export class AnimalProfileComponent {
       video.videoURL = file.name
     
       if(photo.photoURL.endsWith("mp4")){
-        this.videoService.adopterAddVideos(video).subscribe(response=>{
-          console.log(response)
-    
-        })
+        this.videoService.adopterAddVideos(video).subscribe()
       }
       else{
-        this.photoService.adopterAddPhotos(photo).subscribe(response=>{
-          console.log(response)
-    
-        })
+        this.photoService.adopterAddPhotos(photo).subscribe()
       }
-      this.photoService.uploadMedia(formData).subscribe(response=>{
-        console.log(response)
-  
-      })
+      this.photoService.uploadMedia(formData).subscribe()
         this.fileURLs.push(file.name)
-  
-        console.log(this.fileURLs)
         this.addNewPhotosButton = true
         
       });
-      alert('Successfully added photos');
+      alert('Successfully added media');
       window.location.reload()
   }
 
@@ -328,7 +312,6 @@ export class AnimalProfileComponent {
   }
 
   playVideo(media: any) {
-    // Here, you can use the media's URL to play the video
     const videoElement = document.getElementById('enlarged-media') as HTMLVideoElement;
     videoElement.src = media.url;
 

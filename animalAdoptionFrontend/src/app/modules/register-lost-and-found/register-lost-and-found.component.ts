@@ -107,14 +107,9 @@ export class RegisterLostAndFoundComponent {
   
   public isInputValid(): boolean {
 
-    console.log(this.isAnimalLostOrFound)
-    var regexp = /^\d+$/     
-    // Converting the email to lowercase
-
-
-    if (this.animal.name.trim() == '' || this.animal.animalType.trim() == ''
-    || this.animal.description.trim() == ''|| this.animal.gender.trim() == ''|| this.animal.location.trim() == '' ||
-    this.animal.size.trim() == '' || this.isAnimalLostOrFound.trim() == '') {
+    if (this.animal.name.trim() == '' || this.animal.animalType.trim() == '' || this.animal.description.trim() == '' || 
+    this.animal.gender.trim() == '' || this.animal.location.trim() == '' || this.animal.size.trim() == '' || 
+    this.isAnimalLostOrFound.trim() == '') {
         alert('Please fill in all fields!');
         return false;
      }

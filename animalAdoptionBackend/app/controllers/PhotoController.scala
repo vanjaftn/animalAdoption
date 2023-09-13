@@ -55,7 +55,6 @@ class PhotoController @Inject() (
 
   def adopterAddPhotos = authAction.async(parse.json) { implicit request =>
     val loggedInUser = request.user
-
     val newPhoto = request.body.validate[Photo]
     newPhoto match {
       case JsSuccess(photoObj, _) =>
@@ -67,7 +66,6 @@ class PhotoController @Inject() (
   }
 
   def uploadMedia = authAction(parse.multipartFormData) { request =>
-    val loggedInUser = request.user
     request.body.files.map { picture =>
       val filename = Paths.get(picture.filename).getFileName
       picture.ref.copyTo(Paths.get(s"C:/Users/vanja/Desktop/diplomski/animalAdoption/animalAdoptionBackend/public/images/$filename"), replace = true)
