@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "com.pauldijou" %% "jwt-play" % "5.0.0",
   "com.pauldijou" %% "jwt-core" % "5.0.0",
   "org.mindrot"  % "jbcrypt"   % "0.3m",
-
+  "com.typesafe.play" %% "play-mailer" % "8.0.1",
+  "com.typesafe.play" %% "play-mailer-guice" % "8.0.1"
 )
-
 

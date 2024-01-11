@@ -7,7 +7,7 @@
     <div class="profile-list">
         <div class="profile-card" *ngFor="let animal of adoptedAnimalsWithSubscription">
           <div class="profile-pictures">
-            <img class="profile-picture clickable" [src]="animal.photoURL" alt="Animal Picture 1" >
+            <img class="profile-picture clickable" [src]="animal.photoURL" alt="No photos" >
           </div>
           <h3>{{animal.name}}</h3>
           <p>Date of birth: {{animal.dob}}</p>

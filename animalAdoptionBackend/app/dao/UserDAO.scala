@@ -40,8 +40,8 @@ class UserDAO @Inject()(
 
   def create(user: User): Future[User] = {
     if(UsersTable.validateEmailFormat(user.email)){
-      val newUserId = UUID.randomUUID().toString  // Generate a new UUID for userId
-      val newUser = user.copy(userId = Some(newUserId))  // Assign the new userId to the user
+      val newUserId = UUID.randomUUID().toString
+      val newUser = user.copy(userId = Some(newUserId))
 
       db.run(Users += newUser.copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
     }

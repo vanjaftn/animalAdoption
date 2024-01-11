@@ -23,6 +23,8 @@ GET     /loggedInUser          controllers.UserController.readLoggedInUser
 POST   /readAllAnimalPendingAdopters          controllers.UserController.readAllAnimalPendingAdopters
 + nocsrf
 POST   /readAllAnimalAdminApprovedAdopters          controllers.UserController.readAllAnimalAdminApprovedAdopters
++ nocsrf
+POST     /forgotPassword          controllers.UserController.forgotPassword
 
 + nocsrf
 POST    /animal               controllers.AnimalController.create
@@ -147,7 +149,7 @@ POST /allAnimalPhotos    controllers.PhotoController.readAllAnimalPhotos
 + nocsrf
 POST /video    controllers.VideoController.create
 + nocsrf
-POST /adopterAddVideos    controllers.VideoController.adopterAddPhotos
+POST /adopterAddVideos    controllers.VideoController.adopterAddVideos
 GET /allVideos    controllers.VideoController.readAll
 + nocsrf
 POST     /deleteVideo/:id           controllers.VideoController.delete(id : String)

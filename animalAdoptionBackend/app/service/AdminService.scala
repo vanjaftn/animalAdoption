@@ -9,8 +9,8 @@ import scala.concurrent.{ExecutionContext, Future}
 class AdminService @Inject()(adminDAO: AdminDAO,
                              )(implicit ec : ExecutionContext){
 
-  def create(admin: Admin): Future[Admin] = {
-    adminDAO.create(admin)
+  def create(userId: String): Future[Admin] = {
+    adminDAO.create(userId)
   }
 
   def readAll(): Future[Seq[Admin]] = {

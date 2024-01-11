@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user.model';
+import { CreateUserDTO } from '../model/create-user-DTO.model';
 
 @Component({
   selector: 'app-register-user',
@@ -9,7 +10,7 @@ import { User } from '../model/user.model';
 })
 export class RegisterUserComponent {
 
-  public user : User = new User();
+  public user : CreateUserDTO = new CreateUserDTO();
 
   constructor(private userService: UserService) { }
 
@@ -28,7 +29,6 @@ export class RegisterUserComponent {
   }
 
   register(){
-    console.log("uslo")
     if(this.isInputValid()){
       this.user.phoneNumber = Number(this.user.phoneNumber)
       this.user.personalId = Number(this.user.personalId)
@@ -36,7 +36,7 @@ export class RegisterUserComponent {
       this.userService.register(this.user).subscribe((response: any) => {
         console.log(response)
   
-        alert('Successfully registered');
+        alert('You have recieved an email containing your password. If you did not recieve an email, check if your informations are correct.');
   
         window.location.href = '/login-user'
       },
@@ -69,7 +69,7 @@ export class RegisterUserComponent {
     }
 
     if (this.user.firstName.trim() == '' || this.user.lastName.trim() == '' || this.user.email.trim() == ''
-    || this.user.password.trim() == '' || this.user.personalId == 0 || this.user.phoneNumber == 0 || this.user.dateOfBirth == null) {
+    || this.user.personalId == 0 || this.user.phoneNumber == 0 || this.user.dateOfBirth == null) {
         alert('Please fill in all fields!');
         return false;
      }

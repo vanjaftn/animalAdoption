@@ -229,17 +229,18 @@ export class AnimalProfileComponent {
   }
 
   animalIsSterilized(){
-    this.vetService.animalIsSterilized(this.selectedAnimalProfile).subscribe((response: any) => {
+    if(confirm("Are you sure you want to check this animal as sterilized?")) {
+      this.vetService.animalIsSterilized(this.selectedAnimalProfile).subscribe(() => {
 
-      alert('You have checked this animal as sterilized');
+        alert('You have checked this animal as sterilized');
 
-      // window.location.href = '/login-user'
-    },
-    (error) => {
-      alert("Failed");
-      console.log(error);
+        window.location.reload()
+      },
+      (error) => {
+        alert("Failed");
+        console.log(error);
+      });
     }
-   );
   }
   
   addNewPhotoButtonChange(){

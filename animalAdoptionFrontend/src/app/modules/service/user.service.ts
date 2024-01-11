@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { LoginUser } from '../model/login-user.model';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
+import { CreateUserDTO } from '../model/create-user-DTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,7 @@ export class UserService {
     return this.http.post(this.apiServerUrl + '/login', loginUser, {headers: this.headers, responseType: 'text'});
   }
 
-  register(user: User): Observable<any> {
-    console.log(user);
+  register(user: CreateUserDTO): Observable<any> {
     return this.http.post(this.apiServerUrl + '/user', user, {headers: this.headers, responseType: 'text'});
   }
 
@@ -53,5 +53,9 @@ export class UserService {
 
   passwordExists(password: String): Observable<any> {
     return this.http.post(this.apiServerUrl + '/passwordExists', JSON.stringify(password), {headers: this.headers2, responseType: 'text'});
+  }
+
+  forgotPassword(email: String): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/forgotPassword', JSON.stringify(email), {headers: this.headers2, responseType: 'text'});
   }
 }

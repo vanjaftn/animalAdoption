@@ -11,7 +11,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
-import java.util.Date
+import java.util.{Date, UUID}
 import scala.util.Random
 
 
@@ -30,11 +30,11 @@ class AdminDAO @Inject()(
       d => new Date(d.getTime)
     )
 
-  def create(admin: Admin): Future[Admin] = {
-    val newAdminId = Option(Random.alphanumeric.take(16).mkString)
-    val newAdmin = admin.copy(adminId = newAdminId)
-    db.run(Admins += admin.copy(adminId = Option(Random.alphanumeric.take(16).mkString))).map(_ => newAdmin)
+  def create(userId: String): Future[Admin] = {
+    val newAdminId = Option(UUID.randomUUID().toString)
+    val newAdmin = new Admin(newAdminId, userId)
 
+    db.run(Admins += newAdmin).map(_ => newAdmin)
   }
 
   def readAll: Future[Seq[Admin]] = {

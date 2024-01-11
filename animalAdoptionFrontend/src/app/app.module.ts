@@ -28,6 +28,7 @@ import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-fou
 import { LostPageComponent } from './modules/lost-page/lost-page.component';
 import { FoundPageComponent } from './modules/found-page/found-page.component';
 import { MyAdoptedAnimalsComponent } from './modules/my-adopted-animals/my-adopted-animals.component';
+import { ForgotPasswordPageComponent } from './modules/forgot-password-page/forgot-password-page.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MyAdoptedAnimalsComponent } from './modules/my-adopted-animals/my-adopt
     ApproveLostAndFoundPageComponent,
     LostPageComponent,
     FoundPageComponent,
-    MyAdoptedAnimalsComponent
+    MyAdoptedAnimalsComponent,
+    ForgotPasswordPageComponent
   ],
   imports: [
     BrowserModule,

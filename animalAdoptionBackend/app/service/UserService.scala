@@ -1,15 +1,18 @@
 package service
 
 import dao.{AdoptionDAO, AnimalDAO, UserDAO}
-import dto.LoginUserDTO
+import dto.{CreateUserDTO, LoginUserDTO}
 import model.User
 import org.mindrot.jbcrypt.BCrypt
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
+import scala.math.random
+import scala.util.Random
 
 class UserService @Inject()(userDAO: UserDAO,
-                            adoptionDAO: AdoptionDAO
+                            adoptionDAO: AdoptionDAO,
+                            emailService: EmailService
                            )(implicit ec : ExecutionContext) {
 
   def loginUser(loggedUser: LoginUserDTO): Future[String] = {
@@ -23,9 +26,16 @@ class UserService @Inject()(userDAO: UserDAO,
     }
   }
 
-  def create(user: User): Future[User] = {
-    userDAO.emailExists(user.email).flatMap {
+  def create(userDTO: CreateUserDTO): Future[User] = {
+    userDAO.emailExists(userDTO.email).flatMap {
       case None =>
+        val random = new Random
+        val newUserPassword = random.alphanumeric.take(7).mkString
+
+        val user = new User(userId = userDTO.userId, email = userDTO.email, password = newUserPassword, firstName = userDTO.firstName,
+          lastName = userDTO.lastName, dateOfBirth = userDTO.dateOfBirth, phoneNumber = userDTO.phoneNumber, personalId = userDTO.personalId)
+
+        emailService.sendEmail(user.email, "Confirmation mail", s"Welcome to our application! Your password is \"${user.password}\", but you can change it later on.")
         userDAO.create(user)
       case Some(_) => throw new Exception("Email already exists")
     }
@@ -85,4 +95,15 @@ class UserService @Inject()(userDAO: UserDAO,
     }
   }
 
+  def forgotPassword(userEmail: String): Unit = {
+    val random = new Random
+    val newUserPassword = random.alphanumeric.take(7).mkString
+
+    val user = userDAO.emailExists(userEmail)
+    val newUser = user.map(_.map(u => u.copy(password = newUserPassword)))
+
+    newUser.map(_.map(u => update(u)))
+
+    emailService.sendEmail(userEmail, "Forgot password", s"Your new password is \"${newUserPassword}\", but you can change it later on.")
+  }
 }

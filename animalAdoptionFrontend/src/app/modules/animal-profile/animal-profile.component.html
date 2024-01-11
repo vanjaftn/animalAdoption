@@ -33,7 +33,7 @@
     </div>
     <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
     <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'false'" (click)="update()">Update animal</button>
-    <button *ngIf="animalSterilized == 'false' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
+    <button *ngIf="animalSterilized == 'No' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
     <button *ngIf="isLostAndFound == 'false'" (click)="animalVaccinesPage()">Show vaccine history</button>
     <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true') && isLostAndFound == 'false'" (click)="adoptionRequestPage()">See adoption requests</button>
     <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new media</button>

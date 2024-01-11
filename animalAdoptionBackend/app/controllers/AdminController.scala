@@ -20,10 +20,10 @@ class AdminController @Inject() (
                                  ) extends AbstractController(controllerComponents) {
 
   def create = Action.async(parse.json) { implicit request =>
-    val newAdmin = request.body.validate[Admin]
+    val newAdmin = request.body.validate[String]
     newAdmin match {
-      case JsSuccess(animalObj, _) =>
-        adminService.create(animalObj).map(res =>
+      case JsSuccess(adminObj, _) =>
+        adminService.create(adminObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))

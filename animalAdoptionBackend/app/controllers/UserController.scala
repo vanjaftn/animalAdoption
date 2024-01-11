@@ -1,7 +1,7 @@
 package controllers
 
 import auth.AuthAction
-import dto.LoginUserDTO
+import dto.{CreateUserDTO, LoginUserDTO}
 import model.User
 import play.api.libs.json.{JsError, JsSuccess, Json}
 import service.UserService
@@ -45,10 +45,10 @@ class UserController @Inject() (
 //  }
 
   def create = Action.async(parse.json) { implicit request =>
-    val newDog = request.body.validate[User]
-    newDog match {
-      case JsSuccess(dogObj, _) =>
-        userService.create(dogObj).map(res =>
+    val newUser = request.body.validate[CreateUserDTO]
+    newUser match {
+      case JsSuccess(userObj, _) =>
+        userService.create(userObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -56,10 +56,10 @@ class UserController @Inject() (
   }
 
   def update = authAction.async(parse.json) { implicit request =>
-    val newAnimal = request.body.validate[User]
-    newAnimal match {
-      case JsSuccess(animalObj, _) =>
-        userService.update(animalObj).map(res =>
+    val newUser = request.body.validate[User]
+    newUser match {
+      case JsSuccess(userObj, _) =>
+        userService.update(userObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
@@ -124,6 +124,17 @@ class UserController @Inject() (
         userService.passwordExists(passwordObj, loggedInUser.userId.head).map(res =>
           Ok(Json.toJson(res))
         )
+      case JsError(errors) => Future.successful(BadRequest(errors.toString))
+    }
+  }
+
+  def forgotPassword = Action.async(parse.json) { implicit request =>
+    val email = request.body.validate[String]
+
+    email match {
+      case JsSuccess(emailObj, _) =>
+        userService.forgotPassword(emailObj)
+        Future.successful(Ok)
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
   }

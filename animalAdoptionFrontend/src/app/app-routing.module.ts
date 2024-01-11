@@ -21,6 +21,7 @@ import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-fou
 import { LostPageComponent } from './modules/lost-page/lost-page.component';
 import { FoundPageComponent } from './modules/found-page/found-page.component';
 import { MyAdoptedAnimalsComponent } from './modules/my-adopted-animals/my-adopted-animals.component';
+import { ForgotPasswordPageComponent } from './modules/forgot-password-page/forgot-password-page.component';
 
 const routes: Routes = [
   { path: 'login-user', component: LoginUserComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'update-user-page', component: UpdateUserPageComponent},
   { path: 'change-password-page', component: ChangePasswordPageComponent},
   { path: 'my-adopted-animals-page', component: MyAdoptedAnimalsComponent},
+  { path: 'forgot-password-page', component: ForgotPasswordPageComponent},
 ];
 
 @NgModule({

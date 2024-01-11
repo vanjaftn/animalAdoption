@@ -43,18 +43,11 @@ export class ChangePasswordPageComponent {
           this.userService.update(this.userProfile).subscribe((response: any) => {
             console.log(response)
         
-            alert('Successfully changed');
-        
-            // const animalId = this.selectedAnimalProfileId
-            // const animalURL = `animal-profile/${animalId}`;
-            // window.location.href = animalURL;  
-        
+            alert('Successfully changed');        
           },(error) => {
             alert("Invalid change");
             console.log(error);
           });
-        
-    
       },(error) => {
         alert("Wrong old password");
         console.log(error);
