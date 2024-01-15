@@ -1,18 +1,19 @@
 package service
 
-import dao.{AdoptionDAO, AnimalDAO, UserDAO}
+import dao.{AdoptionDAO, CreateUserDAO, UserDAO}
 import dto.{CreateUserDTO, LoginUserDTO}
 import model.User
 import org.mindrot.jbcrypt.BCrypt
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
-import scala.math.random
 import scala.util.Random
 
 class UserService @Inject()(userDAO: UserDAO,
+                            createUserDAO: CreateUserDAO,
                             adoptionDAO: AdoptionDAO,
-                            emailService: EmailService
+                            emailService: EmailService,
+                            smsService: SMSService
                            )(implicit ec : ExecutionContext) {
 
   def loginUser(loggedUser: LoginUserDTO): Future[String] = {
@@ -26,20 +27,29 @@ class UserService @Inject()(userDAO: UserDAO,
     }
   }
 
-  def create(userDTO: CreateUserDTO): Future[User] = {
-    userDAO.emailExists(userDTO.email).flatMap {
+  def confirm(user: User) = {
+    userDAO.emailExists(user.email).flatMap {
       case None =>
         val random = new Random
-        val newUserPassword = random.alphanumeric.take(7).mkString
+        val userDTOWithConfirmation = new CreateUserDTO(userId = user.userId, email = user.email,
+          password = user.password, firstName = user.firstName, lastName = user.lastName,
+          dateOfBirth = user.dateOfBirth, phoneNumber = user.phoneNumber, personalId = user.personalId,
+          confirmationCode = random.alphanumeric.take(15).mkString)
 
-        val user = new User(userId = userDTO.userId, email = userDTO.email, password = newUserPassword, firstName = userDTO.firstName,
-          lastName = userDTO.lastName, dateOfBirth = userDTO.dateOfBirth, phoneNumber = userDTO.phoneNumber, personalId = userDTO.personalId)
+        smsService.sendSms(user.phoneNumber, "Welcome to our application! Enjoy!")
+        emailService.sendEmail(user.email, "Confirmation mail", "Click to confirm your email" + " " + "http://localhost:9000/user/" + userDTOWithConfirmation.confirmationCode)
+        createUserDAO.create(userDTOWithConfirmation)
 
-        emailService.sendEmail(user.email, "Confirmation mail", s"Welcome to our application! Your password is \"${user.password}\", but you can change it later on.")
-        userDAO.create(user)
       case Some(_) => throw new Exception("Email already exists")
     }
   }
+
+  def create(confirmationCode: String): Future[User] = {
+    val userWithConfirmationCode = createUserDAO.readByConfirmationCode(confirmationCode)
+    userWithConfirmationCode.flatMap(userDTO => createUserDAO.delete(userDTO.userId.head))
+    userWithConfirmationCode.flatMap(userDTO => userDAO.create(new User(userId = userDTO.userId, email = userDTO.email, password = userDTO.password, firstName = userDTO.firstName, lastName = userDTO.lastName, dateOfBirth = userDTO.dateOfBirth, phoneNumber = userDTO.phoneNumber, personalId = userDTO.personalId)))
+  }
+
   def emailExists(email: String): Future[Option[User]] = {
     userDAO.emailExists(email)
   }

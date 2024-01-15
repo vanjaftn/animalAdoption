@@ -11,7 +11,7 @@ case class Animal(
                  dateOfBirth : Date,
                  location : String,
                  description : String,
-                 chipNumber : Int,
+                 chipNumber : String,
                  size : String,
                  animalType : String,
                  sterilized : Boolean

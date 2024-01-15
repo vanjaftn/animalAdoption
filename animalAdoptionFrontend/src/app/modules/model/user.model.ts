@@ -5,8 +5,8 @@ export class User {
     firstName: string = "";
     lastName: string = "";
     dateOfBirth !: Date;
-    phoneNumber !: number;
-    personalId !: number;
+    phoneNumber : string = "";
+    personalId : string = "";
 
     public constructor(obj?: any) {
         if (obj) {

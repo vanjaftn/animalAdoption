@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from '../service/user.service';
 import { AdminService } from '../service/admin.service';
 import { CreateVet } from '../model/create-vet.model';
 
@@ -29,9 +28,6 @@ export class RegisterVetComponent {
   register(){
     if(this.isInputValid()){
 
-      this.vet.phoneNumber = Number(this.vet.phoneNumber)
-      this.vet.personalId = Number(this.vet.personalId)
-
       this.adminService.registerVet(this.vet).subscribe((response: any) => {
         console.log(response)
   
@@ -58,8 +54,8 @@ export class RegisterVetComponent {
     }
 
     if (this.vet.firstName.trim() == '' || this.vet.lastName.trim() == '' || this.vet.email.trim() == ''
-    || this.vet.password.trim() == '' || this.vet.dateOfBirth == null || this.vet.phoneNumber == 0
-     || this.vet.personalId == 0) {
+    || this.vet.password.trim() == '' || this.vet.dateOfBirth == null || this.vet.phoneNumber.trim() == ''
+     || this.vet.personalId.trim() == '') {
         alert('Please fill in all fields!');
         return false;
      }

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Animal } from '../model/animal.model';
-import { CreateVet } from '../model/create-vet.model';
 import { User } from '../model/user.model';
 import { AnimalWithPhotosDTO } from '../model/animal-with-photos-DTO.model';
 

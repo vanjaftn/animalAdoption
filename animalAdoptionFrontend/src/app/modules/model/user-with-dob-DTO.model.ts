@@ -5,8 +5,8 @@ export class UserWithDobDTO {
     firstName: string = "";
     lastName: string = "";
     dateOfBirth !: Date;
-    phoneNumber !: number;
-    personalId !: number;
+    phoneNumber : string = "";
+    personalId : string = "";
     dob: string = "";
 
     public constructor(obj?: any) {

@@ -13,7 +13,6 @@ import slick.jdbc.JdbcProfile
 
 import java.sql.Timestamp
 import java.util.{Date, UUID}
-import slick.jdbc.MySQLProfile.api._
 
 class UserDAO @Inject()(
                          protected val dbConfigProvider: DatabaseConfigProvider
@@ -40,10 +39,7 @@ class UserDAO @Inject()(
 
   def create(user: User): Future[User] = {
     if(UsersTable.validateEmailFormat(user.email)){
-      val newUserId = UUID.randomUUID().toString
-      val newUser = user.copy(userId = Some(newUserId))
-
-      db.run(Users += newUser.copy(password = BCrypt.hashpw(newUser.password, BCrypt.gensalt(12)))).map(_ => newUser)
+      db.run(Users += user).map(_ => user)
     }
     else{
       throw new Exception("Invalid email form")
@@ -88,9 +84,9 @@ class UserDAO @Inject()(
 
     def dateOfBirth = column[Date]("DATEOFBIRTH")
 
-    def phoneNumber = column[Int]("PHONENUMBER")
+    def phoneNumber = column[String]("PHONENUMBER")
 
-    def personalId = column[Int]("PERSONALID")
+    def personalId = column[String]("PERSONALID")
 
 
     def * = (userId, email, password, firstName, lastName, dateOfBirth, phoneNumber, personalId) <> ((User.apply _).tupled, User.unapply)

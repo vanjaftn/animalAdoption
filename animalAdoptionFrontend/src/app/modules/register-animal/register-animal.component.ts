@@ -61,8 +61,6 @@ export class RegisterAnimalComponent {
       if(this.animal.sterilized == null){
         this.animal.sterilized = false
       }
-
-      this.animal.chipNumber = Number(this.animal.chipNumber)
       this.animal.photos = this.fileURLs
 
       console.log(this.fileURLs)
@@ -93,7 +91,7 @@ export class RegisterAnimalComponent {
       return false;
     }
 
-    if (this.animal.name.trim() == '' || this.animal.animalType.trim() == '' || this.animal.chipNumber == 0
+    if (this.animal.name.trim() == '' || this.animal.animalType.trim() == '' || this.animal.chipNumber.trim() == ''
     || this.animal.description.trim() == ''|| this.animal.gender.trim() == ''|| this.animal.location.trim() == '' 
     || this.animal.dateOfBirth == null || this.animal.size.trim() == '') {
         alert('Please fill in all fields!');

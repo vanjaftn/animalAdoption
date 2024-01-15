@@ -18,7 +18,7 @@ class LostAndFoundService @Inject()(lostAndFoundDAO: LostAndFoundDAO,
 
       def createLost(lostAndFound: CreateLostAndFoundDTO, loggedUserId: String): Future[LostAndFound] = {
 
-        val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), lostAndFound.name, lostAndFound.gender, new Date(), lostAndFound.location, lostAndFound.description, 0, lostAndFound.size, lostAndFound.animalType, lostAndFound.sterilized)
+        val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), lostAndFound.name, lostAndFound.gender, new Date(), lostAndFound.location, lostAndFound.description, "", lostAndFound.size, lostAndFound.animalType, lostAndFound.sterilized)
         if (lostAndFound.photos.nonEmpty) {
           lostAndFound.photos.map {
             photo =>
@@ -50,7 +50,7 @@ class LostAndFoundService @Inject()(lostAndFoundDAO: LostAndFoundDAO,
 
     def createFound(lostAndFound: CreateLostAndFoundDTO, loggedUserId: String): Future[LostAndFound] = {
 
-      val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), lostAndFound.name, lostAndFound.gender, new Date(), lostAndFound.location, lostAndFound.description, 0, lostAndFound.size, lostAndFound.animalType, lostAndFound.sterilized)
+      val newAnimal: Animal = Animal(Some(UUID.randomUUID().toString), lostAndFound.name, lostAndFound.gender, new Date(), lostAndFound.location, lostAndFound.description, "", lostAndFound.size, lostAndFound.animalType, lostAndFound.sterilized)
       if (lostAndFound.photos.nonEmpty) {
         lostAndFound.photos.map {
           photo =>

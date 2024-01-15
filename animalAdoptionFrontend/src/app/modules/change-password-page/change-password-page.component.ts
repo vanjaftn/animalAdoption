@@ -32,8 +32,6 @@ export class ChangePasswordPageComponent {
 
   update(){
 
-    console.log(this.userProfile)
-    
     if(this.isInputValid()){
 
       this.userService.passwordExists(this.oldPassword).subscribe((response: any) => {

@@ -60,7 +60,7 @@ export class MyAdoptedAnimalsComponent {
           });
           this.myAdoptedAnimals.push(animal)
         });
-          
+          this.myAdoptedAnimals = this.myAdoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
         
       });
       

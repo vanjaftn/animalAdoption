@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from '../service/user.service';
-import { User } from '../model/user.model';
 import { CreateUserDTO } from '../model/create-user-DTO.model';
 
 @Component({
@@ -30,13 +29,10 @@ export class RegisterUserComponent {
 
   register(){
     if(this.isInputValid()){
-      this.user.phoneNumber = Number(this.user.phoneNumber)
-      this.user.personalId = Number(this.user.personalId)
-
-      this.userService.register(this.user).subscribe((response: any) => {
+      this.userService.confirm(this.user).subscribe((response: any) => {
         console.log(response)
   
-        alert('You have recieved an email containing your password. If you did not recieve an email, check if your informations are correct.');
+        alert('You have recieved an email and a text message.');
   
         window.location.href = '/login-user'
       },
@@ -57,19 +53,8 @@ export class RegisterUserComponent {
       return false;
     }
 
-    var regexp2 = /^\d+$/      
-    if(!regexp2.test(String(this.user.personalId))) {
-      alert('Personal id must contain only numbers')
-      return false;
-    }
-
-    if(!regexp2.test(String(this.user.phoneNumber))) {
-      alert('Phone number must contain only numbers')
-      return false;
-    }
-
     if (this.user.firstName.trim() == '' || this.user.lastName.trim() == '' || this.user.email.trim() == ''
-    || this.user.personalId == 0 || this.user.phoneNumber == 0 || this.user.dateOfBirth == null) {
+    || this.user.personalId.trim() == '' || this.user.phoneNumber.trim() == '' || this.user.dateOfBirth == null) {
         alert('Please fill in all fields!');
         return false;
      }

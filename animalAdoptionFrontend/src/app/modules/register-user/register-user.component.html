@@ -9,6 +9,11 @@
         </div>
 
         <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password"  [(ngModel)]="user.password" required>
+        </div>
+
+        <div class="form-group">
           <label for="firstName">First name</label>
           <input type="text" id="firstName" name="firstName" placeholder="Enter your first name"  [(ngModel)]="user.firstName" required>
         </div>
@@ -23,19 +28,19 @@
         <div class="form-group">
           <label for="dateOfBirth" class="form-label">Date of birth</label>
           <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" max="{{getDate()}}">
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber" class="form-label">Phone number</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+        </div>
+
+        <div class="form-group">
+          <label for="personalId" class="form-label">Personal id</label>
+          <input type="text" id="personalId" name="personalId" [(ngModel)]="user.personalId">
+        </div>
+        <button type="submit" class="btn-register">Register</button>
       </div>
-
-      <div class="form-group">
-        <label for="phoneNumber" class="form-label">Phone number</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber">
-    </div>
-
-    <div class="form-group">
-      <label for="personalId" class="form-label">Personal id</label>
-      <input type="text" id="personalId" name="personalId" [(ngModel)]="user.personalId">
-  </div>
-      <button type="submit" class="btn-register">Register</button>
-    </div>
   </form>
     </div>
   </div>

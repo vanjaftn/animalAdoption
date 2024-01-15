@@ -5,9 +5,9 @@ export class CreateVet {
     password: string = "";
     firstName: string = "";
     lastName: string = "";
-    dateOfBirth !: Date;
-    phoneNumber !: number;
-    personalId !: number;
+    dateOfBirth!: Date;
+    phoneNumber: string = "";
+    personalId: string = "";
     ordination: string = "";
 
     public constructor(obj?: any) {

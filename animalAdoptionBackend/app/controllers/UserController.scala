@@ -30,29 +30,21 @@ class UserController @Inject() (
     }
   }
 
-//  def sendConfirmationEmail(email: String, token: String): Unit = {
-//    val subject = "Confirm your registration"
-//    val body = s"Click the following link to confirm your registration: http://yourapp.com/confirm/$token"
-//
-//    val email = Email(
-//      subject,
-//      "YourApp <noreply@yourapp.com>",
-//      Seq(email),
-//      bodyText = Some(body)
-//    )
-//
-//    mailerClient.send(email)
-//  }
-
-  def create = Action.async(parse.json) { implicit request =>
-    val newUser = request.body.validate[CreateUserDTO]
+  def confirm = Action.async(parse.json) { implicit request =>
+    val newUser = request.body.validate[User]
     newUser match {
       case JsSuccess(userObj, _) =>
-        userService.create(userObj).map(res =>
+        userService.confirm(userObj).map(res =>
           Ok(Json.toJson(res))
         )
       case JsError(errors) => Future.successful(BadRequest(errors.toString))
     }
+  }
+
+  def create(confirmationCode: String) = Action.async { implicit request =>
+    userService.create(confirmationCode).map(res =>
+      Ok(Json.toJson("You have confirmed your email, now you can sign in to our application. Enjoy!"))
+    )
   }
 
   def update = authAction.async(parse.json) { implicit request =>

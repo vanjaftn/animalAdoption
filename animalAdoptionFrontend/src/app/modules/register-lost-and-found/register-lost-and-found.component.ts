@@ -62,8 +62,6 @@ export class RegisterLostAndFoundComponent {
       if(this.animal.sterilized == null){
         this.animal.sterilized = false
       }
-
-      this.animal.chipNumber = Number(this.animal.chipNumber)
       this.animal.photos = this.fileURLs
 
       console.log(this.fileURLs)

@@ -23,8 +23,12 @@ export class UserService {
     return this.http.post(this.apiServerUrl + '/login', loginUser, {headers: this.headers, responseType: 'text'});
   }
 
-  register(user: CreateUserDTO): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/user', user, {headers: this.headers, responseType: 'text'});
+  confirm(user: CreateUserDTO): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/confirm', user, {headers: this.headers, responseType: 'text'});
+  }
+
+  register(confirmationCode: string): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/user/' + confirmationCode, {headers: this.headers, responseType: 'text'});
   }
 
   readAll(): Observable<any> {

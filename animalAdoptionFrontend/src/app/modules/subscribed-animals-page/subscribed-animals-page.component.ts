@@ -79,7 +79,7 @@ console.log(response)
         subscribedAnimalsList.push(animalWithSubscription)
         // console.log(animalWithSubscription)
         console.log(subscribedAnimalsList)
-        this.subscribedAnimalsWithSubscription = subscribedAnimalsList.sort((a, b) => a.dateOfBirth.getDate() - b.dateOfBirth.getDate())
+        this.subscribedAnimalsWithSubscription = subscribedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
 
         console.log(this.subscribedAnimalsWithSubscription)
       })    

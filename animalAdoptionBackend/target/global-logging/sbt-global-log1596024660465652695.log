@@ -1,0 +1,59 @@
+[debug] > Exec(compile, None, None)
+[debug] Evaluating tasks: Compile / compile
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 64 Scala sources and 1 Java source to C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\target\scala-2.13\classes ...
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AdminController.scala:34:18: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     adminService.readAll.map(res =>
+[warn]                  ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AdopterController.scala:33:20: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     adopterService.readAll.map(res =>
+[warn]                    ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AdoptionController.scala:35:21: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     adoptionService.readAll.map(res =>
+[warn]                     ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\AnimalTypeController.scala:35:23: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     animalTypeService.readAll.map(res =>
+[warn]                       ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\LostAndFoundController.scala:62:25: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     lostAndFoundService.readAll.map(res =>
+[warn]                         ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\PhotoController.scala:34:18: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     photoService.readAll.map(res =>
+[warn]                  ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\SubscriptionController.scala:61:25: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     subscriptionService.readAll.map(res =>
+[warn]                         ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\VaccineController.scala:35:20: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     vaccineService.readAll.map(res =>
+[warn]                    ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\VetController.scala:41:16: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     vetService.readAll.map(res =>
+[warn]                ^
+[warn] C:\Users\vanja\Desktop\diplomski\animalAdoption\animalAdoptionBackend\app\controllers\VideoController.scala:34:18: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readAll,
+[warn] or remove the empty argument list from its definition (Java-defined methods are exempt).
+[warn] In Scala 3, an unapplied method like this will be eta-expanded into a function.
+[warn]     videoService.readAll.map(res =>
+[warn]                  ^
+[warn] 2 feature warnings; re-run with -feature for details
+[warn] 11 warnings found
+[info] done compiling
+[success] Total time: 45 s, completed Jan 14, 2024, 7:34:56 PM
+[debug] > Exec(idea-shell, None, None)

@@ -65,8 +65,6 @@ export class UpdateAnimalPageComponent {
 
   });
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!REGISTRATION
-
-  this.selectedAnimalProfile.chipNumber = Number(this.selectedAnimalProfile.chipNumber)
   this.selectedAnimalProfile.photos = this.fileURLs
 
   console.log(this.fileURLs)

@@ -5,7 +5,7 @@ export class Animal {
     dateOfBirth !: Date;
     location: string = "";
     description: string = "";
-    chipNumber!: number;
+    chipNumber: string = "";
     size: string = "";
     animalType: string = "";
     sterilized!: Boolean;

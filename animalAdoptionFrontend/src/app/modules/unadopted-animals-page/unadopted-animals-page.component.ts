@@ -87,7 +87,7 @@ console.log(response)
         unadoptedAnimalsList.push(animalWithSubscription)
         // console.log(animalWithSubscription)
         console.log(unadoptedAnimalsList)
-        this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => a.dateOfBirth.getDate() - b.dateOfBirth.getDate())
+        this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
 
         console.log(this.unadoptedAnimalsWithSubscription)
 

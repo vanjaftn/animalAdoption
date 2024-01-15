@@ -84,27 +84,30 @@ console.log(response)
         }
         console.log(animalWithSubscription)
         console.log(adoptedAnimalsList)
-  //       let addAnimal = animalWithSubscription
         adoptedAnimalsList.push(animalWithSubscription)
-        // console.log(animalWithSubscription)
         console.log(adoptedAnimalsList)
-        // this.adoptedAnimalsWithSubscription = adoptedAnimalsList
-        this.adoptedAnimalsWithSubscription = adoptedAnimalsList.sort((a, b) => a.dateOfBirth.getUTCDate() - b.dateOfBirth.getUTCDate())
+        this.adoptedAnimalsWithSubscription = adoptedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
         
+        console.log("pre sorta:")
+        console.log(adoptedAnimalsList)
+        console.log("nakon sorta??:")
         console.log(this.adoptedAnimalsWithSubscription)
       })    
 
+      
       this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
         const allPhotos = JSON.parse(response)
-  
+        
         animalWithSubscription.photoURL = "\\assets\\images\\"+allPhotos[0].photoURL
         // @ts-ignore
-          let photoURL : string
-          photoURL ="\\assets\\images\\"+allPhotos[0]
-  
+        let photoURL : string
+        photoURL ="\\assets\\images\\"+allPhotos[0]
+        
         console.log(allPhotos[0].photoURL)
       });
       
+      console.log("animal list:")
+      console.log(this.adoptedAnimalsWithSubscription)
     });
   }
 

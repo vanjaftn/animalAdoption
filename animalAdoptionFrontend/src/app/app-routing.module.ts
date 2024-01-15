@@ -16,7 +16,6 @@ import { UpdateAnimalPageComponent } from './modules/update-animal-page/update-a
 import { UpdateUserPageComponent } from './modules/update-user-page/update-user-page.component';
 import { ChangePasswordPageComponent } from './modules/change-password-page/change-password-page.component';
 import { RegisterLostAndFoundComponent } from './modules/register-lost-and-found/register-lost-and-found.component';
-import { LostAndFoundPageComponent } from './modules/lost-and-found-page/lost-and-found-page.component';
 import { ApproveLostAndFoundPageComponent } from './modules/approve-lost-and-found-page/approve-lost-and-found-page.component';
 import { LostPageComponent } from './modules/lost-page/lost-page.component';
 import { FoundPageComponent } from './modules/found-page/found-page.component';

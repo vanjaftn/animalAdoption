@@ -84,7 +84,7 @@ class AnimalDAO @Inject()(
     def location = column[String]("LOCATION")
 
     def description = column[String]("DESCRIPTION")
-    def chipNumber = column[Int]("CHIPNUMBER")
+    def chipNumber = column[String]("CHIPNUMBER")
     def size = column[String]("SIZE")
     def animalType = column[String]("ANIMALTYPE")
     def sterilized = column[Boolean]("STERILIZED")

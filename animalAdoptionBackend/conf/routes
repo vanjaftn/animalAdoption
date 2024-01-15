@@ -9,7 +9,8 @@ GET     /                           controllers.HomeController.index()
 + nocsrf
 POST    /login  controllers.UserController.loginUser
 + nocsrf
-POST    /user  controllers.UserController.create
+POST    /confirm  controllers.UserController.confirm
+GET    /user/:confirmationCode  controllers.UserController.create(confirmationCode: String)
 + nocsrf
 POST    /updateUser  controllers.UserController.update
 + nocsrf
