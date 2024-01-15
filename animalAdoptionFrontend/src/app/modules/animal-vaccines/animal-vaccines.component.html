@@ -1,15 +1,15 @@
 <body>
-    <div class="profiles-container">
-      <div class="profile-list">
-        <div class="profile-card" *ngFor="let vaccine of animalVaccines">
-          <h3>{{vaccine.vaccineType}}</h3>
-          <p>Date: {{vaccine.date}}</p>
-          <div>
-            Vet: {{vaccine.vetName}}
-          </div>              
-        </div>
-        
+  <div class="vaccines-container">
+    <div class="vaccine-list">
+      <div class="no-vaccine-sign" *ngIf="animalVaccines.length === 0"><h1>No vaccines yet</h1></div>
+      <div class="vaccine-card" *ngFor="let vaccine of animalVaccines">
+        <h3>{{vaccine.vaccineType}}</h3>
+        <p>Date: {{vaccine.date}}</p>
+        <div class="vet-info">
+          Vet: {{vaccine.vetName}}
+        </div>              
       </div>
-      <button *ngIf="userIsVet == 'true'" (click)="createVaccinePage()">Add new vaccine</button>
     </div>
+    <button *ngIf="userIsVet == 'true'" class="add-vaccine-button" (click)="createVaccinePage()">Add New Vaccine</button>
+  </div>
 </body>

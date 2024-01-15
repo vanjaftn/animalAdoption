@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fbf5ca;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e0f7fa;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,117 +17,147 @@ body {
   max-width: 800px;
   width: 100%;
   padding: 20px;
-  background-color: #fbf5ca;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
   text-align: center;
 }
-  .profile-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 100%;
-  }
 
-  .profile-card {
-    border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px);
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    text-align: center;
-  }
+.profile-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+}
 
-  .profile-card h3 {
-    font-size: 20px;
-    margin: 10px 0;
-  }
+.profile-card {
+  border: 2px solid #26a69a;
+  background-color: #b2dfdb;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
 
-  .profile-card p {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
-  }
+.profile-card:hover {
+  transform: scale(1.03);
+}
 
-  .subscription-button {
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 7px 12px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.profile-card h3 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: #009688;
+}
 
-  .subscription-button:hover {
-    background-color: #ff4f4f;
-  }
+.profile-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
 
-  .view-profile-button {
-    background-color: #FF9800;
-    color: white;
-    border: none;
-    padding: 7px 12px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+.unsubscribe-button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
 
-  .view-profile-button:hover {
-    background-color: #FF9800;
-  }
+.unsubscribe-button:hover {
+  background-color: #00796b;
+}
 
-  .profile-pictures {
-    display: flex;
-    flex-wrap: wrap; /* Wrap images to the next line if there are more than 4 */
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
+.subscribe-button {
+  background-color: #C84F0C;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
 
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    max-width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-  }
+.subscribe-button:hover {
+  background-color: #BC3908;
+}
 
-  /* Add this CSS for the search input and button */
+.view-profile-button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-profile-button:hover {
+  background-color: #00796b;
+}
+
+.profile-pictures {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
 .search-container {
   text-align: center;
   margin-bottom: 20px;
 }
 
 .search-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px;
+  border: 2px solid #26a69a;
+  border-radius: 8px;
   font-size: 16px;
   margin-right: 10px;
+  width: 70%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #009688;
+  box-shadow: 0 0 8px rgba(0, 150, 136, 0.5);
 }
 
 .search-button {
-  background-color: #ff6b6b;
+  background-color: #26a69a;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #ff4f4f;
+  background-color: #00796b;
 }
-
-/* Rest of your existing CSS remains unchanged */

@@ -1,5 +1,12 @@
-
 .navbar-nav > li:last-child {
     right: 0;
     position: absolute;
  }
+
+ .custom-bg-color {
+    background-color: #00675E;
+}
+
+.custom-bg-color .navbar-nav .nav-link {
+    color: white; /* Set the desired text color */
+}

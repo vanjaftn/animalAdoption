@@ -110,23 +110,16 @@ console.log(response)
   }
 
   subscribe(animalId : string){
-
     let subscription = new NewSubscription
 
     subscription.animalId = animalId
-    // subscription.userId = localStorage.getItem('loggedUserEmail')
     this.subscriptionService.subscribe(subscription).subscribe((response: any) => {
-      console.log(response)
-
-      // alert('Successfully registered');
-
       window.location.reload()
     }
     );
   }
 
   unsubscribe(animalId : string){
-
     this.subscriptionService.readByAnimalId(animalId).subscribe((response: any) => {
       let subscriptionId = JSON.parse(response).subscriptionId
       console.log(subscriptionId)

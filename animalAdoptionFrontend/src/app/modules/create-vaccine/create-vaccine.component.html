@@ -1,5 +1,5 @@
-<div class="registration-container">
-    <div class="registration-form">
+<div class="vaccination-container">
+    <div class="vaccination-form">
       <h2>Recieved vaccine</h2>
       <form (ngSubmit)="register()">
         <div class="form-group">
@@ -12,7 +12,7 @@
           <input type="date" id="vaccineDate" name="vaccineDate" [(ngModel)]="vaccine.vaccineDate" max="{{getDate()}}">
       </div>
         
-        <button type="submit" class="btn-register">Create</button>
+        <button type="submit" class="btn-create">Create</button>
       </form>
     </div>
   </div>

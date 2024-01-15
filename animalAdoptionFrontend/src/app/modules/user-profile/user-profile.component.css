@@ -1,71 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fbf5ca;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e0f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  .profile-container {
-    max-width: 600px;
-    margin: 0px auto;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
+.profile-container {
+  max-width: 600px;
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
-  .profile-header {
-    background-color: #FF9800;
-    color: #fff;
-    text-align: center;
-    padding: 30px 0;
-  }
+.profile-header {
+  text-align: center;
+  padding: 15px 0;
+  background-color: #26a69a;
+  color: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+}
 
-  .profile-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
+.profile-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
 
-  .profile-content {
-    padding: 20px;
-  }
+.profile-content {
+  padding: 20px;
+}
 
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    object-fit: cover;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  }
+.profile-details {
+  text-align: center;
+}
 
-  .profile-details {
-    text-align: center;
-  }
+.profile-details h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
 
-  .profile-details h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: #333;
-  }
+.profile-details p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 10px;
+}
 
-  .profile-details p {
-    font-size: 1.2rem;
-    color: #666;
-  }
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
-  button {
-    background-color: #FF9800;
-    color: white;
-    border: none;
-    padding: 7px 12px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-left: auto;
-  }
-  
-  button:hover {
-    background-color: #F57C00;
-  }
+button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 10px;
+}
+
+button:hover {
+  background-color: #00796b;
+}

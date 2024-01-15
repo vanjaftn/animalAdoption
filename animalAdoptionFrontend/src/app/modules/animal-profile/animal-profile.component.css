@@ -1,39 +1,50 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fbf5ca;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e0f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .profile-container {
+  border: 2px solid #26a69a;
   max-width: 800px;
-  margin: 0px auto;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Align children vertically */
-  align-items: center; /* Center align children horizontally */
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header,
+.profile-content {
+  width: 100%;
 }
 
 .profile-header {
-  background-color: #FF9800;
-  color: #fff;
   text-align: center;
-  padding: 30px 0;
+  padding: 15px 0;
+  background-color: #26a69a;
+  color: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
 }
 
 .profile-header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .profile-content {
-  padding: 20px;
+  padding: 15px;
   display: flex;
-  flex-direction: column; 
-  gap: 20px; 
+  flex-direction: column;
+  gap: 15px;
 }
 
 .medias {
@@ -62,12 +73,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  word-break: break-word; /* Break words to prevent overflow */
-  overflow-wrap: break-word; /* Allow word wrapping within words */
+  word-break: break-word;
+  overflow-wrap: break-word;
+  border: 1px solid #26a69a; /* Added border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 15px; /* Increased padding */
 }
 
-button {
-  background-color: #FF9800;
+.profile-details p {
+  margin: 8px 0; /* Adjusted margin */
+  font-size: 14px; /* Adjusted font size */
+  color: #333; /* Adjusted text color */
+  border-bottom: 1px solid #ccc; /* Added bottom border */
+  padding-bottom: 4px; /* Adjusted padding at the bottom of each paragraph */
+}
+
+.subscribe-button {
+  background-color: #C84F0C;
   color: white;
   border: none;
   padding: 7px 12px;
@@ -76,12 +98,70 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-left: auto;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-button:hover {
-  background-color: #F57C00;
+.subscribe-button:hover {
+  background-color: #BC3908;
 }
 
+.unsubscribe-button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.unsubscribe-button:hover {
+  background-color: #00796b;
+}
+
+.adopt-button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.adopt-button:hover {
+  background-color: #00796b;
+}
+
+.bottom-button {
+  background-color: #009688;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.bottom-button:hover {
+  background-color: #00796b;
+}
 
 .media:hover {
   transform: scale(1.1); /* Enlarge the image by 10% on hover */

@@ -1,47 +1,51 @@
 <body>
   <div class="profile-container">
-    <button *ngIf="selectedAnimalProfile.subscription == false && isLostAndFound == 'false'" style="background-color: #ff4f4f;" (click)="subscribe()">Subscribe</button>
-    <button *ngIf="selectedAnimalProfile.subscription == true && isLostAndFound == 'false'" (click)="unsubscribe()">Unscubscribe</button>
-    <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'false' && isLostAndFound == 'false'" (click)="adopt()">I want to adopt this animal</button>
-    <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'true' && isApproved == 'false'" (click)="approveLostAndFound()">Approve</button>
-     
-        <div class="profile-header">
+    <div class="profile-header">
       <h1>{{selectedAnimalProfile.name}}</h1>
     </div>
-    <div class="profile-content">
-      <div class="profile-details">
-        <!-- <h2 id="name">{{selectedAnimalProfile.name}}</h2> -->
-        <p>Gender: {{selectedAnimalProfile.gender}}</p>
-        <p *ngIf="isLostAndFound == 'false'">Date of Birth: {{dob}}</p>
-        <p>Location: {{selectedAnimalProfile.location}}</p>
-        <p>Size: {{selectedAnimalProfile.size}}</p>
-        <p>Is sterilized?: {{animalSterilized}}</p>
-        <p>Description: {{selectedAnimalProfile.description}}</p>
-        <p *ngIf="isLostAndFound == 'true'">Lost or found: {{lostOrFound}}</p>
-        <p *ngIf="(userIsVet == 'true' || userIsAdmin == 'true') && isLostAndFound == 'false'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
-      </div>
+    <div class="profile-actions">
+      <button *ngIf="selectedAnimalProfile.subscription == false && isLostAndFound == 'false'" class="subscribe-button" (click)="subscribe()">Subscribe</button>
+      <button *ngIf="selectedAnimalProfile.subscription == true && isLostAndFound == 'false'" class="unsubscribe-button" (click)="unsubscribe()">Unsubscribe</button>
+      <button *ngIf="animalAdopted == 'false' && userIsAdmin == 'false' && isLostAndFound == 'false'" class="adopt-button" (click)="adopt()">I want to adopt this animal</button>
+      <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'true' && isApproved == 'false'" class="approve-button" (click)="approveLostAndFound()">Approve</button>
+    </div>
+
       <div class="medias">
-        <img *ngFor="let photo of animalPhotos" class="media clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1" >
-        <video *ngFor="let video of animalVideos"  class="media clickable" [src]="video" (click)="playVideo(video)" controls muted>
+        <img *ngFor="let photo of animalPhotos" class="media clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1">
+        <video *ngFor="let video of animalVideos" class="media clickable" [src]="video" (click)="playVideo(video)" controls muted>
           Your browser does not support the video tag.
         </video>
       </div>
-      
+
+      <div class="profile-content">
+        <div class="profile-details">
+          <p>Gender: {{selectedAnimalProfile.gender}}</p>
+          <p *ngIf="isLostAndFound == 'false'">Date of Birth: {{dob}}</p>
+          <p>Location: {{selectedAnimalProfile.location}}</p>
+          <p>Size: {{selectedAnimalProfile.size}}</p>
+          <p>Sterilized: {{animalSterilized}}</p>
+          <p *ngIf="(userIsVet == 'true' || userIsAdmin == 'true') && isLostAndFound == 'false'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
+          <p>Description: {{selectedAnimalProfile.description}}</p>
+          <p *ngIf="isLostAndFound == 'true'">Lost or found: {{lostOrFound}}</p>
+        </div>
+
       <div class="enlarge-overlay" (click)="closeEnlarged()">
         <img id="enlarged-image" src="" alt="Enlarged Image">
       </div>
     </div>
-    <button *ngIf="userIsAdmin == 'true'" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
-    <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'false'" (click)="update()">Update animal</button>
-    <button *ngIf="animalSterilized == 'No' && userIsVet == 'true'" (click)="animalIsSterilized()">Animal is sterilized</button>
-    <button *ngIf="isLostAndFound == 'false'" (click)="animalVaccinesPage()">Show vaccine history</button>
-    <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true') && isLostAndFound == 'false'" (click)="adoptionRequestPage()">See adoption requests</button>
-    <button *ngIf="loggedInUserIsAdopter == 'true'" (click)="addNewPhotoButtonChange()">Add new media</button>
 
-    <div *ngIf="addNewPhotosButton == true" >
-    <input type="file" id="my-file" (change)="uploadMedia($event)" multiple><br>
-    <button (click)="addNewMedia()">Add media</button>
+    <div class="profile-actions">
+      <button *ngIf="userIsAdmin == 'true'" class="bottom-button" (click)="delete(selectedAnimalProfile.animalId)">Delete animal profile</button>
+      <button *ngIf="userIsAdmin == 'true' && isLostAndFound == 'false'" class="bottom-button" (click)="update()">Update animal</button>
+      <button *ngIf="animalSterilized == 'No' && userIsVet == 'true'" class="bottom-button" (click)="animalIsSterilized()">Animal is sterilized</button>
+      <button *ngIf="isLostAndFound == 'false'" class="bottom-button" (click)="animalVaccinesPage()">Show vaccine history</button>
+      <button *ngIf="animalAdopted == 'false' && (userIsAdmin == 'true' || userIsVet == 'true') && isLostAndFound == 'false'" class="bottom-button" (click)="adoptionRequestPage()">See adoption requests</button>
+      <button *ngIf="loggedInUserIsAdopter == 'true'" class="bottom-button" (click)="addNewPhotoButtonChange()">Add new media</button>
+
+      <div *ngIf="addNewPhotosButton == true">
+        <input type="file" id="my-file" (change)="uploadMedia($event)" multiple><br>
+        <button class="add-media-confirm-button" (click)="addNewMedia()">Add media</button>
+      </div>
     </div>
   </div>
-
 </body>

@@ -1,10 +1,11 @@
 <body>
     <div class="profiles-container">
       <div *ngIf="userIsAdmin == 'true'" class="profile-list">
-          <div class="profile-card" *ngFor="let user of adoptionRequests">
+        <div class="no-requests-sign" *ngIf="adoptionRequests.length === 0"><h1>No requests yet</h1></div>
+        <div class="profile-card" *ngFor="let user of adoptionRequests">
             <div>
-              <button style="background-color: #ff4f4f;" (click)="adminApprove(user.userId)">Approve this adopter</button>
-              <button style="background-color: #ff4f4f; margin-left: 5px;" (click)="adminReject(user.userId)">Reject this adopter</button>
+              <button class="approve-button" (click)="adminApprove(user.userId)">Approve this adopter</button>
+              <button class="reject-button" (click)="adminReject(user.userId)">Reject this adopter</button>
             </div>
             <h3>{{user.firstName}} {{user.lastName}}</h3>
             <p>Date of birth: {{user.dob}}</p>
@@ -19,10 +20,11 @@
     
       </div>
       <div *ngIf="userIsVet == 'true'" class="profile-list">
+      <div class="no-requests-sign" *ngIf="adoptionRequestsApprovedByAdmin.length === 0"><h1>No requests yet</h1></div>
         <div class="profile-card" *ngFor="let user of adoptionRequestsApprovedByAdmin">
           <div>
-            <button style="background-color: #ff4f4f;" (click)="vetApprove(user.userId)">Confirm adoption</button>
-            <button style="background-color: #ff4f4f; margin-left: 5px;" (click)="vetReject(user.userId)">Reject this adopter</button>
+            <button class="approve-button"  (click)="vetApprove(user.userId)">Confirm adoption</button>
+            <button class="reject-button" (click)="vetReject(user.userId)">Reject this adopter</button>
           </div>
           <h3>{{user.firstName}} {{user.lastName}}</h3>
           <p>Age: {{user.dob}}</p>

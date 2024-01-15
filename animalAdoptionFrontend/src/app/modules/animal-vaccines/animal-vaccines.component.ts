@@ -32,13 +32,12 @@ export class AnimalVaccinesComponent {
   readAllAnimalPendingAdopters() {
     this.vaccineService.readAllAnimalVaccines(this.selectedAnimalProfileId!).subscribe((response: any) => {
       console.log(JSON.parse(response))
-      console.log(this.animalVaccines)
-
+      
       let vaccines: Array<Vaccine> = JSON.parse(response)
       
       vaccines.forEach(vaccine => {
         let newVaccine: VaccineWithDateDTO = new VaccineWithDateDTO
-
+        
         this.vetService.read(vaccine.vetId).subscribe((response: any) => {
           let vetName = JSON.parse(response).firstName + " " +  JSON.parse(response).lastName
           
@@ -49,13 +48,12 @@ export class AnimalVaccinesComponent {
           newVaccine.vetId = vaccine.vetId
           newVaccine.vetName = vetName
           newVaccine.date = this.getDate(new Date(vaccine.vaccineDate))
-
-          this.animalVaccines.push(newVaccine)
           
+          this.animalVaccines.push(newVaccine)
+          this.animalVaccines = this.animalVaccines.sort((a, b) => new Date(a.vaccineDate).getTime() - new Date(b.vaccineDate).getTime())
+          console.log(this.animalVaccines)
         });
-
       });
-
     });
   }
 

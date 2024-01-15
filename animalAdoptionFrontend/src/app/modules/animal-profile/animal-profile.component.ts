@@ -196,18 +196,13 @@ export class AnimalProfileComponent {
   }
 
   adopt(){
-    console.log(this.selectedAnimalProfile.animalId)
-
     this.adoption.adoptionDate = new Date
     this.adoption.adoptionStatus = ""
     this.adoption.animalId = this.selectedAnimalProfile.animalId
     this.adoption.userId = ""
 
     this.adoptionService.create(this.adoption).subscribe(() => {
-
       alert('You will be contacted by our admin as soon as possible via email');
-
-      // window.location.href = '/login-user'
     },
     (error) => {
       alert("Your request filed");
