@@ -27,7 +27,7 @@ class VideoService @Inject()(videoDAO: VideoDAO,
   }
 
   def adopterAddVideos(video: Video, loggedInUser: String) = {
-    adoptionDAO.adoptionExists(video.animalId, loggedInUser).flatMap {
+    adoptionDAO.approvedAdoptionExists(video.animalId, loggedInUser).flatMap {
       case true =>
         create(video)
       case false => throw new Exception("User is not adopter")

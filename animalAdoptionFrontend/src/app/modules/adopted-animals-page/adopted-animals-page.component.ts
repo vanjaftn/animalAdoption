@@ -56,16 +56,14 @@ export class AdoptedAnimalsPageComponent {
       this.adoptedAnimals = JSON.parse(response)
 
       this.adoptedAnimals.forEach(animal => {
-          // this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
-
-            this.adoptedAnimals = this.adoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
-          // });
-          this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
-            const allPhotos = JSON.parse(response)
-            animal.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
-            // @ts-ignore
-              photoURL ="\\assets\\images\\" + allPhotos[0]
-          });      
+        animal.dob = this.getDOB(new Date(animal.dateOfBirth))
+          this.adoptedAnimals = this.adoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
+            this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+              const allPhotos = JSON.parse(response)
+              animal.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
+              // @ts-ignore
+                photoURL ="\\assets\\images\\" + allPhotos[0]
+            });      
         })    
       });
    console.log(this.adoptedAnimals)
@@ -94,29 +92,14 @@ export class AdoptedAnimalsPageComponent {
         animalWithSubscription.size = animal.size
         animalWithSubscription.sterilized = animal.sterilized
         animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
-        console.log(animalWithSubscription)
-        // console.log(adoptedAnimalsList)
-console.log(response)
         if(response == "false"){
           animalWithSubscription.subscription = false
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
         if(response == "true"){
           animalWithSubscription.subscription = true
-          console.log(animalWithSubscription)
-          console.log(adoptedAnimalsList)
         }
-        console.log(animalWithSubscription)
-        console.log(adoptedAnimalsList)
         adoptedAnimalsList.push(animalWithSubscription)
-        console.log(adoptedAnimalsList)
         this.adoptedAnimalsWithSubscription = adoptedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
-        
-        console.log("pre sorta:")
-        console.log(adoptedAnimalsList)
-        console.log("nakon sorta??:")
-        console.log(this.adoptedAnimalsWithSubscription)
       })    
 
       

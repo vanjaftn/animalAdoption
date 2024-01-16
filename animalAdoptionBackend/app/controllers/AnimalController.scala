@@ -98,9 +98,7 @@ class AnimalController @Inject() (
     }
   }
 
-  def animalSterilized = authAction.async(parse.json) { implicit request =>
-    val loggedInUser = request.user
-
+  def animalSterilized = Action.async(parse.json) { implicit request =>
     val animalId = request.body.validate[String]
     animalId match {
       case JsSuccess(animalIdObj, _) =>

@@ -44,7 +44,7 @@
 
       <div *ngIf="addNewPhotosButton == true">
         <input type="file" id="my-file" (change)="uploadMedia($event)" multiple><br>
-        <button class="add-media-confirm-button" (click)="addNewMedia()">Add media</button>
+        <button class="bottom-button" (click)="addNewMedia()">Add media</button>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
       <div class="profile-content">
         <div class="profile-details">
           <p>Gender: {{selectedAnimalProfile.gender}}</p>
-          <p *ngIf="isLostAndFound == 'false'">Date of Birth: {{dob}}</p>
+          <p>Date of Birth: {{dob}}</p>
           <p>Location: {{selectedAnimalProfile.location}}</p>
           <p>Size: {{selectedAnimalProfile.size}}</p>
           <p>Sterilized: {{animalSterilized}}</p>

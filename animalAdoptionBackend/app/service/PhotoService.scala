@@ -27,7 +27,7 @@ class PhotoService @Inject()(photoDAO: PhotoDAO,
   }
 
   def adopterAddPhotos(photo: Photo, loggedInUser: String) = {
-    adoptionDAO.adoptionExists(photo.animalId, loggedInUser).flatMap {
+    adoptionDAO.approvedAdoptionExists(photo.animalId, loggedInUser).flatMap {
       case true =>
         create(photo)
       case false => throw new Exception("User is not adopter")

@@ -67,7 +67,7 @@ POST    /animalAdopted  controllers.AdoptionController.animalAdopted
 + nocsrf
 POST    /animalAdminApproved  controllers.AdoptionController.animalAdminApproved
 + nocsrf
-POST     /adoptionExists            controllers.AdoptionController.adoptionExists
+POST     /approvedAdoptionExists            controllers.AdoptionController.approvedAdoptionExists
 GET     /readAllUsersAdoptions      controllers.AdoptionController.readAllUsersAdoptions
 GET     /readAllUsersApprovedAdoptions      controllers.AdoptionController.readAllUsersApprovedAdoptions
 + nocsrf

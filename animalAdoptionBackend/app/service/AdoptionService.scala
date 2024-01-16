@@ -20,11 +20,14 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
   def create(adoption: Adoption, loggedUserId : String): Future[Adoption] = {
     animalAdopted(adoption.animalId).flatMap {
       case false =>
-        val user = userService.read(loggedUserId)
-        val animal = animalService.read(adoption.animalId)
-        animal.map(a => user.map(u => emailService.sendEmail("animaladoption.sabac@gmail.com", s"New adoption request", s"There has been new request for the adoption of ${a.name}, by ${u.email}.")))
-
-        adoptionDAO.create(adoption, loggedUserId)
+        adoptionExists(adoption.animalId, loggedUserId).flatMap {
+          case false =>
+            val user = userService.read(loggedUserId)
+            val animal = animalService.read(adoption.animalId)
+            animal.map(a => user.map(u => emailService.sendEmail("animaladoption.sabac@gmail.com", s"New adoption request", s"There has been new request for the adoption of ${a.name}, by ${u.email}.")))
+            adoptionDAO.create(adoption, loggedUserId)
+          case true => throw new Exception("You have already send adoption request for this animal")
+        }
       case true => throw new Exception("This animal is already adopted")
     }
   }
@@ -42,32 +45,26 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
   }
 
   def deletePending(adoptionId: String, loggedInUser: String): Future[Int] = {
-
     adminDAO.adminExists(loggedInUser).flatMap {
       case true =>
         val futureAdoption: Future[Adoption] = read(adoptionId)
-
         val user = futureAdoption.map(adoption => userService.read(adoption.userId))
         val animal = futureAdoption.map(adoption => animalService.read(adoption.animalId))
         animal.map(_.map(a => user.map(_.map(u => smsService.sendSms(u.phoneNumber, s"We regret to inform you that you have been rejected as the adopter for ${a.name}")))))
         animal.map(_.map(a => user.map(_.map(u => emailService.sendEmail(u.email, s"Mail regarding ${a.name}'s adoption", s"We regret to inform you that you have been rejected as the adopter for ${a.name}")))))
-
         adoptionDAO.deletePending(adoptionId)
       case false => throw new Exception("User is not admin")
     }
   }
 
   def deleteApproved(adoptionId: String, loggedInUser: String): Future[Int] = {
-
     vetDAO.vetExists(loggedInUser).flatMap {
       case true =>
         val futureAdoption: Future[Adoption] = read(adoptionId)
-
         val user = futureAdoption.map(adoption => userService.read(adoption.userId))
         val animal = futureAdoption.map(adoption => animalService.read(adoption.animalId))
         animal.map(_.map(a => user.map(_.map(u => smsService.sendSms(u.phoneNumber, s"We regret to inform you that you have been rejected as the adopter for ${a.name}")))))
         animal.map(_.map(a => user.map(_.map(u => emailService.sendEmail(u.email, s"Mail regarding ${a.name}'s adoption", s"We regret to inform you that you have been rejected as the adopter for ${a.name}")))))
-
         adoptionDAO.deleteApproved(adoptionId)
       case false => throw new Exception("User is not vet")
     }
@@ -128,6 +125,10 @@ class AdoptionService @Inject()(adoptionDAO: AdoptionDAO,
       case false => throw new Exception("User is not vet")
     }
 
+  }
+
+  def approvedAdoptionExists(animalId: String, loggedUserId: String): Future[Boolean] = {
+    adoptionDAO.approvedAdoptionExists(animalId, loggedUserId)
   }
 
   def adoptionExists(animalId: String, loggedUserId: String): Future[Boolean] = {

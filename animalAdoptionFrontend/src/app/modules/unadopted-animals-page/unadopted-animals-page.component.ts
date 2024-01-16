@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AnimalService } from '../service/animal.service';
 import { Animal } from '../model/animal.model';
 import { SubscriptionService } from '../service/subscription.service';
-import { Subscription } from 'rxjs';
 import { NewSubscription } from '../model/new-subscription.model';
 import { AnimalWithSubscription } from '../model/animal-with-subscription.model';
 import { PhotoService } from '../service/photo.service';
@@ -57,10 +56,8 @@ export class UnadoptedAnimalsPageComponent {
       this.unadoptedAnimals = JSON.parse(response)
 
       this.unadoptedAnimals.forEach(animal => {
-          // this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
-
+            animal.dob = this.getDOB(new Date(animal.dateOfBirth))
             this.unadoptedAnimals = this.unadoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
-          // });
           this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
             const allPhotos = JSON.parse(response)
             animal.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
@@ -69,7 +66,6 @@ export class UnadoptedAnimalsPageComponent {
           });      
         })    
       });
-   console.log(this.unadoptedAnimals)
   }
   
   addSubscriptionStatus() {

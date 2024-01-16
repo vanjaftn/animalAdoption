@@ -495,12 +495,6 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "deletePending/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
     }
   
-    // @LINE:70
-    def adoptionExists: Call = {
-      
-      Call("POST", _prefix + { _defaultPrefix } + "adoptionExists")
-    }
-  
     // @LINE:72
     def readAllUsersApprovedAdoptions: Call = {
       
@@ -523,6 +517,12 @@ package controllers {
     def vetApprove: Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "vetApprove")
+    }
+  
+    // @LINE:70
+    def approvedAdoptionExists: Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "approvedAdoptionExists")
     }
   
     // @LINE:66

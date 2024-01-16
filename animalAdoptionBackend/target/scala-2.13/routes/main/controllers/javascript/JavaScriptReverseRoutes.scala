@@ -751,16 +751,6 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:70
-    def adoptionExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.AdoptionController.adoptionExists",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "adoptionExists"})
-        }
-      """
-    )
-  
     // @LINE:72
     def readAllUsersApprovedAdoptions: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AdoptionController.readAllUsersApprovedAdoptions",
@@ -797,6 +787,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "vetApprove"})
+        }
+      """
+    )
+  
+    // @LINE:70
+    def approvedAdoptionExists: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.AdoptionController.approvedAdoptionExists",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "approvedAdoptionExists"})
         }
       """
     )

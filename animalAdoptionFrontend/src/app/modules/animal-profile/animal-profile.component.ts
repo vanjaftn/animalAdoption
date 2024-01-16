@@ -48,10 +48,15 @@ export class AnimalProfileComponent {
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
     private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService,
     private videoService: VideoService , private lostAndFoundService: LostAndFoundService) { }
-    
+
     ngOnInit(): void {
 
-    this.read()
+    if(this.loggedUserJwt !== null){
+      this.readWithSubscription()
+    }
+    else{
+      this.read()
+    }
     this.readMedia()
     this.readLostAndFound()
   }
@@ -64,6 +69,18 @@ export class AnimalProfileComponent {
   }
 
   read(){
+    this.animalService.read(this.selectedAnimalProfileId!).subscribe((response: any) => {
+      this.selectedAnimalProfile = JSON.parse(response)
+      
+      console.log(this.selectedAnimalProfile)
+      this.getDate(new Date(this.selectedAnimalProfile.dateOfBirth))
+      
+      this.setSterilizationStatus()
+    }
+   );
+  }
+
+  readWithSubscription(){
     this.animalService.read(this.selectedAnimalProfileId!).subscribe((response: any) => {
       console.log(JSON.parse(response))
       this.selectedAnimalProfile = JSON.parse(response)
@@ -173,7 +190,7 @@ export class AnimalProfileComponent {
     this.adoptionService.animalAdopted(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       this.animalAdopted = response
 
-      this.adoptionService.adoptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
+      this.adoptionService.approvedAdoptionExists(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
         this.loggedInUserIsAdopter = response
         
       });
@@ -183,7 +200,6 @@ export class AnimalProfileComponent {
   setSterilizationStatus(){
     this.animalService.animalSterilized(this.selectedAnimalProfile.animalId).subscribe((response: any) => {
       this.animalSterilized = response
-
       if(response == 'true'){
         this.animalSterilized = "Yes"
       }
@@ -202,9 +218,8 @@ export class AnimalProfileComponent {
     this.adoptionService.create(this.adoption).subscribe(() => {
       alert('You will be contacted by our admin as soon as possible via email');
     },
-    (error) => {
-      alert("Your request filed");
-      console.log(error);
+    () => {
+      alert('You have already send adoption request for this animal');
     }
    );
   }
@@ -245,9 +260,7 @@ export class AnimalProfileComponent {
   }
 
   uploadMedia(event: any){
-
     const selectedFiles: FileList = event.target.files;
-
     if (selectedFiles.length > 0) {
       for (let i = 0; i < selectedFiles.length; i++) {
         this.selectedFile = <File>event.target.files[i]

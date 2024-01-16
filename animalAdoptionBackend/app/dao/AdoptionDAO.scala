@@ -43,6 +43,7 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(_.adoptionId === adoption.adoptionId).map(_.adoptionStatus).update("APPROVED"))
       .map(res => adoption)
   }
+
   def animalAdopted(animalId: String): Future[Boolean] = {
     db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "APPROVED").exists.result)
   }
@@ -51,8 +52,12 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(adoption => (adoption.animalId === animalId) && adoption.adoptionStatus === "ADMINAPPROVED").exists.result)
   }
 
-  def adoptionExists(animalId: String, userId: String): Future[Boolean] = {
+  def approvedAdoptionExists(animalId: String, userId: String): Future[Boolean] = {
     db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.userId === userId && adoption.adoptionStatus === "APPROVED").exists.result)
+  }
+
+  def adoptionExists(animalId: String, userId: String): Future[Boolean] = {
+    db.run(Adoptions.filter(adoption => adoption.animalId === animalId && adoption.userId === userId).exists.result)
   }
 
   def delete(id: String): Future[Int] = {
@@ -88,7 +93,6 @@ class AdoptionDAO @Inject()(
   }
 
   def readAllAdoptedAnimalIds(): Future[Seq[String]] = {
-    // Define the query to retrieve all adopted animal IDs
     val query = Adoptions.filter(animal => animal.adoptionStatus === "APPROVED").map(_.animalId).result
     db.run(query)
   }

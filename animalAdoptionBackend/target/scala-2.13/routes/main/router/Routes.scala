@@ -121,7 +121,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """readByUserAndAnimalId""", """controllers.AdoptionController.readByUserAndAnimalId"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """animalAdopted""", """controllers.AdoptionController.animalAdopted"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """animalAdminApproved""", """controllers.AdoptionController.animalAdminApproved"""),
-    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """adoptionExists""", """controllers.AdoptionController.adoptionExists"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """approvedAdoptionExists""", """controllers.AdoptionController.approvedAdoptionExists"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """readAllUsersAdoptions""", """controllers.AdoptionController.readAllUsersAdoptions"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """readAllUsersApprovedAdoptions""", """controllers.AdoptionController.readAllUsersApprovedAdoptions"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """subscription""", """controllers.SubscriptionController.create"""),
@@ -815,18 +815,18 @@ class Routes(
   )
 
   // @LINE:70
-  private[this] lazy val controllers_AdoptionController_adoptionExists35_route = Route("POST",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adoptionExists")))
+  private[this] lazy val controllers_AdoptionController_approvedAdoptionExists35_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("approvedAdoptionExists")))
   )
-  private[this] lazy val controllers_AdoptionController_adoptionExists35_invoker = createInvoker(
-    AdoptionController_6.adoptionExists,
+  private[this] lazy val controllers_AdoptionController_approvedAdoptionExists35_invoker = createInvoker(
+    AdoptionController_6.approvedAdoptionExists,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.AdoptionController",
-      "adoptionExists",
+      "approvedAdoptionExists",
       Nil,
       "POST",
-      this.prefix + """adoptionExists""",
+      this.prefix + """approvedAdoptionExists""",
       """""",
       Seq("""nocsrf""")
     )
@@ -2036,9 +2036,9 @@ class Routes(
       }
   
     // @LINE:70
-    case controllers_AdoptionController_adoptionExists35_route(params@_) =>
+    case controllers_AdoptionController_approvedAdoptionExists35_route(params@_) =>
       call { 
-        controllers_AdoptionController_adoptionExists35_invoker.call(AdoptionController_6.adoptionExists)
+        controllers_AdoptionController_approvedAdoptionExists35_invoker.call(AdoptionController_6.approvedAdoptionExists)
       }
   
     // @LINE:71

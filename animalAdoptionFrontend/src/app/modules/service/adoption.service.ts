@@ -37,8 +37,8 @@ export class AdoptionService {
     return this.http.post(this.apiServerUrl + '/deleteApproved/' + adoptionId, null, {headers: this.headers2, responseType: 'text'});
   }
 
-  adoptionExists(animalId: string): Observable<any> {
-    return this.http.post(this.apiServerUrl + '/adoptionExists', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
+  approvedAdoptionExists(animalId: string): Observable<any> {
+    return this.http.post(this.apiServerUrl + '/approvedAdoptionExists', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }
 
   readByUserAndAnimalId(adoptionDTO: AdoptionDTO): Observable<any> {

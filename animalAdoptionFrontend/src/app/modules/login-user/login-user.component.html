@@ -1,18 +1,20 @@
 <body>
   <div class="login-container">
-    <div class="photo-container">
+    <!-- <div class="photo-container">
         <img src='\assets\images\donate.png' alt="Login Photo">
-    </div>
-      <div class="form-container">
-          <h2>Login</h2>
+    </div> -->
+    <div class="form-container">
+        <div class="form-header">
+          <h2><img src='\assets\images\logo.svg' alt="Login Photo" class="logo"></h2>
+        </div>
           <form (ngSubmit)="login()">
               <!-- <label for="email">Email:</label> -->
-              <input type="text" id="email" name="email" placeholder="Enter your email" [(ngModel)]="loginUser.email" required>
+              <input type="text" id="email"class="input" name="email" placeholder="Enter your email" [(ngModel)]="loginUser.email" required>
 
               <!-- <label for="password">Password:</label> -->
-              <input type="password" id="password" name="password" placeholder="Enter your password" [(ngModel)]="loginUser.password" required>
+              <input type="password" id="password" class="input" name="password" placeholder="Enter your password" [(ngModel)]="loginUser.password" required>
 
-              <button type="submit">Login</button>
+              <button class="login-button" type="submit">Login</button>
           </form>
           <div class="col forgot-password-button">
             <a href="/forgot-password-page">Forgot password?</a>
@@ -23,10 +25,10 @@
           </div>
           <div class="social-media-button">
             <a href="https://www.instagram.com/volonteri_prihvatilista_za_pse/" target="_blank" rel="noopener noreferrer">
-              <img class="logo" src="/assets/images/insta-logo.png" alt="Instagram Icon">
+              <img class="social-media-logo" src="/assets/images/insta-logo.png" alt="Instagram Icon">
             </a>
             <a href="https://www.facebook.com/profile.php?id=100063500201459" target="_blank" rel="noopener noreferrer">
-              <img class="logo" src="/assets/images/fb-logo.png" alt="Facebook Icon">
+              <img class="social-media-logo" src="/assets/images/fb-logo.png" alt="Facebook Icon">
             </a>
           </div>
       </div>
