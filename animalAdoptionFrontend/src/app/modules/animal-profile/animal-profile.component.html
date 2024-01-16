@@ -1,5 +1,5 @@
 <body>
-  <div class="profile-container">
+  <div *ngIf="loggedUserJwt !== null" class="profile-container">
     <div class="profile-header">
       <h1>{{selectedAnimalProfile.name}}</h1>
     </div>
@@ -46,6 +46,37 @@
         <input type="file" id="my-file" (change)="uploadMedia($event)" multiple><br>
         <button class="add-media-confirm-button" (click)="addNewMedia()">Add media</button>
       </div>
+    </div>
+  </div>
+  <div *ngIf="loggedUserJwt === null" class="profile-container">
+    <div class="profile-header">
+      <h1>{{selectedAnimalProfile.name}}</h1>
+    </div>
+      <div class="medias">
+        <img *ngFor="let photo of animalPhotos" class="media clickable" [src]="photo" (click)="enlargeImage(photo)" alt="Animal Picture 1">
+        <video *ngFor="let video of animalVideos" class="media clickable" [src]="video" (click)="playVideo(video)" controls muted>
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="profile-content">
+        <div class="profile-details">
+          <p>Gender: {{selectedAnimalProfile.gender}}</p>
+          <p *ngIf="isLostAndFound == 'false'">Date of Birth: {{dob}}</p>
+          <p>Location: {{selectedAnimalProfile.location}}</p>
+          <p>Size: {{selectedAnimalProfile.size}}</p>
+          <p>Sterilized: {{animalSterilized}}</p>
+          <p *ngIf="(userIsVet == 'true' || userIsAdmin == 'true') && isLostAndFound == 'false'">Chip number: {{selectedAnimalProfile.chipNumber}}</p>
+          <p>Description: {{selectedAnimalProfile.description}}</p>
+          <p *ngIf="isLostAndFound == 'true'">Lost or found: {{lostOrFound}}</p>
+        </div>
+
+      <div class="enlarge-overlay" (click)="closeEnlarged()">
+        <img id="enlarged-image" src="" alt="Enlarged Image">
+      </div>
+    </div>
+    <div class="profile-actions">
+      <button *ngIf="isLostAndFound == 'false'" class="bottom-button" (click)="animalVaccinesPage()">Show vaccine history</button>
     </div>
   </div>
 </body>

@@ -19,6 +19,7 @@ export class UnadoptedAnimalsPageComponent {
   unadoptedAnimals : Array<Animal> = new Array()
   unadoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
   public searchInput: string = ""
+  public loggedUserJwt = localStorage.getItem('token');
 
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService,
      private photoService: PhotoService, private lostAndFoundService: LostAndFoundService) { }
@@ -26,7 +27,12 @@ export class UnadoptedAnimalsPageComponent {
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
 
-    this.allUnadoptedAnimals()
+    if(this.loggedUserJwt !== null){
+      this.allUnadoptedAnimalsWithSubscription()
+    }
+    else{
+      this.allUnadoptedAnimals()
+    }
   }
 
   public getDOB(date : Date): string {
@@ -37,81 +43,76 @@ export class UnadoptedAnimalsPageComponent {
     return dob
   }
 
-  allUnadoptedAnimals(){
+  allUnadoptedAnimalsWithSubscription(){
     this.animalService.allUnadoptedAnimals().subscribe((response: any) => {
       console.log(response)
-
       this.unadoptedAnimals = JSON.parse(response)
-
       this.addSubscriptionStatus()
-
     }
    );
   }
-  addSubscriptionStatus() {
-    
-    let unadoptedAnimalsList : Array<AnimalWithSubscription> = new Array()
 
+  allUnadoptedAnimals(){
+    this.animalService.allUnadoptedAnimals().subscribe((response: any) => {
+      this.unadoptedAnimals = JSON.parse(response)
+
+      this.unadoptedAnimals.forEach(animal => {
+          // this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
+
+            this.unadoptedAnimals = this.unadoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
+          // });
+          this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+            const allPhotos = JSON.parse(response)
+            animal.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
+            // @ts-ignore
+              photoURL ="\\assets\\images\\" + allPhotos[0]
+          });      
+        })    
+      });
+   console.log(this.unadoptedAnimals)
+  }
+  
+  addSubscriptionStatus() {
+    let unadoptedAnimalsList : Array<AnimalWithSubscription> = new Array()
     this.unadoptedAnimals.forEach(animal => {
       let animalWithSubscription : AnimalWithSubscription = new AnimalWithSubscription
-
       this.subscriptionService.subscriptionExists(animal.animalId).subscribe((response: any) => {
-        
-      this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
+        this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
+          if(responseLAF === "false") {
+          animalWithSubscription.animalId = animal.animalId
+          animalWithSubscription.dateOfBirth = animal.dateOfBirth
+          animalWithSubscription.name = animal.name
+          animalWithSubscription.gender = animal.gender
+          animalWithSubscription.location = animal.location
+          animalWithSubscription.description = animal.description
+          animalWithSubscription.chipNumber = animal.chipNumber
+          animalWithSubscription.animalType = animal.animalType
+          animalWithSubscription.size = animal.size
+          animalWithSubscription.sterilized = animal.sterilized
+          animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
 
-        if(responseLAF === "false") {
-        console.log(animal)
-        // console.log(animalWithSubscription)
-
-        animalWithSubscription.animalId = animal.animalId
-        animalWithSubscription.dateOfBirth = animal.dateOfBirth
-        animalWithSubscription.name = animal.name
-        animalWithSubscription.gender = animal.gender
-        animalWithSubscription.location = animal.location
-        animalWithSubscription.description = animal.description
-        animalWithSubscription.chipNumber = animal.chipNumber
-        animalWithSubscription.animalType = animal.animalType
-        animalWithSubscription.size = animal.size
-        animalWithSubscription.sterilized = animal.sterilized
-        animalWithSubscription.dob = this.getDOB(new Date(animal.dateOfBirth))
-        // console.log(animalWithSubscription)
-        // console.log(adoptedAnimalsList)
-console.log(response)
-        if(response == "false"){
-          animalWithSubscription.subscription = false
-        }
-        if(response == "true"){
-          animalWithSubscription.subscription = true
-        }
-  //       let addAnimal = animalWithSubscription
-        unadoptedAnimalsList.push(animalWithSubscription)
-        // console.log(animalWithSubscription)
-        console.log(unadoptedAnimalsList)
-        this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
-
-        console.log(this.unadoptedAnimalsWithSubscription)
-
-        }
-      });
-    })    
-      
-
-      this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
-        const allPhotos = JSON.parse(response)
-  
-        animalWithSubscription.photoURL = "\\assets\\images\\"+allPhotos[0].photoURL
-        // @ts-ignore
-          let photoURL : string
-          photoURL ="\\assets\\images\\"+allPhotos[0]
-  
-        console.log(allPhotos[0].photoURL)
-      });
+            if(response == "false"){
+              animalWithSubscription.subscription = false
+            }
+            if(response == "true"){
+              animalWithSubscription.subscription = true
+            }
+          unadoptedAnimalsList.push(animalWithSubscription)
+          this.unadoptedAnimalsWithSubscription = unadoptedAnimalsList.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
+          } 
+        });
+        this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+          const allPhotos = JSON.parse(response)
+          animalWithSubscription.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
+          // @ts-ignore
+            photoURL ="\\assets\\images\\" + allPhotos[0]
+        });      
+      })    
     });
   }
 
   subscribe(animalId : string){
     let subscription = new NewSubscription
-
     subscription.animalId = animalId
     this.subscriptionService.subscribe(subscription).subscribe((response: any) => {
       window.location.reload()
@@ -122,13 +123,7 @@ console.log(response)
   unsubscribe(animalId : string){
     this.subscriptionService.readByAnimalId(animalId).subscribe((response: any) => {
       let subscriptionId = JSON.parse(response).subscriptionId
-      console.log(subscriptionId)
-
       this.subscriptionService.unsubscribe(subscriptionId).subscribe((response: any) => {
-        console.log(response)
-  
-        // alert('Successfully registered');
-  
         window.location.reload()
       }
       );
@@ -136,41 +131,24 @@ console.log(response)
   }
 
   read(animalId : string){
-
     this.animalService.read(animalId).subscribe((response: any) => {
       let animalId = JSON.parse(response).animalId
-      let animalIdString = JSON.stringify(animalId)
-      
       localStorage.setItem('selectedAnimalProfileId', animalId)
-      console.log(localStorage.getItem('selectedAnimalProfileId'))
-      console.log(animalIdString)
-
-      // alert('Successfully registered');
-
       const animalURL = `animal-profile/${animalId}`;
       window.location.href = animalURL;
-
-      // window.location.href = '/unadopted-animals'
     });
   }
 
   search() {
-    if(this.searchInput == ""){
-      console.log("nista nije upisano")
-    }
-    else{
+    if(this.searchInput != ""){
       let searchRequest : SearchRequestDTO = new SearchRequestDTO
       searchRequest.searchInput = this.searchInput
       searchRequest.animals = this.unadoptedAnimals
-
       this.animalService.search(searchRequest).subscribe((response: any) => {
-        console.log(response)
         this.unadoptedAnimals = JSON.parse(response)
         this.unadoptedAnimalsWithSubscription = JSON.parse(response)
-
         this.addSubscriptionStatus()
-       
       });
     }
   }
-  }
+}

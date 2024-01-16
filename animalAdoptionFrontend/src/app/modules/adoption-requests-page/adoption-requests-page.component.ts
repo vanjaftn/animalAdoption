@@ -53,6 +53,7 @@ export class AdoptionRequestsPageComponent {
         newUser.dob = this.getDate(new Date(request.dateOfBirth))
 
         this.adoptionRequests.push(newUser)
+        this.adoptionRequests = this.adoptionRequests.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
       });
       
     });
@@ -77,6 +78,7 @@ export class AdoptionRequestsPageComponent {
         newUser.dob = this.getDate(new Date(request.dateOfBirth))
 
         this.adoptionRequestsApprovedByAdmin.push(newUser)
+        this.adoptionRequestsApprovedByAdmin = this.adoptionRequestsApprovedByAdmin.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
       });
 
     });

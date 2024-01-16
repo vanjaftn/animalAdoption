@@ -35,7 +35,7 @@ export class MyAdoptedAnimalsComponent {
   }
 
   readMyAdoptions(){
-    this.adoptionService.readAllUsersAdoptions().subscribe((response: any) => {
+    this.adoptionService.readAllUsersApprovedAdoptions().subscribe((response: any) => {
       
       console.log(response)
       let myAdoptions: Array<Adoption> = JSON.parse(response)
@@ -59,9 +59,8 @@ export class MyAdoptedAnimalsComponent {
             console.log(allPhotos[0].photoURL)
           });
           this.myAdoptedAnimals.push(animal)
-        });
           this.myAdoptedAnimals = this.myAdoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
-        
+        });
       });
       
     });

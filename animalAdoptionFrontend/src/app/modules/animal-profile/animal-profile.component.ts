@@ -43,7 +43,8 @@ export class AnimalProfileComponent {
   public isApproved : string = ""
   public lostOrFound : string = ""
   public lostAndFoundAnimal: LostAndFound = new LostAndFound
-  
+  public loggedUserJwt = localStorage.getItem('token') 
+
   constructor(private animalService: AnimalService, private subscriptionService: SubscriptionService,
     private adoptionService: AdoptionService, private vetService: VetService, private photoService: PhotoService,
     private videoService: VideoService , private lostAndFoundService: LostAndFoundService) { }
@@ -69,7 +70,6 @@ export class AnimalProfileComponent {
 
       this.getDate(new Date(this.selectedAnimalProfile.dateOfBirth))
 
-
       this.addSubscriptionStatus()
       this.setAdoptionStatus()
       this.setSterilizationStatus()
@@ -87,8 +87,6 @@ export class AnimalProfileComponent {
         photoURL ="\\assets\\images\\"+photo.photoURL
         this.animalPhotos.push(photoURL)
       });
-
-      console.log(allPhotos)
     }
    );
 

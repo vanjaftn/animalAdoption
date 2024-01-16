@@ -79,6 +79,10 @@ class AdoptionDAO @Inject()(
     db.run(Adoptions.filter(_.userId === userId).result)
   }
 
+  def readAllUsersApprovedAdoptions(userId: String): Future[Seq[Adoption]] = {
+    db.run(Adoptions.filter(adoption => adoption.userId === userId && adoption.adoptionStatus === "APPROVED").result)
+  }
+
   def readByUserAndAnimalId(animalId: String, userId: String): Future[Adoption] = {
     db.run(Adoptions.filter(adoption => adoption.userId === userId && adoption.animalId=== animalId).result.head)
   }

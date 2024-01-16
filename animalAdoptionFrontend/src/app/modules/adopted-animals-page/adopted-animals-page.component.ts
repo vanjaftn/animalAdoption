@@ -18,6 +18,7 @@ export class AdoptedAnimalsPageComponent {
   adoptedAnimalsWithSubscription : Array<AnimalWithSubscription> = new Array()
   public dob: string = ""
   public searchInput: string = ""
+  public loggedUserJwt = localStorage.getItem('token');
 
   constructor(private animalService: AnimalService, private subscriptionService : SubscriptionService, 
     private photoService: PhotoService) { }
@@ -25,8 +26,12 @@ export class AdoptedAnimalsPageComponent {
   ngOnInit(): void {
     console.log(localStorage.getItem('token'))
 
-    this.allAdoptedAnimals()
-  }
+    if(this.loggedUserJwt !== null){
+      this.allAdoptedAnimalsWithSubscription()
+    }
+    else{
+      this.allAdoptedAnimals()
+    }  }
 
   public getDOB(date : Date): string {
     let day = date.getDate();
@@ -36,7 +41,7 @@ export class AdoptedAnimalsPageComponent {
     return dob
   }
 
-  allAdoptedAnimals(){
+  allAdoptedAnimalsWithSubscription(){
     this.animalService.allAdoptedAnimals().subscribe((response: any) => {
       
       this.adoptedAnimals = JSON.parse(response)
@@ -44,6 +49,26 @@ export class AdoptedAnimalsPageComponent {
       
       this.addSubscriptionStatus()
     });
+  }
+
+  allAdoptedAnimals(){
+    this.animalService.allAdoptedAnimals().subscribe((response: any) => {
+      this.adoptedAnimals = JSON.parse(response)
+
+      this.adoptedAnimals.forEach(animal => {
+          // this.lostAndFoundService.lostAndFoundExists(animal.animalId).subscribe((responseLAF: any) => {
+
+            this.adoptedAnimals = this.adoptedAnimals.sort((a, b) => new Date(a.dateOfBirth).getTime() - new Date(b.dateOfBirth).getTime())
+          // });
+          this.photoService.allAnimalPhotos(animal.animalId).subscribe((response: any) => {
+            const allPhotos = JSON.parse(response)
+            animal.photoURL = "\\assets\\images\\" + allPhotos[0].photoURL
+            // @ts-ignore
+              photoURL ="\\assets\\images\\" + allPhotos[0]
+          });      
+        })    
+      });
+   console.log(this.adoptedAnimals)
   }
 
   addSubscriptionStatus() {

@@ -75,17 +75,17 @@ body {
   justify-content: space-evenly;
   word-break: break-word;
   overflow-wrap: break-word;
-  border: 1px solid #26a69a; /* Added border */
-  border-radius: 10px; /* Rounded corners */
-  padding: 15px; /* Increased padding */
+  border: 1px solid #26a69a;
+  border-radius: 10px;
+  padding: 15px;
 }
 
 .profile-details p {
-  margin: 8px 0; /* Adjusted margin */
-  font-size: 14px; /* Adjusted font size */
-  color: #333; /* Adjusted text color */
-  border-bottom: 1px solid #ccc; /* Added bottom border */
-  padding-bottom: 4px; /* Adjusted padding at the bottom of each paragraph */
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333; 
+  border-bottom: 1px solid #ccc; 
+  padding-bottom: 4px; 
 }
 
 .subscribe-button {

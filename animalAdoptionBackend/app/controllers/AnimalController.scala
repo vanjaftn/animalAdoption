@@ -59,7 +59,7 @@ class AnimalController @Inject() (
     )
   }
 
-  def read(id: String) = authAction.async { implicit request =>
+  def read(id: String) = Action.async { implicit request =>
     animalService.read(id).map(res =>
       Ok(Json.toJson(res))
     )

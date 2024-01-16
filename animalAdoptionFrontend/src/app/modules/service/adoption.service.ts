@@ -49,6 +49,10 @@ export class AdoptionService {
     return this.http.get(this.apiServerUrl + '/readAllUsersAdoptions', {headers: this.headers2, responseType: 'text'});
   }
 
+  readAllUsersApprovedAdoptions(): Observable<any> {
+    return this.http.get(this.apiServerUrl + '/readAllUsersApprovedAdoptions', {headers: this.headers2, responseType: 'text'});
+  }
+
   animalAdopted(animalId: string): Observable<any> {
     return this.http.post(this.apiServerUrl + '/animalAdopted', JSON.stringify(animalId), {headers: this.headers2, responseType: 'text'});
   }

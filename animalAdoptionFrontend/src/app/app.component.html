@@ -27,10 +27,10 @@
          <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/found-animals">Found</a>
       </li> -->
       <li class="nav-item active">
-         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/unadopted-animals">For adoption</a>
+         <a class="nav-link" routerLink="/unadopted-animals">For adoption</a>
       </li>
       <li class="nav-item active">
-         <a *ngIf="loggedUserJwt !== null" class="nav-link" routerLink="/adopted-animals">Adopted animals</a>
+         <a class="nav-link" routerLink="/adopted-animals">Adopted animals</a>
       </li>
       <li *ngIf="loggedUserJwt !== null" class="nav-item active">
          <a class="nav-link" routerLink="/subscribed-animals">Subscriptions</a>

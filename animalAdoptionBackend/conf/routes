@@ -69,6 +69,7 @@ POST    /animalAdminApproved  controllers.AdoptionController.animalAdminApproved
 + nocsrf
 POST     /adoptionExists            controllers.AdoptionController.adoptionExists
 GET     /readAllUsersAdoptions      controllers.AdoptionController.readAllUsersAdoptions
+GET     /readAllUsersApprovedAdoptions      controllers.AdoptionController.readAllUsersApprovedAdoptions
 + nocsrf
 POST    /subscription  controllers.SubscriptionController.create
 GET     /subscription/:id           controllers.SubscriptionController.read(id : String)

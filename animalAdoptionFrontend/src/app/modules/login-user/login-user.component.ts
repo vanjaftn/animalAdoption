@@ -42,5 +42,9 @@ export class LoginUserComponent {
     }
    );
   } 
+
+  registration(){
+    window.location.href = '/register-user'
+  }
 }
 

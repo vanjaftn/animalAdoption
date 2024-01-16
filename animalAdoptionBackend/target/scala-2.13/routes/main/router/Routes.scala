@@ -20,25 +20,25 @@ class Routes(
   AnimalController_7: controllers.AnimalController,
   // @LINE:49
   AdoptionController_6: controllers.AdoptionController,
-  // @LINE:73
+  // @LINE:74
   SubscriptionController_5: controllers.SubscriptionController,
-  // @LINE:84
+  // @LINE:85
   AdminController_9: controllers.AdminController,
-  // @LINE:91
+  // @LINE:92
   VetController_8: controllers.VetController,
-  // @LINE:98
+  // @LINE:99
   AdopterController_2: controllers.AdopterController,
-  // @LINE:109
+  // @LINE:110
   VaccineController_1: controllers.VaccineController,
-  // @LINE:117
+  // @LINE:118
   LostAndFoundController_4: controllers.LostAndFoundController,
-  // @LINE:139
+  // @LINE:140
   PhotoController_10: controllers.PhotoController,
-  // @LINE:151
+  // @LINE:152
   VideoController_0: controllers.VideoController,
-  // @LINE:161
+  // @LINE:162
   AnimalTypeController_3: controllers.AnimalTypeController,
-  // @LINE:165
+  // @LINE:166
   Assets_12: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -53,25 +53,25 @@ class Routes(
     AnimalController_7: controllers.AnimalController,
     // @LINE:49
     AdoptionController_6: controllers.AdoptionController,
-    // @LINE:73
+    // @LINE:74
     SubscriptionController_5: controllers.SubscriptionController,
-    // @LINE:84
+    // @LINE:85
     AdminController_9: controllers.AdminController,
-    // @LINE:91
+    // @LINE:92
     VetController_8: controllers.VetController,
-    // @LINE:98
+    // @LINE:99
     AdopterController_2: controllers.AdopterController,
-    // @LINE:109
+    // @LINE:110
     VaccineController_1: controllers.VaccineController,
-    // @LINE:117
+    // @LINE:118
     LostAndFoundController_4: controllers.LostAndFoundController,
-    // @LINE:139
+    // @LINE:140
     PhotoController_10: controllers.PhotoController,
-    // @LINE:151
+    // @LINE:152
     VideoController_0: controllers.VideoController,
-    // @LINE:161
+    // @LINE:162
     AnimalTypeController_3: controllers.AnimalTypeController,
-    // @LINE:165
+    // @LINE:166
     Assets_12: controllers.Assets
   ) = this(errorHandler, HomeController_13, UserController_11, AnimalController_7, AdoptionController_6, SubscriptionController_5, AdminController_9, VetController_8, AdopterController_2, VaccineController_1, LostAndFoundController_4, PhotoController_10, VideoController_0, AnimalTypeController_3, Assets_12, "/")
 
@@ -123,6 +123,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """animalAdminApproved""", """controllers.AdoptionController.animalAdminApproved"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """adoptionExists""", """controllers.AdoptionController.adoptionExists"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """readAllUsersAdoptions""", """controllers.AdoptionController.readAllUsersAdoptions"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """readAllUsersApprovedAdoptions""", """controllers.AdoptionController.readAllUsersApprovedAdoptions"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """subscription""", """controllers.SubscriptionController.create"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """subscription/""" + "$" + """id<[^/]+>""", """controllers.SubscriptionController.read(id:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """allSubscriptions""", """controllers.SubscriptionController.readAll"""),
@@ -849,11 +850,29 @@ class Routes(
     )
   )
 
-  // @LINE:73
-  private[this] lazy val controllers_SubscriptionController_create37_route = Route("POST",
+  // @LINE:72
+  private[this] lazy val controllers_AdoptionController_readAllUsersApprovedAdoptions37_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("readAllUsersApprovedAdoptions")))
+  )
+  private[this] lazy val controllers_AdoptionController_readAllUsersApprovedAdoptions37_invoker = createInvoker(
+    AdoptionController_6.readAllUsersApprovedAdoptions,
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.AdoptionController",
+      "readAllUsersApprovedAdoptions",
+      Nil,
+      "GET",
+      this.prefix + """readAllUsersApprovedAdoptions""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:74
+  private[this] lazy val controllers_SubscriptionController_create38_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("subscription")))
   )
-  private[this] lazy val controllers_SubscriptionController_create37_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_create38_invoker = createInvoker(
     SubscriptionController_5.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -867,11 +886,11 @@ class Routes(
     )
   )
 
-  // @LINE:74
-  private[this] lazy val controllers_SubscriptionController_read38_route = Route("GET",
+  // @LINE:75
+  private[this] lazy val controllers_SubscriptionController_read39_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("subscription/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_SubscriptionController_read38_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_read39_invoker = createInvoker(
     SubscriptionController_5.read(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -885,11 +904,11 @@ class Routes(
     )
   )
 
-  // @LINE:75
-  private[this] lazy val controllers_SubscriptionController_readAll39_route = Route("GET",
+  // @LINE:76
+  private[this] lazy val controllers_SubscriptionController_readAll40_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allSubscriptions")))
   )
-  private[this] lazy val controllers_SubscriptionController_readAll39_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_readAll40_invoker = createInvoker(
     SubscriptionController_5.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -903,11 +922,11 @@ class Routes(
     )
   )
 
-  // @LINE:77
-  private[this] lazy val controllers_SubscriptionController_delete40_route = Route("POST",
+  // @LINE:78
+  private[this] lazy val controllers_SubscriptionController_delete41_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteSubscription/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_SubscriptionController_delete40_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_delete41_invoker = createInvoker(
     SubscriptionController_5.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -921,11 +940,11 @@ class Routes(
     )
   )
 
-  // @LINE:79
-  private[this] lazy val controllers_SubscriptionController_subscriptionExists41_route = Route("POST",
+  // @LINE:80
+  private[this] lazy val controllers_SubscriptionController_subscriptionExists42_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("subscriptionExists")))
   )
-  private[this] lazy val controllers_SubscriptionController_subscriptionExists41_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_subscriptionExists42_invoker = createInvoker(
     SubscriptionController_5.subscriptionExists,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -939,11 +958,11 @@ class Routes(
     )
   )
 
-  // @LINE:81
-  private[this] lazy val controllers_SubscriptionController_readSubscriptionByAnimalAndUserId42_route = Route("POST",
+  // @LINE:82
+  private[this] lazy val controllers_SubscriptionController_readSubscriptionByAnimalAndUserId43_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("subscriptionByAnimalId")))
   )
-  private[this] lazy val controllers_SubscriptionController_readSubscriptionByAnimalAndUserId42_invoker = createInvoker(
+  private[this] lazy val controllers_SubscriptionController_readSubscriptionByAnimalAndUserId43_invoker = createInvoker(
     SubscriptionController_5.readSubscriptionByAnimalAndUserId,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -957,11 +976,11 @@ class Routes(
     )
   )
 
-  // @LINE:84
-  private[this] lazy val controllers_AdminController_create43_route = Route("POST",
+  // @LINE:85
+  private[this] lazy val controllers_AdminController_create44_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("admin")))
   )
-  private[this] lazy val controllers_AdminController_create43_invoker = createInvoker(
+  private[this] lazy val controllers_AdminController_create44_invoker = createInvoker(
     AdminController_9.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -975,11 +994,11 @@ class Routes(
     )
   )
 
-  // @LINE:85
-  private[this] lazy val controllers_AdminController_readAll44_route = Route("GET",
+  // @LINE:86
+  private[this] lazy val controllers_AdminController_readAll45_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAdmins")))
   )
-  private[this] lazy val controllers_AdminController_readAll44_invoker = createInvoker(
+  private[this] lazy val controllers_AdminController_readAll45_invoker = createInvoker(
     AdminController_9.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -993,11 +1012,11 @@ class Routes(
     )
   )
 
-  // @LINE:86
-  private[this] lazy val controllers_AdminController_adminExists45_route = Route("GET",
+  // @LINE:87
+  private[this] lazy val controllers_AdminController_adminExists46_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adminExists")))
   )
-  private[this] lazy val controllers_AdminController_adminExists45_invoker = createInvoker(
+  private[this] lazy val controllers_AdminController_adminExists46_invoker = createInvoker(
     AdminController_9.adminExists,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1011,11 +1030,11 @@ class Routes(
     )
   )
 
-  // @LINE:88
-  private[this] lazy val controllers_AdminController_delete46_route = Route("POST",
+  // @LINE:89
+  private[this] lazy val controllers_AdminController_delete47_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteAdmin/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_AdminController_delete46_invoker = createInvoker(
+  private[this] lazy val controllers_AdminController_delete47_invoker = createInvoker(
     AdminController_9.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1029,11 +1048,11 @@ class Routes(
     )
   )
 
-  // @LINE:91
-  private[this] lazy val controllers_VetController_create47_route = Route("POST",
+  // @LINE:92
+  private[this] lazy val controllers_VetController_create48_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("vet")))
   )
-  private[this] lazy val controllers_VetController_create47_invoker = createInvoker(
+  private[this] lazy val controllers_VetController_create48_invoker = createInvoker(
     VetController_8.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1047,11 +1066,11 @@ class Routes(
     )
   )
 
-  // @LINE:92
-  private[this] lazy val controllers_UserController_read48_route = Route("GET",
+  // @LINE:93
+  private[this] lazy val controllers_UserController_read49_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("vet/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_UserController_read48_invoker = createInvoker(
+  private[this] lazy val controllers_UserController_read49_invoker = createInvoker(
     UserController_11.read(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1065,11 +1084,11 @@ class Routes(
     )
   )
 
-  // @LINE:93
-  private[this] lazy val controllers_VetController_readAll49_route = Route("GET",
+  // @LINE:94
+  private[this] lazy val controllers_VetController_readAll50_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allVets")))
   )
-  private[this] lazy val controllers_VetController_readAll49_invoker = createInvoker(
+  private[this] lazy val controllers_VetController_readAll50_invoker = createInvoker(
     VetController_8.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1083,11 +1102,11 @@ class Routes(
     )
   )
 
-  // @LINE:95
-  private[this] lazy val controllers_VetController_delete50_route = Route("POST",
+  // @LINE:96
+  private[this] lazy val controllers_VetController_delete51_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteVet/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VetController_delete50_invoker = createInvoker(
+  private[this] lazy val controllers_VetController_delete51_invoker = createInvoker(
     VetController_8.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1101,11 +1120,11 @@ class Routes(
     )
   )
 
-  // @LINE:98
-  private[this] lazy val controllers_AdopterController_create51_route = Route("POST",
+  // @LINE:99
+  private[this] lazy val controllers_AdopterController_create52_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adopter")))
   )
-  private[this] lazy val controllers_AdopterController_create51_invoker = createInvoker(
+  private[this] lazy val controllers_AdopterController_create52_invoker = createInvoker(
     AdopterController_2.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1119,11 +1138,11 @@ class Routes(
     )
   )
 
-  // @LINE:99
-  private[this] lazy val controllers_AdopterController_readAll52_route = Route("GET",
+  // @LINE:100
+  private[this] lazy val controllers_AdopterController_readAll53_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAdopters")))
   )
-  private[this] lazy val controllers_AdopterController_readAll52_invoker = createInvoker(
+  private[this] lazy val controllers_AdopterController_readAll53_invoker = createInvoker(
     AdopterController_2.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1137,11 +1156,11 @@ class Routes(
     )
   )
 
-  // @LINE:101
-  private[this] lazy val controllers_AdopterController_delete53_route = Route("POST",
+  // @LINE:102
+  private[this] lazy val controllers_AdopterController_delete54_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteAdopter/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_AdopterController_delete53_invoker = createInvoker(
+  private[this] lazy val controllers_AdopterController_delete54_invoker = createInvoker(
     AdopterController_2.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1155,11 +1174,11 @@ class Routes(
     )
   )
 
-  // @LINE:103
-  private[this] lazy val controllers_AdopterController_adopterExist54_route = Route("GET",
+  // @LINE:104
+  private[this] lazy val controllers_AdopterController_adopterExist55_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adopterExist")))
   )
-  private[this] lazy val controllers_AdopterController_adopterExist54_invoker = createInvoker(
+  private[this] lazy val controllers_AdopterController_adopterExist55_invoker = createInvoker(
     AdopterController_2.adopterExist,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1173,11 +1192,11 @@ class Routes(
     )
   )
 
-  // @LINE:106
-  private[this] lazy val controllers_VetController_vetExists55_route = Route("GET",
+  // @LINE:107
+  private[this] lazy val controllers_VetController_vetExists56_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("vetExists")))
   )
-  private[this] lazy val controllers_VetController_vetExists55_invoker = createInvoker(
+  private[this] lazy val controllers_VetController_vetExists56_invoker = createInvoker(
     VetController_8.vetExists,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1191,11 +1210,11 @@ class Routes(
     )
   )
 
-  // @LINE:109
-  private[this] lazy val controllers_VaccineController_create56_route = Route("POST",
+  // @LINE:110
+  private[this] lazy val controllers_VaccineController_create57_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("vaccine")))
   )
-  private[this] lazy val controllers_VaccineController_create56_invoker = createInvoker(
+  private[this] lazy val controllers_VaccineController_create57_invoker = createInvoker(
     VaccineController_1.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1209,11 +1228,11 @@ class Routes(
     )
   )
 
-  // @LINE:110
-  private[this] lazy val controllers_VaccineController_readAll57_route = Route("GET",
+  // @LINE:111
+  private[this] lazy val controllers_VaccineController_readAll58_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allVaccines")))
   )
-  private[this] lazy val controllers_VaccineController_readAll57_invoker = createInvoker(
+  private[this] lazy val controllers_VaccineController_readAll58_invoker = createInvoker(
     VaccineController_1.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1227,11 +1246,11 @@ class Routes(
     )
   )
 
-  // @LINE:112
-  private[this] lazy val controllers_VaccineController_delete58_route = Route("POST",
+  // @LINE:113
+  private[this] lazy val controllers_VaccineController_delete59_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteVaccine/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VaccineController_delete58_invoker = createInvoker(
+  private[this] lazy val controllers_VaccineController_delete59_invoker = createInvoker(
     VaccineController_1.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1245,11 +1264,11 @@ class Routes(
     )
   )
 
-  // @LINE:114
-  private[this] lazy val controllers_VaccineController_readAllAnimalVaccines59_route = Route("POST",
+  // @LINE:115
+  private[this] lazy val controllers_VaccineController_readAllAnimalVaccines60_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("readAllAnimalVaccines")))
   )
-  private[this] lazy val controllers_VaccineController_readAllAnimalVaccines59_invoker = createInvoker(
+  private[this] lazy val controllers_VaccineController_readAllAnimalVaccines60_invoker = createInvoker(
     VaccineController_1.readAllAnimalVaccines,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1263,11 +1282,11 @@ class Routes(
     )
   )
 
-  // @LINE:117
-  private[this] lazy val controllers_LostAndFoundController_createLost60_route = Route("POST",
+  // @LINE:118
+  private[this] lazy val controllers_LostAndFoundController_createLost61_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("lost")))
   )
-  private[this] lazy val controllers_LostAndFoundController_createLost60_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_createLost61_invoker = createInvoker(
     LostAndFoundController_4.createLost,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1281,11 +1300,11 @@ class Routes(
     )
   )
 
-  // @LINE:119
-  private[this] lazy val controllers_LostAndFoundController_createFound61_route = Route("POST",
+  // @LINE:120
+  private[this] lazy val controllers_LostAndFoundController_createFound62_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("found")))
   )
-  private[this] lazy val controllers_LostAndFoundController_createFound61_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_createFound62_invoker = createInvoker(
     LostAndFoundController_4.createFound,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1299,11 +1318,11 @@ class Routes(
     )
   )
 
-  // @LINE:120
-  private[this] lazy val controllers_LostAndFoundController_readAll62_route = Route("GET",
+  // @LINE:121
+  private[this] lazy val controllers_LostAndFoundController_readAll63_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allLostAndFound")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAll62_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAll63_invoker = createInvoker(
     LostAndFoundController_4.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1317,11 +1336,11 @@ class Routes(
     )
   )
 
-  // @LINE:121
-  private[this] lazy val controllers_LostAndFoundController_readAllNotApproved63_route = Route("GET",
+  // @LINE:122
+  private[this] lazy val controllers_LostAndFoundController_readAllNotApproved64_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allLostAndFoundNotApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllNotApproved63_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllNotApproved64_invoker = createInvoker(
     LostAndFoundController_4.readAllNotApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1335,11 +1354,11 @@ class Routes(
     )
   )
 
-  // @LINE:122
-  private[this] lazy val controllers_LostAndFoundController_readAllApproved64_route = Route("GET",
+  // @LINE:123
+  private[this] lazy val controllers_LostAndFoundController_readAllApproved65_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allLostAndFoundApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllApproved64_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllApproved65_invoker = createInvoker(
     LostAndFoundController_4.readAllApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1353,11 +1372,11 @@ class Routes(
     )
   )
 
-  // @LINE:123
-  private[this] lazy val controllers_LostAndFoundController_readAllLostApproved65_route = Route("GET",
+  // @LINE:124
+  private[this] lazy val controllers_LostAndFoundController_readAllLostApproved66_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allLostApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllLostApproved65_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllLostApproved66_invoker = createInvoker(
     LostAndFoundController_4.readAllLostApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1371,11 +1390,11 @@ class Routes(
     )
   )
 
-  // @LINE:124
-  private[this] lazy val controllers_LostAndFoundController_readAllFoundApproved66_route = Route("GET",
+  // @LINE:125
+  private[this] lazy val controllers_LostAndFoundController_readAllFoundApproved67_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allFoundApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllFoundApproved66_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllFoundApproved67_invoker = createInvoker(
     LostAndFoundController_4.readAllFoundApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1389,11 +1408,11 @@ class Routes(
     )
   )
 
-  // @LINE:125
-  private[this] lazy val controllers_LostAndFoundController_readAllLost67_route = Route("GET",
+  // @LINE:126
+  private[this] lazy val controllers_LostAndFoundController_readAllLost68_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allLost")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllLost67_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllLost68_invoker = createInvoker(
     LostAndFoundController_4.readAllLost,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1407,11 +1426,11 @@ class Routes(
     )
   )
 
-  // @LINE:126
-  private[this] lazy val controllers_LostAndFoundController_readAllFound68_route = Route("GET",
+  // @LINE:127
+  private[this] lazy val controllers_LostAndFoundController_readAllFound69_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allFound")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllFound68_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllFound69_invoker = createInvoker(
     LostAndFoundController_4.readAllFound,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1425,11 +1444,11 @@ class Routes(
     )
   )
 
-  // @LINE:127
-  private[this] lazy val controllers_LostAndFoundController_readAllLostNotApproved69_route = Route("GET",
+  // @LINE:128
+  private[this] lazy val controllers_LostAndFoundController_readAllLostNotApproved70_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("readAllLostNotApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllLostNotApproved69_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllLostNotApproved70_invoker = createInvoker(
     LostAndFoundController_4.readAllLostNotApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1443,11 +1462,11 @@ class Routes(
     )
   )
 
-  // @LINE:128
-  private[this] lazy val controllers_LostAndFoundController_readAllFoundNotApproved70_route = Route("GET",
+  // @LINE:129
+  private[this] lazy val controllers_LostAndFoundController_readAllFoundNotApproved71_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("readAllFoundNotApproved")))
   )
-  private[this] lazy val controllers_LostAndFoundController_readAllFoundNotApproved70_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readAllFoundNotApproved71_invoker = createInvoker(
     LostAndFoundController_4.readAllFoundNotApproved,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1461,11 +1480,11 @@ class Routes(
     )
   )
 
-  // @LINE:130
-  private[this] lazy val controllers_LostAndFoundController_adminApproveLAF71_route = Route("POST",
+  // @LINE:131
+  private[this] lazy val controllers_LostAndFoundController_adminApproveLAF72_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adminApproveLAF")))
   )
-  private[this] lazy val controllers_LostAndFoundController_adminApproveLAF71_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_adminApproveLAF72_invoker = createInvoker(
     LostAndFoundController_4.adminApproveLAF,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1479,11 +1498,11 @@ class Routes(
     )
   )
 
-  // @LINE:131
-  private[this] lazy val controllers_LostAndFoundController_read72_route = Route("GET",
+  // @LINE:132
+  private[this] lazy val controllers_LostAndFoundController_read73_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("lostAndFound/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_LostAndFoundController_read72_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_read73_invoker = createInvoker(
     LostAndFoundController_4.read(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1497,11 +1516,11 @@ class Routes(
     )
   )
 
-  // @LINE:133
-  private[this] lazy val controllers_LostAndFoundController_delete73_route = Route("POST",
+  // @LINE:134
+  private[this] lazy val controllers_LostAndFoundController_delete74_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteLostAndFound/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_LostAndFoundController_delete73_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_delete74_invoker = createInvoker(
     LostAndFoundController_4.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1515,11 +1534,11 @@ class Routes(
     )
   )
 
-  // @LINE:134
-  private[this] lazy val controllers_LostAndFoundController_readByAnimalId74_route = Route("GET",
+  // @LINE:135
+  private[this] lazy val controllers_LostAndFoundController_readByAnimalId75_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("lostAndFoundByAnimalId/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_LostAndFoundController_readByAnimalId74_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_readByAnimalId75_invoker = createInvoker(
     LostAndFoundController_4.readByAnimalId(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1533,11 +1552,11 @@ class Routes(
     )
   )
 
-  // @LINE:136
-  private[this] lazy val controllers_LostAndFoundController_lostAndFoundExists75_route = Route("POST",
+  // @LINE:137
+  private[this] lazy val controllers_LostAndFoundController_lostAndFoundExists76_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("lostAndFoundExists")))
   )
-  private[this] lazy val controllers_LostAndFoundController_lostAndFoundExists75_invoker = createInvoker(
+  private[this] lazy val controllers_LostAndFoundController_lostAndFoundExists76_invoker = createInvoker(
     LostAndFoundController_4.lostAndFoundExists,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1551,11 +1570,11 @@ class Routes(
     )
   )
 
-  // @LINE:139
-  private[this] lazy val controllers_PhotoController_create76_route = Route("POST",
+  // @LINE:140
+  private[this] lazy val controllers_PhotoController_create77_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("photo")))
   )
-  private[this] lazy val controllers_PhotoController_create76_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_create77_invoker = createInvoker(
     PhotoController_10.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1569,11 +1588,11 @@ class Routes(
     )
   )
 
-  // @LINE:141
-  private[this] lazy val controllers_PhotoController_adopterAddPhotos77_route = Route("POST",
+  // @LINE:142
+  private[this] lazy val controllers_PhotoController_adopterAddPhotos78_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adopterAddPhotos")))
   )
-  private[this] lazy val controllers_PhotoController_adopterAddPhotos77_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_adopterAddPhotos78_invoker = createInvoker(
     PhotoController_10.adopterAddPhotos,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1587,11 +1606,11 @@ class Routes(
     )
   )
 
-  // @LINE:142
-  private[this] lazy val controllers_PhotoController_readAll78_route = Route("GET",
+  // @LINE:143
+  private[this] lazy val controllers_PhotoController_readAll79_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allPhotos")))
   )
-  private[this] lazy val controllers_PhotoController_readAll78_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_readAll79_invoker = createInvoker(
     PhotoController_10.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1605,11 +1624,11 @@ class Routes(
     )
   )
 
-  // @LINE:144
-  private[this] lazy val controllers_PhotoController_delete79_route = Route("POST",
+  // @LINE:145
+  private[this] lazy val controllers_PhotoController_delete80_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deletePhoto/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_PhotoController_delete79_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_delete80_invoker = createInvoker(
     PhotoController_10.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1623,11 +1642,11 @@ class Routes(
     )
   )
 
-  // @LINE:146
-  private[this] lazy val controllers_PhotoController_uploadMedia80_route = Route("POST",
+  // @LINE:147
+  private[this] lazy val controllers_PhotoController_uploadMedia81_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("uploadMedia")))
   )
-  private[this] lazy val controllers_PhotoController_uploadMedia80_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_uploadMedia81_invoker = createInvoker(
     PhotoController_10.uploadMedia,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1641,11 +1660,11 @@ class Routes(
     )
   )
 
-  // @LINE:148
-  private[this] lazy val controllers_PhotoController_readAllAnimalPhotos81_route = Route("POST",
+  // @LINE:149
+  private[this] lazy val controllers_PhotoController_readAllAnimalPhotos82_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAnimalPhotos")))
   )
-  private[this] lazy val controllers_PhotoController_readAllAnimalPhotos81_invoker = createInvoker(
+  private[this] lazy val controllers_PhotoController_readAllAnimalPhotos82_invoker = createInvoker(
     PhotoController_10.readAllAnimalPhotos,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1659,11 +1678,11 @@ class Routes(
     )
   )
 
-  // @LINE:151
-  private[this] lazy val controllers_VideoController_create82_route = Route("POST",
+  // @LINE:152
+  private[this] lazy val controllers_VideoController_create83_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("video")))
   )
-  private[this] lazy val controllers_VideoController_create82_invoker = createInvoker(
+  private[this] lazy val controllers_VideoController_create83_invoker = createInvoker(
     VideoController_0.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1677,11 +1696,11 @@ class Routes(
     )
   )
 
-  // @LINE:153
-  private[this] lazy val controllers_VideoController_adopterAddVideos83_route = Route("POST",
+  // @LINE:154
+  private[this] lazy val controllers_VideoController_adopterAddVideos84_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("adopterAddVideos")))
   )
-  private[this] lazy val controllers_VideoController_adopterAddVideos83_invoker = createInvoker(
+  private[this] lazy val controllers_VideoController_adopterAddVideos84_invoker = createInvoker(
     VideoController_0.adopterAddVideos,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1695,11 +1714,11 @@ class Routes(
     )
   )
 
-  // @LINE:154
-  private[this] lazy val controllers_VideoController_readAll84_route = Route("GET",
+  // @LINE:155
+  private[this] lazy val controllers_VideoController_readAll85_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allVideos")))
   )
-  private[this] lazy val controllers_VideoController_readAll84_invoker = createInvoker(
+  private[this] lazy val controllers_VideoController_readAll85_invoker = createInvoker(
     VideoController_0.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1713,11 +1732,11 @@ class Routes(
     )
   )
 
-  // @LINE:156
-  private[this] lazy val controllers_VideoController_delete85_route = Route("POST",
+  // @LINE:157
+  private[this] lazy val controllers_VideoController_delete86_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("deleteVideo/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VideoController_delete85_invoker = createInvoker(
+  private[this] lazy val controllers_VideoController_delete86_invoker = createInvoker(
     VideoController_0.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1731,11 +1750,11 @@ class Routes(
     )
   )
 
-  // @LINE:158
-  private[this] lazy val controllers_VideoController_readAllAnimalVideos86_route = Route("POST",
+  // @LINE:159
+  private[this] lazy val controllers_VideoController_readAllAnimalVideos87_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAnimalVideos")))
   )
-  private[this] lazy val controllers_VideoController_readAllAnimalVideos86_invoker = createInvoker(
+  private[this] lazy val controllers_VideoController_readAllAnimalVideos87_invoker = createInvoker(
     VideoController_0.readAllAnimalVideos,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1749,11 +1768,11 @@ class Routes(
     )
   )
 
-  // @LINE:161
-  private[this] lazy val controllers_AnimalTypeController_create87_route = Route("POST",
+  // @LINE:162
+  private[this] lazy val controllers_AnimalTypeController_create88_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("animalType")))
   )
-  private[this] lazy val controllers_AnimalTypeController_create87_invoker = createInvoker(
+  private[this] lazy val controllers_AnimalTypeController_create88_invoker = createInvoker(
     AnimalTypeController_3.create,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1767,11 +1786,11 @@ class Routes(
     )
   )
 
-  // @LINE:162
-  private[this] lazy val controllers_AnimalTypeController_readAll88_route = Route("GET",
+  // @LINE:163
+  private[this] lazy val controllers_AnimalTypeController_readAll89_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("allAnimalTypes")))
   )
-  private[this] lazy val controllers_AnimalTypeController_readAll88_invoker = createInvoker(
+  private[this] lazy val controllers_AnimalTypeController_readAll89_invoker = createInvoker(
     AnimalTypeController_3.readAll,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -1785,11 +1804,11 @@ class Routes(
     )
   )
 
-  // @LINE:165
-  private[this] lazy val controllers_Assets_versioned89_route = Route("GET",
+  // @LINE:166
+  private[this] lazy val controllers_Assets_versioned90_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned89_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned90_invoker = createInvoker(
     Assets_12.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -2028,322 +2047,328 @@ class Routes(
         controllers_AdoptionController_readAllUsersAdoptions36_invoker.call(AdoptionController_6.readAllUsersAdoptions)
       }
   
-    // @LINE:73
-    case controllers_SubscriptionController_create37_route(params@_) =>
+    // @LINE:72
+    case controllers_AdoptionController_readAllUsersApprovedAdoptions37_route(params@_) =>
       call { 
-        controllers_SubscriptionController_create37_invoker.call(SubscriptionController_5.create)
+        controllers_AdoptionController_readAllUsersApprovedAdoptions37_invoker.call(AdoptionController_6.readAllUsersApprovedAdoptions)
       }
   
     // @LINE:74
-    case controllers_SubscriptionController_read38_route(params@_) =>
-      call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_SubscriptionController_read38_invoker.call(SubscriptionController_5.read(id))
+    case controllers_SubscriptionController_create38_route(params@_) =>
+      call { 
+        controllers_SubscriptionController_create38_invoker.call(SubscriptionController_5.create)
       }
   
     // @LINE:75
-    case controllers_SubscriptionController_readAll39_route(params@_) =>
-      call { 
-        controllers_SubscriptionController_readAll39_invoker.call(SubscriptionController_5.readAll)
-      }
-  
-    // @LINE:77
-    case controllers_SubscriptionController_delete40_route(params@_) =>
+    case controllers_SubscriptionController_read39_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_SubscriptionController_delete40_invoker.call(SubscriptionController_5.delete(id))
+        controllers_SubscriptionController_read39_invoker.call(SubscriptionController_5.read(id))
       }
   
-    // @LINE:79
-    case controllers_SubscriptionController_subscriptionExists41_route(params@_) =>
+    // @LINE:76
+    case controllers_SubscriptionController_readAll40_route(params@_) =>
       call { 
-        controllers_SubscriptionController_subscriptionExists41_invoker.call(SubscriptionController_5.subscriptionExists)
+        controllers_SubscriptionController_readAll40_invoker.call(SubscriptionController_5.readAll)
       }
   
-    // @LINE:81
-    case controllers_SubscriptionController_readSubscriptionByAnimalAndUserId42_route(params@_) =>
-      call { 
-        controllers_SubscriptionController_readSubscriptionByAnimalAndUserId42_invoker.call(SubscriptionController_5.readSubscriptionByAnimalAndUserId)
+    // @LINE:78
+    case controllers_SubscriptionController_delete41_route(params@_) =>
+      call(params.fromPath[String]("id", None)) { (id) =>
+        controllers_SubscriptionController_delete41_invoker.call(SubscriptionController_5.delete(id))
       }
   
-    // @LINE:84
-    case controllers_AdminController_create43_route(params@_) =>
+    // @LINE:80
+    case controllers_SubscriptionController_subscriptionExists42_route(params@_) =>
       call { 
-        controllers_AdminController_create43_invoker.call(AdminController_9.create)
+        controllers_SubscriptionController_subscriptionExists42_invoker.call(SubscriptionController_5.subscriptionExists)
+      }
+  
+    // @LINE:82
+    case controllers_SubscriptionController_readSubscriptionByAnimalAndUserId43_route(params@_) =>
+      call { 
+        controllers_SubscriptionController_readSubscriptionByAnimalAndUserId43_invoker.call(SubscriptionController_5.readSubscriptionByAnimalAndUserId)
       }
   
     // @LINE:85
-    case controllers_AdminController_readAll44_route(params@_) =>
+    case controllers_AdminController_create44_route(params@_) =>
       call { 
-        controllers_AdminController_readAll44_invoker.call(AdminController_9.readAll)
+        controllers_AdminController_create44_invoker.call(AdminController_9.create)
       }
   
     // @LINE:86
-    case controllers_AdminController_adminExists45_route(params@_) =>
+    case controllers_AdminController_readAll45_route(params@_) =>
       call { 
-        controllers_AdminController_adminExists45_invoker.call(AdminController_9.adminExists)
+        controllers_AdminController_readAll45_invoker.call(AdminController_9.readAll)
       }
   
-    // @LINE:88
-    case controllers_AdminController_delete46_route(params@_) =>
+    // @LINE:87
+    case controllers_AdminController_adminExists46_route(params@_) =>
+      call { 
+        controllers_AdminController_adminExists46_invoker.call(AdminController_9.adminExists)
+      }
+  
+    // @LINE:89
+    case controllers_AdminController_delete47_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_AdminController_delete46_invoker.call(AdminController_9.delete(id))
-      }
-  
-    // @LINE:91
-    case controllers_VetController_create47_route(params@_) =>
-      call { 
-        controllers_VetController_create47_invoker.call(VetController_8.create)
+        controllers_AdminController_delete47_invoker.call(AdminController_9.delete(id))
       }
   
     // @LINE:92
-    case controllers_UserController_read48_route(params@_) =>
-      call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_UserController_read48_invoker.call(UserController_11.read(id))
+    case controllers_VetController_create48_route(params@_) =>
+      call { 
+        controllers_VetController_create48_invoker.call(VetController_8.create)
       }
   
     // @LINE:93
-    case controllers_VetController_readAll49_route(params@_) =>
-      call { 
-        controllers_VetController_readAll49_invoker.call(VetController_8.readAll)
-      }
-  
-    // @LINE:95
-    case controllers_VetController_delete50_route(params@_) =>
+    case controllers_UserController_read49_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_VetController_delete50_invoker.call(VetController_8.delete(id))
+        controllers_UserController_read49_invoker.call(UserController_11.read(id))
       }
   
-    // @LINE:98
-    case controllers_AdopterController_create51_route(params@_) =>
+    // @LINE:94
+    case controllers_VetController_readAll50_route(params@_) =>
       call { 
-        controllers_AdopterController_create51_invoker.call(AdopterController_2.create)
+        controllers_VetController_readAll50_invoker.call(VetController_8.readAll)
+      }
+  
+    // @LINE:96
+    case controllers_VetController_delete51_route(params@_) =>
+      call(params.fromPath[String]("id", None)) { (id) =>
+        controllers_VetController_delete51_invoker.call(VetController_8.delete(id))
       }
   
     // @LINE:99
-    case controllers_AdopterController_readAll52_route(params@_) =>
+    case controllers_AdopterController_create52_route(params@_) =>
       call { 
-        controllers_AdopterController_readAll52_invoker.call(AdopterController_2.readAll)
+        controllers_AdopterController_create52_invoker.call(AdopterController_2.create)
       }
   
-    // @LINE:101
-    case controllers_AdopterController_delete53_route(params@_) =>
+    // @LINE:100
+    case controllers_AdopterController_readAll53_route(params@_) =>
+      call { 
+        controllers_AdopterController_readAll53_invoker.call(AdopterController_2.readAll)
+      }
+  
+    // @LINE:102
+    case controllers_AdopterController_delete54_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_AdopterController_delete53_invoker.call(AdopterController_2.delete(id))
+        controllers_AdopterController_delete54_invoker.call(AdopterController_2.delete(id))
       }
   
-    // @LINE:103
-    case controllers_AdopterController_adopterExist54_route(params@_) =>
+    // @LINE:104
+    case controllers_AdopterController_adopterExist55_route(params@_) =>
       call { 
-        controllers_AdopterController_adopterExist54_invoker.call(AdopterController_2.adopterExist)
+        controllers_AdopterController_adopterExist55_invoker.call(AdopterController_2.adopterExist)
       }
   
-    // @LINE:106
-    case controllers_VetController_vetExists55_route(params@_) =>
+    // @LINE:107
+    case controllers_VetController_vetExists56_route(params@_) =>
       call { 
-        controllers_VetController_vetExists55_invoker.call(VetController_8.vetExists)
-      }
-  
-    // @LINE:109
-    case controllers_VaccineController_create56_route(params@_) =>
-      call { 
-        controllers_VaccineController_create56_invoker.call(VaccineController_1.create)
+        controllers_VetController_vetExists56_invoker.call(VetController_8.vetExists)
       }
   
     // @LINE:110
-    case controllers_VaccineController_readAll57_route(params@_) =>
+    case controllers_VaccineController_create57_route(params@_) =>
       call { 
-        controllers_VaccineController_readAll57_invoker.call(VaccineController_1.readAll)
+        controllers_VaccineController_create57_invoker.call(VaccineController_1.create)
       }
   
-    // @LINE:112
-    case controllers_VaccineController_delete58_route(params@_) =>
+    // @LINE:111
+    case controllers_VaccineController_readAll58_route(params@_) =>
+      call { 
+        controllers_VaccineController_readAll58_invoker.call(VaccineController_1.readAll)
+      }
+  
+    // @LINE:113
+    case controllers_VaccineController_delete59_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_VaccineController_delete58_invoker.call(VaccineController_1.delete(id))
+        controllers_VaccineController_delete59_invoker.call(VaccineController_1.delete(id))
       }
   
-    // @LINE:114
-    case controllers_VaccineController_readAllAnimalVaccines59_route(params@_) =>
+    // @LINE:115
+    case controllers_VaccineController_readAllAnimalVaccines60_route(params@_) =>
       call { 
-        controllers_VaccineController_readAllAnimalVaccines59_invoker.call(VaccineController_1.readAllAnimalVaccines)
+        controllers_VaccineController_readAllAnimalVaccines60_invoker.call(VaccineController_1.readAllAnimalVaccines)
       }
   
-    // @LINE:117
-    case controllers_LostAndFoundController_createLost60_route(params@_) =>
+    // @LINE:118
+    case controllers_LostAndFoundController_createLost61_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_createLost60_invoker.call(LostAndFoundController_4.createLost)
-      }
-  
-    // @LINE:119
-    case controllers_LostAndFoundController_createFound61_route(params@_) =>
-      call { 
-        controllers_LostAndFoundController_createFound61_invoker.call(LostAndFoundController_4.createFound)
+        controllers_LostAndFoundController_createLost61_invoker.call(LostAndFoundController_4.createLost)
       }
   
     // @LINE:120
-    case controllers_LostAndFoundController_readAll62_route(params@_) =>
+    case controllers_LostAndFoundController_createFound62_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAll62_invoker.call(LostAndFoundController_4.readAll)
+        controllers_LostAndFoundController_createFound62_invoker.call(LostAndFoundController_4.createFound)
       }
   
     // @LINE:121
-    case controllers_LostAndFoundController_readAllNotApproved63_route(params@_) =>
+    case controllers_LostAndFoundController_readAll63_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllNotApproved63_invoker.call(LostAndFoundController_4.readAllNotApproved)
+        controllers_LostAndFoundController_readAll63_invoker.call(LostAndFoundController_4.readAll)
       }
   
     // @LINE:122
-    case controllers_LostAndFoundController_readAllApproved64_route(params@_) =>
+    case controllers_LostAndFoundController_readAllNotApproved64_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllApproved64_invoker.call(LostAndFoundController_4.readAllApproved)
+        controllers_LostAndFoundController_readAllNotApproved64_invoker.call(LostAndFoundController_4.readAllNotApproved)
       }
   
     // @LINE:123
-    case controllers_LostAndFoundController_readAllLostApproved65_route(params@_) =>
+    case controllers_LostAndFoundController_readAllApproved65_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllLostApproved65_invoker.call(LostAndFoundController_4.readAllLostApproved)
+        controllers_LostAndFoundController_readAllApproved65_invoker.call(LostAndFoundController_4.readAllApproved)
       }
   
     // @LINE:124
-    case controllers_LostAndFoundController_readAllFoundApproved66_route(params@_) =>
+    case controllers_LostAndFoundController_readAllLostApproved66_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllFoundApproved66_invoker.call(LostAndFoundController_4.readAllFoundApproved)
+        controllers_LostAndFoundController_readAllLostApproved66_invoker.call(LostAndFoundController_4.readAllLostApproved)
       }
   
     // @LINE:125
-    case controllers_LostAndFoundController_readAllLost67_route(params@_) =>
+    case controllers_LostAndFoundController_readAllFoundApproved67_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllLost67_invoker.call(LostAndFoundController_4.readAllLost)
+        controllers_LostAndFoundController_readAllFoundApproved67_invoker.call(LostAndFoundController_4.readAllFoundApproved)
       }
   
     // @LINE:126
-    case controllers_LostAndFoundController_readAllFound68_route(params@_) =>
+    case controllers_LostAndFoundController_readAllLost68_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllFound68_invoker.call(LostAndFoundController_4.readAllFound)
+        controllers_LostAndFoundController_readAllLost68_invoker.call(LostAndFoundController_4.readAllLost)
       }
   
     // @LINE:127
-    case controllers_LostAndFoundController_readAllLostNotApproved69_route(params@_) =>
+    case controllers_LostAndFoundController_readAllFound69_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllLostNotApproved69_invoker.call(LostAndFoundController_4.readAllLostNotApproved)
+        controllers_LostAndFoundController_readAllFound69_invoker.call(LostAndFoundController_4.readAllFound)
       }
   
     // @LINE:128
-    case controllers_LostAndFoundController_readAllFoundNotApproved70_route(params@_) =>
+    case controllers_LostAndFoundController_readAllLostNotApproved70_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_readAllFoundNotApproved70_invoker.call(LostAndFoundController_4.readAllFoundNotApproved)
+        controllers_LostAndFoundController_readAllLostNotApproved70_invoker.call(LostAndFoundController_4.readAllLostNotApproved)
       }
   
-    // @LINE:130
-    case controllers_LostAndFoundController_adminApproveLAF71_route(params@_) =>
+    // @LINE:129
+    case controllers_LostAndFoundController_readAllFoundNotApproved71_route(params@_) =>
       call { 
-        controllers_LostAndFoundController_adminApproveLAF71_invoker.call(LostAndFoundController_4.adminApproveLAF)
+        controllers_LostAndFoundController_readAllFoundNotApproved71_invoker.call(LostAndFoundController_4.readAllFoundNotApproved)
       }
   
     // @LINE:131
-    case controllers_LostAndFoundController_read72_route(params@_) =>
-      call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_LostAndFoundController_read72_invoker.call(LostAndFoundController_4.read(id))
+    case controllers_LostAndFoundController_adminApproveLAF72_route(params@_) =>
+      call { 
+        controllers_LostAndFoundController_adminApproveLAF72_invoker.call(LostAndFoundController_4.adminApproveLAF)
       }
   
-    // @LINE:133
-    case controllers_LostAndFoundController_delete73_route(params@_) =>
+    // @LINE:132
+    case controllers_LostAndFoundController_read73_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_LostAndFoundController_delete73_invoker.call(LostAndFoundController_4.delete(id))
+        controllers_LostAndFoundController_read73_invoker.call(LostAndFoundController_4.read(id))
       }
   
     // @LINE:134
-    case controllers_LostAndFoundController_readByAnimalId74_route(params@_) =>
+    case controllers_LostAndFoundController_delete74_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_LostAndFoundController_readByAnimalId74_invoker.call(LostAndFoundController_4.readByAnimalId(id))
+        controllers_LostAndFoundController_delete74_invoker.call(LostAndFoundController_4.delete(id))
       }
   
-    // @LINE:136
-    case controllers_LostAndFoundController_lostAndFoundExists75_route(params@_) =>
-      call { 
-        controllers_LostAndFoundController_lostAndFoundExists75_invoker.call(LostAndFoundController_4.lostAndFoundExists)
+    // @LINE:135
+    case controllers_LostAndFoundController_readByAnimalId75_route(params@_) =>
+      call(params.fromPath[String]("id", None)) { (id) =>
+        controllers_LostAndFoundController_readByAnimalId75_invoker.call(LostAndFoundController_4.readByAnimalId(id))
       }
   
-    // @LINE:139
-    case controllers_PhotoController_create76_route(params@_) =>
+    // @LINE:137
+    case controllers_LostAndFoundController_lostAndFoundExists76_route(params@_) =>
       call { 
-        controllers_PhotoController_create76_invoker.call(PhotoController_10.create)
+        controllers_LostAndFoundController_lostAndFoundExists76_invoker.call(LostAndFoundController_4.lostAndFoundExists)
       }
   
-    // @LINE:141
-    case controllers_PhotoController_adopterAddPhotos77_route(params@_) =>
+    // @LINE:140
+    case controllers_PhotoController_create77_route(params@_) =>
       call { 
-        controllers_PhotoController_adopterAddPhotos77_invoker.call(PhotoController_10.adopterAddPhotos)
+        controllers_PhotoController_create77_invoker.call(PhotoController_10.create)
       }
   
     // @LINE:142
-    case controllers_PhotoController_readAll78_route(params@_) =>
+    case controllers_PhotoController_adopterAddPhotos78_route(params@_) =>
       call { 
-        controllers_PhotoController_readAll78_invoker.call(PhotoController_10.readAll)
+        controllers_PhotoController_adopterAddPhotos78_invoker.call(PhotoController_10.adopterAddPhotos)
       }
   
-    // @LINE:144
-    case controllers_PhotoController_delete79_route(params@_) =>
+    // @LINE:143
+    case controllers_PhotoController_readAll79_route(params@_) =>
+      call { 
+        controllers_PhotoController_readAll79_invoker.call(PhotoController_10.readAll)
+      }
+  
+    // @LINE:145
+    case controllers_PhotoController_delete80_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_PhotoController_delete79_invoker.call(PhotoController_10.delete(id))
+        controllers_PhotoController_delete80_invoker.call(PhotoController_10.delete(id))
       }
   
-    // @LINE:146
-    case controllers_PhotoController_uploadMedia80_route(params@_) =>
+    // @LINE:147
+    case controllers_PhotoController_uploadMedia81_route(params@_) =>
       call { 
-        controllers_PhotoController_uploadMedia80_invoker.call(PhotoController_10.uploadMedia)
+        controllers_PhotoController_uploadMedia81_invoker.call(PhotoController_10.uploadMedia)
       }
   
-    // @LINE:148
-    case controllers_PhotoController_readAllAnimalPhotos81_route(params@_) =>
+    // @LINE:149
+    case controllers_PhotoController_readAllAnimalPhotos82_route(params@_) =>
       call { 
-        controllers_PhotoController_readAllAnimalPhotos81_invoker.call(PhotoController_10.readAllAnimalPhotos)
+        controllers_PhotoController_readAllAnimalPhotos82_invoker.call(PhotoController_10.readAllAnimalPhotos)
       }
   
-    // @LINE:151
-    case controllers_VideoController_create82_route(params@_) =>
+    // @LINE:152
+    case controllers_VideoController_create83_route(params@_) =>
       call { 
-        controllers_VideoController_create82_invoker.call(VideoController_0.create)
-      }
-  
-    // @LINE:153
-    case controllers_VideoController_adopterAddVideos83_route(params@_) =>
-      call { 
-        controllers_VideoController_adopterAddVideos83_invoker.call(VideoController_0.adopterAddVideos)
+        controllers_VideoController_create83_invoker.call(VideoController_0.create)
       }
   
     // @LINE:154
-    case controllers_VideoController_readAll84_route(params@_) =>
+    case controllers_VideoController_adopterAddVideos84_route(params@_) =>
       call { 
-        controllers_VideoController_readAll84_invoker.call(VideoController_0.readAll)
+        controllers_VideoController_adopterAddVideos84_invoker.call(VideoController_0.adopterAddVideos)
       }
   
-    // @LINE:156
-    case controllers_VideoController_delete85_route(params@_) =>
+    // @LINE:155
+    case controllers_VideoController_readAll85_route(params@_) =>
+      call { 
+        controllers_VideoController_readAll85_invoker.call(VideoController_0.readAll)
+      }
+  
+    // @LINE:157
+    case controllers_VideoController_delete86_route(params@_) =>
       call(params.fromPath[String]("id", None)) { (id) =>
-        controllers_VideoController_delete85_invoker.call(VideoController_0.delete(id))
+        controllers_VideoController_delete86_invoker.call(VideoController_0.delete(id))
       }
   
-    // @LINE:158
-    case controllers_VideoController_readAllAnimalVideos86_route(params@_) =>
+    // @LINE:159
+    case controllers_VideoController_readAllAnimalVideos87_route(params@_) =>
       call { 
-        controllers_VideoController_readAllAnimalVideos86_invoker.call(VideoController_0.readAllAnimalVideos)
-      }
-  
-    // @LINE:161
-    case controllers_AnimalTypeController_create87_route(params@_) =>
-      call { 
-        controllers_AnimalTypeController_create87_invoker.call(AnimalTypeController_3.create)
+        controllers_VideoController_readAllAnimalVideos87_invoker.call(VideoController_0.readAllAnimalVideos)
       }
   
     // @LINE:162
-    case controllers_AnimalTypeController_readAll88_route(params@_) =>
+    case controllers_AnimalTypeController_create88_route(params@_) =>
       call { 
-        controllers_AnimalTypeController_readAll88_invoker.call(AnimalTypeController_3.readAll)
+        controllers_AnimalTypeController_create88_invoker.call(AnimalTypeController_3.create)
       }
   
-    // @LINE:165
-    case controllers_Assets_versioned89_route(params@_) =>
+    // @LINE:163
+    case controllers_AnimalTypeController_readAll89_route(params@_) =>
+      call { 
+        controllers_AnimalTypeController_readAll89_invoker.call(AnimalTypeController_3.readAll)
+      }
+  
+    // @LINE:166
+    case controllers_Assets_versioned90_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned89_invoker.call(Assets_12.versioned(path, file))
+        controllers_Assets_versioned90_invoker.call(Assets_12.versioned(path, file))
       }
   }
 }
